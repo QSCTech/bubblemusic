@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Box xmlns:mx="http://www.adobe.com/2006/mxml" width="393" height="303" styleName="lyrics">
+	<mx:HBox width="390" height="300" verticalAlign="middle" horizontalAlign="center">
+		
+		
+		
+		<mx:Image source="Style/Jay.jpg" width="119" height="148.75"/>
+		<mx:VRule height="268" width="1"/>
+
+		<mx:Canvas>
+		<mx:TextArea x="0" y="0" width="212" height="258" textAlign="center"   editable="false" verticalScrollPolicy="off">
+			<mx:text><![CDATA[
+
+稻香 - 周杰伦 - 魔杰座
+
+作词：周杰伦  作曲：周杰伦
+
+对这个世界如果你有太多的抱怨 
+跌倒了就不敢继续往前走 
+　为什么人要这么的脆弱 堕落 
+请你打开电视看看 
+　多少人为生命在努力勇敢的走下去 
+我们是不是该知足 
+　珍惜一切 就算没有拥有
+
+对这个世界如果你有太多的抱怨 
+跌倒了就不敢继续往前走 
+　为什么人要这么的脆弱 堕落 
+请你打开电视看看 
+　多少人为生命在努力勇敢的走下去 
+我们是不是该知足 
+　珍惜一切 就算没有拥有 ]]></mx:text>
+		</mx:TextArea>
+		<mx:TextInput y="127" backgroundColor="#22FF0B" width="100%" height="15" borderStyle="solid" cornerRadius="5" borderThickness="0" editable="false" enabled="true" x="0" alpha="0.3"/>
+		</mx:Canvas>
+	</mx:HBox>
+</mx:Box>
