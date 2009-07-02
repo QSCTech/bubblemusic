@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="260" height="20" styleName="player2"
+	rollOver="currentState='cursorSong'" rollOut="currentState=''">
+	<mx:states>
+		<mx:State name="cursorSong">
+			<mx:SetStyle target="{label1}" name="color" value="#BAF75D"/>
+			<mx:AddChild position="lastChild">
+				<mx:Image source="Style/tri.GIF" verticalCenter="0" left="6"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Button x="208" label="播放" styleName="buttomLight" width="11" height="11" verticalCenter="0"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Button x="223" label="收藏" styleName="buttomLight" width="11" height="11" verticalCenter="0"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Button x="238" label="删除" styleName="buttomLight" width="11" height="11" verticalCenter="0"/>
+			</mx:AddChild>
+			<mx:SetStyle name="backgroundColor" value="#625463"/>
+			<mx:SetProperty target="{label1}" name="y"/>
+			<mx:SetStyle target="{label1}" name="verticalCenter" value="0"/>
+		</mx:State>
+	</mx:states>
+	<mx:Label x="19" text="中国话" color="#AFA2B0" fontSize="12" id="label1" verticalCenter="0"/>
+	
+</mx:Canvas>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="260" height="60"
+	mouseOver="currentState=''" mouseOut="currentState='cursorTop'">
+	<mx:states>
+		<mx:State name="cursorTop">
+			<mx:RemoveChild target="{play}"/>
+			<mx:RemoveChild target="{play0}"/>
+			<mx:AddChild position="lastChild">
+				<mx:Image x="12" width="56" height="56" verticalCenter="0" source="Style/Jay.jpg"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Label x="77" y="4" text="歌曲名" styleName="songLabel"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Label x="77" y="21" text="歌手名" styleName="playerLabel"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Label x="77" y="38" text="专辑名" styleName="albumLabel"/>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+	
+		<mx:Button label="play" id="play" styleName="playBottom"
+			height="58" verticalCenter="0"/>
+		<mx:Button label="speed" id="play0"  styleName="speedBottom"
+			height="58" x="56" verticalCenter="0"/>
+
+	
+</mx:Canvas>
