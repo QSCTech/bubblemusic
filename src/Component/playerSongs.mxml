@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="260" height="20" styleName="player1"
 	rollOver="currentState='cursorSong'" rollOut="currentState=''">
+	<mx:Script>
+		<![CDATA[
+			[Bindable]
+			public var text:String = "Bubble";
+		]]>
+	</mx:Script>
 	<mx:states>
 		<mx:State name="cursorSong">
 			<mx:SetStyle target="{label1}" name="color" value="#BAF75D"/>
@@ -22,6 +28,6 @@
 			<mx:SetStyle target="{label1}" name="verticalCenter" value="0"/>
 		</mx:State>
 	</mx:states>
-	<mx:Label x="19" text="中国话" color="#AFA2B0" fontSize="12" id="label1" verticalCenter="0"/>
+	<mx:Label x="19" text="{text}" color="#AFA2B0" id="label1" fontSize="12" verticalCenter="0"/>
 	
 </mx:Canvas>

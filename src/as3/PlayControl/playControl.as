@@ -1,12 +1,9 @@
 package as3.PlayControl
 {
+	import flash.events.Event;
 	import flash.net.URLRequest;
 	
-	import mx.containers.VBox;
-	import Component.playerSongs;
-	import Component.playerSongs2;
-	
-	public class mainControl
+	public class playControl
 	{
 		import flash.media.Sound;
 		import flash.media.SoundChannel;
@@ -15,18 +12,15 @@ package as3.PlayControl
 		private var music:Sound;
 		private var channel:SoundChannel;
 		private var isPlay:Boolean;
-		private var musicList:VBox;
 		
 		/**
 		 * 进行初始化操作
 		 */
-		public function mainControl(musicList:VBox)
+		public function playControl()
 		{
 			pasPos = 0;
-			music = new Sound();
 			channel = new SoundChannel();
 			isPlay = false;
-			this.musicList = musicList;
 		}
 		
 
@@ -35,9 +29,11 @@ package as3.PlayControl
 		 * @param musicFile 要播放的音乐的路径
 		 * 
 		 */
-		public function newPlay(musicFile:String,nextFile:String):void{
+		public function newPlay(musicFile:String,nextMusic:Function):void{
+			music = new Sound();
 			music.load(new URLRequest(musicFile));
 			channel = music.play(0);
+			channel.addEventListener(Event.SOUND_COMPLETE,nextMusic);
 			isPlay = true;
 		}
 		
@@ -63,6 +59,6 @@ package as3.PlayControl
 				isPlay = true;
 			}
 		}
-		musicList.removech
+		
 	}
 }

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns:bubble="Component.*" >
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns:bubble="Component.*" applicationComplete="initPlayList()" >
 	
 	<mx:Style source="./Style/styles.css"/>	
+	<mx:Script source="as3/main.as" />
 	
 	<bubble:top />
 	
@@ -15,7 +16,7 @@
 		<mx:VBox id="musicList" width="262" height="346" verticalGap="0"  cornerRadius="10" borderStyle="solid">
 			<bubble:playerTop width="260" height="64">
 			</bubble:playerTop>
-	
+	<!--
 			<bubble:playerSongs>
 			</bubble:playerSongs>
 			<bubble:playerSongs2>
@@ -39,7 +40,7 @@
 			<bubble:playerSongs>
 			</bubble:playerSongs>
 			<bubble:playerSongs2>
-			</bubble:playerSongs2>	
+			</bubble:playerSongs2>	-->
 		</mx:VBox>
 	</mx:ApplicationControlBar>
 
