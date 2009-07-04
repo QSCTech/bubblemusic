@@ -30,6 +30,11 @@ package as3.PlayControl
 		 * 
 		 */
 		public function newPlay(musicFile:String,nextMusic:Function):void{
+			if(isPlay){
+				//music.close();
+				channel.stop();
+				isPlay = false;
+			}
 			music = new Sound();
 			music.load(new URLRequest(musicFile));
 			channel = music.play(0);
