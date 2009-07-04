@@ -16,8 +16,8 @@
 		<mx:VBox id="musicList" width="262" height="346" verticalGap="0"  cornerRadius="10" borderStyle="solid">
 			<bubble:playerTop width="260" height="64">
 			</bubble:playerTop>
-	<!--
-			<bubble:playerSongs>
+	
+	<!--	<bubble:playerSongs>
 			</bubble:playerSongs>
 			<bubble:playerSongs2>
 			</bubble:playerSongs2>

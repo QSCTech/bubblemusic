@@ -5,6 +5,8 @@
 		<![CDATA[
 			[Bindable]
 			public var text:String = "Bubble";
+			//index变量,用来储存在列表中的位置,用来实现双击播放功能
+			public var index:int = 0;
 		]]>
 	</mx:Script>
 	<mx:states>
