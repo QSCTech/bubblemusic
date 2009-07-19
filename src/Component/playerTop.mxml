@@ -6,24 +6,20 @@
 			<mx:RemoveChild target="{play}"/>
 			<mx:RemoveChild target="{play0}"/>
 			<mx:AddChild position="lastChild">
-				<mx:Image x="12" width="56" height="56" verticalCenter="0" source="Style/Jay.jpg"/>
+				<mx:Label y="11" text="歌曲名" styleName="songLabel" horizontalCenter="0"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Label x="77" y="4" text="歌曲名" styleName="songLabel"/>
+				<mx:Label y="26" text="歌手名" styleName="playerLabel" horizontalCenter="0"/>
 			</mx:AddChild>
-			<mx:AddChild position="lastChild">
-				<mx:Label x="77" y="21" text="歌手名" styleName="playerLabel"/>
-			</mx:AddChild>
-			<mx:AddChild position="lastChild">
-				<mx:Label x="77" y="38" text="专辑名" styleName="albumLabel"/>
-			</mx:AddChild>
+			<mx:SetProperty target="{hslider1}" name="y" value="44"/>
 		</mx:State>
 	</mx:states>
 	
-		<mx:Button label="play" id="play" styleName="playBottom"
-			height="58" verticalCenter="0"/>
-		<mx:Button label="speed" id="play0"  styleName="speedBottom"
-			height="58" x="56" verticalCenter="0"/>
+		<mx:Button id="play" styleName="playBottom"
+			height="25" width="25" y="11"   horizontalCenter="-16" click="pauseAndPlay()"/>
+		<mx:Button id="play0"  styleName="nextBottom"
+			height="25" width="25" y="11"    horizontalCenter="16" click="newPlay(musicFile,nextMusic)"/>
+		<mx:HSlider y="41" horizontalCenter="0" id="hslider1"/>
 
 	
 </mx:Canvas>

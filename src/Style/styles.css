@@ -33,13 +33,20 @@
 		fillColors:#241625, #3E303F;
 		color:#A79AA8; 
 		themeColor:#BAF75D; 
+		skin:
+		ClassReference( "as3.bottom.playButtonSkin" );
 	}
+	                   
+
 	/*快进按钮*/
-	.speedBottom{
+	.nextBottom{
 		fillAlphas:1.0, 1.0, 0.0, 0.0; 
 		fillColors:#241625, #3E303F;
 		color:#A79AA8; 
 		themeColor:#BAF75D; 
+		downSkin:Embed(source="../Style/next.png");
+		upSkin:Embed(source="../Style/next.png");
+		overSkin:Embed(source="../Style/next.png");
 	}
 	/*播放器顶部歌曲信息颜色*/
 	.songLabel{

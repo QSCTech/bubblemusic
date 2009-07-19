@@ -3,6 +3,8 @@ package as3.PlayControl
 	import flash.events.Event;
 	import flash.net.URLRequest;
 	
+	import as3.Bottom.bottom;
+	
 	public class playControl
 	{
 		import flash.media.Sound;
@@ -43,22 +45,15 @@ package as3.PlayControl
 		}
 		
 		/**
-		 *暂停播放操作 
+		 *暂停*继续播放操作 
 		 * 
 		 */
-		public function pausePlay():void{
+		public function pauseAndPlay():void{
 			if(isPlay){
 				pasPos = channel.position;
 				channel.stop();
 				isPlay = false;
 			}
-		}
-		
-		/**
-		 *继续播放当前音乐 
-		 * 
-		 */
-		public function pursuePlay():void{
 			if(!isPlay){
 				channel = music.play(pasPos);
 				isPlay = true;
@@ -67,3 +62,14 @@ package as3.PlayControl
 		
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
