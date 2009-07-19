@@ -8,6 +8,7 @@
 	
 	import as3.Net.RPC;
 	import as3.PlayControl.playControl;
+	import as3.Bottom.bottom;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -70,7 +71,7 @@
 	 * 当一首音乐播放完后,执行播放下一首音乐的操作,包括播放列表的同步
 	 */
 	public function nextMusic(event:Event):void{
-		abc.pausePlay();
+		abc.pauseAndPlay();
 		abc.newPlay(playList[1].url,nextMusic);
 	}
 	
