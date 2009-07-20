@@ -6,20 +6,26 @@
 			<mx:RemoveChild target="{play}"/>
 			<mx:RemoveChild target="{play0}"/>
 			<mx:AddChild position="lastChild">
-				<mx:Label y="11" text="歌曲名" styleName="songLabel" horizontalCenter="0"/>
+				<mx:Label y="11" text="{list[0].title}" styleName="songLabel" horizontalCenter="0"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Label y="26" text="歌手名" styleName="playerLabel" horizontalCenter="0"/>
+				<mx:Label y="26" text="{list[0].author}" styleName="playerLabel" horizontalCenter="0"/>
 			</mx:AddChild>
-			<mx:SetProperty target="{hslider1}" name="y" value="44"/>
+			<mx:RemoveChild target="{volume}"/>
+			<mx:RemoveChild target="{image1}"/>
+			<mx:AddChild position="lastChild">
+				<mx:Image x="243" y="9" source="Style/vol1.png"/>
+			</mx:AddChild>
 		</mx:State>
 	</mx:states>
 	
 		<mx:Button id="play" styleName="playBottom"
 			height="25" width="25" y="11"   horizontalCenter="-16" click="pauseAndPlay()"/>
 		<mx:Button id="play0"  styleName="nextBottom"
-			height="25" width="25" y="11"    horizontalCenter="16" click="newPlay(musicFile,nextMusic)"/>
-		<mx:HSlider y="41" horizontalCenter="0" id="hslider1"/>
+			height="25" width="25" y="11"    horizontalCenter="16" click="newPlay(playList[1].url,nextMusic)"/>
+		<mx:VSlider x="239" y="17" height="40" id="volume" liveDragging="true" maximum="100" value="50"/>
+		<mx:Image x="243" y="9" source="Style/vol2.png" id="image1"/>
+		<mx:ProgressBar y="44" horizontalCenter="0"/>
 
 	
 </mx:Canvas>

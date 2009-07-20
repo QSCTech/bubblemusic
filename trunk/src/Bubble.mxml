@@ -1,28 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns:bubble="Component.*" applicationComplete="initPlayList()" >
 	
-	<mx:Style source="../Style/styles.css"/>	
-	<mx:Script source="as3/main.as" />
+	<mx:Style source="./Style/styles.css"/>          
+	<mx:Script source="as3/main.as" /> 
 	
-	<bubble:top />
+	<mx:Canvas width="100%" height="78" styleName="topBottom">
+
+	<mx:LinkButton y="10" label="退出" right="110" />
+	<mx:LinkButton y="10" label="设置" right="60" />
+	<mx:LinkButton y="10" label="帮助" right="10" />
+	<mx:TextInput right="165" bottom="8"  cornerRadius="4" borderStyle="solid"/>
+	<mx:ComboBox right="65" fontSize="12" bottom="8">
+		<mx:String>全部搜索</mx:String>
+		<mx:String>搜歌名</mx:String>
+		<mx:String>搜歌手</mx:String>
+		<mx:String>搜专辑</mx:String>
+		<mx:String>搜歌词</mx:String>
+	</mx:ComboBox>
+	<mx:Button label="搜索" right="10" bottom="8" styleName="buttomDeep"/>
+	
+	</mx:Canvas>
+	
 	
 	<mx:ApplicationControlBar width="100%" height="100%" styleName="player" horizontalAlign="center" verticalAlign="middle">
+	
+	//歌词	
+	<mx:Box  width="393" height="303" styleName="lyrics">
+		<mx:HBox width="390" height="300" verticalAlign="middle" horizontalAlign="center">
 		
-		<bubble:lyrics>
-		</bubble:lyrics>
+		
+		
+			<mx:Image source="Style/Jay.jpg" width="119" height="148.75"/>
+			<mx:VRule height="268" width="1"/>
+
+			<mx:Canvas>
+				<mx:TextArea x="0" y="0" width="212" height="258" textAlign="center"   editable="false" verticalScrollPolicy="off">
+					<mx:text><![CDATA[
+
+稻香 - 周杰伦 - 魔杰座
+
+作词：周杰伦  作曲：周杰伦
+
+对这个世界如果你有太多的抱怨 
+跌倒了就不敢继续往前走 
+　为什么人要这么的脆弱 堕落 
+请你打开电视看看 
+　多少人为生命在努力勇敢的走下去 
+我们是不是该知足 
+　珍惜一切 就算没有拥有
+
+对这个世界如果你有太多的抱怨 
+跌倒了就不敢继续往前走 
+　为什么人要这么的脆弱 堕落 
+请你打开电视看看 
+　多少人为生命在努力勇敢的走下去 
+我们是不是该知足 
+　珍惜一切 就算没有拥有 ]]>
+					</mx:text>
+				</mx:TextArea>
+			</mx:Canvas>
+		</mx:HBox>
+	</mx:Box>
+	
+	
+	
 		
 		<mx:Spacer width="20" />
 		
 		<mx:VBox id="musicList" width="262" height="346" verticalGap="0"  cornerRadius="10" borderStyle="solid">
-			<bubble:playerTop width="260" height="64">
-			</bubble:playerTop>
+			
+			<mx:Spacer height="4" />
+			
+			//PLAYERTOP
+			<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="260" height="60"
+				mouseOver="currentState=''" mouseOut="currentState='cursorTop'">
+				<mx:states>
+					<mx:State name="cursorTop">
+						<mx:RemoveChild target="{play}"/>
+						<mx:RemoveChild target="{play0}"/>
+						<mx:AddChild position="lastChild">
+							<mx:Label y="11" text="{list[0].title}" styleName="songLabel" horizontalCenter="0"/>
+						</mx:AddChild>
+						<mx:AddChild position="lastChild">
+							<mx:Label y="26" text="{list[0].author}" styleName="playerLabel" horizontalCenter="0"/>
+						</mx:AddChild>
+						<mx:RemoveChild target="{volume}"/>
+						<mx:RemoveChild target="{image1}"/>
+						<mx:AddChild position="lastChild">
+							<mx:Image x="243" y="9" source="Style/vol1.png"/>
+						</mx:AddChild>
+					</mx:State>
+				</mx:states>
 	
+				<mx:Button id="play" styleName="playBottom"
+					height="25" width="25" y="11"   horizontalCenter="-16" click="pauseAndPlay()"/>
+				<mx:Button id="play0"  styleName="nextBottom"
+					height="25" width="25" y="11"    horizontalCenter="16" click="newPlay(playList[1].url,nextMusic)"/>
+				<mx:VSlider x="239" y="17" height="40" id="volume" liveDragging="true" maximum="100" value="50"/>
+				<mx:Image x="243" y="9" source="Style/vol2.png" id="image1"/>
+				<mx:ProgressBar y="44" horizontalCenter="0"/>
+			</mx:Canvas>
+			
+			
+			
+			
+			
 	
 		</mx:VBox>
 	</mx:ApplicationControlBar>
+	
 
-	<bubble:bottom>
-	</bubble:bottom>
+	<mx:Canvas width="100%" height="45" styleName="topBottom">
+	<mx:Button y="10" label="歌词" styleName="buttomDeep"  left="10"/>
+	<mx:LinkButton y="10" label="下载" right="10"/>
+	</mx:Canvas>
+	
+	
+	
 	<mx:Label text="Bubble Jay 7.04"/>
 	
 </mx:Application>

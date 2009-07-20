@@ -45,21 +45,33 @@ package as3.PlayControl
 		}
 		
 		/**
-		 *暂停*继续播放操作 
-		 * 
-		 */
-		public function pauseAndPlay():void{
-			if(isPlay){
-				pasPos = channel.position;
-				channel.stop();
-				isPlay = false;
-			}
-			if(!isPlay){
-				channel = music.play(pasPos);
-				isPlay = true;
-			}
-		}
-		
+         *暂停播放操作
+         *                   
+         */                 
+         public function pausePlay():void{                         
+         	if(isPlay){                                 
+         		pasPos = channel.position;                                 
+         		channel.stop();                                 
+         		isPlay = false;                         
+         	}                 
+         }  
+                                         
+         /**                  
+          *继续,暂停播放当前音乐                   
+          *                   
+          */ 
+          public function pauseAndPlay():void{                         
+         	if(isPlay){                                 
+         		pasPos = channel.position;                                 
+         		channel.stop();                                 
+         		isPlay = false;                         
+         	}     
+         	if(!isPlay){                                 
+         		channel = music.play(pasPos);                                 
+         		isPlay = true;                         
+         	}                 
+         }                   
+       
 	}
 }
 
