@@ -62,7 +62,9 @@
 		fontSize:12;
 	}
 	
-	
+	.playerImage{
+		src:url("Style/tri.GIF");
+	}
 
 
 
@@ -97,10 +99,10 @@
 		color:#B8AAB9;
 	}
 	.topBottom{
-	backgroundColor:#241625;
-	borderStyle: solid;
-	cornerRadius: 10;
-	backgroundAlpha: 0.5;
+		backgroundColor:#241625;
+		borderStyle: solid;
+		cornerRadius: 10;
+		backgroundAlpha: 0.5;
 	}	
 	LinkButton{
 		themeColor:#BAF75D;

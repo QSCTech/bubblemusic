@@ -71,7 +71,7 @@
 	 * 当一首音乐播放完后,执行播放下一首音乐的操作,包括播放列表的同步
 	 */
 	public function nextMusic(event:Event):void{
-		abc.pauseAndPlay();
+		abc.pausePlay();
 		abc.newPlay(playList[1].url,nextMusic);
 	}
 	
@@ -100,4 +100,21 @@
 		
 		abc.newPlay(playList[0].url,nextMusic);
 	}
+	
+		                 
+         /**                  
+          *继续,暂停播放当前音乐                   
+          *                   
+          */ 
+          public function pauseAndPlay():void{                         
+         	if(isPlay){                                 
+         		pasPos = channel.position;                                 
+         		channel.stop();                                 
+         		isPlay = false;                         
+         	}     
+         	if(!isPlay){                                 
+         		channel = music.play(pasPos);                                 
+         		isPlay = true;                         
+         	}                 
+         }               
 
