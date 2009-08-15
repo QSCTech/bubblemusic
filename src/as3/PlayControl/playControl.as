@@ -1,9 +1,9 @@
 package as3.PlayControl
 {
-	import flash.events.Event;
-	import flash.net.URLRequest;
 	
-	import as3.Bottom.bottom;
+	import flash.events.Event;
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
 	
 	public class playControl
 	{
@@ -12,7 +12,7 @@ package as3.PlayControl
 		
 		private var pasPos:Number;
 		private var music:Sound;
-		private var channel:SoundChannel;
+		public var channel:SoundChannel;
 		private var isPlay:Boolean;
 		
 		/**
@@ -44,44 +44,29 @@ package as3.PlayControl
 			isPlay = true;
 		}
 		
+		
 		/**
-         *暂停播放操作
-         *                   
-         */                 
-         public function pausePlay():void{                         
-         	if(isPlay){                                 
-         		pasPos = channel.position;                                 
-         		channel.stop();                                 
-         		isPlay = false;                         
-         	}                 
-         }  
-                                         
-         /**                  
-          *继续,暂停播放当前音乐                   
-          *                   
-          */ 
-          public function pauseAndPlay():void{                         
-         	if(isPlay){                                 
-         		pasPos = channel.position;                                 
-         		channel.stop();                                 
-         		isPlay = false;                         
-         	}     
-         	if(!isPlay){                                 
-         		channel = music.play(pasPos);                                 
-         		isPlay = true;                         
-         	}                 
-         }                   
-       
+		 *暂停播放操作 
+		 * 
+		 */
+		public function pausePlay():void{
+			if(isPlay){
+				pasPos = channel.position;
+				channel.stop();
+				isPlay = false;
+			}
+		}
+		
+		/**
+		 *继续播放当前音乐 
+		 * 
+		 */
+		public function pursuePlay():void{
+			if(!isPlay){
+				channel = music.play(pasPos);
+				isPlay = true;
+			}
+		}
+		
 	}
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -4,7 +4,7 @@
 	<mx:LinkButton y="10" label="退出" right="110" />
 	<mx:LinkButton y="10" label="设置" right="60" />
 	<mx:LinkButton y="10" label="帮助" right="10" />
-	<mx:TextInput right="165" bottom="8"  cornerRadius="4" borderStyle="solid"/>
+	<mx:TextInput right="165" bottom="8"  cornerRadius="10" borderStyle="solid"/>
 	<mx:ComboBox right="65" fontSize="12" bottom="8">
 		<mx:String>全部搜索</mx:String>
 		<mx:String>搜歌名</mx:String>

@@ -7,31 +7,42 @@
 		<mx:Image source="Style/Jay.jpg" width="119" height="148.75"/>
 		<mx:VRule height="268" width="1"/>
 
-		<mx:Canvas>
-		<mx:TextArea x="0" y="0" width="212" height="258" textAlign="center"   editable="false" verticalScrollPolicy="off">
-			<mx:text><![CDATA[
-
-稻香 - 周杰伦 - 魔杰座
-
-作词：周杰伦  作曲：周杰伦
-
-对这个世界如果你有太多的抱怨 
-跌倒了就不敢继续往前走 
-　为什么人要这么的脆弱 堕落 
-请你打开电视看看 
-　多少人为生命在努力勇敢的走下去 
-我们是不是该知足 
-　珍惜一切 就算没有拥有
-
-对这个世界如果你有太多的抱怨 
-跌倒了就不敢继续往前走 
-　为什么人要这么的脆弱 堕落 
-请你打开电视看看 
-　多少人为生命在努力勇敢的走下去 
-我们是不是该知足 
-　珍惜一切 就算没有拥有 ]]></mx:text>
-		</mx:TextArea>
-		<mx:TextInput y="127" backgroundColor="#22FF0B" width="100%" height="15" borderStyle="solid" cornerRadius="5" borderThickness="0" editable="false" enabled="true" x="0" alpha="0.3"/>
+		<mx:Canvas width="212" height="90%">
+			<mx:Label id="lrc0" y="30" width="100%" textAlign="center" />
+			<mx:Label id="lrc1" y="50" width="100%" textAlign="center" />
+			<mx:Label id="lrc2" y="70" width="100%" textAlign="center" />
+			<mx:Label id="lrc3" y="90" width="100%" textAlign="center" />
+			<mx:Label id="lrc4" y="110" width="100%" textAlign="center" />
+			<mx:Label id="lrc5" y="130" width="100%" textAlign="center" fontWeight="bold" />
+			<mx:Label id="lrc6" y="150" width="100%" textAlign="center" />
+			<mx:Label id="lrc7" y="170" width="100%" textAlign="center" />
+			<mx:Label id="lrc8" y="190" width="100%" textAlign="center"/>
+			<mx:Label id="lrc9" y="210" width="100%" textAlign="center"/>
+			<mx:Label id="lrc10" y="230" width="100%" textAlign="center"/>
 		</mx:Canvas>
+		
 	</mx:HBox>
+	<mx:Parallel id="LRCeffect">
+		<mx:Move target="{lrc0}" yFrom="30" yTo="10" duration="500"/>
+		<mx:Move target="{lrc1}" yFrom="50" yTo="30" duration="500"/>
+		<mx:Move target="{lrc2}" yFrom="70" yTo="50" duration="500"/>
+		<mx:Move target="{lrc3}" yFrom="90" yTo="70" duration="500"/>
+		<mx:Move target="{lrc4}" yFrom="110" yTo="90" duration="500"/>
+		<mx:Move target="{lrc5}" yFrom="130" yTo="110" duration="500"/>
+		<mx:Move target="{lrc6}" yFrom="150" yTo="130" duration="500"/>
+		<mx:Move target="{lrc7}" yFrom="170" yTo="150" duration="500"/>
+		<mx:Move target="{lrc8}" yFrom="190" yTo="170" duration="500"/>
+		<mx:Move target="{lrc9}" yFrom="210" yTo="190" duration="500"/>
+		<mx:Move target="{lrc10}" yFrom="230" yTo="210" duration="500"/>
+		
+		<mx:Fade target="{lrc0}" alphaFrom="0.2" alphaTo="0" duration="500"/>
+		<mx:Fade target="{lrc1}" alphaFrom="0.4" alphaTo="0.2" duration="500"/>
+		<mx:Fade target="{lrc2}" alphaFrom="0.6" alphaTo="0.4" duration="500"/>
+		<mx:Fade target="{lrc3}" alphaFrom="0.8" alphaTo="0.6" duration="500"/>
+		<mx:Fade target="{lrc5}" alphaFrom="1" alphaTo="0.8" duration="500"/>
+		<mx:Fade target="{lrc6}" alphaFrom="0.8" alphaTo="1" duration="500"/>
+		<mx:Fade target="{lrc8}" alphaFrom="0.6" alphaTo="0.8" duration="500"/>
+		<mx:Fade target="{lrc9}" alphaFrom="0.4" alphaTo="0.6" duration="500"/>
+		<mx:Fade target="{lrc10}" alphaFrom="0.2" alphaTo="0.4" duration="500"/>
+	</mx:Parallel>
 </mx:Box>

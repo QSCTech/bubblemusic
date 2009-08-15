@@ -11,12 +11,10 @@
 	</mx:Script>
 	<mx:states>
 		<mx:State name="cursorSong">
-			<mx:SetStyle target="{song2.text}" name="color" value="#BAF75D"/>
-			<mx:SetStyle name="backgroundColor" value="#625463"/>
+			<mx:SetStyle target="{label1}" name="color" value="#BAF75D"/>
 			<mx:AddChild position="lastChild">
-				<mx:Image styleName="playerImage" verticalCenter="0" left="6" width="9" height="9"/>
+				<mx:Image source="Style/tri.GIF" verticalCenter="0" left="6"/>
 			</mx:AddChild>
-			
 			<mx:AddChild position="lastChild">
 				<mx:Button x="208" label="播放" styleName="buttomLight" width="11" height="11" verticalCenter="0"/>
 			</mx:AddChild>
@@ -26,11 +24,11 @@
 			<mx:AddChild position="lastChild">
 				<mx:Button x="238" label="删除" styleName="buttomLight" width="11" height="11" verticalCenter="0"/>
 			</mx:AddChild>
-			
+			<mx:SetStyle name="backgroundColor" value="#625463"/>
 			<mx:SetProperty target="{label1}" name="y"/>
 			<mx:SetStyle target="{label1}" name="verticalCenter" value="0"/>
 		</mx:State>
 	</mx:states>
-	<mx:Label x="19" text="{song2.text}" color="#AFA2B0" fontSize="12" id="label1" verticalCenter="0"/>
+	<mx:Label x="19" text="{text}" color="#AFA2B0" fontSize="12" id="label1" verticalCenter="0"/>
 	
 </mx:Canvas>
