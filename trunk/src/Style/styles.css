@@ -33,20 +33,13 @@
 		fillColors:#241625, #3E303F;
 		color:#A79AA8; 
 		themeColor:#BAF75D; 
-		skin:
-		ClassReference( "as3.bottom.playButtonSkin" );
 	}
-	                   
-
 	/*快进按钮*/
-	.nextBottom{
+	.speedBottom{
 		fillAlphas:1.0, 1.0, 0.0, 0.0; 
 		fillColors:#241625, #3E303F;
 		color:#A79AA8; 
 		themeColor:#BAF75D; 
-		downSkin:Embed(source="../Style/next.png");
-		upSkin:Embed(source="../Style/next.png");
-		overSkin:Embed(source="../Style/next.png");
 	}
 	/*播放器顶部歌曲信息颜色*/
 	.songLabel{
@@ -62,9 +55,7 @@
 		fontSize:12;
 	}
 	
-	.playerImage{
-		src:url("Style/tri.GIF");
-	}
+	
 
 
 
@@ -76,12 +67,18 @@
 	borderStyle: solid;
 	cornerRadius: 10;
 	}
+	/*
 	TextArea{
 		backgroundAlpha:0.0; 
 		fontSize:12;
 		color:#69606A; 
 		borderThickness:0;
 		themeColor:#1C121D;
+	}
+	*/
+	Label{
+		fontSize:12;
+		color:#69606A;
 	}
 	VRule{
 		strokeColor:#69606A;
@@ -99,10 +96,10 @@
 		color:#B8AAB9;
 	}
 	.topBottom{
-		backgroundColor:#241625;
-		borderStyle: solid;
-		cornerRadius: 10;
-		backgroundAlpha: 0.5;
+	backgroundColor:#241625;
+	borderStyle: solid;
+	cornerRadius: 10;
+	backgroundAlpha: 0.5;
 	}	
 	LinkButton{
 		themeColor:#BAF75D;
