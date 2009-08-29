@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="78" styleName="topBottom">
+    <mx:Script>
+   
+        <![CDATA[
+            import mx.managers.PopUpManager;
+            import mx.containers.TitleWindow;
+            import mx.core.IFlexDisplayObject;
+            import mx.controls.Alert;
+            public function showWindow1():void {
+               var showhelp:IFlexDisplayObject=PopUpManager.createPopUp( this.owner, help,true);
+               showhelp.move(stage.stageWidth,stage.stageHeight);
+               PopUpManager.centerPopUp(showhelp);
+            }
+    	]]>
+    </mx:Script>
 
-	<mx:LinkButton y="10" label="退出" right="110" />
+	<mx:LinkButton y="10" label="退出" right="110" click="navigateToURL(new URLRequest('javascript:window.opener=null;window.close()'),'_self')" />
 	<mx:LinkButton y="10" label="设置" right="60" />
-	<mx:LinkButton y="10" label="帮助" right="10" />
+	<mx:LinkButton y="10" label="帮助" right="10" click="showWindow1()"/>
 	<mx:TextInput right="165" bottom="8"  cornerRadius="10" borderStyle="solid"/>
 	<mx:ComboBox right="65" fontSize="12" bottom="8">
 		<mx:String>全部搜索</mx:String>

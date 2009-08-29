@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Box xmlns:mx="http://www.adobe.com/2006/mxml" width="393" height="303" styleName="lyrics">
-	<mx:HBox width="390" height="300" verticalAlign="middle" horizontalAlign="center">
+<mx:Box xmlns:mx="http://www.adobe.com/2006/mxml" 
+	    xmlns:reflector="as3.reflector.*" 
+	width="393" height="303" styleName="lyrics">
+	<mx:HBox width="390" height="300" verticalAlign="middle" horizontalAlign="center" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 		
 		
+		<mx:VBox height="190" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 		
-		<mx:Image source="Style/Jay.jpg" width="119" height="148.75"/>
+		<mx:Image id="cov" source="Style/Jay.jpg" width="119" height="148.75" />
+		<reflector:Reflector target="{cov}" alpha="0.1" falloff="0.2"/>
+		</mx:VBox>
+		
 		<mx:VRule height="268" width="1"/>
 
-		<mx:Canvas width="212" height="90%">
+		<mx:Canvas width="212" height="90%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 			<mx:Label id="lrc0" y="30" width="100%" textAlign="center" />
 			<mx:Label id="lrc1" y="50" width="100%" textAlign="center" />
 			<mx:Label id="lrc2" y="70" width="100%" textAlign="center" />
