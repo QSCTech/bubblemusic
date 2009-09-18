@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="260" height="60"
-	mouseOver="currentState=''" mouseOut="currentState='cursorTop'">
-	<mx:states>
-		<mx:State name="cursorTop">
-			<mx:RemoveChild target="{play}"/>
-			<mx:RemoveChild target="{play0}"/>
-			<mx:AddChild position="lastChild">
-				<mx:Label y="11" text="{list[0].title}" styleName="songLabel" horizontalCenter="0"/>
-			</mx:AddChild>
-			<mx:AddChild position="lastChild">
-				<mx:Label y="26" text="{list[0].author}" styleName="playerLabel" horizontalCenter="0"/>
-			</mx:AddChild>
-			<mx:RemoveChild target="{volume}"/>
-			<mx:RemoveChild target="{image1}"/>
-			<mx:AddChild position="lastChild">
-				<mx:Image x="243" y="9" source="Style/vol1.png"/>
-			</mx:AddChild>
-		</mx:State>
-	</mx:states>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="260" height="67">
 	
-		<mx:Button id="play" styleName="playBottom"
-			height="25" width="25" y="11"   horizontalCenter="-16" click="pauseAndPlay()"/>
-		<mx:Button id="play0"  styleName="nextBottom"
-			height="25" width="25" y="11"    horizontalCenter="16" click="newPlay(playList[1].url,nextMusic)"/>
-		<mx:VSlider x="239" y="17" height="40" id="volume" liveDragging="true" maximum="100" value="50"/>
-		<mx:Image x="243" y="9" source="Style/vol2.png" id="image1"/>
-		<mx:ProgressBar y="44" horizontalCenter="0"/>
-
+		<mx:Button id="playandpause" styleName="playBottom"
+			height="25" width="25" y="11"   horizontalCenter="-16" />
+		<mx:Button id="next"  styleName="nextBottom"
+			height="25" width="25" y="11"    horizontalCenter="16" />
+		<mx:VSlider id="volume" x="236" y="9" minimum="0" maximum="1" value="0.6" height="50" liveDragging="true" showDataTip="false"/>
+		<mx:Label id="time" text="0:00" x="208" y="42"/>
+		<mx:HSlider id="playposition" x="15" y="45" width="189" liveDragging="true" showDataTip="false" minimum="0" maximum="1"/>
+		
 	
 </mx:Canvas>
