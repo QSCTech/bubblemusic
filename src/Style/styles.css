@@ -27,19 +27,18 @@
 	.player2{
 		backgroundColor:#332634;
 	}
+	.player3{
+		backgroundColor:#BAF75D;
+	}
 	/*播放按钮*/
 	.playBottom{
-		fillAlphas:1.0, 1.0, 0.0, 0.0; 
-		fillColors:#241625, #3E303F;
-		color:#A79AA8; 
-		themeColor:#BAF75D; 
+		/*skin:
+		ClassReference("as3.Bottom.playButtonSkin"); */
 	}
 	/*快进按钮*/
-	.speedBottom{
-		fillAlphas:1.0, 1.0, 0.0, 0.0; 
-		fillColors:#241625, #3E303F;
-		color:#A79AA8; 
-		themeColor:#BAF75D; 
+	.nextBottom{
+		/*skin:
+		ClassReference("as3.Bottom.nextButtonSkin"); */
 	}
 	/*播放器顶部歌曲信息颜色*/
 	.songLabel{
@@ -125,6 +124,12 @@
 		selectionColor:#B8AAB9;
 		rollOverColor:#d5fa9d;
 		textRollOverColor:#5b8816;
+	}
+	
+	.lyricOn{
+	color:#baf75d;
+	fontWeight:bold;
+	
 	}
 	
 
