@@ -13,34 +13,13 @@
 		
 		<mx:Spacer width="20" />
 		
-		<mx:VBox id="musicList" width="262" height="346" verticalGap="0"  cornerRadius="10" borderStyle="solid">
-			<bubble:playerTop width="260" height="64">
+		<mx:VBox  width="262" height="346" verticalGap="0"  cornerRadius="10" borderStyle="solid" >
+			<bubble:playerTop id="playerTop" width="260" height="70">
 			</bubble:playerTop>
-	
-	<!--	<bubble:playerSongs>
-			</bubble:playerSongs>
-			<bubble:playerSongs2>
-			</bubble:playerSongs2>
-			<bubble:playerSongs>
-			</bubble:playerSongs>
-			<bubble:playerSongs2>
-			</bubble:playerSongs2>
-			<bubble:playerSongs>
-			</bubble:playerSongs>
-			<bubble:playerSongs2>
-			</bubble:playerSongs2>
-			<bubble:playerSongs>
-			</bubble:playerSongs>
-			<bubble:playerSongs2>
-			</bubble:playerSongs2>
-			<bubble:playerSongs>
-			</bubble:playerSongs>
-			<bubble:playerSongs2>
-			</bubble:playerSongs2>
-			<bubble:playerSongs>
-			</bubble:playerSongs>
-			<bubble:playerSongs2>
-			</bubble:playerSongs2>	-->
+			<mx:VBox id="musicList" height="260" width="260" verticalGap="0" verticalScrollPolicy="off">
+				
+			</mx:VBox>
+
 		</mx:VBox>
 	</mx:ApplicationControlBar>
 
