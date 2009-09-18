@@ -15,8 +15,11 @@
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
+	import mx.events.SliderEvent;
+
+	
 	//播放控制,音乐播放由这个变量进行控制
-	public var musicControl:playControl = new playControl();
+	public static var musicControl:playControl = new playControl();
 	//播放列表的数据存储
 	public var playList:Array = new Array();
 	//远程数据调用
@@ -26,8 +29,9 @@
 	public var LRC:Array = new Array();
 	public var lrcnum:int;
 	
+	
 	[Bindable]
-	public var Version:String = "Bubble jay 8.15.r9";
+	public var Version:String = "Bubble jay 9.18.r10";
 	
 	/**
 	 *初始化播放列表 
@@ -41,6 +45,12 @@
 		//playList.push({title:"Plants VS Zombins",author:"Libitum",url:"abc.mp3"});
 		//this.syncPlayList(playList);
 		//abc.newPlay(playList[0].url,nextMusic);
+		musicControl.setNextMusic( this.nextMusic);
+		playerTop.next.addEventListener(MouseEvent.CLICK,nextMusic);
+		playerTop.playandpause.addEventListener(MouseEvent.CLICK,pauseAndPlay);
+		playerTop.volume.addEventListener(SliderEvent.CHANGE,changeVolume);
+	//	playerTop.playposition.addEventListener(SliderEvent.CHANGE,changePos);
+		
 	}
 	
 	/**
@@ -62,7 +72,12 @@
 				song.index = i;
 				song.doubleClickEnabled = true;
 				song.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
+				if(i==0){
+					song.styleName = "player3";
+								
+				}
 				musicList.addChild(song);
+				
 			}
 			if(i%2 == 1){
 				var song2:playerSongs2 = new playerSongs2;
@@ -80,10 +95,10 @@
 	 */
 	public function nextMusic(event:Event):void{
 		lrcnum = 0;
-		LRC.splice(0);
+		LRC.splice(0,LRC.length);
 		musicControl.pausePlay();
 		playList.shift();
-		musicList.removeChildAt(1);
+		musicList.removeChildAt(0);
 		lrcLoader.load(new URLRequest(playList[0].lrc));
 		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
 	}
@@ -106,8 +121,9 @@
 	 */
 	private function lrcLoadCompleteHandler(event:Event):void{
 		var str:String = event.target.data;
+		lyric.picture.source=playList[0].pic;
 		LRC = LRCDecoder.decoder(str);
-		musicControl.newPlay(playList[0].url,nextMusic);
+		musicControl.newPlay(playList[0].url);
 		addEventListener(Event.ENTER_FRAME, onEnterFrame);
 	}
 	
@@ -116,6 +132,27 @@
 	 */
 	private function onEnterFrame(event:Event):void{
 		var time:Number = musicControl.channel.position;
+		var a:int = time/1000;
+		var b:int = 0;
+		var c:int;
+		if(a/60>0){
+			b=a/60;
+			c=a%60;
+		}
+		if(c<10){
+			playerTop.time.text = b + ":0" + c;
+		}
+		else{
+			playerTop.time.text = b + ":" + c;
+		}
+	//	playerTop.playposition.addEventListener(TimerEvent.TIMER,onTimer);
+		
+	
+	//	musicControl.onTimer(time);	
+			
+	//	playerTop.playposition.value = musicControl.onTimer.a;
+		
+		
 		if(lrcnum<LRC.length-1){
 			if(time>LRC[lrcnum+1].time){
 				lrcnum+=1;
@@ -173,7 +210,28 @@
 			playList.shift();
 		}
 		this.syncPlayList(playList);
-		
-		musicControl.newPlay(playList[0].url,nextMusic);
+		lrcnum = 0;
+		LRC.splice(0,LRC.length);
+		musicControl.pausePlay();
+		lrcLoader.load(new URLRequest(playList[0].lrc));
+		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
 	}
-
+	
+	public function pauseAndPlay(event:Event):void{
+		if(musicControl.isPlay){
+			musicControl.pausePlay();
+		} else {
+			musicControl.pursuePlay();
+		}
+	}
+	
+	public function changeVolume(event:Event):void{
+		musicControl.changeSoundSize(playerTop.volume.value);
+	}
+	
+/*	public function changePos(event:Event):void{
+		musicControl.pausePlay();
+		musicControl.changePosition(playerTop.playposition.value);
+		musicControl.pursuePlay();
+	}
+	*/
