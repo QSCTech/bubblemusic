@@ -3,9 +3,6 @@
  * 
  */
 
-	import Component.playerSongs;
-	import Component.playerSongs2;
-	
 	import as3.Lyric.LRCDecoder;
 	import as3.Net.RPC;
 	import as3.PlayControl.playControl;
@@ -15,6 +12,7 @@
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
+	import mx.controls.Alert;
 	import mx.events.SliderEvent;
 
 	
@@ -31,7 +29,7 @@
 	
 	
 	[Bindable]
-	public var Version:String = "Bubble jay 9.18.r10";
+	public var Version:String = "Bubble jay 9.24.r16";
 	
 	/**
 	 *初始化播放列表 
@@ -49,8 +47,19 @@
 		playerTop.next.addEventListener(MouseEvent.CLICK,nextMusic);
 		playerTop.playandpause.addEventListener(MouseEvent.CLICK,pauseAndPlay);
 		playerTop.volume.addEventListener(SliderEvent.CHANGE,changeVolume);
-	//	playerTop.playposition.addEventListener(SliderEvent.CHANGE,changePos);
 		
+		
+		musicList.l1.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
+		musicList.l2.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
+		musicList.l3.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
+		musicList.l4.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
+		musicList.l5.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
+		musicList.l6.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
+		musicList.l7.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
+		musicList.l8.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
+		musicList.l9.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
+		musicList.l10.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
+	//	playerTop.playposition.addEventListener(SliderEvent.CHANGE,changePos);	
 	}
 	
 	/**
@@ -60,34 +69,37 @@
 	 */	
 	private function syncPlayList(list:Array):void{
 		var i:int = 0;
-		if(musicList.numChildren>1){
-			musicList.removeAllChildren();
-		}
+		if(list[0]){
+			musicList.l1.text = list[0].title + " - " + list[0].author;
+		} else { musicList.l1.text = ""; }
+		if(list[1]){
+			musicList.l2.text = list[1].title + " - " + list[1].author;
+		} else { musicList.l2.text = ""; }
+		if(list[2]){
+			musicList.l3.text = list[2].title + " - " + list[2].author;
+		} else { musicList.l3.text = ""; }
+		if(list[3]){
+			musicList.l4.text = list[3].title + " - " + list[3].author;
+		} else { musicList.l4.text = ""; }
+		if(list[4]){
+			musicList.l5.text = list[4].title + " - " + list[4].author;
+		} else { musicList.l5.text = ""; }
+		if(list[5]){
+			musicList.l6.text = list[5].title + " - " + list[5].author;
+		} else { musicList.l6.text = ""; }
+		if(list[6]){
+			musicList.l7.text = list[6].title + " - " + list[6].author;
+		} else { musicList.l7.text = ""; }
+		if(list[7]){
+			musicList.l8.text = list[7].title + " - " + list[7].author;
+		} else { musicList.l8.text = ""; }
+		if(list[8]){
+			musicList.l9.text = list[8].title + " - " + list[8].author;
+		} else { musicList.l9.text = ""; }
+		if(list[9]){
+			musicList.l10.text = list[9].title + " - " + list[9].author;
+		} else { musicList.l10.text = ""; }
 		
-		for(i = 0; i<list.length; i++){
-			if(i%2 == 0){
-				var song:playerSongs = new playerSongs;
-				trace(list[i].title);
-				song.text = list[i].title + " - " + list[i].author;
-				song.index = i;
-				song.doubleClickEnabled = true;
-				song.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
-				if(i==0){
-					song.styleName = "player3";
-								
-				}
-				musicList.addChild(song);
-				
-			}
-			if(i%2 == 1){
-				var song2:playerSongs2 = new playerSongs2;
-				song2.text = list[i].title + " - " + list[i].author;
-				song2.index = i;
-				song2.doubleClickEnabled = true;
-				song2.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
-				musicList.addChild(song2);
-			}
-		}
 	}
 	
 	/**
@@ -98,7 +110,8 @@
 		LRC.splice(0,LRC.length);
 		musicControl.pausePlay();
 		playList.shift();
-		musicList.removeChildAt(0);
+		this.syncPlayList(playList);
+		musicList.listEffect.play();
 		lrcLoader.load(new URLRequest(playList[0].lrc));
 		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
 	}
@@ -206,10 +219,11 @@
 	 */	
 	public function doubleClickListItem(event:MouseEvent):void{
 		var i:int = event.currentTarget.index;
-		for(var j:int = 0; j<i; j++){
+		for(var j:int = 1; j<i; j++){
 			playList.shift();
 		}
 		this.syncPlayList(playList);
+		musicList.listEffect.play();
 		lrcnum = 0;
 		LRC.splice(0,LRC.length);
 		musicControl.pausePlay();

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Box xmlns:mx="http://www.adobe.com/2006/mxml" width="453" height="303" styleName="lyrics" >
+<mx:Box xmlns:mx="http://www.adobe.com/2006/mxml" width="453" height="303" styleName="lyrics" xmlns:reflector="as3.reflector.*">
 	<mx:HBox width="450" height="300" verticalAlign="middle" horizontalAlign="center" >
 		
 		
 		
-		<mx:Image id="picture" width="120" height="150" scaleContent="true"/>
+		<mx:VBox height="200" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+			<mx:Image id="picture" source="Style/Jay.jpg" width="120" height="150"/>
+			<reflector:Reflector target="{picture}" alpha="0.3" falloff="0.3"/>
+		</mx:VBox>
 		<mx:VRule height="268" width="1"/>
 
 		<mx:Canvas width="272" height="90%" horizontalScrollPolicy="off">
@@ -34,15 +37,5 @@
 		<mx:Move target="{lrc8}" yFrom="190" yTo="170" duration="500"/>
 		<mx:Move target="{lrc9}" yFrom="210" yTo="190" duration="500"/>
 		<mx:Move target="{lrc10}" yFrom="230" yTo="210" duration="500"/>
-		
-		<mx:Fade target="{lrc0}" alphaFrom="0.2" alphaTo="0" duration="500"/>
-		<mx:Fade target="{lrc1}" alphaFrom="0.4" alphaTo="0.2" duration="500"/>
-		<mx:Fade target="{lrc2}" alphaFrom="0.6" alphaTo="0.4" duration="500"/>
-		<mx:Fade target="{lrc3}" alphaFrom="0.8" alphaTo="0.6" duration="500"/>
-		<mx:Fade target="{lrc5}" alphaFrom="1" alphaTo="0.8" duration="500"/>
-		<mx:Fade target="{lrc6}" alphaFrom="0.8" alphaTo="1" duration="500"/>
-		<mx:Fade target="{lrc8}" alphaFrom="0.6" alphaTo="0.8" duration="500"/>
-		<mx:Fade target="{lrc9}" alphaFrom="0.4" alphaTo="0.6" duration="500"/>
-		<mx:Fade target="{lrc10}" alphaFrom="0.2" alphaTo="0.4" duration="500"/>
 	</mx:Parallel>
 </mx:Box>
