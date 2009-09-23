@@ -9,7 +9,7 @@
             import mx.controls.Alert;
             public function showWindow1():void {
                var showhelp:IFlexDisplayObject=PopUpManager.createPopUp( this.owner, help,true);
-               showhelp.move(stage.stageWidth,stage.stageHeight);
+               //showhelp.move(stage.stageWidth,stage.stageHeight);
                PopUpManager.centerPopUp(showhelp);
             }
     	]]>

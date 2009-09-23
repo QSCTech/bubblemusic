@@ -12,11 +12,12 @@
             	PopUpManager.removePopUp(this);
             }
 
-            private function dragIt(event:MouseEvent){
-               event.currentTarget.startDrag();
-            }
-            private function dropIt(event:MouseEvent){
+			private function dropIt(event:MouseEvent):void{
               event.currentTarget.stopDrag();
+            } 
+            
+            private function dragIt(event:MouseEvent):void{
+              event.currentTarget.startDrag();
             } 
 
        ]]>
