@@ -12,7 +12,6 @@
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
-	import mx.controls.Alert;
 	import mx.events.SliderEvent;
 
 	
@@ -29,7 +28,7 @@
 	
 	
 	[Bindable]
-	public var Version:String = "Bubble jay 9.24.r16";
+	public var Version:String = "Bubble jay 10.9.r18";
 	
 	/**
 	 *初始化播放列表 
@@ -59,7 +58,10 @@
 		musicList.l8.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
 		musicList.l9.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
 		musicList.l10.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
-	//	playerTop.playposition.addEventListener(SliderEvent.CHANGE,changePos);	
+		musicList.l11.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
+		musicList.l12.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
+		musicList.l13.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
+	
 	}
 	
 	/**
@@ -99,7 +101,15 @@
 		if(list[9]){
 			musicList.l10.text = list[9].title + " - " + list[9].author;
 		} else { musicList.l10.text = ""; }
-		
+		if(list[10]){
+			musicList.l11.text = list[10].title + " - " + list[10].author;
+		} else { musicList.l11.text = ""; }
+		if(list[11]){
+			musicList.l12.text = list[11].title + " - " + list[11].author;
+		} else { musicList.l12.text = ""; }
+		if(list[12]){
+			musicList.l13.text = list[12].title + " - " + list[12].author;
+		} else { musicList.l13.text = ""; }
 	}
 	
 	/**
@@ -158,13 +168,9 @@
 		else{
 			playerTop.time.text = b + ":" + c;
 		}
-	//	playerTop.playposition.addEventListener(TimerEvent.TIMER,onTimer);
 		
-	
-	//	musicControl.onTimer(time);	
-			
-	//	playerTop.playposition.value = musicControl.onTimer.a;
-		
+		musicControl.progressSet();
+		playerTop.songpos.setProgress(musicControl.progressPos,1);
 		
 		if(lrcnum<LRC.length-1){
 			if(time>LRC[lrcnum+1].time){
@@ -243,9 +249,4 @@
 		musicControl.changeSoundSize(playerTop.volume.value);
 	}
 	
-/*	public function changePos(event:Event):void{
-		musicControl.pausePlay();
-		musicControl.changePosition(playerTop.playposition.value);
-		musicControl.pursuePlay();
-	}
-	*/
+

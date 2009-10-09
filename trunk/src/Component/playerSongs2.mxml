@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="260" height="25" styleName="player2"
-	rollOver="currentState='cursorSong'" rollOut="currentState=''">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="260" height="20" styleName="player2"
+	rollOver="currentState='cursorSong'" rollOut="currentState=''"  horizontalScrollPolicy="off" verticalScrollPolicy="off">
 	<mx:Script>
 		<![CDATA[
 			[Bindable]

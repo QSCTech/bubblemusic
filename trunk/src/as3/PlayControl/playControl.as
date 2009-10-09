@@ -9,13 +9,14 @@ package as3.PlayControl
 		import flash.media.Sound;
 		import flash.media.SoundChannel;
 		import flash.media.SoundTransform;
-	//	import flash.media.ID3Info;
+		import flash.media.ID3Info;
 		
 		private var pasPos:Number;
 		private var music:Sound;
 		public var channel:SoundChannel;
 		public var isPlay:Boolean;
 		private var nextMusic:Function;
+		public var progressPos:Number;
 		
 		/**
 		 * 进行初始化操作
@@ -46,10 +47,7 @@ package as3.PlayControl
 			isPlay = true;
 		}
 		
-		public function onTimer(value:Number):void   {    
-			var a:Number = value / music.length;    
-			
-		}
+		
 		
 		
 		/**
@@ -92,12 +90,11 @@ package as3.PlayControl
 			channel.soundTransform = transform;   
 		}
 		
-	/*	public function changePosition(value:Number):void   {    
-			
-			pasPos = music.length * value;
-			channel.position = pasPos;
+		public function progressSet():void{
+			 progressPos = channel.position/music.length;
+			 
 		}
-*/
 		
+	
 	}
 }

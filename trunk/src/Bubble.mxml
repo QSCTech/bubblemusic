@@ -16,7 +16,7 @@
 		<mx:VBox  width="262" height="346" verticalGap="0"  cornerRadius="10" borderStyle="solid" >
 			<bubble:playerTop id="playerTop" width="260" height="70">
 			</bubble:playerTop>
-			<bubble:musicList id="musicList"/>
+			<bubble:musicList id="musicList" verticalScrollPolicy="off"/>
 		<!--
 			<mx:VBox id="musicList" height="260" width="260" verticalGap="0" verticalScrollPolicy="off">
 				
