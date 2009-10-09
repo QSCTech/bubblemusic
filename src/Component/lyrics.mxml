@@ -5,7 +5,7 @@
 		
 		
 		<mx:VBox height="200" horizontalScrollPolicy="off" verticalScrollPolicy="off">
-			<mx:Image id="picture" source="Style/Jay.jpg" width="120" height="150"/>
+			<mx:Image id="picture" width="120" height="150"/>
 			<reflector:Reflector target="{picture}" alpha="0.3" falloff="0.3"/>
 		</mx:VBox>
 		<mx:VRule height="268" width="1"/>
