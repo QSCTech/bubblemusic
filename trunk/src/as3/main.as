@@ -13,6 +13,8 @@
 	import flash.net.URLRequest;
 	
 	import mx.events.SliderEvent;
+	import flash.utils.Timer;
+    import flash.events.TimerEvent;
 
 	
 	//播放控制,音乐播放由这个变量进行控制
@@ -25,10 +27,10 @@
 	public var lrcLoader:URLLoader = new URLLoader();
 	public var LRC:Array = new Array();
 	public var lrcnum:int;
-	
+	public var timer:Timer;
 	
 	[Bindable]
-	public var Version:String = "Bubble jay 10.9.r18";
+	public var Version:String = "Bubble jay 10.9.r19";
 	
 	/**
 	 *初始化播放列表 
@@ -47,7 +49,6 @@
 		playerTop.playandpause.addEventListener(MouseEvent.CLICK,pauseAndPlay);
 		playerTop.volume.addEventListener(SliderEvent.CHANGE,changeVolume);
 		
-		
 		musicList.l1.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
 		musicList.l2.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
 		musicList.l3.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
@@ -60,9 +61,9 @@
 		musicList.l10.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
 		musicList.l11.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
 		musicList.l12.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
-		musicList.l13.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
 	
 	}
+	
 	
 	/**
 	 *同步播放列表,当播放列表改动后,同步到播放器界面上 
@@ -71,6 +72,10 @@
 	 */	
 	private function syncPlayList(list:Array):void{
 		var i:int = 0;
+		
+		playerTop.songLabel.text = list[0].title;
+		playerTop.playerLabel.text = list[0].author;
+          
 		if(list[0]){
 			musicList.l1.text = list[0].title + " - " + list[0].author;
 		} else { musicList.l1.text = ""; }
@@ -107,9 +112,6 @@
 		if(list[11]){
 			musicList.l12.text = list[11].title + " - " + list[11].author;
 		} else { musicList.l12.text = ""; }
-		if(list[12]){
-			musicList.l13.text = list[12].title + " - " + list[12].author;
-		} else { musicList.l13.text = ""; }
 	}
 	
 	/**
@@ -118,6 +120,7 @@
 	public function nextMusic(event:Event):void{
 		lrcnum = 0;
 		LRC.splice(0,LRC.length);
+		musicControl.fadeSound();
 		musicControl.pausePlay();
 		playList.shift();
 		this.syncPlayList(playList);
@@ -237,16 +240,29 @@
 		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
 	}
 	
+	
+	
+	
 	public function pauseAndPlay(event:Event):void{
 		if(musicControl.isPlay){
+			timer = new Timer(100,40);
+			timer.addEventListener(TimerEvent.TIMER, musicControl.fadeSound); 
 			musicControl.pausePlay();
+			playerTop.playandpause.styleName = "buttomPlay";
+			
 		} else {
 			musicControl.pursuePlay();
+			playerTop.playandpause.styleName = "buttomPause";
 		}
 	}
 	
 	public function changeVolume(event:Event):void{
 		musicControl.changeSoundSize(playerTop.volume.value);
 	}
+	
+	public function fadeVolume(event:Event):void{
+		musicControl.fadeSound();
+	}
+	
 	
 

@@ -14,7 +14,7 @@ package as3.Net
 		{
 			conn = new NetConnection();
 			conn.objectEncoding = ObjectEncoding.AMF3;
-		}
+		} 
 		
 		
 		public function getMusicList(result:Function):void{
