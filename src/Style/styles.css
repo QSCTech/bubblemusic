@@ -3,7 +3,8 @@
 		backgroundGradientAlphas:1.0, 1.0; 
 		backgroundGradientColors:#C6BFC6, #AA9BAA;
 	}
-
+	
+	
 	
 /*player CSS*/	
 	/*歌曲列表浅色按钮*/
@@ -28,21 +29,36 @@
 		backgroundColor:#332634;
 	}
 	.player3{
-		backgroundColor:#BAF75D;
+		backgroundColor:#574757;
 	}
-	/*播放按钮*/
-	.playBottom{
-		/*skin:
-		ClassReference("as3.Bottom.playButtonSkin"); */
-	}
+	
 	/*快进按钮*/
-	.nextBottom{
-		/*skin:
-		ClassReference("as3.Bottom.nextButtonSkin"); */
+	.buttomNext{
+	color:#AAAAAA;
+	upSkin:Embed(source="next.swf" ,symbol="next_up");
+	downSkin:Embed(source="next.swf" ,symbol="next_down");
+	overSkin:Embed(source="next.swf" ,symbol="next_over");
 	}
+	
+	/*播放按钮*/
+	.buttomPlay{
+	color:#AAAAAA;
+	upSkin:Embed(source="p&p.swf" ,symbol="play_up");
+	downSkin:Embed(source="p&p.swf" ,symbol="play_down");
+	overSkin:Embed(source="p&p.swf" ,symbol="play_over");
+	}
+	
+	/*暂停按钮*/
+	.buttomPause{
+	color:#AAAAAA;
+	upSkin:Embed(source="p&p.swf" ,symbol="pause_up");
+	downSkin:Embed(source="p&p.swf" ,symbol="pause_down");
+	overSkin:Embed(source="p&p.swf" ,symbol="pause_over");
+	}
+	
 	/*播放器顶部歌曲信息颜色*/
 	.songLabel{
-		color:#BAF75D; 
+		color:#AFA2B0; 
 		fontSize:12;
 	}
 	.playerLabel{

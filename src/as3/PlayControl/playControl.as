@@ -11,12 +11,17 @@ package as3.PlayControl
 		import flash.media.SoundTransform;
 		import flash.media.ID3Info;
 		
+
+		
 		private var pasPos:Number;
 		private var music:Sound;
 		public var channel:SoundChannel;
 		public var isPlay:Boolean;
 		private var nextMusic:Function;
 		public var progressPos:Number;
+		 
+		
+
 		
 		/**
 		 * 进行初始化操作
@@ -94,6 +99,16 @@ package as3.PlayControl
 			 progressPos = channel.position/music.length;
 			 
 		}
+
+		public function fadeSound():void   {    
+			var transform:SoundTransform = channel.soundTransform;  
+			var i:Number = transform.volume/40;		
+			if (transform.volume>0){
+				transform.volume = transform.volume - i;
+			}
+			channel.soundTransform = transform;   
+		}
+		
 		
 	
 	}
