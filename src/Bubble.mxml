@@ -12,12 +12,18 @@
 		</bubble:lyrics>
 		
 		
+		
+		<!--
 		<mx:Spacer width="20" />
+		-->
+		
+		<bubble:searchBox/>
 		
 		<mx:VBox  width="262" height="346" verticalGap="0"  cornerRadius="10" borderStyle="solid" >
-			<bubble:playerTop id="playerTop" width="260" height="80">
+			<bubble:playerTop id="playerTop" width="260" height="96">
 			</bubble:playerTop>
 			<bubble:musicList id="musicList" verticalScrollPolicy="off"/>
+		
 		<!--
 			<mx:VBox id="musicList" height="260" width="260" verticalGap="0" verticalScrollPolicy="off">
 				
