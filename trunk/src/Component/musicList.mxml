@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="260" height="260" xmlns:Component="Component.*" verticalScrollPolicy="off">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="260" height="240" xmlns:Component="Component.*" verticalScrollPolicy="off">
 	<Component:playerSongs id="l1"  y="0" doubleClickEnabled="true" styleName="player3" index="1"/>
 	<Component:playerSongs2 id="l2" y="20" doubleClickEnabled="true" index="2"/>
 	<Component:playerSongs id="l3"  y="40" doubleClickEnabled="true" index="3"/>

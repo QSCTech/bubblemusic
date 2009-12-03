@@ -1,4 +1,5 @@
 /*CSS file*/
+
 	Application{
 		backgroundGradientAlphas:1.0, 1.0; 
 		backgroundGradientColors:#C6BFC6, #AA9BAA;
@@ -7,6 +8,18 @@
 	
 	
 /*player CSS*/	
+	
+	/*中间按钮s*/
+	.playerButtoms{
+		backgroundColor:#2B1E2C;
+	}
+	.resetList{
+		color:#AAAAAA;
+		upSkin:Embed(source="reset.swf" ,symbol="skinup");
+		downSkin:Embed(source="reset.swf" ,symbol="skindown");
+		overSkin:Embed(source="reset.swf" ,symbol="skinover");
+	}
+
 	/*歌曲列表浅色按钮*/
 	.buttomLight{
 		cornerRadius:1;
@@ -34,26 +47,26 @@
 	
 	/*快进按钮*/
 	.buttomNext{
-	color:#AAAAAA;
-	upSkin:Embed(source="next.swf" ,symbol="next_up");
-	downSkin:Embed(source="next.swf" ,symbol="next_down");
-	overSkin:Embed(source="next.swf" ,symbol="next_over");
+		color:#AAAAAA;
+		upSkin:Embed(source="next.swf" ,symbol="next_up");
+		downSkin:Embed(source="next.swf" ,symbol="next_down");
+		overSkin:Embed(source="next.swf" ,symbol="next_over");
 	}
 	
 	/*播放按钮*/
 	.buttomPlay{
-	color:#AAAAAA;
-	upSkin:Embed(source="p&p.swf" ,symbol="play_up");
-	downSkin:Embed(source="p&p.swf" ,symbol="play_down");
-	overSkin:Embed(source="p&p.swf" ,symbol="play_over");
+		color:#AAAAAA;
+		upSkin:Embed(source="p&p.swf" ,symbol="play_up");
+		downSkin:Embed(source="p&p.swf" ,symbol="play_down");
+		overSkin:Embed(source="p&p.swf" ,symbol="play_over");
 	}
 	
 	/*暂停按钮*/
 	.buttomPause{
-	color:#AAAAAA;
-	upSkin:Embed(source="p&p.swf" ,symbol="pause_up");
-	downSkin:Embed(source="p&p.swf" ,symbol="pause_down");
-	overSkin:Embed(source="p&p.swf" ,symbol="pause_over");
+		color:#AAAAAA;
+		upSkin:Embed(source="p&p.swf" ,symbol="pause_up");
+		downSkin:Embed(source="p&p.swf" ,symbol="pause_down");
+		overSkin:Embed(source="p&p.swf" ,symbol="pause_over");
 	}
 	
 	/*播放器顶部歌曲信息颜色*/
@@ -76,11 +89,56 @@
 		trackColors:#786d78;
 	}
 	
+	.volume{
+		thumbUpSkin:Embed(source="volume.swf" ,symbol="thumbUpSkin");
+		thumbDownSkin:Embed(source="volume.swf" ,symbol="thumbDownSkin");
+		thumbOverSkin:Embed(source="volume.swf" ,symbol="thumbOverSkin");
+		thumbOffset:5;
+	}
+
+
+/*搜索结果CSS*/
+	.searchBox{
+	backgroundColor:#1C121D;
+	cornerRadius: 10;
+	borderColor:#1C121D;
+	borderStyle: solid;
+	}
+
+	.searchText{
+	backgroundColor:#1C121D;
+	borderColor:#1C121D;
+	borderStyle: solid;
+	}
 	
+	.lineOne{
+	strokeColor:#887B89;
+	}
+	.lineTwo{
+	strokeColor:#332634;
+	}
+	
+	.topRes{
+		fontSize:12;
+		color:#69606A;
+		fontWeight:bold;
+	}
 
+	.followRes{
+		color:#625463;
+		fontsize:12;
+	}
+	
+	.addAllRes{
+		cornerRadius:4;
+		fillAlphas:1.0, 1.0 ;
+		fillColors:#3F3240,#3F3240; 
+		themeColor:#332634;
+		fontSize:12;
+		color:#69606A;
+	}
 
-
-
+	
 /*歌词区CSS*/
 	.lyrics{
 	backgroundColor:#1C121D;
