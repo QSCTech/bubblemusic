@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns:bubble="Component.*" applicationComplete="initPlayList()" >
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns:bubble="Component.*" applicationComplete="initPlayList()"  currentState="lyricState">
+	
 	
 	<mx:Style source="Style/styles.css"/>	
 	<mx:Script source="as3/main.as" />
 	
-	<bubble:top />
+	<mx:states>
+		<mx:State name="searchRes">
+			<mx:RemoveChild target="{lyric}"/>
+			<mx:AddChild relativeTo="{middle}" position="firstChild">
+				<bubble:searchBox id="searchBox"/>
+			</mx:AddChild>
+		</mx:State>
+			
+		<mx:State name="lyricState">
+			
+		</mx:State>
+	</mx:states>
 	
-	<mx:ApplicationControlBar width="100%" height="100%" styleName="player" horizontalAlign="center" verticalAlign="middle">
+	<bubble:top id="top"/>
+	
+	<mx:ApplicationControlBar id="middle" width="100%" height="100%" styleName="player" horizontalAlign="center" verticalAlign="middle">
 		
-		<bubble:lyrics id="lyric">
-		</bubble:lyrics>
-		
-		
-		
-		<!--
+		<bubble:lyrics id="lyric" />
+	
+	
 		<mx:Spacer width="20" />
-		-->
-		
-		<bubble:searchBox/>
-		
+	
 		<mx:VBox  width="262" height="346" verticalGap="0"  cornerRadius="10" borderStyle="solid" >
 			<bubble:playerTop id="playerTop" width="260" height="96">
 			</bubble:playerTop>
@@ -32,8 +40,19 @@
 		</mx:VBox>
 	</mx:ApplicationControlBar>
 
-	<bubble:bottom>
-	</bubble:bottom>
+	<bubble:bottom id="bottom"/>
+	
 	<mx:Label text="{Version}"/>
+	
+	<mx:transitions>
+		<mx:Transition id="searchTrans" fromState="*" toState="searchRes">
+			<mx:Parallel target="{searchBox}">
+				<mx:WipeDown duration="1000"/>
+				<mx:Dissolve alphaFrom="0.0" alphaTo="1.0" duration="1000"/>
+			</mx:Parallel>
+		</mx:Transition>
+	</mx:transitions>
+	
+	
 	
 </mx:Application>

@@ -103,8 +103,7 @@ package as3.PlayControl
 			if(isPlay){
 				temp = channel.soundTransform.volume; 
 				var i:Number = channel.soundTransform.volume/20;		
-				while (channel.soundTransform.volume>0)
-					channel.soundTransform.volume = channel.soundTransform.volume - i;
+				channel.soundTransform.volume = channel.soundTransform.volume - i;
 			}
 			else{
 				channel.soundTransform.volume = temp;

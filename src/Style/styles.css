@@ -1,9 +1,37 @@
 /*CSS file*/
-
 	Application{
 		backgroundGradientAlphas:1.0, 1.0; 
 		backgroundGradientColors:#C6BFC6, #AA9BAA;
 	}
+	
+	ToolTip
+	{
+		color: #2F1F2F;
+		fontSize: 12;
+		backgroundColor: #D2BCD3;
+	}
+	
+/*弹出登录&注册框*/	
+	Panel{
+		borderColor:#2F1F2F; 
+		themeColor:#CCFF66;
+		color:#1A0C1A;
+		fontSize:12;
+	}
+	
+	.welcomeUsername{
+		color:#2F1F2F;
+	}
+	
+	Alert
+	{
+		backgroundColor: #1A0C1A;
+		borderColor: #1A0C1A;
+		fontSize: 12;
+		themeColor:#CCFF66;
+		buttonStyleName: buttomDeep;
+	}
+
 	
 	
 	
@@ -166,13 +194,17 @@
 	
 	
 	
+	
 /*top区CSS*/
 	.buttomDeep{
-		fillAlphas:1.0, 1.0 ;
-		fillColors:#3F3240,#3F3240; 
-		themeColor:#BAF75D;
-		fontSize:12;
-		color:#B8AAB9;
+		color: #B8AAB9;
+		textRollOverColor: #B8AAB9;
+		themeColor: #CCFF66;
+		fontSize: 12;
+		fillAlphas: 1.0, 1.0;
+		fillColors: #765F76, #2F1F2F, #2F1F2F, #2F1F2F;
+		paddingLeft: 10;
+		textSelectedColor: #2F1F2F;
 	}
 	.topBottom{
 	backgroundColor:#241625;
