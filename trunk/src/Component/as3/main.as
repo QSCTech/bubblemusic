@@ -16,6 +16,10 @@
 	import mx.events.SliderEvent;
 
 	
+	
+            
+            
+            
 	//播放控制,音乐播放由这个变量进行控制
 	public static var musicControl:playControl = new playControl();
 	//播放列表的数据存储
@@ -48,6 +52,12 @@
 		playerTop.playandpause.addEventListener(MouseEvent.CLICK,pauseAndPlay);
 		playerTop.volume.addEventListener(SliderEvent.CHANGE,changeVolume);
 		playerTop.resetList.addEventListener(MouseEvent.CLICK,resetList);
+		
+		top.searchBtn.addEventListener(MouseEvent.CLICK,searchShow);
+		
+
+		
+		bottom.lyricBtn.addEventListener(MouseEvent.CLICK,lyricShow);
 		
 		musicList.l1.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
 		musicList.l2.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
@@ -146,7 +156,8 @@
 	 */
 	private function lrcLoadCompleteHandler(event:Event):void{
 		var str:String = event.target.data;
-		lyric.picture.source=playList[0].pic;
+		lyric.picture.source = playList[0].pic;
+		lyric.reflectorPic.target = lyric.picture;
 		LRC = LRCDecoder.decoder(str);
 		musicControl.newPlay(playList[0].url);
 		addEventListener(Event.ENTER_FRAME, onEnterFrame);
@@ -240,8 +251,9 @@
 	}
 	
 	
-	
-	
+	/**
+	 * 播放&暂停按钮
+	 */
 	public function pauseAndPlay(event:Event):void{
 		if(musicControl.isPlay){
 			timer = new Timer(100,20);
@@ -255,21 +267,43 @@
 		}
 	}
 	
+	/**
+	 * 改变音量大小
+	 */
 	public function changeVolume(event:Event):void{
 		musicControl.changeSoundSize(playerTop.volume.value);
 	}
 	
+	/**
+	 * 按暂停后，音乐淡出——！！没有用。。。
+	 */
 	public function fadeVolume(event:Event):void{
 		musicControl.fadeSound();
 	}
 	
-	public function resetList():void{
+	/**
+	 * 重置播放列表
+	 */
+	public function resetList(event:Event):void{
 		rpc.getMusicList(onGetMusicList);
 		musicControl.setNextMusic( this.nextMusic);
-		
 	}
-
 	
-
+	/**
+	 * 显示搜索结果
+	 */
+	public function searchShow(event:Event):void{
+		currentState = "searchRes";
+	}
 	
-
+	/**
+	 * 显示歌词
+	 */
+	public function lyricShow(event:Event):void{
+		currentState = "lyricState";
+		//top.currentState = "logined";
+	}
+	
+	
+	
+	

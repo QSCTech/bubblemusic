@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas styleName="searchBox" xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="18"
+	    rollOver="currentState='cursorRes'" rollOut="currentState=''" >
+	<mx:states>
+		<mx:State name="cursorRes">
+			<mx:SetStyle target="{search}" name="color" value="#BAF75D"/>
+			<mx:AddChild position="lastChild">
+				<mx:Button x="377" y="2" label="播放" height="11" width="11" styleName="buttomLight" verticalCenter="0"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Button x="362" y="2" label="删除" height="11" width="11" styleName="buttomLight" verticalCenter="0"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Button x="347" y="2" label="收藏" height="11" width="11" styleName="buttomLight" verticalCenter="0"/>
+			</mx:AddChild>
+		</mx:State>
+			
+	</mx:states>
+	<mx:Label id="search" x="13" y="0" text="Text" styleName="followRes"/>
+	
+</mx:Canvas>

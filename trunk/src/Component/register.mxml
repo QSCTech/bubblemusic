@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" width="300" height="200" x="50" horizontalCenter="0" layout="absolute"
+	mouseDown="dragIt(event)" click = "dropIt(event)" title="注册" >
+
+   <mx:Script>
+        <![CDATA[ 
+        
+            import mx.managers.PopUpManager;
+            import mx.controls.Text;
+
+            private function close():void{
+            	PopUpManager.removePopUp(this);
+            }
+
+			private function dropIt(event:MouseEvent):void{
+              event.currentTarget.stopDrag();
+            } 
+            
+            private function dragIt(event:MouseEvent):void{
+              event.currentTarget.startDrag();
+            } 
+
+       ]]>
+    </mx:Script>
+    
+   <mx:Label text="用  户：" y="20" left="15"/>
+   <mx:Label text="密  码：" y="56" left="15"/>
+   <mx:Label text="邮  箱：" y="92" left="15"/>
+   <mx:TextInput y="20" width="193" right="20"/>
+   <mx:TextInput y="56" width="193" right="20"/>
+   <mx:TextInput y="92" width="193" right="20"/>
+   <mx:Button y="124" label="注册" horizontalCenter="-60"/>
+   <mx:Button y="124" label="重置" horizontalCenter="0"/>
+   <mx:Button y="124" label="取消" horizontalCenter="60" click="close()"/>
+   
+    
+		
+   
+       
+        
+        
+        <!--
+        <mx:LinkButton label="X" click="close()" styleName="closebutton"
+        	textRollOverColor="#7AC30B" alpha="0" color="#0A051A" rollOverColor="#1C121D"/>
+		-->
+		
+</mx:Panel>
