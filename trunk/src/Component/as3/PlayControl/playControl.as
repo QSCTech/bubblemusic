@@ -101,9 +101,11 @@ package as3.PlayControl
 		
 		public function fadeSound():void{   
 			if(isPlay){
+				var transform:SoundTransform = channel.soundTransform; 
 				temp = channel.soundTransform.volume; 
-				var i:Number = channel.soundTransform.volume/20;		
-				channel.soundTransform.volume = channel.soundTransform.volume - i;
+				var i:Number = temp/2;
+				transform.volume -= i;
+				channel.soundTransform = transform;
 			}
 			else{
 				channel.soundTransform.volume = temp;

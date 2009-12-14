@@ -13,8 +13,8 @@
 	import flash.net.URLRequest;
 	import flash.utils.Timer;
 	
+	import mx.events.DropdownEvent;
 	import mx.events.SliderEvent;
-
 	
 	
             
@@ -25,6 +25,8 @@
 	//播放列表的数据存储
 	public var playList:Array = new Array();
 	//远程数据调用
+	public var searchResult:Array = new Array();
+	//远程数据调用
 	public var rpc:RPC = new RPC();
 	
 	public var lrcLoader:URLLoader = new URLLoader();
@@ -33,7 +35,7 @@
 	public var timer:Timer;
 	
 	[Bindable]
-	public var Version:String = "Bubble jay 10.9.r19";
+	public var Version:String = "Bubble jay 10.9.r24";
 	
 	/**
 	 *初始化播放列表 
@@ -54,9 +56,8 @@
 		playerTop.resetList.addEventListener(MouseEvent.CLICK,resetList);
 		
 		top.searchBtn.addEventListener(MouseEvent.CLICK,searchShow);
-		
+		top.searchIndex.addEventListener(DropdownEvent.CLOSE,searchTypeSelected);
 
-		
 		bottom.lyricBtn.addEventListener(MouseEvent.CLICK,lyricShow);
 		
 		musicList.l1.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
@@ -258,6 +259,7 @@
 		if(musicControl.isPlay){
 			timer = new Timer(100,20);
 			timer.addEventListener(TimerEvent.TIMER,fadeVolume); 
+			timer.start();
 			musicControl.pausePlay();
 			playerTop.playandpause.styleName = "buttomPlay";
 			
@@ -286,24 +288,68 @@
 	 */
 	public function resetList(event:Event):void{
 		rpc.getMusicList(onGetMusicList);
-		musicControl.setNextMusic( this.nextMusic);
+		musicControl.setNextMusic(this.nextMusic);
 	}
 	
 	/**
-	 * 显示搜索结果
-	 */
-	public function searchShow(event:Event):void{
-		currentState = "searchRes";
-	}
-	
-	/**
-	 * 显示歌词
+	 * 显示歌词组件
 	 */
 	public function lyricShow(event:Event):void{
 		currentState = "lyricState";
 		//top.currentState = "logined";
 	}
 	
+	/**
+	 * 显示搜索结果
+	 */
+	public function searchShow(event:Event):void{
+		rpc.getSearchList(onGetSearchList,top.searchIndex.selectedLabel,top.searchTarget.text);
+		currentState = "searchRes";
+	}
+
+	private function searchTypeSelected(event:DropdownEvent):void {
+		var searchType:String;
+		searchType = top.searchIndex.selectedLabel;
+	}
 	
+	public function onGetSearchList(result:Array):void{
+		this.searchResult = result;
+		this.syncSearchList(searchResult);
+	}
 	
+	private function syncSearchList(list:Array):void{
+		
+		searchList.searchTitle.text = "\"" + top.searchTarget.text + "\"的搜索结果";
+          
+		if(list[0]){
+			searchList.s1.search.text = list[0].title + " - " + list[0].author;
+		} else { searchList.s1.search.text = "对不起，没有您想搜索的歌曲！"; }
+		if(list[1]){
+			searchList.s2.search.text = list[1].title + " - " + list[1].author;
+		} else { searchList.s2.search.text = ""; }
+		if(list[2]){
+			searchList.s3.search.text = list[2].title + " - " + list[2].author;
+		} else { searchList.s3.search.text = ""; }
+		if(list[3]){
+			searchList.s4.search.text = list[3].title + " - " + list[3].author;
+		} else { searchList.s4.search.text = ""; }
+		if(list[4]){
+			searchList.s5.search.text = list[4].title + " - " + list[4].author;
+		} else { searchList.s5.search.text = ""; }
+		if(list[5]){
+			searchList.s6.search.text = list[5].title + " - " + list[5].author;
+		} else { searchList.s6.search.text = ""; }
+		if(list[6]){
+			searchList.s7.search.text = list[6].title + " - " + list[6].author;
+		} else { searchList.s7.search.text = ""; }
+		if(list[7]){
+			searchList.s8.search.text = list[7].title + " - " + list[7].author;
+		} else { searchList.s8.search.text = ""; }
+		if(list[8]){
+			searchList.s9.search.text = list[8].title + " - " + list[8].author;
+		} else { searchList.s9.search.text = ""; }
+		if(list[9]){
+			searchList.s10.search.text = list[9].title + " - " + list[9].author;
+		} else { searchList.s10.search.text = ""; }
+	}
 	

@@ -6,13 +6,13 @@
         <mx:State name="logined">
             <mx:RemoveChild target="{loginBtn}"/>
             <mx:RemoveChild target="{registerBtn}"/>
-            <mx:AddChild relativeTo="{textinput1}" position="before">
+            <mx:AddChild relativeTo="{searchTarget}" position="before">
                 <mx:LinkButton y="10" label="设置" right="60" />
             </mx:AddChild>
-            <mx:AddChild relativeTo="{textinput1}" position="before">
+            <mx:AddChild relativeTo="{searchTarget}" position="before">
                 <mx:LinkButton y="10" label="退出" right="110" />
             </mx:AddChild>
-            <mx:AddChild relativeTo="{textinput1}" position="before">
+            <mx:AddChild relativeTo="{searchTarget}" position="before">
                 <mx:Label id="welcome" right="165" y="12" text="欢迎你！rosejay" styleName="welcomeUsername"/>
             </mx:AddChild>
         </mx:State>
@@ -41,14 +41,14 @@
 	<mx:LinkButton id="loginBtn" y="10" label="登录" right="110" click="showLogin()"/>
 	<mx:LinkButton id="registerBtn" y="10" label="注册" right="60"  click="showRegister()"/>
 	<mx:LinkButton y="10" label="帮助" right="10" />
-	<mx:TextInput right="165" bottom="8"  cornerRadius="10" borderStyle="solid" id="textinput1"/>
-	<mx:ComboBox right="65" fontSize="12" bottom="8">
+	<mx:TextInput right="165" bottom="8"  cornerRadius="10" borderStyle="solid" id="searchTarget"/>
+	<mx:ComboBox right="65" fontSize="12" bottom="8" id="searchIndex"  >
 		<mx:String>全部搜索</mx:String>
 		<mx:String>搜歌名</mx:String>
 		<mx:String>搜歌手</mx:String>
 		<mx:String>搜专辑</mx:String>
-		<mx:String>搜歌词</mx:String>
 	</mx:ComboBox>
 	<mx:Button id="searchBtn" label="搜索" right="10" bottom="8" styleName="buttomDeep"/>
 	
 </mx:Canvas>
+
