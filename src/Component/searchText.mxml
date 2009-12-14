@@ -16,6 +16,6 @@
 		</mx:State>
 			
 	</mx:states>
-	<mx:Label id="search" x="13" y="0" text="Text" styleName="followRes"/>
+	<mx:Label id="search" x="13" y="0" styleName="followRes"/>
 	
 </mx:Canvas>

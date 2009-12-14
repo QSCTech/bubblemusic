@@ -1,32 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas styleName="searchBox" xmlns:mx="http://www.adobe.com/2006/mxml" width="450" height="300" xmlns:Component="Component.*">
 	<mx:Canvas width="402" height="284" verticalScrollPolicy="off" horizontalCenter="0" verticalCenter="0">
-		<mx:Label x="0" y="2" text="&quot;周杰伦&quot;的搜索结果" styleName="topRes" />
+		<mx:Label id="searchTitle" x="0" y="2" styleName="topRes"/>
 		<mx:HRule x="0" y="21" width="400" height="1" styleName="lineOne"/>
-		<Component:searchText x="0" y="22"/>
+		<Component:searchText x="0" y="22" id="s1" doubleClickEnabled="true"/>
 		<mx:HRule x="0" y="41" width="400" height="1" styleName="lineTwo"/>
-		<Component:searchText x="0" y="42"/>
+		<Component:searchText x="0" y="42" id="s2" doubleClickEnabled="true"/>
 		<mx:HRule x="0" y="61" width="400" height="1" styleName="lineTwo"/>
-		<Component:searchText x="0" y="62"/>
+		<Component:searchText x="0" y="62" id="s3" doubleClickEnabled="true"/>
 		<mx:HRule x="0" y="81" width="400" height="1" styleName="lineTwo"/>
-		<Component:searchText x="0" y="82"/>
+		<Component:searchText x="0" y="82" id="s4" doubleClickEnabled="true"/>
 		<mx:HRule x="0" y="101" width="400" height="1" styleName="lineTwo"/>
-		<Component:searchText x="0" y="102"/>
+		<Component:searchText x="0" y="102" id="s5" doubleClickEnabled="true"/>
 		<mx:HRule x="0" y="121" width="400" height="1" styleName="lineTwo"/>
-		<Component:searchText x="0" y="122"/>
+		<Component:searchText x="0" y="122" id="s6" doubleClickEnabled="true"/>
 		<mx:HRule x="0" y="141" width="400" height="1" styleName="lineTwo"/>
-		<Component:searchText x="0" y="142"/>
+		<Component:searchText x="0" y="142" id="s7" doubleClickEnabled="true"/>
 		<mx:HRule x="0" y="161" width="400" height="1" styleName="lineTwo"/>
-		<Component:searchText x="0" y="162"/>
+		<Component:searchText x="0" y="162" id="s8" doubleClickEnabled="true"/>
 		<mx:HRule x="0" y="181" width="400" height="1" styleName="lineTwo"/>
-		<Component:searchText x="0" y="182"/>
+		<Component:searchText x="0" y="182" id="s9" doubleClickEnabled="true"/>
 		<mx:HRule x="0" y="201" width="400" height="1" styleName="lineTwo"/>
-		<Component:searchText x="0" y="202"/>
+		<Component:searchText x="0" y="202" id="s10" doubleClickEnabled="true"/> 
 		<mx:HRule x="0" y="221" width="400" height="1" styleName="lineTwo"/>
-		<Component:searchText x="0" y="222"/>
-		<mx:HRule x="0" y="241" width="400" height="1" styleName="lineTwo"/>
-		<Component:searchText x="0" y="242"/>
-		<mx:HRule x="0" y="261" width="400" height="1" styleName="lineTwo"/>
+		
 		
 		<mx:Button x="5" y="265" label="全部加入" styleName="addAllRes" width="69" height="18"/>
 		

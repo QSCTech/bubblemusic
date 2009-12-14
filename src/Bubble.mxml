@@ -9,7 +9,7 @@
 		<mx:State name="searchRes">
 			<mx:RemoveChild target="{lyric}"/>
 			<mx:AddChild relativeTo="{middle}" position="firstChild">
-				<bubble:searchBox id="searchBox"/>
+				<bubble:searchBox id="searchList"/>
 			</mx:AddChild>
 		</mx:State>
 			
@@ -46,7 +46,13 @@
 	
 	<mx:transitions>
 		<mx:Transition id="searchTrans" fromState="*" toState="searchRes">
-			<mx:Parallel target="{searchBox}">
+			<mx:Parallel target="{searchList}">
+				<mx:WipeDown duration="1000"/>
+				<mx:Dissolve alphaFrom="0.0" alphaTo="1.0" duration="1000"/>
+			</mx:Parallel>
+		</mx:Transition>
+		<mx:Transition id="lyricTrans" fromState="searchRes" toState="*">
+			<mx:Parallel target="{lyric}">
 				<mx:WipeDown duration="1000"/>
 				<mx:Dissolve alphaFrom="0.0" alphaTo="1.0" duration="1000"/>
 			</mx:Parallel>
