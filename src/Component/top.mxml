@@ -16,9 +16,15 @@
 			   PopUpManager.centerPopUp(registerWin);
 			}
 			public function showLogin():void {
-			   var loginWin:IFlexDisplayObject=PopUpManager.createPopUp(this.owner,login,true);
+				var loginObject:login = new login;
+				loginObject.callBack = callBack;
+			  	PopUpManager.addPopUp(loginObject,this.owner,true);
+			   
 			   //showhelp.move(stage.stageWidth,stage.stageHeight);
-			   PopUpManager.centerPopUp(loginWin);
+			   PopUpManager.centerPopUp(loginObject);
+			}
+			public function callBack():void{
+				//Can do anything here~
 			}
     	]]>
     </mx:Script>
