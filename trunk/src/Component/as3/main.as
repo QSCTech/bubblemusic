@@ -13,7 +13,7 @@
 	import flash.net.URLRequest;
 	import flash.utils.Timer;
 	
-	import mx.events.DropdownEvent;
+	import mx.controls.Alert;
 	import mx.events.SliderEvent;
 	
 	
@@ -56,9 +56,37 @@
 		playerTop.resetList.addEventListener(MouseEvent.CLICK,resetList);
 		
 		top.searchBtn.addEventListener(MouseEvent.CLICK,searchShow);
-		top.searchIndex.addEventListener(DropdownEvent.CLOSE,searchTypeSelected);
 
 		bottom.lyricBtn.addEventListener(MouseEvent.CLICK,lyricShow);
+		
+		
+		
+		
+		//那么多监听事件。。。能不能合并？。。。循环？。。。
+		musicList.l1.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l1.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
+		musicList.l2.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l2.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
+		musicList.l3.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l3.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
+		musicList.l4.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l4.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
+		musicList.l5.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l5.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
+		musicList.l6.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l6.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
+		musicList.l7.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l7.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
+		musicList.l8.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l8.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
+		musicList.l9.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l9.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
+		musicList.l10.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l10.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
+		musicList.l11.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l11.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
+		musicList.l12.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l12.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
 		
 		musicList.l1.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
 		musicList.l2.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
@@ -73,6 +101,30 @@
 		musicList.l11.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
 		musicList.l12.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
 		
+		searchList.s1.addEventListener(MouseEvent.ROLL_OVER,addSearchTextBtn);
+		searchList.s1.addEventListener(MouseEvent.ROLL_OUT,removeSearchTextBtn);
+		searchList.s2.addEventListener(MouseEvent.ROLL_OVER,addSearchTextBtn);
+		searchList.s2.addEventListener(MouseEvent.ROLL_OUT,removeSearchTextBtn);
+		searchList.s3.addEventListener(MouseEvent.ROLL_OVER,addSearchTextBtn);
+		searchList.s3.addEventListener(MouseEvent.ROLL_OUT,removeSearchTextBtn);
+		searchList.s4.addEventListener(MouseEvent.ROLL_OVER,addSearchTextBtn);
+		searchList.s4.addEventListener(MouseEvent.ROLL_OUT,removeSearchTextBtn);
+		searchList.s5.addEventListener(MouseEvent.ROLL_OVER,addSearchTextBtn);
+		searchList.s5.addEventListener(MouseEvent.ROLL_OUT,removeSearchTextBtn);
+		searchList.s6.addEventListener(MouseEvent.ROLL_OVER,addSearchTextBtn);
+		searchList.s6.addEventListener(MouseEvent.ROLL_OUT,removeSearchTextBtn);
+		searchList.s7.addEventListener(MouseEvent.ROLL_OVER,addSearchTextBtn);
+		searchList.s7.addEventListener(MouseEvent.ROLL_OUT,removeSearchTextBtn);
+		searchList.s8.addEventListener(MouseEvent.ROLL_OVER,addSearchTextBtn);
+		searchList.s8.addEventListener(MouseEvent.ROLL_OUT,removeSearchTextBtn);
+		searchList.s9.addEventListener(MouseEvent.ROLL_OVER,addSearchTextBtn);
+		searchList.s9.addEventListener(MouseEvent.ROLL_OUT,removeSearchTextBtn);
+		searchList.s10.addEventListener(MouseEvent.ROLL_OVER,addSearchTextBtn);
+		searchList.s10.addEventListener(MouseEvent.ROLL_OUT,removeSearchTextBtn);
+		
+	    searchList.nextBtn.addEventListener(MouseEvent.CLICK,nextSearchPage);
+	    searchList.preBtn.addEventListener(MouseEvent.CLICK,preSearchPage);
+	    
 	}
 	
 	
@@ -82,7 +134,6 @@
 	 * 
 	 */	
 	private function syncPlayList(list:Array):void{
-		var i:int = 0;
 		
 		playerTop.songLabel.text = list[0].title;
 		playerTop.playerLabel.text = list[0].author;
@@ -260,6 +311,7 @@
 			timer = new Timer(100,20);
 			timer.addEventListener(TimerEvent.TIMER,fadeVolume); 
 			timer.start();
+			musicControl.fadeSound();
 			musicControl.pausePlay();
 			playerTop.playandpause.styleName = "buttomPlay";
 			
@@ -303,24 +355,43 @@
 	 * 显示搜索结果
 	 */
 	public function searchShow(event:Event):void{
-		rpc.getSearchList(onGetSearchList,top.searchIndex.selectedLabel,top.searchTarget.text);
-		currentState = "searchRes";
+		if(top.searchTarget.text!=""){
+			rpc.getSearchList(onGetSearchList,top.searchIndex.selectedLabel,top.searchTarget.text,1);
+			currentState = "searchRes";
+		}		
+		else
+			Alert.show("请输入搜索内容！");
+	
 	}
 
-	private function searchTypeSelected(event:DropdownEvent):void {
-		var searchType:String;
-		searchType = top.searchIndex.selectedLabel;
-	}
-	
+	/**
+	 * 得到搜索结果
+	 */
 	public function onGetSearchList(result:Array):void{
 		this.searchResult = result;
 		this.syncSearchList(searchResult);
 	}
 	
+	/**
+	 * 布局搜索信息
+	 */
 	private function syncSearchList(list:Array):void{
+		var i:Number = 0;
+		var page:int = int(searchList.page.text) + 1;
 		
 		searchList.searchTitle.text = "\"" + top.searchTarget.text + "\"的搜索结果";
-          
+        searchList.page.text = String(page);
+        
+        if(list[11])
+        	searchList.nextBtn.enabled = true;
+        else 
+        	searchList.nextBtn.enabled = false;
+        	
+        if(page>1)
+        	searchList.preBtn.enabled = true;
+        else 
+        	searchList.preBtn.enabled = false;
+        	
 		if(list[0]){
 			searchList.s1.search.text = list[0].title + " - " + list[0].author;
 		} else { searchList.s1.search.text = "对不起，没有您想搜索的歌曲！"; }
@@ -353,3 +424,81 @@
 		} else { searchList.s10.search.text = ""; }
 	}
 	
+	/**
+	 * 获取下一页搜索结果
+	 */
+	private function nextSearchPage(event:Event):void{
+		var page:int = int(searchList.page.text) + 1;
+		
+		rpc.getSearchList(onGetSearchList,top.searchIndex.selectedLabel,top.searchTarget.text,page);
+	}
+	
+	/**
+	 * 获取前一页搜索结果
+	 */
+	private function preSearchPage(event:Event):void{
+		var page:int = int(searchList.page.text) - 1;
+		
+		rpc.getSearchList(onGetSearchList,top.searchIndex.selectedLabel,top.searchTarget.text,page);
+	}
+	
+	
+	
+	
+	/**
+	 * 加每行播放列表的三颗按钮
+	 */
+	private function addMusicBtn(event:MouseEvent):void {
+		var i:int = event.currentTarget.index;
+		
+		event.currentTarget.styleName = "player4"; //背景色
+		event.currentTarget.labelText.styleName = "musicListRoOver";  //字颜色
+		event.currentTarget.littleMusicPlay.visible = true;
+		event.currentTarget.littleMusicCollect.visible = true;
+		event.currentTarget.littleMusicDelete.visible = true;
+		event.currentTarget.tri.visible = true;
+	}
+	
+	/**
+	 * 移除每行播放列表的三颗按钮
+	 */
+	private function removeMusicBtn(event:MouseEvent):void {
+		var i:int = event.currentTarget.index;
+		
+		if(i==1)
+			event.currentTarget.styleName = "player3"; //背景色
+		else if(i%2 && i!=1)
+			event.currentTarget.styleName = "player1";
+		else
+			event.currentTarget.styleName = "player2";
+
+		event.currentTarget.labelText.styleName = "musicListText";  
+		event.currentTarget.littleMusicPlay.visible = false;
+		event.currentTarget.littleMusicCollect.visible = false;
+		event.currentTarget.littleMusicDelete.visible = false;
+		event.currentTarget.tri.visible = false;
+	}
+	
+	/**
+	 * 加每行搜索结果列表的三颗按钮  没有用。。。
+	 */
+	private function addSearchTextBtn(event:MouseEvent):void {
+		event.currentTarget.search.styleName = "musicListRoOver";  //字颜色
+		event.currentTarget.littleSearchPlay.visible = true;
+		event.currentTarget.littleSearchCollect.visible = true;
+		event.currentTarget.littleSearchDelete.visible = true;
+	}
+	
+	/**
+	 * 移除每行搜索结果的三颗按钮  没有用。。。
+	 */
+	private function removeSearchTextBtn(event:MouseEvent):void {
+		searchList.s1.search.styleName = "followRes";  //字颜色
+		event.currentTarget.littleSearchPlay.visible = false;
+		event.currentTarget.littleSearchCollect.visible = false;
+		event.currentTarget.littleSearchDelete.visible = false;
+	}
+	
+	
+	
+

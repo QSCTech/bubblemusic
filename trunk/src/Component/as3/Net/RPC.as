@@ -23,9 +23,10 @@ package as3.Net
 			conn.close();
 		}
 		
-		public function getSearchList(result:Function,a:String,b:String):void{
+		public function getSearchList(result:Function,a:String,b:String,c:int):void{
 			conn.connect(URL);
-			conn.call("Music.getSearchResult",new Responder(result,onFault),a,b);
+			conn.call("Music.getSearchResult",new Responder(result,onFault),a,b,c);
+		//	conn.call("Music.search",new Responder(result,onFault),a,b,c);
 			conn.close();
 		}
 		

@@ -72,7 +72,18 @@
 	.player3{
 		backgroundColor:#574757;
 	}
+	/*歌曲列表rollover*/
+	.player4{
+		backgroundColor:#625463;
+	}
 	
+	/*歌曲列表字*/
+	.musicListText{
+		color:#AFA2B0;
+	}
+	.musicListRoOver{
+		color:#BAF75D;
+	}
 	/*快进按钮*/
 	.buttomNext{
 		color:#AAAAAA;
@@ -158,12 +169,26 @@
 	}
 	
 	.addAllRes{
-		cornerRadius:4;
-		fillAlphas:1.0, 1.0 ;
-		fillColors:#3F3240,#3F3240; 
-		themeColor:#332634;
-		fontSize:12;
-		color:#69606A;
+		color:#AAAAAA;
+		upSkin:Embed(source="addall.swf" ,symbol="skinup");
+		downSkin:Embed(source="addall.swf" ,symbol="skindown");
+		overSkin:Embed(source="addall.swf" ,symbol="skinover");
+	}
+	
+	.nextSearch{
+		color:#AAAAAA;
+		upSkin:Embed(source="searchnext.swf" ,symbol="rightup");
+		downSkin:Embed(source="searchnext.swf" ,symbol="rightdown");
+		overSkin:Embed(source="searchnext.swf" ,symbol="rightover");
+		disabledSkin:Embed(source="searchnext.swf" ,symbol="rightdis");
+	}
+	
+	.preSearch{
+		color:#AAAAAA;
+		upSkin:Embed(source="searchnext.swf" ,symbol="leftup");
+		downSkin:Embed(source="searchnext.swf" ,symbol="leftdown");
+		overSkin:Embed(source="searchnext.swf" ,symbol="leftover");
+		disabledSkin:Embed(source="searchnext.swf" ,symbol="leftdis");
 	}
 
 	

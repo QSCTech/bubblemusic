@@ -3,8 +3,8 @@
  * 
  */
 
-	import Component.login;
 	import Component.top;
+	import Component.login;
 	
 	import mx.controls.Alert;
 	import mx.managers.PopUpManager;  //登录
@@ -15,6 +15,7 @@
 	//	loginCancel.addEventListener(MouseEvent.CLICK,close);
 	//}
 
+	public var islogin:Boolean = false;
 
     public function close():void{
     	PopUpManager.removePopUp(this);
@@ -35,7 +36,7 @@
 		else{
 			if(txtUsername.text == "rosejay" && txtPassword.text == "bubble"){
 				Alert.show("登录成功！");
-				//top.currentState = "logined";
+				islogin = true;
 			}
 			else{
 				Alert.show("用户名或密码错误！");
@@ -47,6 +48,7 @@
 		txtUsername.text = "";
 		txtPassword.text = "";
 	}
+	
 	
 	
 	
