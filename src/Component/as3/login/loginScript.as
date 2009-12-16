@@ -3,9 +3,6 @@
  * 
  */
 
-	import Component.top;
-	import Component.login;
-	
 	import mx.controls.Alert;
 	import mx.managers.PopUpManager;  //登录
     
@@ -15,6 +12,8 @@
 	//	loginCancel.addEventListener(MouseEvent.CLICK,close);
 	//}
 
+	public var callBack:Function;
+	
 	public var islogin:Boolean = false;
 
     public function close():void{
@@ -49,6 +48,12 @@
 		txtPassword.text = "";
 	}
 	
+	public function onclose():void{
+		if(callBack != null){
+			callBack();
+		}
+		PopUpManager.removePopUp(this);
+	}
 	
 	
 	
