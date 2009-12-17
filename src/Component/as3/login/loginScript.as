@@ -55,6 +55,3 @@
 		PopUpManager.removePopUp(this);
 	}
 	
-	
-	
-	

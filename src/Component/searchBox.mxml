@@ -1,37 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas styleName="searchBox" xmlns:mx="http://www.adobe.com/2006/mxml" width="450" height="300" xmlns:Component="Component.*">
+
+	
 	<mx:Canvas width="402" height="250" verticalScrollPolicy="off" horizontalScrollPolicy="off" horizontalCenter="0" verticalCenter="0">
 		<mx:Label id="searchTitle" x="0" y="2" styleName="topRes"/>
 		<mx:HRule x="0" y="21" width="400" height="1" styleName="lineOne" />
 		<mx:Canvas id="searchList" x="0" y="22" width="402" height="202"/>
 			<Component:searchText x="0" y="22" id="s1" doubleClickEnabled="true"/>
-			<mx:HRule x="0" y="41" width="400" height="1" styleName="lineTwo"/>
+			<mx:HRule id="h1" x="0" y="41" width="400" height="1" styleName="lineTwo"/>
 			<Component:searchText x="0" y="42" id="s2" doubleClickEnabled="true"/>
-			<mx:HRule x="0" y="61" width="400" height="1" styleName="lineTwo"/>
+			<mx:HRule id="h2" x="0" y="61" width="400" height="1" styleName="lineTwo"/>
 			<Component:searchText x="0" y="62" id="s3" doubleClickEnabled="true"/>
-			<mx:HRule x="0" y="81" width="400" height="1" styleName="lineTwo"/>
+			<mx:HRule id="h3" x="0" y="81" width="400" height="1" styleName="lineTwo"/>
 			<Component:searchText x="0" y="82" id="s4" doubleClickEnabled="true"/>
-			<mx:HRule x="0" y="101" width="400" height="1" styleName="lineTwo"/>
+			<mx:HRule id="h4" x="0" y="101" width="400" height="1" styleName="lineTwo"/>
 			<Component:searchText x="0" y="102" id="s5" doubleClickEnabled="true"/>
-			<mx:HRule x="0" y="121" width="400" height="1" styleName="lineTwo"/>
+			<mx:HRule id="h5" x="0" y="121" width="400" height="1" styleName="lineTwo"/>
 			<Component:searchText x="0" y="122" id="s6" doubleClickEnabled="true"/>
-			<mx:HRule x="0" y="141" width="400" height="1" styleName="lineTwo"/>
+			<mx:HRule id="h6" x="0" y="141" width="400" height="1" styleName="lineTwo"/>
 			<Component:searchText x="0" y="142" id="s7" doubleClickEnabled="true"/>
-			<mx:HRule x="0" y="161" width="400" height="1" styleName="lineTwo"/>
+			<mx:HRule id="h7" x="0" y="161" width="400" height="1" styleName="lineTwo"/>
 			<Component:searchText x="0" y="162" id="s8" doubleClickEnabled="true"/>
-			<mx:HRule x="0" y="181" width="400" height="1" styleName="lineTwo"/>
+			<mx:HRule id="h8" x="0" y="181" width="400" height="1" styleName="lineTwo"/>
 			<Component:searchText x="0" y="182" id="s9" doubleClickEnabled="true"/>
-			<mx:HRule x="0" y="201" width="400" height="1" styleName="lineTwo"/>
+			<mx:HRule id="h9" x="0" y="201" width="400" height="1" styleName="lineTwo"/>
 			<Component:searchText x="0" y="202" id="s10" doubleClickEnabled="true"/> 
-			<mx:HRule x="0" y="221" width="400" height="1" styleName="lineTwo"/>
+			<mx:HRule id="h10" x="0" y="221" width="400" height="1" styleName="lineTwo"/>
 		<mx:Canvas/>
 		
 		<mx:Button id="addAll" x="53" y="239" styleName="addAllRes" />
-		<mx:Button id="nextBtn" x="373" y="242" styleName="nextSearch" enabled="false"/>
-		<mx:Label id="page" x="355" y="232" styleName="topRes" text="0"/>
-		<mx:Button id="preBtn" x="350" y="242" styleName="preSearch" enabled="false"/>
+		<mx:Button id="nextBtn" x="376" y="240" styleName="nextSearch" enabled="false"/>
+		<mx:Label id="page" x="361" y="230" styleName="topRes" text="0" width="16"/>
+		<mx:Button id="preBtn" x="350" y="240" styleName="preSearch" enabled="false"/>
 		
 	</mx:Canvas>
 	
+	<mx:Parallel id="listDown">
+		<mx:Move target="{s1}" yFrom="22" yTo="2" duration="500"/>
+		<mx:Move target="{s2}" yFrom="42" yTo="22" duration="500"/>
+		<mx:Move target="{s3}" yFrom="62" yTo="42" duration="500"/>
+		<mx:Move target="{s4}" yFrom="82" yTo="62" duration="500"/>
+		<mx:Move target="{s5}" yFrom="102" yTo="82" duration="500"/>
+		<mx:Move target="{s6}" yFrom="122" yTo="102" duration="500"/>
+		<mx:Move target="{s7}" yFrom="142" yTo="122" duration="500"/>
+		<mx:Move target="{s8}" yFrom="162" yTo="142" duration="500"/>
+		<mx:Move target="{s9}" yFrom="182" yTo="162" duration="500"/>
+		<mx:Move target="{s10}" yFrom="202" yTo="182" duration="500"/>
+	</mx:Parallel>
 	
 </mx:Canvas>
