@@ -137,7 +137,8 @@
 		
 		playerTop.songLabel.text = list[0].title;
 		playerTop.playerLabel.text = list[0].author;
-          
+        playerTop.albumLabel.text = list[0].album;
+        
 		if(list[0]){
 			musicList.l1.text = list[0].title + " - " + list[0].author;
 		} else { musicList.l1.text = ""; }
@@ -389,7 +390,7 @@
         else
             searchList.page.x = 361;
         
-        if(list[11])
+        if(list[10])
         	searchList.nextBtn.enabled = true;
         else 
         	searchList.nextBtn.enabled = false;
@@ -507,6 +508,3 @@
 		event.currentTarget.littleSearchDelete.visible = false;
 	}
 	
-	
-	
-

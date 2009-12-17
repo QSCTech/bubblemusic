@@ -25,8 +25,8 @@ package as3.Net
 		
 		public function getSearchList(result:Function,a:String,b:String,c:int):void{
 			conn.connect(URL);
-			conn.call("Music.getSearchResult",new Responder(result,onFault),a,b,c);
-		//	conn.call("Music.search",new Responder(result,onFault),a,b,c);
+		//	conn.call("Music.getSearchResult",new Responder(result,onFault),a,b,c);
+			conn.call("Music.search",new Responder(result,onFault),a,b,c);
 			conn.close();
 		}
 		

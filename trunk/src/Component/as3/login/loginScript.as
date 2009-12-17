@@ -34,8 +34,7 @@
 		}
 		else{
 			if(txtUsername.text == "rosejay" && txtPassword.text == "bubble"){
-				Alert.show("登录成功！");
-				islogin = true;
+				onclose();
 			}
 			else{
 				Alert.show("用户名或密码错误！");
@@ -50,7 +49,7 @@
 	
 	public function onclose():void{
 		if(callBack != null){
-			callBack();
+			callBack(txtUsername.text);
 		}
 		PopUpManager.removePopUp(this);
 	}

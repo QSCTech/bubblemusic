@@ -23,9 +23,27 @@
 			   //showhelp.move(stage.stageWidth,stage.stageHeight);
 			   PopUpManager.centerPopUp(loginObject);
 			}
-			public function callBack():void{
-				//Can do anything here~
+			
+			public function callBack(s:String):void{
+				loginBtn.label = "设置";
+				registerBtn.label = "退出";
+				welcome.text = "欢迎你，" + s + "！";
+				registerBtn.addEventListener(MouseEvent.CLICK,exitUser);
 			}
+			
+			public function reInitTop():void{
+				loginBtn.label = "登录";
+				registerBtn.label = "注册";
+				welcome.text = "";
+				loginBtn.addEventListener(MouseEvent.CLICK,showLogin);
+				registerBtn.addEventListener(MouseEvent.CLICK,showRegister);	
+			}
+			
+			public function exitUser():void{
+				Alert.show("成功退出！期待您下次登录！");
+				reInitTop();
+			}
+			
     	]]>
     </mx:Script>
 
