@@ -2,7 +2,7 @@
 <mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" width="300" height="170" title="登录" layout="absolute">
 	
 	
-	<mx:Script source="as3/login/loginScript.as" />
+	<mx:Script source="../as3/login/loginScript.as" />
     
     <mx:Label text="用  户：" y="20" left="15"/>
     <mx:Label text="密  码：" y="56" left="15"/>
