@@ -185,10 +185,10 @@
 	
 	.preSearch{
 		color:#AAAAAA;
-		upSkin:Embed(source="searchnext.swf" ,symbol="leftup");
-		downSkin:Embed(source="searchnext.swf" ,symbol="leftdown");
-		overSkin:Embed(source="searchnext.swf" ,symbol="leftover");
-		disabledSkin:Embed(source="searchnext.swf" ,symbol="leftdis");
+		upSkin:Embed(source="searchpre.swf" ,symbol="leftup");
+		downSkin:Embed(source="searchpre.swf" ,symbol="leftdown");
+		overSkin:Embed(source="searchpre.swf" ,symbol="leftover");
+		disabledSkin:Embed(source="searchpre.swf" ,symbol="leftdis");
 	}
 
 	

@@ -355,12 +355,15 @@
 	 * 显示搜索结果
 	 */
 	public function searchShow(event:Event):void{
+		
 		if(top.searchTarget.text!=""){
 			rpc.getSearchList(onGetSearchList,top.searchIndex.selectedLabel,top.searchTarget.text,1);
 			currentState = "searchRes";
 		}		
 		else
 			Alert.show("请输入搜索内容！");
+			
+		searchList.page.text = String(0);
 	
 	}
 
@@ -376,11 +379,15 @@
 	 * 布局搜索信息
 	 */
 	private function syncSearchList(list:Array):void{
-		var i:Number = 0;
 		var page:int = int(searchList.page.text) + 1;
 		
 		searchList.searchTitle.text = "\"" + top.searchTarget.text + "\"的搜索结果";
         searchList.page.text = String(page);
+        
+        if(page>9)
+        	searchList.page.x = 356;
+        else
+            searchList.page.x = 361;
         
         if(list[11])
         	searchList.nextBtn.enabled = true;
@@ -431,6 +438,7 @@
 		var page:int = int(searchList.page.text) + 1;
 		
 		rpc.getSearchList(onGetSearchList,top.searchIndex.selectedLabel,top.searchTarget.text,page);
+		searchList.listDown.play();
 	}
 	
 	/**
