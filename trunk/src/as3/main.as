@@ -11,16 +11,21 @@
 	import flash.events.MouseEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
-	
-	import mx.events.SliderEvent;
 	import flash.utils.Timer;
-    import flash.events.TimerEvent;
-
 	
+	import mx.controls.Alert;
+	import mx.events.SliderEvent;
+	
+	
+            
+            
+            
 	//播放控制,音乐播放由这个变量进行控制
 	public static var musicControl:playControl = new playControl();
 	//播放列表的数据存储
 	public var playList:Array = new Array();
+	//远程数据调用
+	public var searchResult:Array = new Array();
 	//远程数据调用
 	public var rpc:RPC = new RPC();
 	
@@ -30,7 +35,7 @@
 	public var timer:Timer;
 	
 	[Bindable]
-	public var Version:String = "Bubble jay 10.9.r19";
+	public var Version:String = "Bubble jay 10.9.r24";
 	
 	/**
 	 *初始化播放列表 
@@ -48,6 +53,40 @@
 		playerTop.next.addEventListener(MouseEvent.CLICK,nextMusic);
 		playerTop.playandpause.addEventListener(MouseEvent.CLICK,pauseAndPlay);
 		playerTop.volume.addEventListener(SliderEvent.CHANGE,changeVolume);
+		playerTop.resetList.addEventListener(MouseEvent.CLICK,resetList);
+		
+		top.searchBtn.addEventListener(MouseEvent.CLICK,searchShow);
+
+		bottom.lyricBtn.addEventListener(MouseEvent.CLICK,lyricShow);
+		
+		
+		
+		
+		//那么多监听事件。。。能不能合并？。。。循环？。。。
+		musicList.l1.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l1.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
+		musicList.l2.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l2.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
+		musicList.l3.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l3.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
+		musicList.l4.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l4.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
+		musicList.l5.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l5.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
+		musicList.l6.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l6.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
+		musicList.l7.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l7.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
+		musicList.l8.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l8.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
+		musicList.l9.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l9.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
+		musicList.l10.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l10.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
+		musicList.l11.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l11.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
+		musicList.l12.addEventListener(MouseEvent.ROLL_OVER,addMusicBtn);
+		musicList.l12.addEventListener(MouseEvent.ROLL_OUT,removeMusicBtn);
 		
 		musicList.l1.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
 		musicList.l2.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
@@ -61,7 +100,31 @@
 		musicList.l10.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
 		musicList.l11.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
 		musicList.l12.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
-	
+		
+		searchList.s1.addEventListener(MouseEvent.ROLL_OVER,addSearchTextBtn);
+		searchList.s1.addEventListener(MouseEvent.ROLL_OUT,removeSearchTextBtn);
+		searchList.s2.addEventListener(MouseEvent.ROLL_OVER,addSearchTextBtn);
+		searchList.s2.addEventListener(MouseEvent.ROLL_OUT,removeSearchTextBtn);
+		searchList.s3.addEventListener(MouseEvent.ROLL_OVER,addSearchTextBtn);
+		searchList.s3.addEventListener(MouseEvent.ROLL_OUT,removeSearchTextBtn);
+		searchList.s4.addEventListener(MouseEvent.ROLL_OVER,addSearchTextBtn);
+		searchList.s4.addEventListener(MouseEvent.ROLL_OUT,removeSearchTextBtn);
+		searchList.s5.addEventListener(MouseEvent.ROLL_OVER,addSearchTextBtn);
+		searchList.s5.addEventListener(MouseEvent.ROLL_OUT,removeSearchTextBtn);
+		searchList.s6.addEventListener(MouseEvent.ROLL_OVER,addSearchTextBtn);
+		searchList.s6.addEventListener(MouseEvent.ROLL_OUT,removeSearchTextBtn);
+		searchList.s7.addEventListener(MouseEvent.ROLL_OVER,addSearchTextBtn);
+		searchList.s7.addEventListener(MouseEvent.ROLL_OUT,removeSearchTextBtn);
+		searchList.s8.addEventListener(MouseEvent.ROLL_OVER,addSearchTextBtn);
+		searchList.s8.addEventListener(MouseEvent.ROLL_OUT,removeSearchTextBtn);
+		searchList.s9.addEventListener(MouseEvent.ROLL_OVER,addSearchTextBtn);
+		searchList.s9.addEventListener(MouseEvent.ROLL_OUT,removeSearchTextBtn);
+		searchList.s10.addEventListener(MouseEvent.ROLL_OVER,addSearchTextBtn);
+		searchList.s10.addEventListener(MouseEvent.ROLL_OUT,removeSearchTextBtn);
+		
+	    searchList.nextBtn.addEventListener(MouseEvent.CLICK,nextSearchPage);
+	    searchList.preBtn.addEventListener(MouseEvent.CLICK,preSearchPage);
+	    
 	}
 	
 	
@@ -71,11 +134,11 @@
 	 * 
 	 */	
 	private function syncPlayList(list:Array):void{
-		var i:int = 0;
 		
 		playerTop.songLabel.text = list[0].title;
 		playerTop.playerLabel.text = list[0].author;
-          
+        playerTop.albumLabel.text = list[0].album;
+        
 		if(list[0]){
 			musicList.l1.text = list[0].title + " - " + list[0].author;
 		} else { musicList.l1.text = ""; }
@@ -120,7 +183,6 @@
 	public function nextMusic(event:Event):void{
 		lrcnum = 0;
 		LRC.splice(0,LRC.length);
-		musicControl.fadeSound();
 		musicControl.pausePlay();
 		playList.shift();
 		this.syncPlayList(playList);
@@ -147,7 +209,8 @@
 	 */
 	private function lrcLoadCompleteHandler(event:Event):void{
 		var str:String = event.target.data;
-		lyric.picture.source=playList[0].pic;
+		lyric.picture.source = playList[0].pic;
+		lyric.reflectorPic.target = lyric.picture;
 		LRC = LRCDecoder.decoder(str);
 		musicControl.newPlay(playList[0].url);
 		addEventListener(Event.ENTER_FRAME, onEnterFrame);
@@ -241,12 +304,15 @@
 	}
 	
 	
-	
-	
+	/**
+	 * 播放&暂停按钮
+	 */
 	public function pauseAndPlay(event:Event):void{
 		if(musicControl.isPlay){
-			timer = new Timer(100,40);
-			timer.addEventListener(TimerEvent.TIMER, musicControl.fadeSound); 
+			timer = new Timer(100,20);
+			timer.addEventListener(TimerEvent.TIMER,fadeVolume); 
+			timer.start();
+			musicControl.fadeSound();
 			musicControl.pausePlay();
 			playerTop.playandpause.styleName = "buttomPlay";
 			
@@ -256,13 +322,189 @@
 		}
 	}
 	
+	/**
+	 * 改变音量大小
+	 */
 	public function changeVolume(event:Event):void{
 		musicControl.changeSoundSize(playerTop.volume.value);
 	}
 	
+	/**
+	 * 按暂停后，音乐淡出——！！没有用。。。
+	 */
 	public function fadeVolume(event:Event):void{
 		musicControl.fadeSound();
 	}
 	
+	/**
+	 * 重置播放列表
+	 */
+	public function resetList(event:Event):void{
+		rpc.getMusicList(onGetMusicList);
+		musicControl.setNextMusic(this.nextMusic);
+	}
 	
+	/**
+	 * 显示歌词组件
+	 */
+	public function lyricShow(event:Event):void{
+		currentState = "lyricState";
+		//top.currentState = "logined";
+	}
+	
+	/**
+	 * 显示搜索结果
+	 */
+	public function searchShow(event:Event):void{
+		
+		if(top.searchTarget.text!=""){
+			rpc.getSearchList(onGetSearchList,top.searchIndex.selectedLabel,top.searchTarget.text,1);
+			currentState = "searchRes";
+		}		
+		else
+			Alert.show("请输入搜索内容！");
+			
+		searchList.page.text = String(0);
+	
+	}
 
+	/**
+	 * 得到搜索结果
+	 */
+	public function onGetSearchList(result:Array):void{
+		this.searchResult = result;
+		this.syncSearchList(searchResult);
+	}
+	
+	/**
+	 * 布局搜索信息
+	 */
+	private function syncSearchList(list:Array):void{
+		var page:int = int(searchList.page.text) + 1;
+		
+		searchList.searchTitle.text = "\"" + top.searchTarget.text + "\"的搜索结果";
+        searchList.page.text = String(page);
+        
+        if(page>9)
+        	searchList.page.x = 356;
+        else
+            searchList.page.x = 361;
+        
+        if(list[10])
+        	searchList.nextBtn.enabled = true;
+        else 
+        	searchList.nextBtn.enabled = false;
+        	
+        if(page>1)
+        	searchList.preBtn.enabled = true;
+        else 
+        	searchList.preBtn.enabled = false;
+        	
+		if(list[0]){
+			searchList.s1.search.text = list[0].title + " - " + list[0].author;
+		} else { searchList.s1.search.text = "对不起，没有您想搜索的歌曲！"; }
+		if(list[1]){
+			searchList.s2.search.text = list[1].title + " - " + list[1].author;
+		} else { searchList.s2.search.text = ""; }
+		if(list[2]){
+			searchList.s3.search.text = list[2].title + " - " + list[2].author;
+		} else { searchList.s3.search.text = ""; }
+		if(list[3]){
+			searchList.s4.search.text = list[3].title + " - " + list[3].author;
+		} else { searchList.s4.search.text = ""; }
+		if(list[4]){
+			searchList.s5.search.text = list[4].title + " - " + list[4].author;
+		} else { searchList.s5.search.text = ""; }
+		if(list[5]){
+			searchList.s6.search.text = list[5].title + " - " + list[5].author;
+		} else { searchList.s6.search.text = ""; }
+		if(list[6]){
+			searchList.s7.search.text = list[6].title + " - " + list[6].author;
+		} else { searchList.s7.search.text = ""; }
+		if(list[7]){
+			searchList.s8.search.text = list[7].title + " - " + list[7].author;
+		} else { searchList.s8.search.text = ""; }
+		if(list[8]){
+			searchList.s9.search.text = list[8].title + " - " + list[8].author;
+		} else { searchList.s9.search.text = ""; }
+		if(list[9]){
+			searchList.s10.search.text = list[9].title + " - " + list[9].author;
+		} else { searchList.s10.search.text = ""; }
+	}
+	
+	/**
+	 * 获取下一页搜索结果
+	 */
+	private function nextSearchPage(event:Event):void{
+		var page:int = int(searchList.page.text) + 1;
+		
+		rpc.getSearchList(onGetSearchList,top.searchIndex.selectedLabel,top.searchTarget.text,page);
+		searchList.listDown.play();
+	}
+	
+	/**
+	 * 获取前一页搜索结果
+	 */
+	private function preSearchPage(event:Event):void{
+		var page:int = int(searchList.page.text) - 1;
+		
+		rpc.getSearchList(onGetSearchList,top.searchIndex.selectedLabel,top.searchTarget.text,page);
+	}
+	
+	
+	
+	
+	/**
+	 * 加每行播放列表的三颗按钮
+	 */
+	private function addMusicBtn(event:MouseEvent):void {
+		var i:int = event.currentTarget.index;
+		
+		event.currentTarget.styleName = "player4"; //背景色
+		event.currentTarget.labelText.styleName = "musicListRoOver";  //字颜色
+		event.currentTarget.littleMusicPlay.visible = true;
+		event.currentTarget.littleMusicCollect.visible = true;
+		event.currentTarget.littleMusicDelete.visible = true;
+		event.currentTarget.tri.visible = true;
+	}
+	
+	/**
+	 * 移除每行播放列表的三颗按钮
+	 */
+	private function removeMusicBtn(event:MouseEvent):void {
+		var i:int = event.currentTarget.index;
+		
+		if(i==1)
+			event.currentTarget.styleName = "player3"; //背景色
+		else if(i%2 && i!=1)
+			event.currentTarget.styleName = "player1";
+		else
+			event.currentTarget.styleName = "player2";
+
+		event.currentTarget.labelText.styleName = "musicListText";  
+		event.currentTarget.littleMusicPlay.visible = false;
+		event.currentTarget.littleMusicCollect.visible = false;
+		event.currentTarget.littleMusicDelete.visible = false;
+		event.currentTarget.tri.visible = false;
+	}
+	
+	/**
+	 * 加每行搜索结果列表的三颗按钮  没有用。。。
+	 */
+	private function addSearchTextBtn(event:MouseEvent):void {
+		event.currentTarget.search.styleName = "musicListRoOver";  //字颜色
+		event.currentTarget.littleSearchPlay.visible = true;
+		event.currentTarget.littleSearchCollect.visible = true;
+		event.currentTarget.littleSearchDelete.visible = true;
+	}
+	
+	/**
+	 * 移除每行搜索结果的三颗按钮  没有用。。。
+	 */
+	private function removeSearchTextBtn(event:MouseEvent):void {
+		searchList.s1.search.styleName = "followRes";  //字颜色
+		event.currentTarget.littleSearchPlay.visible = false;
+		event.currentTarget.littleSearchCollect.visible = false;
+		event.currentTarget.littleSearchDelete.visible = false;
+	}
+	

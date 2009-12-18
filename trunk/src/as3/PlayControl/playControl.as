@@ -19,7 +19,7 @@ package as3.PlayControl
 		public var isPlay:Boolean;
 		private var nextMusic:Function;
 		public var progressPos:Number;
-		 
+		private static var temp:Number; 
 		
 
 		
@@ -97,19 +97,20 @@ package as3.PlayControl
 		
 		public function progressSet():void{
 			 progressPos = channel.position/music.length;
-			 
 		}
-
-		public function fadeSound():void   {    
-			var transform:SoundTransform = channel.soundTransform;  
-			var i:Number = transform.volume/40;		
-			if (transform.volume>0){
-				transform.volume = transform.volume - i;
+		
+		public function fadeSound():void{   
+			if(isPlay){
+				var transform:SoundTransform = channel.soundTransform; 
+				temp = channel.soundTransform.volume; 
+				var i:Number = temp/2;
+				transform.volume -= i;
+				channel.soundTransform = transform;
 			}
-			channel.soundTransform = transform;   
+			else{
+				channel.soundTransform.volume = temp;
+			}
 		}
 		
-		
-	
 	}
 }
