@@ -9,6 +9,7 @@
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.external.ExternalInterface;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	import flash.utils.Timer;
@@ -100,7 +101,7 @@
 		musicList.l10.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
 		musicList.l11.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
 		musicList.l12.addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickListItem);
-		
+		/*
 		searchList.s1.addEventListener(MouseEvent.ROLL_OVER,addSearchTextBtn);
 		searchList.s1.addEventListener(MouseEvent.ROLL_OUT,removeSearchTextBtn);
 		searchList.s2.addEventListener(MouseEvent.ROLL_OVER,addSearchTextBtn);
@@ -124,7 +125,7 @@
 		
 	    searchList.nextBtn.addEventListener(MouseEvent.CLICK,nextSearchPage);
 	    searchList.preBtn.addEventListener(MouseEvent.CLICK,preSearchPage);
-	    
+	    */
 	}
 	
 	
@@ -214,6 +215,7 @@
 		LRC = LRCDecoder.decoder(str);
 		musicControl.newPlay(playList[0].url);
 		addEventListener(Event.ENTER_FRAME, onEnterFrame);
+		this.syncMusicInfo(playList[0].title, playList[0].author ,playList[0].author);
 	}
 	
 	/**
@@ -508,3 +510,12 @@
 		event.currentTarget.littleSearchDelete.visible = false;
 	}
 	
+	/**
+	 * 同步当前播放歌曲信息到底部状态栏和浏览器标题 
+	 */
+	private function syncMusicInfo(music:String, author:String, album:String):void{
+		bottom.nowMusic.label = music;
+		bottom.nowAuthor.label = author;
+		bottom.nowAlbum.label = album;
+		flash.external.ExternalInterface.call("setTitle", music, author, album);
+	}
