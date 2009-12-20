@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:local="*" width="260" height="96" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 		
-	<mx:Button id="next" x="69" y="22.5" styleName="buttomNext" scaleX="0.5" scaleY="0.5"/>
+	<mx:Button id="next" x="69" y="48.5" styleName="buttomNext" scaleX="0.5" scaleY="0.5"/>
 	<mx:Button id="playandpause" x="36" y="35" styleName="buttomPause" scaleX="0.65" scaleY="0.65" />
 	
-	<mx:Label id="playerLabel" y="10" horizontalCenter="18" styleName="songLabel"/>
-	<mx:Label id="songLabel" y="25" horizontalCenter="18" styleName="playerLabel"/>
-	<mx:Label id="albumLabel" y="40" horizontalCenter="18" styleName="albumLabel"/>
+	<mx:Label id="songLabel" y="10" styleName="songLabel" right="20"/>
+	<mx:Label id="playerLabel" y="25" styleName="playerLabel" right="20"/>
+	<mx:Label id="albumLabel" y="40" styleName="albumLabel" right="20"/>
 	
 	<mx:VSlider id="volume" x="236" y="18" minimum="0" maximum="1" value="0.6" height="58" 
 		liveDragging="true" showDataTip="false" styleName="volume" />

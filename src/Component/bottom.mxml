@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="45" styleName="topBottom">
-	<mx:Button id="lyricBtn" y="10" label="歌词" styleName="buttomDeep"  left="10"/>
-	<mx:HBox y="10" horizontalCenter="0" borderStyle="solid" cornerRadius="10">
-		<mx:LinkButton id="nowMusic" label="过桥" />
-		<mx:Label text="-"  color="#FCF9FC"/>
-		<mx:LinkButton id="nowAuthor" label="后弦" />
-		<mx:Label text="-"  color="#FCF9FC"/>
-		<mx:LinkButton id="nowAlbum" label="东方不败" />
+	<mx:Button id="lyricBtn" y="10" label="歌词" styleName="buttomDeep"  left="10" />
+	<mx:HBox y="10" horizontalCenter="0" borderStyle="solid" cornerRadius="10" styleName="downBottom">
+		<mx:Button id="nowMusic" label="" styleName="downBtn"
+			borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" />
+		<mx:Label text="-"  color="#FCF9FC" width="9"/>
+		<mx:Button id="nowAuthor" label="" styleName="downBtn" 
+			borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" />
+		<mx:Label text="-"  color="#FCF9FC" width="9"/>
+		<mx:Button id="nowAlbum" label="" styleName="downBtn"
+			borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" />
 		<mx:Spacer/>
-		<mx:LinkButton y="10" label="下载" right="10"/>
+		<mx:Button y="10" label="下载" right="10" styleName="downBtn"
+			borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" />
 	</mx:HBox>
 	
 	

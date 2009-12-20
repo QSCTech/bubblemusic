@@ -126,6 +126,10 @@
 	    searchList.nextBtn.addEventListener(MouseEvent.CLICK,nextSearchPage);
 	    searchList.preBtn.addEventListener(MouseEvent.CLICK,preSearchPage);
 	    */
+	    
+	    bottom.nowAlbum.addEventListener(MouseEvent.CLICK,albumSearch);
+	    bottom.nowAuthor.addEventListener(MouseEvent.CLICK,authorSearch);
+	    bottom.nowMusic.addEventListener(MouseEvent.CLICK,songSearch);
 	}
 	
 	
@@ -362,6 +366,7 @@
 		if(top.searchTarget.text!=""){
 			rpc.getSearchList(onGetSearchList,top.searchIndex.selectedLabel,top.searchTarget.text,1);
 			currentState = "searchRes";
+			searchList.searchTitle.text = "\"" + top.searchTarget.text + "\"的搜索结果";
 		}		
 		else
 			Alert.show("请输入搜索内容！");
@@ -384,7 +389,6 @@
 	private function syncSearchList(list:Array):void{
 		var page:int = int(searchList.page.text) + 1;
 		
-		searchList.searchTitle.text = "\"" + top.searchTarget.text + "\"的搜索结果";
         searchList.page.text = String(page);
         
         if(page>9)
@@ -519,3 +523,26 @@
 		bottom.nowAlbum.label = album;
 		flash.external.ExternalInterface.call("setTitle", music, author, album);
 	}
+	
+	private function albumSearch(event:MouseEvent):void{
+		rpc.getSearchList(onGetSearchList,"搜专辑",bottom.nowAlbum.label,1);
+		currentState = "searchRes";
+		searchList.searchTitle.text = "\"" + bottom.nowAlbum.label + "\"的搜索结果";
+		searchList.page.text = String(0);
+	}
+	
+	private function authorSearch(event:MouseEvent):void{
+		rpc.getSearchList(onGetSearchList,"搜歌手",bottom.nowAuthor.label,1);
+		currentState = "searchRes";
+		searchList.searchTitle.text = "\"" + bottom.nowAuthor.label + "\"的搜索结果";
+		searchList.page.text = String(0);
+	}
+	
+	private function songSearch(event:MouseEvent):void{
+		rpc.getSearchList(onGetSearchList,"搜歌名",bottom.nowMusic.label,1);
+		currentState = "searchRes";
+		searchList.searchTitle.text = "\"" + bottom.nowMusic.label + "\"的搜索结果";
+		searchList.page.text = String(0);
+	}
+	
+	
