@@ -10,8 +10,8 @@
 	<Component:playerSongs2 id="l8" y="140" doubleClickEnabled="true" index="8"/>
 	<Component:playerSongs id="l9" y="160" doubleClickEnabled="true" index="9"/>
 	<Component:playerSongs2 id="l10" y="180" doubleClickEnabled="true" index="10"/>
-	<Component:playerSongs id="l11" y="200" doubleClickEnabled="true" index="10"/>
-	<Component:playerSongs2 id="l12" y="220" doubleClickEnabled="true" index="10"/>
+	<Component:playerSongs id="l11" y="200" doubleClickEnabled="true" index="11"/>
+	<Component:playerSongs2 id="l12" y="220" doubleClickEnabled="true" index="12"/>
 	
 	
 	<mx:Parallel id="listEffect">

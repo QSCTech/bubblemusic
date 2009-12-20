@@ -232,10 +232,10 @@
 		textSelectedColor: #2F1F2F;
 	}
 	.topBottom{
-	backgroundColor:#241625;
-	borderStyle: solid;
-	cornerRadius: 10;
-	backgroundAlpha: 0.5;
+		backgroundColor:#241625;
+		borderStyle: solid;
+		cornerRadius: 10;
+		backgroundAlpha: 0.5;
 	}	
 	LinkButton{
 		themeColor:#BAF75D;
@@ -264,10 +264,26 @@
 	}
 	
 	.lyricOn{
-	color:#baf75d;
-	fontWeight:bold;
+		color:#baf75d;
+		fontWeight:bold;
 	
 	}
+	
+	.downBottom{
+		backgroundColor:#2B1E2C;
+		borderStyle: solid;
+		cornerRadius: 10;
+		borderColor:#2B1E2C;
+	}
+	
+	.downBtn{
+		fontSize:12;
+		textRollOverColor:#baf75d;
+		textSelectedColor:#B8AAB9;
+		color:#B8AAB9; 
+	}
+	
+	
 	
 
 
