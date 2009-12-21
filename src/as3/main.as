@@ -10,6 +10,7 @@
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.events.TimerEvent;
 	import flash.external.ExternalInterface;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
@@ -164,7 +165,7 @@
 	    
 	    playerTop.setSilent.addEventListener(MouseEvent.CLICK,silent);
 	    
-	    
+	    lyric.picture.addEventListener(Event.COMPLETE,picLoadComplete);
 	    
 	}
 	
@@ -259,6 +260,7 @@
 	private function lrcLoadCompleteHandler(event:Event):void{
 		var str:String = event.target.data;
 		lyric.picture.source = playList[0].pic;
+		
 		lyric.lrc0.text = "";
 		lyric.lrc1.text = "";
 		lyric.lrc2.text = "";
@@ -274,6 +276,19 @@
 		musicControl.newPlay(playList[0].url);
 		addEventListener(Event.ENTER_FRAME, onEnterFrame);
 		this.syncMusicInfo(playList[0].title, playList[0].author ,playList[0].album);
+	}
+	
+	/**
+	 * 处理倒影的显示
+	 */
+	private function picLoadComplete(event:Event):void{
+		var timer:Timer = new Timer(3000,1);
+		timer.addEventListener(TimerEvent.TIMER, reflectorPicture);
+		timer.start();
+	}
+	private function reflectorPicture(event:Event):void{
+		lyric.reflectorPic.clearCachedBitmaps();
+		lyric.reflectorPic.invalidateDisplayList();
 	}
 	
 	/**
@@ -447,8 +462,7 @@
 		}		
 		else
 			Alert.show("请输入搜索内容！");
-			
-		searchList.page.text = String(0);
+		//searchList.page.text = String(0);
 	
 	}
 
@@ -548,10 +562,7 @@
 		event.currentTarget.littleMusicPlay.visible = true;
 		event.currentTarget.littleMusicCollect.visible = true;
 		event.currentTarget.littleMusicDelete.visible = true;
-		event.currentTarget.tri.visible = true;
-		
-		
-		
+		event.currentTarget.tri.visible = true;		
 	}
 	
 	/**
@@ -661,4 +672,3 @@
 		searchList.searchTitle.text = "\"" + bottom.nowMusic.label + "\"的搜索结果";
 		searchList.page.text = String(0);
 	}
-

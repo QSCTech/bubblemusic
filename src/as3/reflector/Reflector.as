@@ -153,7 +153,7 @@ package as3.reflector
 			}
 		}
 		
-		private function clearCachedBitmaps(): void {
+		public function clearCachedBitmaps(): void {
 			_alphaGradientBitmap = null;
 			_targetBitmap = null;
 			_resultBitmap = null;
