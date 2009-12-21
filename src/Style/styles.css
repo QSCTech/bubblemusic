@@ -48,13 +48,34 @@
 		overSkin:Embed(source="reset.swf" ,symbol="skinover");
 	}
 
-	/*歌曲列表浅色按钮*/
+	/*歌曲列表三颗按钮*/
 	.buttomLight{
 		cornerRadius:1;
 		themeColor:#BAF75D;
 		fontSize:12;
 		color:#3D313E;
 	}
+	.playBtn{
+		color:#AAAAAA;
+		upSkin:Embed(source="three.swf" ,symbol="playup");
+		downSkin:Embed(source="three.swf" ,symbol="playdown");
+		overSkin:Embed(source="three.swf" ,symbol="playover");
+	}
+	
+	.storeBtn{
+		color:#AAAAAA;
+		upSkin:Embed(source="three.swf" ,symbol="storeup");
+		downSkin:Embed(source="three.swf" ,symbol="storedown");
+		overSkin:Embed(source="three.swf" ,symbol="storeover");
+	}
+	
+	.deleteBtn{
+		color:#AAAAAA;
+		upSkin:Embed(source="three.swf" ,symbol="deleteup");
+		downSkin:Embed(source="three.swf" ,symbol="deletedown");
+		overSkin:Embed(source="three.swf" ,symbol="deleteover");
+	}
+	
 	/*播放器大框架*/
 	.player{
 		fillAlphas:1.0, 1.0;
@@ -236,7 +257,13 @@
 		borderStyle: solid;
 		cornerRadius: 10;
 		backgroundAlpha: 0.5;
+		
 	}	
+	
+	.playerTop{
+		backgroundColor:#615661;
+	}
+	
 	LinkButton{
 		themeColor:#BAF75D;
 		color:#B8AAB9 ;
