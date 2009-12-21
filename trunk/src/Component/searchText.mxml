@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas styleName="searchBox" xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="18">
 	
-	<mx:Label id="search" x="13" y="0" styleName="followRes"/>
+	<mx:Label id="search" x="13" y="0" styleName="followRes" width="375"/>
 	<mx:Button id="littleSearchPlay" label="播放" styleName="playBtn" width="11" height="11" verticalCenter="0"  right="38" visible="false"/>
 	<mx:Button id="littleSearchCollect" label="收藏" styleName="storeBtn" width="11" height="11" verticalCenter="0" right="24" visible="false"/>
 	<mx:Button id="littleSearchDelete" label="删除" styleName="deleteBtn" width="11" height="11" verticalCenter="0" right="10" visible="false"/>

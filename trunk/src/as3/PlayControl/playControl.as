@@ -3,6 +3,7 @@ package as3.PlayControl
 	
 	import flash.events.Event;
 	import flash.net.URLRequest;
+	import Component.playerTop;
 	
 	public class playControl
 	{
@@ -99,17 +100,17 @@ package as3.PlayControl
 			 progressPos = channel.position/music.length;
 		}
 		
-		public function fadeSound():void{   
+		public function fadeSound(value:Number):void{   
+			var transform:SoundTransform = channel.soundTransform; 
 			if(isPlay){
-				var transform:SoundTransform = channel.soundTransform; 
 				temp = channel.soundTransform.volume; 
-				var i:Number = temp/2;
+				var i:Number = temp/20;
 				transform.volume -= i;
-				channel.soundTransform = transform;
 			}
 			else{
-				channel.soundTransform.volume = temp;
+				transform.volume = value;
 			}
+			channel.soundTransform = transform;
 		}
 		
 	}

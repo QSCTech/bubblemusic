@@ -11,6 +11,12 @@
 		backgroundColor: #D2BCD3;
 	}
 	
+	.logo
+	{
+		color:#AAAAAA;
+		upSkin:Embed(source="logo.swf" ,symbol="logoup");
+	}
+	
 /*弹出登录&注册框*/	
 	Panel{
 		borderColor:#2F1F2F; 
@@ -135,11 +141,11 @@
 		fontSize:12;
 	}
 	.playerLabel{
-		color:#887B89; 
+		color:#836985; 
 		fontSize:12;
 	}
 	.albumLabel{
-		color:#625463; 
+		color:#735f74; 
 		fontSize:12;
 	}
 	
@@ -155,7 +161,19 @@
 		thumbOverSkin:Embed(source="volume.swf" ,symbol="thumbOverSkin");
 		thumbOffset:5;
 	}
-
+	
+	.silent1{
+		color:#AAAAAA;
+		upSkin:Embed(source="silence.swf" ,symbol="silenceup");
+		downSkin:Embed(source="silence.swf" ,symbol="silencedown");
+		overSkin:Embed(source="silence.swf" ,symbol="silenceover");
+	}
+	.silent2{
+		color:#AAAAAA;
+		upSkin:Embed(source="silence.swf" ,symbol="silentup");
+		downSkin:Embed(source="silence.swf" ,symbol="silentdown");
+		overSkin:Embed(source="silence.swf" ,symbol="silentover");
+	}
 
 /*搜索结果CSS*/
 	.searchBox{
