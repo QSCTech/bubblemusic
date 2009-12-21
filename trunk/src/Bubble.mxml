@@ -11,6 +11,26 @@
 			<mx:AddChild relativeTo="{middle}" position="firstChild">
 				<bubble:searchBox id="searchList"/>
 			</mx:AddChild>
+			<mx:SetEventHandler target="{searchList.s1}" handlerFunction="addSearchTextBtn" name="rollOver" />
+			<mx:SetEventHandler target="{searchList.s1}" handlerFunction="removeSearchTextBtn" name="rollOut" />
+			<mx:SetEventHandler target="{searchList.s2}" handlerFunction="addSearchTextBtn" name="rollOver" />
+			<mx:SetEventHandler target="{searchList.s2}" handlerFunction="removeSearchTextBtn" name="rollOut" />
+			<mx:SetEventHandler target="{searchList.s3}" handlerFunction="addSearchTextBtn" name="rollOver" />
+			<mx:SetEventHandler target="{searchList.s3}" handlerFunction="removeSearchTextBtn" name="rollOut" />
+			<mx:SetEventHandler target="{searchList.s4}" handlerFunction="addSearchTextBtn" name="rollOver" />
+			<mx:SetEventHandler target="{searchList.s4}" handlerFunction="removeSearchTextBtn" name="rollOut" />
+			<mx:SetEventHandler target="{searchList.s5}" handlerFunction="addSearchTextBtn" name="rollOver" />
+			<mx:SetEventHandler target="{searchList.s5}" handlerFunction="removeSearchTextBtn" name="rollOut" />
+			<mx:SetEventHandler target="{searchList.s6}" handlerFunction="addSearchTextBtn" name="rollOver" />
+			<mx:SetEventHandler target="{searchList.s6}" handlerFunction="removeSearchTextBtn" name="rollOut" />
+			<mx:SetEventHandler target="{searchList.s7}" handlerFunction="addSearchTextBtn" name="rollOver" />
+			<mx:SetEventHandler target="{searchList.s7}" handlerFunction="removeSearchTextBtn" name="rollOut" />
+			<mx:SetEventHandler target="{searchList.s8}" handlerFunction="addSearchTextBtn" name="rollOver" />
+			<mx:SetEventHandler target="{searchList.s8}" handlerFunction="removeSearchTextBtn" name="rollOut" />
+			<mx:SetEventHandler target="{searchList.s9}" handlerFunction="addSearchTextBtn" name="rollOver" />
+			<mx:SetEventHandler target="{searchList.s9}" handlerFunction="removeSearchTextBtn" name="rollOut" />
+			<mx:SetEventHandler target="{searchList.s10}" handlerFunction="addSearchTextBtn" name="rollOver" />
+			<mx:SetEventHandler target="{searchList.s10}" handlerFunction="removeSearchTextBtn" name="rollOut" />
 		</mx:State>
 			
 		<mx:State name="lyricState">
