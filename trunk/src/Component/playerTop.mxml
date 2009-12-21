@@ -4,9 +4,17 @@
 	<mx:Button id="next" x="69" y="48.5" styleName="buttomNext" scaleX="0.5" scaleY="0.5"/>
 	<mx:Button id="playandpause" x="36" y="35" styleName="buttomPause" scaleX="0.65" scaleY="0.65" />
 	
-	<mx:Label id="songLabel" y="10" styleName="songLabel" right="20"/>
-	<mx:Label id="playerLabel" y="25" styleName="playerLabel" right="20"/>
-	<mx:Label id="albumLabel" y="40" styleName="albumLabel" right="20"/>
+	<mx:Canvas right="19" y="12" textAlign="right" width="183" height="18">
+		<mx:Label id="songLabel" y="0" styleName="songLabel" right="0"/>
+	</mx:Canvas>
+	<mx:Canvas right="19" y="31" textAlign="right" width="161" height="18" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+		<mx:Canvas id="playerBox" y="0" right="0"  width="161" styleName="textBackgroud">
+			<mx:Label id="playerLabel" y="0" styleName="playerLabel" right="0" width="163" />
+		</mx:Canvas>
+		<mx:Canvas id="albumBox" y="18" right="0"  width="161" styleName="textBackgroud">
+			<mx:Label id="albumLabel" y="0" styleName="playerLabel" right="0" width="163"/>
+		</mx:Canvas>
+	</mx:Canvas>
 	
 	<mx:VSlider id="volume" x="236" y="18" minimum="0" maximum="1" value="0.6" height="58" 
 		liveDragging="true" showDataTip="false" styleName="volume" />
@@ -17,7 +25,14 @@
 	<mx:Canvas width="260" height="22" bottom="0" styleName="playerButtoms">
 		<mx:Button id="resetList" styleName="resetList" x="17" y="13"/>
 	</mx:Canvas>
-		
-		
+	
+	<mx:Parallel id="albumPlayerShift">
+		<mx:Move id="player" target="{playerBox}" yFrom="0" yTo="-18" repeatCount="0" repeatDelay="3000" duration="1000" />
+		<mx:Move id="album" target="{albumBox}" yFrom="18" yTo="0" repeatCount="0" repeatDelay="3000" duration="1000" />
+	</mx:Parallel>
+	<mx:Parallel id="playerAlbumShift">
+		<mx:Move target="{albumBox}" yFrom="0" yTo="-18" repeatCount="0" repeatDelay="3000" duration="1000" />
+		<mx:Move target="{playerBox}" yFrom="18" yTo="0" repeatCount="0" repeatDelay="3000" duration="1000" />
+	</mx:Parallel>	
 	
 </mx:Canvas>
