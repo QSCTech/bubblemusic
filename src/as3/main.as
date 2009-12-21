@@ -6,6 +6,7 @@
 	import as3.Lyric.LRCDecoder;
 	import as3.Net.RPC;
 	import as3.PlayControl.playControl;
+	import as3.reflector.Reflector;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -30,10 +31,14 @@
 	//远程数据调用
 	public var rpc:RPC = new RPC();
 	
+	public var reflector:Reflector = new Reflector();
+	
 	public var lrcLoader:URLLoader = new URLLoader();
 	public var LRC:Array = new Array();
 	public var lrcnum:int;
 	public var timer:Timer;
+	
+	public var isSilent:int = 0;
 	
 	[Bindable]
 	public var Version:String = "Bubble jay 10.9.r24";
@@ -157,13 +162,16 @@
 	    musicList.l11.addEventListener(MouseEvent.MOUSE_OUT,textScollRight);
 	    musicList.l12.addEventListener(MouseEvent.MOUSE_OUT,textScollRight);
 	    
-	    
+	    playerTop.setSilent.addEventListener(MouseEvent.CLICK,silent);
 	    
 	    
 	    
 	}
 	
-	
+	private function showShadow():void{
+  //	 	reflector.handleTargetUpdate();                
+    }
+
 	/**
 	 *同步播放列表,当播放列表改动后,同步到播放器界面上 
 	 * @param playList
@@ -173,10 +181,11 @@
 		
 		playerTop.songLabel.text = list[0].title;
 		playerTop.playerLabel.text = list[0].author;
-        playerTop.albumLabel.text = list[0].title;
+        playerTop.albumLabel.text = list[0].album;
 
         playerTop.albumPlayerShift.play();
-        playerTop.playerAlbumShift.play();
+	//	showShadow();
+        
 		if(list[0]){
 			musicList.l1.text = list[0].title + " - " + list[0].author;
 		} else { musicList.l1.text = ""; }
@@ -225,6 +234,7 @@
 		playList.shift();
 		this.syncPlayList(playList);
 		musicList.listEffect.play();
+
 		lrcLoader.load(new URLRequest(playList[0].lrc));
 		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
 	}
@@ -242,13 +252,24 @@
 	}
 	
 	
+	
 	/**
 	 * 当歌词加载完成，开始对歌词进行处理
 	 */
 	private function lrcLoadCompleteHandler(event:Event):void{
 		var str:String = event.target.data;
 		lyric.picture.source = playList[0].pic;
-		lyric.reflectorPic.target = lyric.picture;
+		lyric.lrc0.text = "";
+		lyric.lrc1.text = "";
+		lyric.lrc2.text = "";
+		lyric.lrc3.text = "";
+		lyric.lrc4.text = "";
+		lyric.lrc5.text = "";
+		lyric.lrc6.text = "";
+		lyric.lrc7.text = "";
+		lyric.lrc8.text = "";
+		lyric.lrc9.text = "";
+		lyric.lrc10.text = "";
 		LRC = LRCDecoder.decoder(str);
 		musicControl.newPlay(playList[0].url);
 		addEventListener(Event.ENTER_FRAME, onEnterFrame);
@@ -340,6 +361,7 @@
 		musicControl.pausePlay();
 		lrcLoader.load(new URLRequest(playList[0].lrc));
 		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
+		currentState = "lyricState";
 	}
 	
 	
@@ -351,7 +373,9 @@
 			timer = new Timer(100,20);
 			timer.addEventListener(TimerEvent.TIMER,fadeVolume); 
 			timer.start();
-			musicControl.fadeSound();
+			musicControl.fadeSound(playerTop.volume.value);
+		}	
+		if(musicControl.isPlay){
 			musicControl.pausePlay();
 			playerTop.playandpause.styleName = "buttomPlay";
 			
@@ -366,13 +390,33 @@
 	 */
 	public function changeVolume(event:Event):void{
 		musicControl.changeSoundSize(playerTop.volume.value);
+		if(isSilent == 1){
+			playerTop.setSilent.styleName = "silent1";
+			isSilent = 0;
+		}
 	}
 	
 	/**
 	 * 按暂停后，音乐淡出——！！没有用。。。
 	 */
 	public function fadeVolume(event:Event):void{
-		musicControl.fadeSound();
+		musicControl.fadeSound(playerTop.volume.value);
+	}
+	
+	/**
+	 * 静音
+	 */
+	public function silent(event:Event):void{
+		if(isSilent == 1){
+			musicControl.changeSoundSize(playerTop.volume.value);
+			playerTop.setSilent.styleName = "silent1";
+			isSilent = 0;
+		}
+		else{
+			musicControl.changeSoundSize(0);
+			playerTop.setSilent.styleName = "silent2";
+			isSilent = 1;
+		}
 	}
 	
 	/**
@@ -440,34 +484,34 @@
         	searchList.preBtn.enabled = false;
         	
 		if(list[0]){
-			searchList.s1.search.text = list[0].title + " - " + list[0].author;
+			searchList.s1.search.text = list[0].title + " - " + list[0].author + " - " + list[0].album;
 		} else { searchList.s1.search.text = "对不起，没有您想搜索的歌曲！"; }
 		if(list[1]){
-			searchList.s2.search.text = list[1].title + " - " + list[1].author;
+			searchList.s2.search.text = list[1].title + " - " + list[1].author + " - " + list[1].album;
 		} else { searchList.s2.search.text = ""; }
 		if(list[2]){
-			searchList.s3.search.text = list[2].title + " - " + list[2].author;
+			searchList.s3.search.text = list[2].title + " - " + list[2].author + " - " + list[2].album;
 		} else { searchList.s3.search.text = ""; }
 		if(list[3]){
-			searchList.s4.search.text = list[3].title + " - " + list[3].author;
+			searchList.s4.search.text = list[3].title + " - " + list[3].author + " - " + list[3].album;
 		} else { searchList.s4.search.text = ""; }
 		if(list[4]){
-			searchList.s5.search.text = list[4].title + " - " + list[4].author;
+			searchList.s5.search.text = list[4].title + " - " + list[4].author + " - " + list[4].album;
 		} else { searchList.s5.search.text = ""; }
 		if(list[5]){
-			searchList.s6.search.text = list[5].title + " - " + list[5].author;
+			searchList.s6.search.text = list[5].title + " - " + list[5].author + " - " + list[5].album;
 		} else { searchList.s6.search.text = ""; }
 		if(list[6]){
-			searchList.s7.search.text = list[6].title + " - " + list[6].author;
+			searchList.s7.search.text = list[6].title + " - " + list[6].author + " - " + list[6].album;
 		} else { searchList.s7.search.text = ""; }
 		if(list[7]){
-			searchList.s8.search.text = list[7].title + " - " + list[7].author;
+			searchList.s8.search.text = list[7].title + " - " + list[7].author + " - " + list[7].album;
 		} else { searchList.s8.search.text = ""; }
 		if(list[8]){
-			searchList.s9.search.text = list[8].title + " - " + list[8].author;
+			searchList.s9.search.text = list[8].title + " - " + list[8].author + " - " + list[8].album;
 		} else { searchList.s9.search.text = ""; }
 		if(list[9]){
-			searchList.s10.search.text = list[9].title + " - " + list[9].author;
+			searchList.s10.search.text = list[9].title + " - " + list[9].author + " - " + list[9].album;
 		} else { searchList.s10.search.text = ""; }
 	}
 	

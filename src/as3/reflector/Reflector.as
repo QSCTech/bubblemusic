@@ -105,7 +105,7 @@ package as3.reflector
 			invalidateDisplayList();
 		}
 		
-		private function handleTargetUpdate(event: FlexEvent): void {
+		public function handleTargetUpdate(event: FlexEvent): void {
 			// The target has been redrawn, so mark ourselves for redraw.
 			invalidateDisplayList();
 		}

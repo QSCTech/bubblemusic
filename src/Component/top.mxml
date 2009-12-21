@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="78" styleName="topBottom">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="78" styleName="topBottom" verticalScrollPolicy="off" horizontalScrollPolicy="off">
     
     
     <mx:Script>
@@ -50,7 +50,7 @@
 	<mx:LinkButton id="loginBtn" y="10" label="登录" right="110" click="showLogin()"/>
 	<mx:LinkButton id="registerBtn" y="10" label="注册" right="60"  click="showRegister()"/>
 	<mx:LinkButton y="10" label="帮助" right="10" />
-	<mx:TextInput right="165" bottom="8"  cornerRadius="10" borderStyle="solid" id="searchTarget"/>
+	<mx:TextInput right="165" bottom="8"  cornerRadius="5" borderStyle="solid" id="searchTarget"/>
 	<mx:ComboBox right="65" fontSize="12" bottom="8" id="searchIndex"  >
 		<mx:String>全部搜索</mx:String>
 		<mx:String>搜歌名</mx:String>
@@ -59,7 +59,8 @@
 	</mx:ComboBox>
 	<mx:Button id="searchBtn" label="搜索" right="10" bottom="8" styleName="buttomDeep"/>
 	
-	<mx:Label id="welcome" right="165" y="12" text="" styleName="welcomeUsername"/>
+	<mx:Label id="welcome" right="162" y="12" text="" styleName="welcomeUsername" textAlign="right"/>
+	<mx:Button id="logo" x="62" styleName="logo" y="63" scaleX="0.8" scaleY="0.8"/>
 	
 	
 </mx:Canvas>
