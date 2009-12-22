@@ -8,12 +8,8 @@
 		<mx:Label id="songLabel" y="0" styleName="songLabel" right="0" width="183"/>
 	</mx:Canvas>
 	<mx:Canvas right="19" y="31" textAlign="right" width="161" height="18" horizontalScrollPolicy="off" verticalScrollPolicy="off">
-		<mx:Canvas id="playerBox" y="20" right="0"  width="161" styleName="textBackgroud">
-			<mx:Label id="playerLabel" y="0" styleName="playerLabel" right="0" width="163" />
-		</mx:Canvas>
-		<mx:Canvas id="albumBox" y="20" right="0"  width="161" styleName="textBackgroud">
-			<mx:Label id="albumLabel" y="0" styleName="albumLabel" right="0" width="163"/>
-		</mx:Canvas>
+		<mx:Label id="playerLabel" y="18" styleName="playerLabel" right="0" width="163" />
+		<mx:Label id="albumLabel" y="18" styleName="albumLabel" right="0" width="163"/>
 	</mx:Canvas>
 	
 	<mx:Button x="248" y="13" id="setSilent" styleName="silent1"  scaleX="0.9" scaleY="0.9"/>
@@ -28,11 +24,11 @@
 		<mx:Button id="resetList" styleName="resetList" x="17" y="13"/>
 	</mx:Canvas>
 	
-	<mx:Parallel id="albumPlayerShift">
-		<mx:Move id="player" target="{playerBox}" yFrom="0" yTo="-18" repeatCount="0" repeatDelay="3000" duration="1000" />
-		<mx:Move id="album" target="{albumBox}" yFrom="18" yTo="0" repeatCount="0" repeatDelay="3000" duration="1000" />
-		<mx:Move target="{albumBox}" yFrom="0" yTo="-18" repeatCount="0" repeatDelay="3000" duration="1000" />
-		<mx:Move target="{playerBox}" yFrom="18" yTo="0" repeatCount="0" repeatDelay="3000" duration="1000" />
+	<mx:Parallel id="albumPlayerShift" >
+		<mx:Move target="{playerLabel}" yFrom="0" yTo="-18" repeatCount="0" repeatDelay="3000" duration="1000" />
+		<mx:Move target="{albumLabel}" yFrom="18" yTo="0" repeatCount="0" repeatDelay="3000" duration="1000" />
+		<mx:Move target="{playerLabel}" yFrom="18" yTo="0" repeatCount="0" repeatDelay="3000" duration="1000" />
+		<mx:Move target="{albumLabel}" yFrom="0" yTo="-18" repeatCount="0" repeatDelay="3000" duration="1000" />
 	</mx:Parallel>
 	
 	

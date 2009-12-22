@@ -31,11 +31,28 @@
 			<mx:SetEventHandler target="{searchList.s9}" handlerFunction="removeSearchTextBtn" name="rollOut" />
 			<mx:SetEventHandler target="{searchList.s10}" handlerFunction="addSearchTextBtn" name="rollOver" />
 			<mx:SetEventHandler target="{searchList.s10}" handlerFunction="removeSearchTextBtn" name="rollOut" />
-		</mx:State>
 			
+			<mx:SetEventHandler target="{searchList.nextBtn}" handlerFunction="nextSearchPage" name="click" />
+			<mx:SetEventHandler target="{searchList.preBtn}" handlerFunction="preSearchPage" name="click" />
+			
+			<mx:SetEventHandler target="{searchList.s1}" handlerFunction="addOneMusic" name="doubleClick"/>
+			<mx:SetEventHandler target="{searchList.s2}" handlerFunction="addOneMusic" name="doubleClick"/>
+			<mx:SetEventHandler target="{searchList.s3}" handlerFunction="addOneMusic" name="doubleClick"/>
+			<mx:SetEventHandler target="{searchList.s4}" handlerFunction="addOneMusic" name="doubleClick"/>
+			<mx:SetEventHandler target="{searchList.s5}" handlerFunction="addOneMusic" name="doubleClick"/>
+			<mx:SetEventHandler target="{searchList.s6}" handlerFunction="addOneMusic" name="doubleClick"/>
+			<mx:SetEventHandler target="{searchList.s7}" handlerFunction="addOneMusic" name="doubleClick"/>
+			<mx:SetEventHandler target="{searchList.s8}" handlerFunction="addOneMusic" name="doubleClick"/>
+			<mx:SetEventHandler target="{searchList.s9}" handlerFunction="addOneMusic" name="doubleClick"/>
+			<mx:SetEventHandler target="{searchList.s10}" handlerFunction="addOneMusic" name="doubleClick"/>
+			
+			<mx:SetEventHandler target="{searchList.addAll}" handlerFunction="addAllMusic" name="click"/>
+			<mx:SetEventHandler target="{searchList.backLyric}" handlerFunction="lyricShow" name="click"/>
+			
+			
+		</mx:State>
 		<mx:State name="lyricState">
-			
-		</mx:State>
+		</mx:State>	
 	</mx:states>
 	
 	<bubble:top id="top"/>

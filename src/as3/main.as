@@ -17,6 +17,7 @@
 	import flash.utils.Timer;
 	
 	import mx.controls.Alert;
+	import mx.events.EffectEvent;
 	import mx.events.SliderEvent;
 	
 	
@@ -64,7 +65,7 @@
 		
 		top.searchBtn.addEventListener(MouseEvent.CLICK,searchShow);
 
-		bottom.lyricBtn.addEventListener(MouseEvent.CLICK,lyricShow);
+		
 		
 		
 		
@@ -169,10 +170,9 @@
 	    
 	}
 	
-	private function showShadow():void{
-  //	 	reflector.handleTargetUpdate();                
-    }
-
+	
+	
+	
 	/**
 	 *同步播放列表,当播放列表改动后,同步到播放器界面上 
 	 * @param playList
@@ -180,13 +180,17 @@
 	 */	
 	private function syncPlayList(list:Array):void{
 		
+		playerTop.albumPlayerShift.stop();
+		
 		playerTop.songLabel.text = list[0].title;
 		playerTop.playerLabel.text = list[0].author;
         playerTop.albumLabel.text = list[0].album;
 
         playerTop.albumPlayerShift.play();
+        
 	//	showShadow();
         
+        resetPlaylistX();     //////////////////////////////////////
 		if(list[0]){
 			musicList.l1.text = list[0].title + " - " + list[0].author;
 		} else { musicList.l1.text = ""; }
@@ -223,6 +227,8 @@
 		if(list[11]){
 			musicList.l12.text = list[11].title + " - " + list[11].author;
 		} else { musicList.l12.text = ""; }
+		
+		
 	}
 	
 	/**
@@ -238,6 +244,7 @@
 
 		lrcLoader.load(new URLRequest(playList[0].lrc));
 		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
+		resetPlaylistX();     //////////////////////////////////////
 	}
 	
 	/**
@@ -277,6 +284,23 @@
 		addEventListener(Event.ENTER_FRAME, onEnterFrame);
 		this.syncMusicInfo(playList[0].title, playList[0].author ,playList[0].album);
 	}
+	
+	private function resetPlaylistX():void{
+		musicList.l1.labelText.x = 0;
+		musicList.l2.labelText.x = 0;
+		musicList.l3.labelText.x = 0;
+		musicList.l4.labelText.x = 0;
+		musicList.l5.labelText.x = 0;
+		musicList.l6.labelText.x = 0;
+		musicList.l7.labelText.x = 0;
+		musicList.l8.labelText.x = 0;
+		musicList.l9.labelText.x = 0;
+		musicList.l10.labelText.x = 0;
+		musicList.l11.labelText.x = 0;
+		musicList.l12.labelText.x = 0;
+	}
+	
+	
 	
 	/**
 	 * 处理倒影的显示
@@ -334,6 +358,8 @@
 				}
 				
 				lyric.lrc5.text = LRC[lrcnum].lrc.toString();
+			//	if(lyric.lrc5.width>272)
+			//		lyric.LRCeffect.addEventListener(EffectEvent.EFFECT_END,scrollLyric);
 				
 				if(LRC[lrcnum+1]){
 					lyric.lrc6.text = LRC[lrcnum+1].lrc.toString();
@@ -358,7 +384,16 @@
 			removeEventListener(Event.ENTER_FRAME,onEnterFrame);
 		}
 	}
-	
+/*
+	private function scrollLyric():void{
+		lyric.LRCon.xFrom = 0;
+		lyric.LRCon.xTo = 0 - lyric.lrc5.width + 272; 
+		lyric.LRCon.repeatCount = 1; //loop 
+        lyric.LRCon.repeatDelay = 0; //loop time
+		lyric.LRCon.duration = (lyric.lrc5.width-272)*20;
+		lyric.LRCon.play();
+	}
+*/
 	/**
 	 *播放列表项的鼠标双击事件,当双击某一项时,则播放该项 
 	 * @param event 事件源
@@ -370,15 +405,17 @@
 			playList.shift();
 		}
 		this.syncPlayList(playList);
+		
+		event.currentTarget.moveLeft.stop();
+		
 		musicList.listEffect.play();
 		lrcnum = 0;
 		LRC.splice(0,LRC.length);
 		musicControl.pausePlay();
 		lrcLoader.load(new URLRequest(playList[0].lrc));
 		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
-		currentState = "lyricState";
+		resetPlaylistX();     //////////////////////////////////////
 	}
-	
 	
 	/**
 	 * 播放&暂停按钮
@@ -458,6 +495,7 @@
 		if(top.searchTarget.text!=""){
 			rpc.getSearchList(onGetSearchList,top.searchIndex.selectedLabel,top.searchTarget.text,1);
 			currentState = "searchRes";
+			searchList.page.text = String(1);
 			searchList.searchTitle.text = "\"" + top.searchTarget.text + "\"的搜索结果";
 		}		
 		else
@@ -478,9 +516,7 @@
 	 * 布局搜索信息
 	 */
 	private function syncSearchList(list:Array):void{
-		var page:int = int(searchList.page.text) + 1;
-		
-        searchList.page.text = String(page);
+		var page:int = int(searchList.page.text);
         
         if(page>9)
         	searchList.page.x = 356;
@@ -537,6 +573,7 @@
 		
 		rpc.getSearchList(onGetSearchList,top.searchIndex.selectedLabel,top.searchTarget.text,page);
 		searchList.listDown.play();
+		searchList.page.text = String(page);
 	}
 	
 	/**
@@ -546,29 +583,84 @@
 		var page:int = int(searchList.page.text) - 1;
 		
 		rpc.getSearchList(onGetSearchList,top.searchIndex.selectedLabel,top.searchTarget.text,page);
+		searchList.listUp.play();
+		searchList.page.text = String(page);
 	}
 	
+	/**
+	 * 将搜索结果中一首歌加入歌曲列表
+	 */
+	private function addOneMusic(event:MouseEvent):void{
+		var i:int = event.currentTarget.index;
+		playList.splice(1,0,searchResult[i-1]);
+		
+		musicControl.setNextMusic( this.nextMusic);
+		resetPlaylistX();     //////////////////////////////////////
+		
+		
+		musicList.listAdded.play();
+		
+		musicList.l12.text = musicList.l11.text;
+		musicList.l11.text = musicList.l10.text;
+		musicList.l10.text = musicList.l9.text;
+		musicList.l9.text = musicList.l8.text;
+		musicList.l8.text = musicList.l7.text;
+		musicList.l7.text = musicList.l6.text;
+		musicList.l6.text = musicList.l5.text;
+		musicList.l5.text = musicList.l4.text;
+		musicList.l4.text = musicList.l3.text;
+		musicList.l3.text = musicList.l2.text;
+		musicList.l2.text = playList[1].title + " - " + playList[1].author;
+	}
 	
-	
+	/**
+	 * 将搜索结果中当前页歌全部加入歌曲列表
+	 */
+	private function addAllMusic(event:MouseEvent):void{
+		var i:int = 0;
+		while(searchResult[i] && i<10){
+			playList.splice(1+i,0,searchResult[i]);
+			i++;
+		}
+		
+		resetPlaylistX();     //////////////////////////////////////
+		
+		musicList.listAdded.play();
+		
+		musicList.l2.text = playList[1].title + " - " + playList[1].author;
+		musicList.l3.text = playList[2].title + " - " + playList[2].author;
+		musicList.l4.text = playList[3].title + " - " + playList[3].author;
+		musicList.l5.text = playList[4].title + " - " + playList[4].author;
+		musicList.l6.text = playList[5].title + " - " + playList[5].author;
+		musicList.l7.text = playList[6].title + " - " + playList[6].author;
+		musicList.l8.text = playList[7].title + " - " + playList[7].author;
+		musicList.l9.text = playList[8].title + " - " + playList[8].author;
+		musicList.l10.text = playList[9].title + " - " + playList[9].author;
+		musicList.l11.text = playList[10].title + " - " + playList[10].author;
+		musicList.l12.text = playList[11].title + " - " + playList[11].author;
+	}
 	
 	/**
 	 * 加每行播放列表的三颗按钮
 	 */
 	private function addMusicBtn(event:MouseEvent):void {
-		var i:int = event.currentTarget.index;
-		
-		event.currentTarget.styleName = "player4"; //背景色
-		event.currentTarget.labelText.styleName = "musicListRoOver";  //字颜色
-		event.currentTarget.littleMusicPlay.visible = true;
-		event.currentTarget.littleMusicCollect.visible = true;
-		event.currentTarget.littleMusicDelete.visible = true;
-		event.currentTarget.tri.visible = true;		
+		if(event.currentTarget.text!=""){
+			var i:int = event.currentTarget.index;
+			
+			event.currentTarget.styleName = "player4"; //背景色
+			event.currentTarget.labelText.styleName = "musicListRoOver";  //字颜色
+			event.currentTarget.littleMusicPlay.visible = true;
+			event.currentTarget.littleMusicCollect.visible = true;
+			event.currentTarget.littleMusicDelete.visible = true;
+			event.currentTarget.tri.visible = true;
+		}		
 	}
 	
 	/**
 	 * 移除每行播放列表的三颗按钮
 	 */
 	private function removeMusicBtn(event:MouseEvent):void {
+		
 		var i:int = event.currentTarget.index;
 		
 		if(i==1)
@@ -583,6 +675,7 @@
 		event.currentTarget.littleMusicCollect.visible = false;
 		event.currentTarget.littleMusicDelete.visible = false;
 		event.currentTarget.tri.visible = false;
+
 	}
 	
 	/**
@@ -594,7 +687,7 @@
             event.currentTarget.moveLeft.xTo = 0 - event.currentTarget.labelText.width + 230; 
             event.currentTarget.moveLeft.repeatCount = 1; //loop 
             event.currentTarget.moveLeft.repeatDelay = 0; //loop time 
-            event.currentTarget.moveLeft.duration = (event.currentTarget.labelText.width-230)*35; //the time of scroll once 
+            event.currentTarget.moveLeft.duration = (event.currentTarget.labelText.width-230)*20; //the time of scroll once 
             event.currentTarget.moveLeft.play(); 
   		}
  	}
@@ -603,34 +696,40 @@
 	 * 歌曲名较长，鼠标移开向右滚动
 	 */
  	private function textScollRight(event:MouseEvent):void{
-		if(event.currentTarget.labelText.width>230){
-			event.currentTarget.moveLeft.xFrom = 0 - event.currentTarget.labelText.width + 230;   
+ 		
+	//	if(event.currentTarget.labelText.width>230){
+			event.currentTarget.moveLeft.xFrom = event.currentTarget.labelText.x;   
             event.currentTarget.moveLeft.xTo = 0; 
             event.currentTarget.moveLeft.repeatCount = 1; //loop 
             event.currentTarget.moveLeft.repeatDelay = 0; //loop time 
-            event.currentTarget.moveLeft.duration = (event.currentTarget.labelText.width-230)*35; //the time of scroll once 
+            event.currentTarget.moveLeft.duration = (event.currentTarget.labelText.width-230)*20; //the time of scroll once 
             event.currentTarget.moveLeft.play(); 
-  		}
+  	//	}
+  		
  	}
 	
 	/**
-	 * 加每行搜索结果列表的三颗按钮  没有用。。。
+	 * 加每行搜索结果列表的三颗按钮 
 	 */
 	private function addSearchTextBtn(event:MouseEvent):void {
-		event.currentTarget.search.styleName = "musicListRoOver";  //字颜色
-		event.currentTarget.littleSearchPlay.visible = true;
-		event.currentTarget.littleSearchCollect.visible = true;
-		event.currentTarget.littleSearchDelete.visible = true;
+		if(event.currentTarget.search.text != ""){
+			event.currentTarget.search.styleName = "musicListRoOver";  //字颜色
+			event.currentTarget.littleSearchPlay.visible = true;
+			event.currentTarget.littleSearchCollect.visible = true;
+			event.currentTarget.littleSearchDelete.visible = true;
+		}
 	}
 	
 	/**
-	 * 移除每行搜索结果的三颗按钮  没有用。。。
+	 * 移除每行搜索结果的三颗按钮
 	 */
 	private function removeSearchTextBtn(event:MouseEvent):void {
-		searchList.s1.search.styleName = "followRes";  //字颜色
+		
+		event.currentTarget.search.styleName = "followRes";  //字颜色
 		event.currentTarget.littleSearchPlay.visible = false;
 		event.currentTarget.littleSearchCollect.visible = false;
 		event.currentTarget.littleSearchDelete.visible = false;
+		
 	}
 	
 	/**
