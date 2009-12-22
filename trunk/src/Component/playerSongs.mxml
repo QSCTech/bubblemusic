@@ -20,9 +20,9 @@
 		<mx:Label x="0" text="{text}" styleName="musicListText" id="labelText" fontSize="12" verticalCenter="0"/>
 	</mx:Canvas>
 	
-	<mx:Button id="littleMusicPlay" x="208" label="播放" styleName="playBtn" width="11" height="11" verticalCenter="5" visible="false"/>
-	<mx:Button id="littleMusicCollect" x="223" label="收藏" styleName="storeBtn" width="11" height="11" verticalCenter="5" visible="false"/>
-	<mx:Button id="littleMusicDelete" x="238" label="删除" styleName="deleteBtn" width="11" height="11" verticalCenter="5" visible="false"/>
+	<mx:Button id="littleMusicPlay" x="216" label="分享" styleName="playBtn" width="12" height="12" verticalCenter="6" visible="false"/>
+	<mx:Button id="littleMusicCollect" x="231" label="收藏" styleName="storeBtn" width="12" height="12" verticalCenter="6" visible="false"/>
+	<mx:Button id="littleMusicDelete" x="246" label="删除" styleName="deleteBtn" width="12" height="12" verticalCenter="6" visible="false"/>
 	
 	<mx:Move id="moveLeft" target="{labelText}"/> 
 	

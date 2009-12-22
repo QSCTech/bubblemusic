@@ -29,4 +29,17 @@
 		<mx:Move target="{l12}" yFrom="240" yTo="220" duration="500"/>
 	</mx:Parallel>
 	
+	<mx:Parallel id="listAdded">
+		<mx:Move target="{l3}" yFrom="20" yTo="40" duration="500" id="a3"/>
+		<mx:Move target="{l4}" yFrom="40" yTo="60" duration="500" id="a4"/>
+		<mx:Move target="{l5}" yFrom="60" yTo="80" duration="500" id="a5"/>
+		<mx:Move target="{l6}" yFrom="80" yTo="100" duration="500" id="a6"/>
+		<mx:Move target="{l7}" yFrom="100" yTo="120" duration="500" id="a7"/>
+		<mx:Move target="{l8}" yFrom="120" yTo="140" duration="500" id="a8"/>
+		<mx:Move target="{l9}" yFrom="140" yTo="160" duration="500" id="a9"/>
+		<mx:Move target="{l10}" yFrom="160" yTo="180" duration="500" id="a10"/>
+		<mx:Move target="{l11}" yFrom="180" yTo="200" duration="500" id="a11"/>
+		<mx:Move target="{l12}" yFrom="200" yTo="220" duration="500" id="a12"/>
+	</mx:Parallel>
+	
 </mx:Canvas>

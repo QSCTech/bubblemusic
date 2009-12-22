@@ -10,7 +10,7 @@
 		</mx:VBox>
 		<mx:VRule height="268" width="1"/>
 
-		<mx:Canvas width="272" height="90%" horizontalScrollPolicy="off">
+		<mx:Canvas width="272" height="83%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 			<mx:Label id="lrc0" y="30" width="100%" textAlign="center" />
 			<mx:Label id="lrc1" y="50" width="100%" textAlign="center" />
 			<mx:Label id="lrc2" y="70" width="100%" textAlign="center" />
@@ -38,4 +38,8 @@
 		<mx:Move target="{lrc9}" yFrom="210" yTo="190" duration="500"/>
 		<mx:Move target="{lrc10}" yFrom="230" yTo="210" duration="500"/>
 	</mx:Parallel>
+	
+	<mx:Move id="LRCon" target="{lrc5}"/>
+	
+	
 </mx:Box>
