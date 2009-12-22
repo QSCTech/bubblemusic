@@ -30,9 +30,35 @@ var requiredRevision = ${version_revision};
 // -->
 </script>
 <script language="JavaScript" type="text/javascript">
-//Cookie处理及歌曲名称回显
+//Cookie设置及读取操作
 function setTitle(music, author, album){
 	document.title = music + " - " + author + " - " + album + " Bubble Music 求是潮旗下网站";
+}
+function getIndex(){
+	var url = window.location.href;
+	var arg = url.split("#")[1];
+	if (arg != null){
+		return arg;
+	}
+	else{
+		var cokie = document.cookie.split("; ");
+		var musicList = "0";
+		for(var i = 0;i < cokie.length;i ++){
+			var temp = cokie[i].split("=");
+			if(temp[0] == "musicList"){
+				musicList = unescape(temp[1]);
+				break;
+			}
+		}
+		return musicList;
+	}
+}
+function setCookie(list){
+	var musicList = "musicList="+escape(list);
+	var date = new Date();
+	date.setTime(date.getTime() + 17*24*3600*1000);
+	musicList += "; expires=" + date.toGMTString();
+	document.cookie = musicList;
 }
 
 </script>

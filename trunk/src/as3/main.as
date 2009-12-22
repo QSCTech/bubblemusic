@@ -14,10 +14,10 @@
 	import flash.external.ExternalInterface;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
 	import flash.utils.Timer;
 	
 	import mx.controls.Alert;
-	import mx.events.EffectEvent;
 	import mx.events.SliderEvent;
 	
 	
@@ -52,7 +52,8 @@
 	public function initPlayList():void{
 		
 		//以下列表仅用于测试
-		rpc.getMusicList(onGetMusicList);
+		var arg:String = flash.external.ExternalInterface.call("getIndex");
+		rpc.getMusicList(onGetMusicList,arg);
 		//playList.push({title:"星之所在",author:"空之轨迹",url:"def.mp3"});
 		//playList.push({title:"Plants VS Zombins",author:"Libitum",url:"abc.mp3"});
 		//this.syncPlayList(playList);
@@ -137,6 +138,7 @@
 	    bottom.nowAlbum.addEventListener(MouseEvent.CLICK,albumSearch);
 	    bottom.nowAuthor.addEventListener(MouseEvent.CLICK,authorSearch);
 	    bottom.nowMusic.addEventListener(MouseEvent.CLICK,songSearch);
+	    bottom.downMusic.addEventListener(MouseEvent.CLICK,downMusic);
 	    
 	    musicList.l1.addEventListener(MouseEvent.MOUSE_OVER,textScollLeft);
 	    musicList.l2.addEventListener(MouseEvent.MOUSE_OVER,textScollLeft);
@@ -238,6 +240,11 @@
 		lrcnum = 0;
 		LRC.splice(0,LRC.length);
 		musicControl.pausePlay();
+		rpc.getNextMusic(this.getNextMusic);
+	}
+	
+	private function getNextMusic(result:Object):void{
+		this.playList.push(result);
 		playList.shift();
 		this.syncPlayList(playList);
 		musicList.listEffect.play();
@@ -475,7 +482,7 @@
 	 * 重置播放列表
 	 */
 	public function resetList(event:Event):void{
-		rpc.getMusicList(onGetMusicList);
+		rpc.getMusicList(onGetMusicList,"0");
 		musicControl.setNextMusic(this.nextMusic);
 	}
 	
@@ -599,7 +606,7 @@
 		
 		
 		musicList.listAdded.play();
-		
+		/*
 		musicList.l12.text = musicList.l11.text;
 		musicList.l11.text = musicList.l10.text;
 		musicList.l10.text = musicList.l9.text;
@@ -611,6 +618,8 @@
 		musicList.l4.text = musicList.l3.text;
 		musicList.l3.text = musicList.l2.text;
 		musicList.l2.text = playList[1].title + " - " + playList[1].author;
+		*/
+		this.syncPlayList(playList);
 	}
 	
 	/**
@@ -626,7 +635,7 @@
 		resetPlaylistX();     //////////////////////////////////////
 		
 		musicList.listAdded.play();
-		
+		/*
 		musicList.l2.text = playList[1].title + " - " + playList[1].author;
 		musicList.l3.text = playList[2].title + " - " + playList[2].author;
 		musicList.l4.text = playList[3].title + " - " + playList[3].author;
@@ -638,6 +647,8 @@
 		musicList.l10.text = playList[9].title + " - " + playList[9].author;
 		musicList.l11.text = playList[10].title + " - " + playList[10].author;
 		musicList.l12.text = playList[11].title + " - " + playList[11].author;
+		*/
+		this.syncPlayList(playList);
 	}
 	
 	/**
@@ -740,6 +751,17 @@
 		bottom.nowAuthor.label = author;
 		bottom.nowAlbum.label = album;
 		flash.external.ExternalInterface.call("setTitle", music, author, album);
+		var num:int = playList.length > 12 ? 12 : playList.length;
+		var list:String = "";
+		for(var i:int=0; i<num; i++){
+			if(i == 0)
+				list += playList[i].id;
+			else
+				list += "||" + playList[i].id;
+		}
+		if (list != ""){
+			flash.external.ExternalInterface.call("setCookie", list);
+		}
 	}
 	
 	/**
@@ -770,4 +792,11 @@
 		currentState = "searchRes";
 		searchList.searchTitle.text = "\"" + bottom.nowMusic.label + "\"的搜索结果";
 		searchList.page.text = String(0);
+	}
+	/**
+	 * 下载音乐
+	 */
+	private function downMusic(event:MouseEvent):void{
+		var URL:URLRequest = new URLRequest(playList[0].url);
+		flash.net.navigateToURL(URL,"_blank");
 	}
