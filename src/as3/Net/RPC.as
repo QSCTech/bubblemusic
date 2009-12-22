@@ -17,9 +17,9 @@ package as3.Net
 		} 
 		
 		
-		public function getMusicList(result:Function):void{
+		public function getMusicList(result:Function, arg:String):void{
 			conn.connect(URL);
-			conn.call("Music.getList",new Responder(result,onFault));
+			conn.call("Music.getList",new Responder(result,onFault),arg);
 			conn.close();
 		}
 		
@@ -27,6 +27,11 @@ package as3.Net
 			conn.connect(URL);
 		//	conn.call("Music.getSearchResult",new Responder(result,onFault),a,b,c);
 			conn.call("Music.search",new Responder(result,onFault),a,b,c);
+			conn.close();
+		}
+		public function getNextMusic(result:Function):void{
+			conn.connect(URL);
+			conn.call("Music.getNextMusic", new Responder(result,onFault));
 			conn.close();
 		}
 		

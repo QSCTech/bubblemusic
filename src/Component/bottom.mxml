@@ -16,7 +16,7 @@
 			borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" />
 		<mx:LinkButton y="10" label="心情" styleName="link2"
 			borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]"/>
-		<mx:LinkButton y="10" label="下载" styleName="link2"
+		<mx:LinkButton id="downMusic" y="10" label="下载" styleName="link2"
 			borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]"/>
 		<mx:Spacer width="10"/>
 	</mx:HBox>
