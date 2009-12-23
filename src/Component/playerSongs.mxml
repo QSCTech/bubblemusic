@@ -7,9 +7,6 @@
 			public var text:String = "";
 			//index变量,用来储存在列表中的位置,用来实现双击播放功能
 			public var index:int = 0;
-			
-			
-			
 		]]>
 	</mx:Script>
 	
@@ -20,7 +17,7 @@
 		<mx:Label x="0" text="{text}" styleName="musicListText" id="labelText" fontSize="12" verticalCenter="0"/>
 	</mx:Canvas>
 	
-	<mx:Button id="littleMusicPlay" x="216" label="分享" styleName="playBtn" width="12" height="12" verticalCenter="6" visible="false"/>
+	<mx:Button id="littleMusicShare" x="216" label="分享" styleName="shareBtn" width="12" height="12" verticalCenter="6" visible="false"/>
 	<mx:Button id="littleMusicCollect" x="231" label="收藏" styleName="storeBtn" width="12" height="12" verticalCenter="6" visible="false"/>
 	<mx:Button id="littleMusicDelete" x="246" label="删除" styleName="deleteBtn" width="12" height="12" verticalCenter="6" visible="false"/>
 	

@@ -49,7 +49,17 @@
 			<mx:SetEventHandler target="{searchList.addAll}" handlerFunction="addAllMusic" name="click"/>
 			<mx:SetEventHandler target="{searchList.backLyric}" handlerFunction="lyricShow" name="click"/>
 			
-			
+			<mx:SetEventHandler target="{searchList.s1.littleSearchAdd}" handlerFunction="addOneMusicBtn" name="click"/>
+			<mx:SetEventHandler target="{searchList.s2.littleSearchAdd}" handlerFunction="addOneMusicBtn" name="click"/>
+			<mx:SetEventHandler target="{searchList.s3.littleSearchAdd}" handlerFunction="addOneMusicBtn" name="click"/>
+			<mx:SetEventHandler target="{searchList.s4.littleSearchAdd}" handlerFunction="addOneMusicBtn" name="click"/>
+			<mx:SetEventHandler target="{searchList.s5.littleSearchAdd}" handlerFunction="addOneMusicBtn" name="click"/>
+			<mx:SetEventHandler target="{searchList.s6.littleSearchAdd}" handlerFunction="addOneMusicBtn" name="click"/>
+			<mx:SetEventHandler target="{searchList.s7.littleSearchAdd}" handlerFunction="addOneMusicBtn" name="click"/>
+			<mx:SetEventHandler target="{searchList.s8.littleSearchAdd}" handlerFunction="addOneMusicBtn" name="click"/>
+			<mx:SetEventHandler target="{searchList.s9.littleSearchAdd}" handlerFunction="addOneMusicBtn" name="click"/>
+			<mx:SetEventHandler target="{searchList.s10.littleSearchAdd}" handlerFunction="addOneMusicBtn" name="click"/>
+
 		</mx:State>
 		<mx:State name="lyricState">
 		</mx:State>	
@@ -65,12 +75,7 @@
 			<bubble:playerTop id="playerTop" width="260" height="96">
 			</bubble:playerTop>
 			<bubble:musicList id="musicList" verticalScrollPolicy="off"/>
-		
-		<!--
-			<mx:VBox id="musicList" height="260" width="260" verticalGap="0" verticalScrollPolicy="off">
-				
-			</mx:VBox>
-		-->
+
 		</mx:VBox>
 	</mx:ApplicationControlBar>
 
@@ -92,7 +97,5 @@
 			</mx:Parallel>
 		</mx:Transition>
 	</mx:transitions>
-	
-	
 	
 </mx:Application>

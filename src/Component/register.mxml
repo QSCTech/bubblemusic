@@ -41,7 +41,7 @@
         
         <!--
         <mx:LinkButton label="X" click="close()" styleName="closebutton"
-        	textRollOverColor="#7AC30B" alpha="0" color="#0A051A" rollOverColor="#1C121D"/>
+        	textRollOverColor="#7AC30B" color="#0A051A" rollOverColor="#1C121D"/>
 		-->
 		
 </mx:Panel>

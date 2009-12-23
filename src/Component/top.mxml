@@ -50,7 +50,7 @@
 	<mx:LinkButton id="loginBtn" y="10" label="登录" right="110" click="showLogin()"/>
 	<mx:LinkButton id="registerBtn" y="10" label="注册" right="60"  click="showRegister()"/>
 	<mx:LinkButton y="10" label="帮助" right="10" />
-	<mx:TextInput right="165" bottom="8"  cornerRadius="5" borderStyle="solid" id="searchTarget"/>
+	<mx:TextInput right="165" bottom="8"  cornerRadius="5" borderStyle="solid" id="searchTarget" borderThickness=".5"/>
 	<mx:ComboBox right="65" fontSize="12" bottom="8" id="searchIndex"  >
 		<mx:String>全部搜索</mx:String>
 		<mx:String>搜歌名</mx:String>
