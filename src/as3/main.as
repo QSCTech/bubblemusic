@@ -9,7 +9,6 @@
 	import as3.Lyric.LRCDecoder;
 	import as3.Net.RPC;
 	import as3.PlayControl.playControl;
-	import as3.reflector.Reflector;
 	
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
@@ -23,6 +22,7 @@
 	
 	import mx.controls.Alert;
 	import mx.core.IFlexDisplayObject;
+	import mx.effects.Parallel;
 	import mx.events.SliderEvent;
 	import mx.managers.PopUpManager;        
             
@@ -36,12 +36,9 @@
 	//远程数据调用
 	public var rpc:RPC = new RPC();
 	
-	public var reflector:Reflector = new Reflector();
-	
 	public var lrcLoader:URLLoader = new URLLoader();
 	public var LRC:Array = new Array();
 	public var lrcnum:int;
-	public var timer:Timer;
 	
 	public var isSilent:int = 0;
 	
@@ -65,6 +62,7 @@
 		playerTop.resetList.addEventListener(MouseEvent.CLICK,resetList);
 		
 		top.searchBtn.addEventListener(MouseEvent.CLICK,searchShow);
+		top.searchTarget.addEventListener(KeyboardEvent.KEY_DOWN,keyEnter);
 		top.searchTarget.addEventListener(KeyboardEvent.KEY_DOWN,enterSearch);
 		playerTop.albumPlayerShift.play();
 
@@ -164,7 +162,7 @@
 	 * @param playList
 	 * 
 	 */	
-	private function syncPlayList(list:Array):void{
+	private function syncPlayList(list:Array,from:int):void{
 
 		playerTop.songLabel.text = list[0].title;
 		playerTop.playerLabel.text = list[0].author;
@@ -208,29 +206,31 @@
 			musicList.l12.text = list[11].title + " - " + list[11].author;
 		} else { musicList.l12.text = ""; }
 		
-		
+		this.listEffect(from);
 	}
 	
 	/**
 	 * 当一首音乐播放完后,执行播放下一首音乐的操作,包括播放列表的同步
 	 */
 	public function nextMusic(event:Event):void{
+		rpc.getNextMusic(this.getNextMusic);
+		musicControl.pausePlay();
 		lrcnum = 0;
 		LRC.splice(0,LRC.length);
-		musicControl.pausePlay();
-		rpc.getNextMusic(this.getNextMusic);
+		playList.shift();
+		lrcLoader.load(new URLRequest(playList[0].lrc));
+		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
 	}
 	
 	private function getNextMusic(result:Object):void{
 		this.playList.push(result);
-		playList.shift();
-		this.syncPlayList(playList);
-		musicList.listEffect.play();
-
-		lrcLoader.load(new URLRequest(playList[0].lrc));
-		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
 		resetPlaylistX();     //////////////////////////////////////
+		this.syncPlayList(playList,1);
 	}
+	private function getNextMusic1(result:Object):void{
+		this.playList.push(result);
+	}
+	
 	
 	/**
 	 *当得到播放列表后,执行相应操作 
@@ -239,7 +239,7 @@
 	 */	
 	public function onGetMusicList(result:Array):void{
 		this.playList = result;
-		this.syncPlayList(playList);
+		this.syncPlayList(playList,1);
 		lrcLoader.load(new URLRequest(playList[0].lrc));
 		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
 	}
@@ -389,11 +389,10 @@
 		for(var j:int = 1; j<i; j++){
 			playList.shift();
 		}
-		this.syncPlayList(playList);
+		this.syncPlayList(playList,1);
 		
 		event.currentTarget.moveLeft.stop();
 		
-		musicList.listEffect.play();
 		lrcnum = 0;
 		LRC.splice(0,LRC.length);
 		musicControl.pausePlay();
@@ -407,16 +406,14 @@
 	 */
 	public function pauseAndPlay(event:Event):void{
 		if(musicControl.isPlay){
+			var timer:Timer;
 			timer = new Timer(100,20);
 			timer.addEventListener(TimerEvent.TIMER,fadeVolume); 
 			timer.start();
 			musicControl.fadeSound(playerTop.volume.value);
-		}	
-		if(musicControl.isPlay){
-			musicControl.pausePlay();
 			playerTop.playandpause.styleName = "buttomPlay";
-			
-		} else {
+		}	
+		else {
 			musicControl.pursuePlay();
 			playerTop.playandpause.styleName = "buttomPause";
 		}
@@ -482,11 +479,17 @@
 			currentState = "searchRes";
 			searchList.page.text = String(1);
 			searchList.searchTitle.text = "\"" + top.searchTarget.text + "\"的搜索结果";
-		}		
+		}
 		else
 			Alert.show("请输入搜索内容！");
 		//searchList.page.text = String(0);
 	
+	}
+	private function keyEnter(event:KeyboardEvent):void{
+		if(event.keyCode == 13){
+			this.searchShow(event);
+		}
+		
 	}
 	
 	public function enterSearch(event:KeyboardEvent):void{
@@ -521,7 +524,6 @@
         	searchList.preBtn.enabled = true;
         else 
         	searchList.preBtn.enabled = false;
-        	
 		if(list[0]){
 			searchList.s1.search.text = list[0].title + " - " + list[0].author + " - " + list[0].album;
 		} else { searchList.s1.search.text = "对不起，没有您想搜索的歌曲！"; }
@@ -587,8 +589,7 @@
 	//	musicControl.setNextMusic( this.nextMusic);
 		resetPlaylistX();     //////////////////////////////////////
 		
-		this.syncPlayList(playList);
-		musicList.listAdded.play();
+		this.syncPlayList(playList,2);
 	}
 	
 	private function addOneMusicBtn(event:MouseEvent):void{
@@ -599,8 +600,7 @@
 	//	musicControl.setNextMusic( this.nextMusic);
 		resetPlaylistX();     //////////////////////////////////////
 		
-		this.syncPlayList(playList);
-		musicList.listAdded.play();
+		this.syncPlayList(playList,2);
 	}
 	
 	/**
@@ -613,8 +613,7 @@
 			i++;
 		}
 		resetPlaylistX();     //////////////////////////////////////
-		this.syncPlayList(playList);
-		musicList.listAdded.play();
+		this.syncPlayList(playList,2);
 	}
 	
 	/**
@@ -718,10 +717,11 @@
 			nextMusic(event);
 		}
 		else{
+			rpc.getNextMusic(this.getNextMusic1);
 			playList.splice(i-1,1);
-			this.syncPlayList(playList);
-			musicList.listDeleted.play();
+			this.syncPlayList(playList,i);
 		}
+		
 		
 	}
 	
@@ -782,6 +782,14 @@
 	private function downMusic(event:MouseEvent):void{
 		var URL:URLRequest = new URLRequest(playList[0].url);
 		flash.net.navigateToURL(URL,"_blank");
+	}
+	
+	private function listEffect(from:int):void{
+		var effect:Parallel = new Parallel();
+		for (var i:int=from-1; i<12; i++){
+			effect.addChild(musicList.listEffectArray[i]);
+		}
+		effect.play();
 	}
 	
 	/**

@@ -13,8 +13,7 @@
 	<Component:playerSongs id="l11" y="200" doubleClickEnabled="true" index="11"/>
 	<Component:playerSongs2 id="l12" y="220" doubleClickEnabled="true" index="12"/>
 	
-	
-	<mx:Parallel id="listEffect">
+	<mx:Array id="listEffectArray">
 		<mx:Move target="{l1}" yFrom="20" yTo="0" duration="500"/>
 		<mx:Move target="{l2}" yFrom="40" yTo="20" duration="500"/>
 		<mx:Move target="{l3}" yFrom="60" yTo="40" duration="500"/>
@@ -27,32 +26,8 @@
 		<mx:Move target="{l10}" yFrom="200" yTo="180" duration="500"/>
 		<mx:Move target="{l11}" yFrom="220" yTo="200" duration="500"/>
 		<mx:Move target="{l12}" yFrom="240" yTo="220" duration="500"/>
-	</mx:Parallel>
+	</mx:Array>
 	
-	<mx:Parallel id="listAdded">
-		<mx:Move target="{l3}" yFrom="20" yTo="40" duration="500" id="a3"/>
-		<mx:Move target="{l4}" yFrom="40" yTo="60" duration="500" id="a4"/>
-		<mx:Move target="{l5}" yFrom="60" yTo="80" duration="500" id="a5"/>
-		<mx:Move target="{l6}" yFrom="80" yTo="100" duration="500" id="a6"/>
-		<mx:Move target="{l7}" yFrom="100" yTo="120" duration="500" id="a7"/>
-		<mx:Move target="{l8}" yFrom="120" yTo="140" duration="500" id="a8"/>
-		<mx:Move target="{l9}" yFrom="140" yTo="160" duration="500" id="a9"/>
-		<mx:Move target="{l10}" yFrom="160" yTo="180" duration="500" id="a10"/>
-		<mx:Move target="{l11}" yFrom="180" yTo="200" duration="500" id="a11"/>
-		<mx:Move target="{l12}" yFrom="200" yTo="220" duration="500" id="a12"/>
-	</mx:Parallel>
 	
-	<mx:Parallel id="listDeleted">
-		<mx:Move target="{l3}" yFrom="60" yTo="40" duration="500" id="d3"/>
-		<mx:Move target="{l4}" yFrom="80" yTo="60" duration="500" id="d4"/>
-		<mx:Move target="{l5}" yFrom="100" yTo="80" duration="500" id="d5"/>
-		<mx:Move target="{l6}" yFrom="120" yTo="100" duration="500" id="d6"/>
-		<mx:Move target="{l7}" yFrom="140" yTo="120" duration="500" id="d7"/>
-		<mx:Move target="{l8}" yFrom="160" yTo="140" duration="500" id="d8"/>
-		<mx:Move target="{l9}" yFrom="180" yTo="160" duration="500" id="d9"/>
-		<mx:Move target="{l10}" yFrom="200" yTo="180" duration="500" id="d10"/>
-		<mx:Move target="{l11}" yFrom="220" yTo="200" duration="500" id="d11"/>
-		<mx:Move target="{l12}" yFrom="240" yTo="220" duration="500" id="d12"/>
-	</mx:Parallel>
 	
 </mx:Canvas>
