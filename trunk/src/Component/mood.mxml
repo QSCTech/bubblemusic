@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" width="430" height="300" layout="absolute" title="泡心情 - {text}" xmlns:Component="Component.*" styleName="mood">
+	
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+            import mx.controls.Text;
+            
+			[Bindable]
+			public var text:String = "";
+			
+			public function close():void{         
+				PopUpManager.removePopUp(this);     
+			}
+		]]>
+	</mx:Script>	
+	
+	
+	
+	<mx:Canvas top="5" height="189" verticalScrollPolicy="off" horizontalScrollPolicy="off" horizontalCenter="0">
+		<Component:moodText2 id="m1" index="1" x="0" y="0" />
+		<mx:HRule x="0" y="20" width="400" height="1" styleName="moodHRule"/>
+		<Component:moodText id="m2" index="2" x="0" y="21" />
+		<mx:HRule x="0" y="41" width="400" height="1" styleName="moodHRule"/>
+		<Component:moodText2 id="m3" index="3" x="0" y="42" />
+		<mx:HRule x="0" y="62" width="400" height="1" styleName="moodHRule"/>
+		<Component:moodText id="m4" index="4" x="0" y="63" />
+		<mx:HRule x="0" y="83" width="400" height="1" styleName="moodHRule"/>
+		<Component:moodText2 id="m5" index="5" x="0" y="84" />
+		<mx:HRule x="0" y="104" width="400" height="1" styleName="moodHRule"/>
+		<Component:moodText id="m6" index="6" x="0" y="105" />
+		<mx:HRule x="0" y="125" width="400" height="1" styleName="moodHRule"/>
+		<Component:moodText2 id="m7" index="7" x="0" y="126" />
+		<mx:HRule x="0" y="146" width="400" height="1" styleName="moodHRule"/>
+		<Component:moodText id="m8" index="8" x="0" y="147" />
+		<mx:HRule x="0" y="167" width="400" height="1" styleName="moodHRule"/>
+		<Component:moodText2 id="m9" index="9" x="0" y="168" />
+		<mx:HRule x="0" y="187" width="400" height="1" styleName="moodHRule"/>
+	</mx:Canvas>
+	
+	
+	
+	<mx:Text text="心情" left="7" bottom="7" styleName="moodText"/>
+	<mx:Text text="昵称" left="7" bottom="34" styleName="moodText"/>
+	<mx:TextInput left="40" bottom="7" right="10"/>
+	<mx:TextInput left="40" bottom="34" right="241"/>
+	<mx:Button label="关闭" width="37" right="160" bottom="34" styleName="moodBtn" click="close()"/>
+	<mx:Button label="提交" width="37" right="200" bottom="34" styleName="moodBtn"/>
+	<mx:Button x="371" y="210" width="13" height="13" styleName="downBtn"/>
+	<mx:Button x="391" y="210" width="13" height="13" styleName="upBtn"/>
+	
+	
+	
+	
+	
+	
+</mx:Panel>

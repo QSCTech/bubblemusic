@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="80" styleName="shareBox" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+	
+	<mx:Script>
+		<![CDATA[
+			
+			import mx.managers.PopUpManager;
+            import mx.controls.Text;
+            
+			[Bindable]
+			public var text:String = "";
+			
+			public function close():void{         
+				PopUpManager.removePopUp(this);     
+			}
+		]]>
+	</mx:Script>
+    
+    <mx:Label id="shareInfo" text="将“{text}”推荐给好友吧！" styleName="shareText" top="8" left="10"/>
+	<mx:Label text="复制以下链接至浏览器地址栏，可直接播放~" styleName="shareText" width="372" top="25" left="10"/>
+	<mx:TextInput id="songAddress" width="330" bottom="10" left="10"/>
+	<mx:Button id="copyAddress" label="复制" width="40" height="24" bottom="10" right="10" styleName="share"/>
+	<mx:LinkButton id="shareClose" label="X" styleName="shareClose" click="close()" x="372"
+		borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" />
+	
+</mx:Canvas>

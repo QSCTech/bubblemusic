@@ -63,7 +63,14 @@
 		fontSize:12;
 		color:#3D313E;
 	}
-	.playBtn{
+	.addBtn{
+		color:#AAAAAA;
+		upSkin:Embed(source="three.swf" ,symbol="addup");
+		downSkin:Embed(source="three.swf" ,symbol="adddown");
+		overSkin:Embed(source="three.swf" ,symbol="addover");
+	}
+	
+	.shareBtn{
 		color:#AAAAAA;
 		upSkin:Embed(source="three.swf" ,symbol="playup");
 		downSkin:Embed(source="three.swf" ,symbol="playdown");
@@ -302,9 +309,10 @@
 		fontSize:12;
 		textRollOverColor:#7ac30b;
 	}
+
 	TextInput{
 		color:#9C9C9C ;
-		backgroundColor:#E4E4E4; 
+		backgroundColor:#FFFFFF; 
 		borderColor:#B8AAB9 ;
 		fontSize:12 ;
 		themeColor:#BAF75D ;
@@ -352,10 +360,83 @@
 		paddingBottom:2;
 	}
 	
+/*web safe**********************************/
+	/* share */
+	.shareBox{
+		backgroundColor:#ccff66;
+		cornerRadius: 6;
+		borderColor:#99CC33;
+		borderStyle: solid;
+	}
+	.shareText{
+		color:#669900;
+	}
+	.share{
+		fontSize:12;
+		fontWeight:normal;
+		themeColor:#669900;
+		borderColor:#99CC33;
+		color:#669900;
+		paddingLeft:4;
+		paddingRight:4;
+		textRollOverColor:#336600;
+		textSelectedColor:#99cc33;
+		paddingLeft:2;
+		paddingRight:2;
+	}
+	.shareClose{
+		color:#669900;
+		textRollOverColor:#336600;
+		textSelectedColor:#99cc33;
+	}
 	
-	
+	/* mood */
+	.upBtn{
+		color:#AAAAAA;
+		upSkin:Embed(source="updown.swf" ,symbol="upup");
+		downSkin:Embed(source="updown.swf" ,symbol="updown");
+		overSkin:Embed(source="updown.swf" ,symbol="upover");
+		disabledSkin:Embed(source="updown.swf" ,symbol="updis");
+	}
 
-
-
+	.downBtn{
+		color:#AAAAAA;
+		upSkin:Embed(source="updown.swf" ,symbol="downup");
+		downSkin:Embed(source="updown.swf" ,symbol="downdown");
+		overSkin:Embed(source="updown.swf" ,symbol="downover");
+		disabledSkin:Embed(source="updown.swf" ,symbol="downdis");
+	}
+	.moodBtn{
+		fontSize:12; 
+		fontWeight:normal;
+		themeColor:#669900;
+		borderColor:#99CC33;
+		color:#669900;
+		paddingLeft:4;
+		paddingRight:4;
+		textRollOverColor:#336600;
+		textSelectedColor:#99cc33;
+		paddingLeft:2;
+		paddingRight:2;
+	}
+	.moodText{
+		color:#669900;
+	}
+	.moodText2{
+		color:#99cc33;
+	}
+	.mood{
+		backgroundColor:#FFFFFF;
+		borderColor:#99cc00;
+		color:#FFFFFF;
+		backgroundAlpha:1;
+		borderAlpha:0.8;
+	}
+	.moodList{
+		backgroundColor:#eaeaea;
+	}
+	.moodHRule{
+		color:#ccff66;
+	}
  
 

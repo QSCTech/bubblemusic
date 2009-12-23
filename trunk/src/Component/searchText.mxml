@@ -9,8 +9,6 @@
 		]]>
 	</mx:Script>
 	<mx:Label id="search" x="13" y="0" styleName="followRes" width="375"/>
-	<mx:Button id="littleSearchPlay" label="播放" styleName="playBtn" width="12" height="12" verticalCenter="6"  right="28" visible="false"/>
-	<mx:Button id="littleSearchCollect" label="收藏" styleName="storeBtn" width="12" height="12" verticalCenter="6" right="14" visible="false"/>
-	<mx:Button id="littleSearchDelete" label="删除" styleName="deleteBtn" width="12" height="12" verticalCenter="6" right="0" visible="false"/>
+	<mx:Button id="littleSearchAdd" label="添加" styleName="addBtn" width="12" height="12" verticalCenter="6" right="0" visible="false" activate="true"/>
 
 </mx:Canvas>

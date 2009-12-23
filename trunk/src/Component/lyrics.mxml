@@ -11,17 +11,17 @@
 		<mx:VRule height="268" width="1"/>
 
 		<mx:Canvas width="272" height="83%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
-			<mx:Label id="lrc0" y="30" width="100%" textAlign="center" />
-			<mx:Label id="lrc1" y="50" width="100%" textAlign="center" />
-			<mx:Label id="lrc2" y="70" width="100%" textAlign="center" />
-			<mx:Label id="lrc3" y="90" width="100%" textAlign="center" />
-			<mx:Label id="lrc4" y="110" width="100%" textAlign="center" />
-			<mx:Label id="lrc5" y="130" width="100%" textAlign="center" styleName="lyricOn" />
-			<mx:Label id="lrc6" y="150" width="100%" textAlign="center" />
-			<mx:Label id="lrc7" y="170" width="100%" textAlign="center" />
-			<mx:Label id="lrc8" y="190" width="100%" textAlign="center"/>
-			<mx:Label id="lrc9" y="210" width="100%" textAlign="center"/>
-			<mx:Label id="lrc10" y="230" width="100%" textAlign="center"/>
+			<mx:Label id="lrc0" y="30" width="270" textAlign="center" />
+			<mx:Label id="lrc1" y="50" width="270" textAlign="center" />
+			<mx:Label id="lrc2" y="70" width="270" textAlign="center" />
+			<mx:Label id="lrc3" y="90" width="270" textAlign="center" />
+			<mx:Label id="lrc4" y="110" width="270" textAlign="center" />
+			<mx:Label id="lrc5" y="130" width="270" textAlign="center" styleName="lyricOn" />
+			<mx:Label id="lrc6" y="150" width="270" textAlign="center" />
+			<mx:Label id="lrc7" y="170" width="270" textAlign="center" />
+			<mx:Label id="lrc8" y="190" width="270" textAlign="center"/>
+			<mx:Label id="lrc9" y="210" width="270" textAlign="center"/>
+			<mx:Label id="lrc10" y="230" width="270" textAlign="center"/>
 		</mx:Canvas>
 		
 	</mx:HBox>
