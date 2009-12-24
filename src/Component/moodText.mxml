@@ -7,7 +7,7 @@
 		]]>
 	</mx:Script>
 	
-	<mx:Text id="username" x="10" y="0"  text="111" width="80" height="20" styleName="moodText"/>
+	<mx:Text id="username" x="10" y="0"  text="" width="80" height="20" styleName="moodText"/>
 	<mx:Text x="80" y="0" text="：" width="15" height="20" styleName="moodText"/>
-	<mx:Text id="comments" x="95" y="0" text="111111" width="325" height="20" styleName="moodText"/>
+	<mx:Text id="comment" x="95" y="0" text="" width="325" height="20" styleName="moodText"/>
 </mx:Canvas>

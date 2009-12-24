@@ -21,8 +21,8 @@
 	import flash.utils.Timer;
 	
 	import mx.controls.Alert;
-	import mx.core.IFlexDisplayObject;
 	import mx.effects.Parallel;
+	import mx.events.ChildExistenceChangedEvent;
 	import mx.events.SliderEvent;
 	import mx.managers.PopUpManager;        
             
@@ -39,11 +39,12 @@
 	public var lrcLoader:URLLoader = new URLLoader();
 	public var LRC:Array = new Array();
 	public var lrcnum:int;
-	
 	public var isSilent:int = 0;
+	public var isMood:int = 0;
+	public var isShare:int = 0;
 	
 	[Bindable]
-	public var Version:String = "Bubble jay 12.23.r44.Christmas Edition.Powered by QSCtech";
+	public var Version:String = "Bubble jay 0.5 (12.24.r48) Christmas Edition.Powered by QSCtech";
 	
 	/**
 	 *初始化播放列表 
@@ -63,7 +64,7 @@
 		
 		top.searchBtn.addEventListener(MouseEvent.CLICK,searchShow);
 		top.searchTarget.addEventListener(KeyboardEvent.KEY_DOWN,keyEnter);
-		top.searchTarget.addEventListener(KeyboardEvent.KEY_DOWN,enterSearch);
+
 		playerTop.albumPlayerShift.play();
 
 		//歌曲列表按钮显示
@@ -206,7 +207,12 @@
 			musicList.l12.text = list[11].title + " - " + list[11].author;
 		} else { musicList.l12.text = ""; }
 		
-		
+	//	if(isMood){
+	//		moodUpdate();
+	//	}
+	//	if(isShare){
+	//		shareUpdate();
+	//	}
 	}
 	
 	/**
@@ -491,10 +497,6 @@
 		if(event.keyCode == 13){
 			this.searchShow(event);
 		}
-		
-	}
-	
-	public function enterSearch(event:KeyboardEvent):void{
 		
 	}
 
@@ -812,10 +814,13 @@
 	 */
 	private function moodMusic(event:MouseEvent):void{
 		var moodWin:mood = new mood();
+		moodWin.text = playList[0].title;
 		moodWin.setIndex(playList[0].id);
 		moodWin.init();
 		PopUpManager.addPopUp(moodWin,this,false);
 	    PopUpManager.centerPopUp(moodWin);
+	//    moodWin.callBack = callBack;
+	    isMood = 1;
 	    moodWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
 	    moodWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
 	}
@@ -829,11 +834,32 @@
 		shareWin.address = "http://10.76.8.200/bubble/bubble/#" + playList[0].id;
 	    PopUpManager.addPopUp(shareWin,this,false);
 	    PopUpManager.centerPopUp(shareWin);
+	 //   shareWin.callBack = callBack;
+	    isShare = 1;
 	    shareWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
 	    shareWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
+	}
+/*	
+	private function moodUpdate():void{
+		var moodWin:mood = new mood();
+		moodWin.text = playList[0].title;
+		moodWin.setIndex(playList[0].id);
+		moodWin.init();
 		
 	}
+	private function shareUpdate():void{
+		var shareWin:share = new share();
+		shareWin.text = playList[0].title;
+		shareWin.address = "http://10.76.8.200/bubble/bubble/#" + playList[0].id;
+	}
 	
+	public function callBack(s:String):void{
+		if(s == "mood")
+			isMood = 0;
+		if(s == "share")
+			isShare = 0;	
+	}
+*/	
 	/**
 	 * 弹出窗口的处理
 	 */

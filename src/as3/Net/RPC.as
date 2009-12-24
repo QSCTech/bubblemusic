@@ -35,9 +35,16 @@ package as3.Net
 			conn.close();
 		}
 		
-		public function getComment(result:Function, index:String):void{
+		public function addComment(result:Function,musicid:int,comment:String,username:String):void{
 			conn.connect(URL);
-			conn.call("Music.getComment",new Responder(result,onFault),index);
+			conn.call("Music.addComment", new Responder(result,onFault),musicid,comment,username);
+			conn.close();
+		}
+		
+		public function getComment(result:Function,musicid:int,page:int):void{
+			conn.connect(URL);
+			conn.call("Music.getComment", new Responder(result,onFault),musicid,page);
+			conn.close();
 		}
 		
 		private function onFault(fault:String):void{
