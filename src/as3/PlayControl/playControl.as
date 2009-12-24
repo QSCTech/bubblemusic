@@ -110,13 +110,13 @@ package as3.PlayControl
 		}
 		public function fadeSoundIn(value:Number):void{
 			var transform:SoundTransform = channel.soundTransform;
-			if(!isPlay)
+			if(!isPlay){
+				this.pursuePlay();
 				transform.volume = 0;
+			}
 			var i:Number = value/20;
 			transform.volume += i;
 			channel.soundTransform = transform;
-			if(!isPlay)
-				this.pursuePlay();
 		}
 		public function fadePause(event:Event):void{
 				this.pausePlay();
