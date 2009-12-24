@@ -41,6 +41,7 @@
 	public var isSilent:int = 0;
 	public var isMood:int = 0;
 	public var isShare:int = 0;
+
 	
 	[Bindable]
 	public var Version:String = "Bubble jay 0.5 (12.24.r48) Christmas Edition.Powered by QSCtech";
