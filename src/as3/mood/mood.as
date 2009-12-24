@@ -97,38 +97,38 @@
         	
 		if(list[0]){
 			m1.username.text = list[0].user;
-			m1.comment.text = list[0].user;
+			m1.comment.text = list[0].comment;
 		} else { m1.username.text = ""; m1.comment.text = "";}
 		if(list[1]){
-			m2.username.text = list[0].user;
-			m2.comment.text = list[0].user;
+			m2.username.text = list[1].user;
+			m2.comment.text = list[1].comment;
 		} else { m2.username.text = ""; m2.comment.text = "";}
 		if(list[2]){
-			m3.username.text = list[0].user;
-			m3.comment.text = list[0].user;
+			m3.username.text = list[2].user;
+			m3.comment.text = list[2].comment;
 		} else { m3.username.text = ""; m3.comment.text = "";}
 		if(list[3]){
-			m4.username.text = list[0].user;
-			m4.comment.text = list[0].user;
+			m4.username.text = list[3].user;
+			m4.comment.text = list[3].comment;
 		} else { m4.username.text = ""; m4.comment.text = "";}
 		if(list[4]){
-			m5.username.text = list[0].user;
-			m5.comment.text = list[0].user;
+			m5.username.text = list[4].user;
+			m5.comment.text = list[4].comment;
 		} else { m5.username.text = ""; m5.comment.text = "";}
 		if(list[5]){
-			m6.username.text = list[0].user;
-			m6.comment.text = list[0].user;
+			m6.username.text = list[5].user;
+			m6.comment.text = list[5].comment;
 		} else { m6.username.text = ""; m6.comment.text = "";}
 		if(list[6]){
-			m7.username.text = list[0].user;
-			m7.comment.text = list[0].user;
+			m7.username.text = list[6].user;
+			m7.comment.text = list[6].comment;
 		} else { m7.username.text = ""; m7.comment.text = "";}
 		if(list[7]){
-			m8.username.text = list[0].user;
-			m8.comment.text = list[0].user;
+			m8.username.text = list[7].user;
+			m8.comment.text = list[7].comment;
 		} else { m8.username.text = ""; m8.comment.text = "";}
 		if(list[8]){
-			m9.username.text = list[0].user;
-			m9.comment.text = list[0].user;
+			m9.username.text = list[8].user;
+			m9.comment.text = list[8].comment;
 		} else { m9.username.text = ""; m9.comment.text = "";}
 	}

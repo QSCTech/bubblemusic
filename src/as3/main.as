@@ -22,7 +22,6 @@
 	
 	import mx.controls.Alert;
 	import mx.effects.Parallel;
-	import mx.events.ChildExistenceChangedEvent;
 	import mx.events.SliderEvent;
 	import mx.managers.PopUpManager;        
             
@@ -143,6 +142,7 @@
 	    playerTop.setSilent.addEventListener(MouseEvent.CLICK,silent);
 	    
 	    lyric.picture.addEventListener(Event.COMPLETE,picLoadComplete);
+	    
 	    //删除歌曲
 	    musicList.l1.littleMusicDelete.addEventListener(MouseEvent.CLICK,musicDelete);
 	    musicList.l2.littleMusicDelete.addEventListener(MouseEvent.CLICK,musicDelete);
@@ -296,13 +296,8 @@
 	 * 处理倒影的显示
 	 */
 	private function picLoadComplete(event:Event):void{
-		var timer:Timer = new Timer(3000,1);
-		timer.addEventListener(TimerEvent.TIMER, reflectorPicture);
-		timer.start();
-	}
-	private function reflectorPicture(event:Event):void{
-		lyric.reflectorPic.clearCachedBitmaps();
-		lyric.reflectorPic.invalidateDisplayList();
+		var i:Number = 120 / lyric.picture.content.width;
+		lyric.picture.height = lyric.picture.content.height * i;
 	}
 	
 	/**
