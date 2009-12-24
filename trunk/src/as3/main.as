@@ -162,7 +162,7 @@
 	 * @param playList
 	 * 
 	 */	
-	private function syncPlayList(list:Array,from:int):void{
+	private function syncPlayList(list:Array):void{
 
 		playerTop.songLabel.text = list[0].title;
 		playerTop.playerLabel.text = list[0].author;
@@ -206,7 +206,7 @@
 			musicList.l12.text = list[11].title + " - " + list[11].author;
 		} else { musicList.l12.text = ""; }
 		
-		this.listEffect(from);
+		
 	}
 	
 	/**
@@ -225,7 +225,8 @@
 	private function getNextMusic(result:Object):void{
 		this.playList.push(result);
 		resetPlaylistX();     //////////////////////////////////////
-		this.syncPlayList(playList,1);
+		this.syncPlayList(playList);
+		this.listEffect(1);
 	}
 	private function getNextMusic1(result:Object):void{
 		this.playList.push(result);
@@ -239,7 +240,8 @@
 	 */	
 	public function onGetMusicList(result:Array):void{
 		this.playList = result;
-		this.syncPlayList(playList,1);
+		this.syncPlayList(playList);
+		this.listEffect(1);
 		lrcLoader.load(new URLRequest(playList[0].lrc));
 		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
 	}
@@ -389,8 +391,8 @@
 		for(var j:int = 1; j<i; j++){
 			playList.shift();
 		}
-		this.syncPlayList(playList,1);
-		
+		this.syncPlayList(playList);
+		this.listEffect(i-1);
 		event.currentTarget.moveLeft.stop();
 		
 		lrcnum = 0;
@@ -589,7 +591,8 @@
 	//	musicControl.setNextMusic( this.nextMusic);
 		resetPlaylistX();     //////////////////////////////////////
 		
-		this.syncPlayList(playList,2);
+		this.syncPlayList(playList);
+		this.listAddedEffect(1);
 	}
 	
 	private function addOneMusicBtn(event:MouseEvent):void{
@@ -600,7 +603,8 @@
 	//	musicControl.setNextMusic( this.nextMusic);
 		resetPlaylistX();     //////////////////////////////////////
 		
-		this.syncPlayList(playList,2);
+		this.syncPlayList(playList);
+		this.listAddedEffect(1);
 	}
 	
 	/**
@@ -613,7 +617,8 @@
 			i++;
 		}
 		resetPlaylistX();     //////////////////////////////////////
-		this.syncPlayList(playList,2);
+		this.syncPlayList(playList);
+		this.listAddedEffect(i);
 	}
 	
 	/**
@@ -719,7 +724,8 @@
 		else{
 			rpc.getNextMusic(this.getNextMusic1);
 			playList.splice(i-1,1);
-			this.syncPlayList(playList,i);
+			this.syncPlayList(playList);
+			this.listEffect(i);
 		}
 		
 		
@@ -790,6 +796,15 @@
 			effect.addChild(musicList.listEffectArray[i]);
 		}
 		effect.play();
+	}
+	private function listAddedEffect(from:int):void{
+		var effect:Parallel = new Parallel();
+		
+		for (var i:int=from+1; i<12; i++){
+			effect.addChild(musicList.listAddedEffect[i]);
+		}
+		effect.play();
+		
 	}
 	
 	/**

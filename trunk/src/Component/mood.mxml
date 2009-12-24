@@ -1,23 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" width="430" height="300" layout="absolute" title="泡心情 - {text}" xmlns:Component="Component.*" styleName="mood">
 	
-	
-	<mx:Script>
-		<![CDATA[
-			import mx.managers.PopUpManager;
-            import mx.controls.Text;
-            
-			[Bindable]
-			public var text:String = "";
-			
-			public function close():void{         
-				PopUpManager.removePopUp(this);     
-			}
-		]]>
-	</mx:Script>	
-	
-	
-	
+	<mx:Script source="../as3/mood/mood.as" />
+
 	<mx:Canvas top="5" height="189" verticalScrollPolicy="off" horizontalScrollPolicy="off" horizontalCenter="0">
 		<Component:moodText2 id="m1" index="1" x="0" y="0" />
 		<mx:HRule x="0" y="20" width="400" height="1" styleName="moodHRule"/>
@@ -39,20 +24,38 @@
 		<mx:HRule x="0" y="187" width="400" height="1" styleName="moodHRule"/>
 	</mx:Canvas>
 	
-	
-	
 	<mx:Text text="心情" left="7" bottom="7" styleName="moodText"/>
 	<mx:Text text="昵称" left="7" bottom="34" styleName="moodText"/>
-	<mx:TextInput left="40" bottom="7" right="10"/>
-	<mx:TextInput left="40" bottom="34" right="241"/>
-	<mx:Button label="关闭" width="37" right="160" bottom="34" styleName="moodBtn" click="close()"/>
+	<mx:TextInput id="moodText" left="40" bottom="7" right="10"/>
+	<mx:TextInput id="username" left="40" bottom="34" right="241"/>
+	<mx:Button label="关闭" width="37" right="120" bottom="34" styleName="moodBtn" click="close()"/>
+	<mx:Button label="重置" width="37" right="160" bottom="34" styleName="moodBtn"/>
 	<mx:Button label="提交" width="37" right="200" bottom="34" styleName="moodBtn"/>
 	<mx:Button x="371" y="210" width="13" height="13" styleName="downBtn"/>
 	<mx:Button x="391" y="210" width="13" height="13" styleName="upBtn"/>
 	
+	<mx:Parallel id="moodNext">
+		<mx:Move target="{m1}" xFrom="400" xTo="0" duration="500"/>
+		<mx:Move target="{m2}" xFrom="400" xTo="0" duration="500"/>
+		<mx:Move target="{m3}" xFrom="400" xTo="0" duration="500"/>
+		<mx:Move target="{m4}" xFrom="400" xTo="0" duration="500"/>
+		<mx:Move target="{m5}" xFrom="400" xTo="0" duration="500"/>
+		<mx:Move target="{m6}" xFrom="400" xTo="0" duration="500"/>
+		<mx:Move target="{m7}" xFrom="400" xTo="0" duration="500"/>
+		<mx:Move target="{m8}" xFrom="400" xTo="0" duration="500"/>
+		<mx:Move target="{m9}" xFrom="400" xTo="0" duration="500"/>
+	</mx:Parallel>
 	
-	
-	
-	
-	
+	<mx:Parallel id="moodPre">
+		<mx:Move target="{m1}" xFrom="-400" xTo="0" duration="500"/>
+		<mx:Move target="{m2}" xFrom="-400" xTo="0" duration="500"/>
+		<mx:Move target="{m3}" xFrom="-400" xTo="0" duration="500"/>
+		<mx:Move target="{m4}" xFrom="-400" xTo="0" duration="500"/>
+		<mx:Move target="{m5}" xFrom="-400" xTo="0" duration="500"/>
+		<mx:Move target="{m6}" xFrom="-400" xTo="0" duration="500"/>
+		<mx:Move target="{m7}" xFrom="-400" xTo="0" duration="500"/>
+		<mx:Move target="{m8}" xFrom="-400" xTo="0" duration="500"/>
+		<mx:Move target="{m9}" xFrom="-400" xTo="0" duration="500"/>
+	</mx:Parallel>
+
 </mx:Panel>

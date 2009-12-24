@@ -28,6 +28,35 @@
 		<mx:Move target="{l12}" yFrom="240" yTo="220" duration="500"/>
 	</mx:Array>
 	
+	<mx:Array id="listAddedEffect">
+		<mx:Move target="{l1}" yFrom="-20" yTo="0" duration="500"/>
+		<mx:Move target="{l2}" yFrom="0" yTo="20" duration="500"/>
+		<mx:Move target="{l3}" yFrom="20" yTo="40" duration="500"/>
+		<mx:Move target="{l4}" yFrom="40" yTo="60" duration="500"/>
+		<mx:Move target="{l5}" yFrom="60" yTo="80" duration="500"/>
+		<mx:Move target="{l6}" yFrom="80" yTo="100" duration="500"/>
+		<mx:Move target="{l7}" yFrom="100" yTo="120" duration="500"/>
+		<mx:Move target="{l8}" yFrom="120" yTo="140" duration="500"/>
+		<mx:Move target="{l9}" yFrom="140" yTo="160" duration="500"/>
+		<mx:Move target="{l10}" yFrom="160" yTo="180" duration="500"/>
+		<mx:Move target="{l11}" yFrom="180" yTo="200" duration="500"/>
+		<mx:Move target="{l12}" yFrom="200" yTo="220" duration="500"/>
+	</mx:Array>
+	
+	<mx:Array id="listDoubleEffect">
+		<mx:Move target="{l1}" yTo="0" duration="500"/>
+		<mx:Move target="{l2}" yTo="20" duration="500"/>
+		<mx:Move target="{l3}" yTo="40" duration="500"/>
+		<mx:Move target="{l4}" yTo="60" duration="500"/>
+		<mx:Move target="{l5}" yTo="80" duration="500"/>
+		<mx:Move target="{l6}" yTo="100" duration="500"/>
+		<mx:Move target="{l7}" yTo="120" duration="500"/>
+		<mx:Move target="{l8}" yTo="140" duration="500"/>
+		<mx:Move target="{l9}" yTo="160" duration="500"/>
+		<mx:Move target="{l10}" yTo="180" duration="500"/>
+		<mx:Move target="{l11}" yTo="200" duration="500"/>
+		<mx:Move target="{l12}" yTo="220" duration="500"/>
+	</mx:Array>
 	
 	
 </mx:Canvas>

@@ -104,17 +104,16 @@ package as3.PlayControl
 			var transform:SoundTransform = channel.soundTransform; 
 			if(isPlay){
 				temp = channel.soundTransform.volume; 
-				var i:Number = temp/20;
+				var i:Number = temp/3;
 				transform.volume -= i;
-				
 			}
 			else{
 				transform.volume = value;
 			}
 			channel.soundTransform = transform;
 			if(transform.volume <= 0){
-					this.pausePlay();
-				}
+				this.pausePlay();
+			}
 		}
 		
 	}
