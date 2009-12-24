@@ -3,15 +3,25 @@
  * 
  */          
 	 
-	import mx.controls.Alert;
+	import as3.Net.RPC;
+	
 	import mx.managers.PopUpManager;
-    import mx.controls.Text;
     
     public var callBack:Function;                  
 	public var islogin:Boolean = false; 
+	private var rpc:RPC;
+	private var index:String;
     
 	[Bindable]
 	public var text:String = "";
+	
+	public function init():void{
+		rpc = new RPC();
+		rpc.getComment(this.getMood,this.index);
+	}
+	public function setIndex(index:String):void{
+		this.index = index;
+	}
 	
 	public function close():void{         
 		PopUpManager.removePopUp(this);     
@@ -36,3 +46,7 @@
 		}                 
 		PopUpManager.removePopUp(this);         
 	} */
+	
+	private function getMood(result:Array):void{
+		
+	}

@@ -35,6 +35,11 @@ package as3.Net
 			conn.close();
 		}
 		
+		public function getComment(result:Function, index:String):void{
+			conn.connect(URL);
+			conn.call("Music.getComment",new Responder(result,onFault),index);
+		}
+		
 		private function onFault(fault:String):void{
 			trace(fault);
 		}

@@ -213,22 +213,18 @@
 	 * 当一首音乐播放完后,执行播放下一首音乐的操作,包括播放列表的同步
 	 */
 	public function nextMusic(event:Event):void{
-		rpc.getNextMusic(this.getNextMusic);
 		musicControl.pausePlay();
 		lrcnum = 0;
 		LRC.splice(0,LRC.length);
 		playList.shift();
 		lrcLoader.load(new URLRequest(playList[0].lrc));
 		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
-	}
-	
-	private function getNextMusic(result:Object):void{
-		this.playList.push(result);
 		resetPlaylistX();     //////////////////////////////////////
 		this.syncPlayList(playList);
 		this.listEffect(1);
 	}
-	private function getNextMusic1(result:Object):void{
+	
+	private function getNextMusic(result:Object):void{
 		this.playList.push(result);
 	}
 	
@@ -270,6 +266,7 @@
 		musicControl.newPlay(playList[0].url);
 		addEventListener(Event.ENTER_FRAME, onEnterFrame);
 		this.syncMusicInfo(playList[0].title, playList[0].author ,playList[0].album);
+		rpc.getNextMusic(this.getNextMusic);
 	}
 	
 	private function resetPlaylistX():void{
@@ -407,18 +404,18 @@
 	 * 播放&暂停按钮
 	 */
 	public function pauseAndPlay(event:Event):void{
+		var timer:Timer;
+		timer = new Timer(100,20);
 		if(musicControl.isPlay){
-			var timer:Timer;
-			timer = new Timer(100,20);
 			timer.addEventListener(TimerEvent.TIMER,fadeVolume); 
-			timer.start();
-			musicControl.fadeSound(playerTop.volume.value);
+			timer.addEventListener(TimerEvent.TIMER_COMPLETE,musicControl.fadePause);
 			playerTop.playandpause.styleName = "buttomPlay";
-		}	
+		}
 		else {
-			musicControl.pursuePlay();
+			timer.addEventListener(TimerEvent.TIMER,fadeVolumeIn); 
 			playerTop.playandpause.styleName = "buttomPause";
 		}
+		timer.start();
 	}
 	
 	/**
@@ -437,6 +434,9 @@
 	 */
 	public function fadeVolume(event:Event):void{
 		musicControl.fadeSound(playerTop.volume.value);
+	}
+	public function fadeVolumeIn(event:Event):void{
+		musicControl.fadeSoundIn(playerTop.volume.value);
 	}
 	
 	/**
@@ -722,7 +722,7 @@
 			nextMusic(event);
 		}
 		else{
-			rpc.getNextMusic(this.getNextMusic1);
+			rpc.getNextMusic(this.getNextMusic);
 			playList.splice(i-1,1);
 			this.syncPlayList(playList);
 			this.listEffect(i);
@@ -811,7 +811,10 @@
 	 * 音乐心情
 	 */
 	private function moodMusic(event:MouseEvent):void{
-		var moodWin:IFlexDisplayObject = PopUpManager.createPopUp(this,mood,false);
+		var moodWin:mood = new mood();
+		moodWin.setIndex(playList[0].id);
+		moodWin.init();
+		PopUpManager.addPopUp(moodWin,this,false);
 	    PopUpManager.centerPopUp(moodWin);
 	    moodWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
 	    moodWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
@@ -821,12 +824,13 @@
 	 * 分享音乐
 	 */
 	private function shareMusic(event:MouseEvent):void{
-
-	    var shareWin:IFlexDisplayObject = PopUpManager.createPopUp(this,share,false);
+		var shareWin:share = new share();
+		shareWin.text = playList[0].title;
+		shareWin.address = "http://10.76.8.200/bubble/bubble/#" + playList[0].id;
+	    PopUpManager.addPopUp(shareWin,this,false);
 	    PopUpManager.centerPopUp(shareWin);
 	    shareWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
 	    shareWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
-	//	bottom.shareClose.addEventListener(MouseEvent.CLICK,close);
 		
 	}
 	
