@@ -35,33 +35,6 @@
 		<mx:Button id="preBtn" x="350" y="240" styleName="preSearch" enabled="false"/>
 	</mx:Canvas>		
 	
-	<!--
-	<mx:Parallel id="listDown">
-		<mx:Move target="{s1}" yFrom="22" yTo="2" duration="500"/>
-		<mx:Move target="{s2}" yFrom="42" yTo="22" duration="500"/>
-		<mx:Move target="{s3}" yFrom="62" yTo="42" duration="500"/>
-		<mx:Move target="{s4}" yFrom="82" yTo="62" duration="500"/>
-		<mx:Move target="{s5}" yFrom="102" yTo="82" duration="500"/>
-		<mx:Move target="{s6}" yFrom="122" yTo="102" duration="500"/>
-		<mx:Move target="{s7}" yFrom="142" yTo="122" duration="500"/>
-		<mx:Move target="{s8}" yFrom="162" yTo="142" duration="500"/>
-		<mx:Move target="{s9}" yFrom="182" yTo="162" duration="500"/>
-		<mx:Move target="{s10}" yFrom="202" yTo="182" duration="500"/>
-	</mx:Parallel>
-	<mx:Parallel id="listUp">
-		<mx:Move target="{s1}" yFrom="-18" yTo="2" duration="500"/>
-		<mx:Move target="{s2}" yFrom="2" yTo="22" duration="500"/>
-		<mx:Move target="{s3}" yFrom="22" yTo="42" duration="500"/>
-		<mx:Move target="{s4}" yFrom="42" yTo="62" duration="500"/>
-		<mx:Move target="{s5}" yFrom="62" yTo="82" duration="500"/>
-		<mx:Move target="{s6}" yFrom="82" yTo="102" duration="500"/>
-		<mx:Move target="{s7}" yFrom="102" yTo="122" duration="500"/>
-		<mx:Move target="{s8}" yFrom="122" yTo="142" duration="500"/>
-		<mx:Move target="{s9}" yFrom="142" yTo="162" duration="500"/>
-		<mx:Move target="{s10}" yFrom="162" yTo="182" duration="500"/>
-	</mx:Parallel>
-	-->
-	
 	<mx:Parallel id="listDown">
 		<mx:Move target="{s1}" yFrom="202" yTo="2" duration="500"/>
 		<mx:Move target="{s2}" yFrom="202" yTo="22" duration="500"/>
