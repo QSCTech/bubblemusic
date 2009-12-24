@@ -12,7 +12,6 @@
 			public var text:String = "";
 			[Bindable]
 			public var address:String = "";
-			public var callBack:Function;
 			
 			
 			public function close():void{  
@@ -31,7 +30,7 @@
     
     <mx:Label id="shareInfo" text="将“{text}”推荐给好友吧！" styleName="shareText" top="8" left="10"/>
 	<mx:Label text="复制以下链接至浏览器地址栏，可直接播放~" styleName="shareText" width="281" top="25" left="10"/>
-	<mx:TextInput id="songAddress" width="330" bottom="10" left="10" text="{address}" />
+	<mx:TextInput id="songAddress" width="330" bottom="10" left="10" text="{address}"/>
 	<mx:Button id="copyAddress" label="复制" width="40" height="24" bottom="10" right="10" styleName="share" click="copy();"/>
 	<mx:LinkButton id="shareClose" label="X" styleName="shareClose" click="close()" x="372"
 		borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" />

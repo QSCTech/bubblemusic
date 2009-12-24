@@ -1,4 +1,12 @@
 /*CSS file*/
+	ScrollBar{
+		fillAlphas: 1.0, 1.0;
+		fillColors: #736873, #736873, #736873, #736873;
+		borderColor: #241625;
+		trackColors: #241625, #3E323F;
+		themeColor: #ccff66;
+	}
+
 	Application{
 		backgroundGradientAlphas:1.0, 1.0; 
 		backgroundGradientColors:#C6BFC6, #AA9BAA;

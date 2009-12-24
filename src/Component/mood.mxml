@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" width="430" height="300" layout="absolute" title="泡心情 - {text}" xmlns:Component="Component.*" styleName="mood">
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" width="430" height="300" layout="absolute" title="泡心情 - {text}" xmlns:Component="Component.*" styleName="mood" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 	
 	<mx:Script source="../as3/mood/mood.as" />
 
@@ -27,13 +27,14 @@
 	<mx:Text text="心情" left="7" bottom="7" styleName="moodText"/>
 	<mx:Text text="昵称" left="7" bottom="34" styleName="moodText"/>
 	<mx:TextInput id="moodText" left="40" bottom="7" right="10"/>
-	<mx:TextInput id="username" left="40" bottom="34" right="241"/>
-	<mx:Button label="关闭" width="37" right="120" bottom="34" styleName="moodBtn" click="close()"/>
-	<mx:Button label="重置" width="37" right="160" bottom="34" styleName="moodBtn" click="resetHandle()"/>
-	<mx:Button label="提交" width="37" right="200" bottom="34" styleName="moodBtn" click="addComment()"/>
-	<mx:Button id="next" x="354" y="210" width="13" height="13" styleName="downBtn" click="getNext()"/>
-	<mx:Button id="pre" x="391" y="210" width="13" height="13" styleName="upBtn" click="getPre()"/>
+	<mx:TextInput id="username" left="40" bottom="34" right="289"/>
+	<mx:Button label="关闭" width="37" right="73" bottom="34" styleName="moodBtn" click="close()"/>
+	<mx:Button label="重置" width="37" right="113" bottom="34" styleName="moodBtn" click="resetHandle()"/>
+	<mx:Button label="提交" width="37" right="153" bottom="34" styleName="moodBtn" click="addComment()"/>
+	<mx:Button id="pre" x="354" y="210" width="13" height="13" styleName="downBtn" click="getPre()"/>
+	<mx:Button id="next" x="391" y="210" width="13" height="13" styleName="upBtn" click="getNext()"/>
 	<mx:Text id="pageText" text="0" bottom="37" styleName="moodText" x="368"/>
+	<mx:Text x="143" y="202" text="心情小图" styleName="moodText" />
 	
 	<mx:Parallel id="moodNext">
 		<mx:Move target="{m1}" xFrom="400" xTo="0" duration="500"/>
@@ -58,6 +59,7 @@
 		<mx:Move target="{m8}" xFrom="-400" xTo="0" duration="500"/>
 		<mx:Move target="{m9}" xFrom="-400" xTo="0" duration="500"/>
 	</mx:Parallel>
+	
 	
 
 </mx:Panel>

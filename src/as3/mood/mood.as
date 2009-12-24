@@ -1,5 +1,5 @@
 /**  
- * 登录AS部分  
+ * 心情AS部分  
  * 
  */          
 	 
@@ -16,34 +16,47 @@
 	[Bindable]
 	public var text:String = "";
 	
+	/**  
+	 * 初始  
+	 * 
+	 */ 
 	public function init():void{
 		rpc = new RPC();
 		rpc.getComment(this.getMood,this.index,1);
 	}
+	
+	/**  
+	 * 得到歌曲id  
+	 * 
+	 */ 
 	public function setIndex(index:int):void{
 		this.index = index;
 	}
 	
+	/**  
+	 * 关闭popupmanager  
+	 * 
+	 */
 	public function close():void{
 	//	if(callBack != null){                         
 	//		callBack(mood);                 
 	//	}       
 		PopUpManager.removePopUp(this);     
 	}
-	
-	public function dropIt(event:MouseEvent):void{       
-		event.currentTarget.stopDrag();     
-	}           
-	
-	public function dragIt(event:MouseEvent):void{       
-		event.currentTarget.startDrag();     
-	}                                    
-	
+
+	/**  
+	 * 重置 
+	 * 
+	 */
 	public function resetHandle():void{                 
 		moodText.text = "";                 
 		username.text = "";         
 	}
 	
+	/**  
+	 * 得到下一页  
+	 * 
+	 */
 	public function getNext():void{
 		var page:int = int(pageText.text) + 1;
 		
@@ -52,6 +65,10 @@
 		moodNext.play();
 	}   
 	
+	/**  
+	 * 得到上一页  
+	 * 
+	 */
 	public function getPre():void{
 		var page:int = int(pageText.text) - 1;
 		
@@ -60,26 +77,36 @@
 		moodPre.play();
 	}   
 	
+	/**  
+	 * 添加心情 
+	 * 
+	 */
 	public function addComment():void{
 		if(moodText.text == "" || username.text == ""){
 			Alert.show("请输入完整信息！");
 		}
 		else{
 			rpc.addComment(this.getMood,this.index,moodText.text,username.text);
-			moodText.text = "";                 
-			username.text = "";  
+			resetHandle();
 		}
 	}                  
 	
+	/**  
+	 * 得到心情列表  
+	 * 
+	 */
 	public function getMood(result:Array):void{
 		this.moodResult = result;
 		this.syncMoodList(moodResult);
 	}
 	
+	/**  
+	 * 初始化心情列表  
+	 * 
+	 */
 	public function syncMoodList(list:Array):void{
 		var page:int = int(pageText.text);
-        
-        
+
         if(page>9)
         	pageText.x = 363;
         else
