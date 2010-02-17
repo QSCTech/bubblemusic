@@ -1,0 +1,58 @@
+@charset "utf-8";
+/****************************************************
+*	search_mp3.css									*
+****************************************************/
+ul#mp3_list
+{
+	margin-left:40px;
+	width:870px;
+	text-align:left;
+}
+
+ul#mp3_list li
+{
+	margin-top:20px;
+	float:left;
+	width:100%;
+	border:2px solid rgb(200,200,200);
+}
+
+ul#mp3_list li h2
+{
+	border-bottom:1px dashed #00F;
+}
+ul#mp3_list li h2
+{
+	font-size:14px;
+	font-family:"黑体";
+	margin:0px;
+	line-height:20px;
+	padding-left:30px;
+}
+ul#mp3_list li form
+{
+	margin:20px;
+	float:left;
+	width:680px;
+}
+ul#mp3_list li form label{
+	line-height:20px;
+}
+ul#mp3_list li form input{
+	border:1px solid rgb(200,200,200);
+	margin-top:10px;
+	font-family:"微软雅黑";
+}	
+ul#mp3_list li form select{
+	margin-top:10px;
+	font-family:"微软雅黑";
+}
+ul#mp3_list li img.button
+{
+	margin-top:30px;
+	width:97px;
+	height:41px;
+	background:none;
+	cursor:pointer;
+	width:100px;
+}
