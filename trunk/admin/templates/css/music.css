@@ -1,0 +1,103 @@
+@charset "utf-8";
+/****************************************************
+*	music.css										*
+****************************************************/
+#music_list
+{
+	width:100%;
+}
+#music_list tr
+{
+	height:23px;
+}
+#music_list tr.hover
+{
+	background-color:#3D80DF;
+	color:#FFF;
+}
+#music_list tr input
+{
+	margin:0px;
+}
+#music_list tr td
+{
+	border-right:1px solid #D9D9D9;
+	padding-left:5px;
+}
+#music_list tr td.music_name
+{
+	cursor:pointer;
+}
+#music_list .highlight
+{
+	background:#FF0;
+}
+#music_list tr th
+{
+	border-right:1px solid #BDBDBD;
+	border-left:1px solid #E4E4E4;
+	border-top:1px solid #555555;
+	border-bottom:1px solid #555555;
+	padding-left:5px;
+	background-image:url(../images/th_bg.png);
+	height:15px;
+	line-height:15px;
+	cursor:pointer;
+}
+
+#music_list tr th a
+{
+	display:block;
+	width:100%;
+	height:100%;
+}
+#pop_up	/*继承common.css中的#pop_up*/
+{
+	padding-top:10px;
+}
+#pop_up h2
+{
+	margin:7px;
+	margin-bottom:10px;
+}
+#pop_up h3
+{
+	text-align:center;
+	width:100%;
+	margin:0px;
+	font-weight:bold;
+}
+#pop_up .detail
+{
+	float:left;
+	width:45%;
+	text-align:left;
+	margin-left:10px;
+}
+#pop_up .digital
+{
+	float:left;
+	width:45%;
+	text-align:left;
+}
+#pop_up .detail td,
+#pop_up .digital td
+{
+	height:25px;
+	border-bottom:1px dashed #CCC;
+}
+#pop_up .divid
+{
+	height:200px;
+	width:2px;
+	float:left;
+	border-right:1px solid #000;
+	margin:10px;
+}
+#pop_up .path
+{
+	clear:both;
+	height:30px;
+	text-align:left;
+	margin-left:20px;
+}

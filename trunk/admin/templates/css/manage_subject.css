@@ -1,0 +1,192 @@
+@charset "utf-8";
+/****************************************************
+*	subject.css										*
+****************************************************/
+/***********工具栏************************/
+.tool_bar
+{
+	margin-left:20px;
+}
+.tool_bar img
+{
+	width:16px;
+	cursor:pointer;
+	margin:5px;
+	float:left;
+}
+.tool_bar input
+{
+	background:none;
+	float:left;
+	margin-top:2px;
+	margin-left:10px;
+}
+.tool_bar span
+{
+	float:left;
+	margin-left:20px;
+}
+/***********滚动条************************/
+.scroll_bar
+{
+	float:left;
+	margin-left:-25px;
+	margin-top:-10px;
+	width:18px;
+	background-color:white;
+	height:600px;
+}
+.scroll_bar .bar
+{
+	height:400px;
+	width:4px;
+	background-color:#234380;
+	margin:4px 7px;
+}
+.scroll_bar .bar .slider
+{
+	float:left;
+	width:8px;
+	margin-left:-2px;
+	background-color:#234380;
+	border:none;
+	cursor:pointer;
+}
+.scroll_bar .bar .pagetip
+{
+	background-color:#000; 
+    border:1px solid #fff; 
+    padding:10px 15px; 
+    width:200px; 
+    display:none; 
+    color:#fff; 
+    text-align:left; 
+    font-size:12px; 
+ 
+    /* outline radius for mozilla/firefox only */ 
+    -moz-box-shadow:0 0 10px #000; 
+    -webkit-box-shadow:0 0 10px #000; 
+}
+.scroll_bar img
+{
+	cursor:pointer;
+}
+/***********添加新的专题模块**************/
+#add_subject
+{
+	margin:20px 10px 10px 10px;
+	width:900px;
+	position:relative;
+	float:left;
+}
+#add_subject h2
+{
+	font-size:16px;
+	line-height:30px;
+	font-family:"微软雅黑";
+	margin:-2px -2px;
+	margin-left:20px;
+}
+#add_subject form
+{
+	margin:10px;
+}
+#add_subject .close_button
+{
+	position:absolute;
+	width:30px;
+	height:30px;
+	left:885px;
+	top:-10px;
+	cursor:pointer;
+}
+
+/********歌曲列表和专题列表两个模块********/
+#subject_list,
+#music_list,
+#subject_detail,
+#subject_music_list
+{
+	float:left;
+	width:450px;
+	margin:10px;
+}
+#subject_list h2,
+#music_list h2,
+#subject_detail h2,
+#subject_music_list h2
+{
+	font-size:16px;
+	line-height:30px;
+	font-family:"微软雅黑";
+	margin:-2px -2px;
+	margin-left:20px;
+}
+#subject_list ul,
+#music_list ul,
+#subject_music_list ul
+{
+	float:left;
+	width:100%;
+	height:600px;
+}
+
+/*专题列表*/
+#subject_list ul.subject li
+{
+	height:100px;
+	float:left;
+	width:100%;
+}
+#subject_list ul.subject li img
+{
+	float:left;
+	width:80px;
+	margin:10px;
+	/*阴影*/
+	-webkit-box-shadow:1px 1px 3px black;	/*webkit浏览器*/
+	-moz-box-shadow:1px 1px 3px black;		/*火狐浏览器*/
+	box-shadow:1px 1px 3px black;
+}
+#subject_list ul.subject li h3
+{
+	float:left;
+	margin:5px;
+	margin-left:10px;
+	font-size:14px;
+	width:200px;
+}
+#subject_list ul.subject li p
+{
+	float:left;
+	margin:0px;
+	margin-left:10px;
+	width:200px;
+	color:rgb(150,150,150);
+}
+/*歌曲列表*/
+ul.music li
+{
+	width:100%;
+	line-height:25px;
+	float:left;
+}
+ul.music li h3
+{
+	float:left;
+	margin:0px;
+	margin-left:10px;
+	font-size:12px;
+}
+ul.music li span
+{
+	color:rgb(170,170,170);
+	float:left;
+}
+ul.music li img
+{
+	float:right;
+	cursor:pointer;
+	margin-right:22px;
+	display:none;
+}

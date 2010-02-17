@@ -1,0 +1,157 @@
+@charset "utf-8";
+/****************************************************
+*	manage.css										*
+****************************************************/
+/***************一下来自home.css*****************/
+#manage_bar
+{
+	background-image:url(../images/manage_bar_bg.png);
+	border-bottom:1px solid #999;
+	height:32px;
+	width:100%;
+}
+#manage
+{
+ 	margin-left:700px;
+	margin-top:5px;
+	float:left;
+}
+#manage_bar .prev
+{
+	background-image:url(../images/button_prev.png);
+	width:56px;
+	height:19px;
+	padding-top:1px;
+	text-align:center;
+	font-size:12px;
+	float:left;
+	margin-top:7px;
+	margin-left:20px;
+	font-weight:bold;
+}
+#manage_bar .next
+{
+	background-image:url(../images/button_next.png);
+	width:56px;
+	height:19px;
+	padding-top:1px;
+	font-size:12px;
+	float:left;
+	margin-top:7px;
+	margin-left:20px;
+	font-weight:bold;
+}
+#manage_bar .next:hover,
+#manage_bar .prev:hover
+{
+	text-decoration:none;
+}
+
+ul#subject_list
+{
+	margin-top:10px;
+}
+ul#subject_list li
+{
+	width:160px;
+	float:left;
+	margin:10px 15px;
+}	
+ul#subject_list li .cover
+{
+	width:160px;
+	height:160px;
+	position:relative;
+}
+ul#subject_list li .cover img
+{
+	width:160px;
+	height:160px;
+	cursor:pointer;
+	position:relative;
+	z-index:0;
+}
+
+ul#subject_list li .cover img.image_cover,
+ul#subject_list li .cover img.highlight
+{
+	width:160px;
+	height:160px;
+	margin-top:-160px;
+}
+ul#subject_list li .cover .update_cover
+{
+	position:absolute;
+	width:55px;
+	height:19px;
+	left:90px;
+	top:10px;
+	display:none;
+}
+ul#subject_list li .cover .del_button
+{
+	position:absolute;
+	width:30px;
+	height:30px;
+	left:140px;
+	top:-10px;
+	display:none;
+}
+ul#subject_list li div.name
+{
+	height:40px;
+}
+ul#subject_list li div.name h3
+{
+	text-align:center;
+	font-size:12px;
+	margin:0px;
+	margin-top:4px;
+}
+ul#subject_list li div.name h4
+{
+	text-align:center;
+	font-size:12px;
+	color:#999;
+	margin:0px;
+}
+#pop_up	/*继承common.css中的#pop_up*/
+{
+	padding-top:10px;
+}
+#pop_up h2
+{
+	margin:7px;
+}
+
+
+/********一下来自manage.css #add_subject**********/
+#add_subject
+{
+	margin:20px 10px 10px 10px;
+	width:900px;
+	position:relative;
+	float:left;
+}
+#add_subject h2
+{
+	font-size:16px;
+	line-height:30px;
+	font-family:"微软雅黑";
+	margin:-2px -2px;
+	margin-left:20px;
+}
+#add_subject form
+{
+	margin:10px;
+}
+#add_subject .close_button
+{
+	position:absolute;
+	width:30px;
+	height:30px;
+	left:885px;
+	top:-10px;
+	cursor:pointer;
+}
+
