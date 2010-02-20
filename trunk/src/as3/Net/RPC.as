@@ -50,6 +50,12 @@ package as3.Net
 		private function onFault(fault:String):void{
 			trace(fault);
 		}
+		
+		public function loginCheck(result:Function, username:String, userpw:String):void{
+			conn.connect(URL);
+			conn.call("Music.login",new Responder(result,onFault),username,userpw);
+			conn.close();
+		}
 
 	}
 }

@@ -20,7 +20,7 @@ package as3.PlayControl
 		private var nextMusic:Function;
 		public var progressPos:Number;
 		private static var temp:Number; 
-		
+		public var isLoading:Boolean;
 
 		
 		/**
@@ -120,6 +120,18 @@ package as3.PlayControl
 		}
 		public function fadePause(event:Event):void{
 				this.pausePlay();
+		}
+		public function setPos(value:Number):void{
+			     if(isPlay){
+			       this.pausePlay();
+			       pasPos = value*music.length;
+			       this.pursuePlay();
+			     }
+			     else{
+			       pasPos = value*music.length;
+			       this.pursuePlay();
+			       this.pausePlay();
+			     }
 		}
 		
 	}

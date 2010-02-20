@@ -1,13 +1,11 @@
 /**  * 登录AS部分  *   */          
 	import mx.controls.Alert;         
 	import mx.managers.PopUpManager;  //登录         
-	// public function initLoginListener():void{         
-	//      loginSub.addEventListener(MouseEvent.CLICK,loginHandle);         
-	//      loginReset.addEventListener(MouseEvent.CLICK,resetHandle);         
-	//      loginCancel.addEventListener(MouseEvent.CLICK,close);         
-	//}          
+	import as3.Net.RPC;     
+	 
 	public var callBack:Function;                  
 	public var islogin:Boolean = false;  
+	public var rpc:RPC = new RPC();
 	    
 	public function close():void{         
 		PopUpManager.removePopUp(this);     
@@ -26,15 +24,10 @@
 			Alert.show("请输入完整数据！");                 
 		}                 
 		else{                         
-			if(txtUsername.text == "rosejay" && txtPassword.text == "bubble"){                                 
-				onclose();                         
-			}                         
-			else{                                 
-				Alert.show("用户名或密码错误！");                         
-			}                 
+			rpc.loginCheck(callBack,txtUsername.text,txtPassword.text);                                         
 		}         
 	}                  
-	
+
 	public function resetHandle():void{                 
 		txtUsername.text = "";                 
 		txtPassword.text = "";         

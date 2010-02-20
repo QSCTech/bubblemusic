@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas styleName="searchBox" xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="18">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="20" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 	<mx:Script>
 		<![CDATA[
 			[Bindable]
-		//	public var text:String = "";
-			//index变量,用来储存在列表中的位置,用来实现双击播放功能
 			public var index:int = 0;
 		]]>
 	</mx:Script>
-	<mx:Label id="search" x="13" y="0" styleName="followRes" width="375"/>
+	<mx:Label id="search" x="13" styleName="searchText" width="375" verticalCenter="0"/>
 	<mx:Button id="littleSearchAdd" label="添加" styleName="addBtn" width="12" height="12" verticalCenter="6" right="0" visible="false" activate="true"/>
 
 </mx:Canvas>

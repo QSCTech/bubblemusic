@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas styleName="searchBox" xmlns:mx="http://www.adobe.com/2006/mxml" width="450" height="300" xmlns:Component="Component.*">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="500" height="300" xmlns:Component="Component.*" styleName="searchCanvas">
 
 	
 	<mx:Canvas width="402" height="250" verticalScrollPolicy="off" horizontalScrollPolicy="off" horizontalCenter="0" verticalCenter="0">
-		<mx:Label id="searchTitle" x="0" y="2" styleName="topRes"/>
-		<mx:HRule x="0" y="21" width="400" height="1" styleName="lineOne" />
-		<mx:Button id="backLyric" styleName="backLyric" x="359" y="11"/>
+		<mx:Label id="searchTitle" x="0" y="2" styleName="searchTopText"/>
+		<mx:HRule x="0" y="21" width="400" height="1" styleName="searchTopHRule" />
+		<mx:LinkButton id="backLyric" label="返回歌词" right="0" top="2" height="18" styleName="backLyricLBtn"/>
 		<mx:Canvas id="searchList" y="22" width="402" height="202" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 			<Component:searchText y="2" id="s1" doubleClickEnabled="true" index="1"/>
-			<mx:HRule id="h1" y="21" width="400" height="1" styleName="lineTwo"/>
+			<mx:HRule id="h1" y="21" width="400" height="1" styleName="searchBoxHRule"/>
 			<Component:searchText y="22" id="s2" doubleClickEnabled="true" index="2"/>
-			<mx:HRule id="h2" y="41" width="400" height="1" styleName="lineTwo"/>
+			<mx:HRule id="h2" y="41" width="400" height="1" styleName="searchBoxHRule"/>
 			<Component:searchText y="42" id="s3" doubleClickEnabled="true" index="3"/>
-			<mx:HRule id="h3" y="61" width="400" height="1" styleName="lineTwo"/>
+			<mx:HRule id="h3" y="61" width="400" height="1" styleName="searchBoxHRule"/>
 			<Component:searchText y="62" id="s4" doubleClickEnabled="true" index="4"/>
-			<mx:HRule id="h4" y="81" width="400" height="1" styleName="lineTwo"/>
+			<mx:HRule id="h4" y="81" width="400" height="1" styleName="searchBoxHRule"/>
 			<Component:searchText y="82" id="s5" doubleClickEnabled="true" index="5"/>
-			<mx:HRule id="h5" y="101" width="400" height="1" styleName="lineTwo" />
+			<mx:HRule id="h5" y="101" width="400" height="1" styleName="searchBoxHRule" />
 			<Component:searchText y="102" id="s6" doubleClickEnabled="true" index="6"/>
-			<mx:HRule id="h6" y="121" width="400" height="1" styleName="lineTwo" />
+			<mx:HRule id="h6" y="121" width="400" height="1" styleName="searchBoxHRule" />
 			<Component:searchText y="122" id="s7" doubleClickEnabled="true" index="7"/>
-			<mx:HRule id="h7" y="141" width="400" height="1" styleName="lineTwo" />
+			<mx:HRule id="h7" y="141" width="400" height="1" styleName="searchBoxHRule" />
 			<Component:searchText y="142" id="s8" doubleClickEnabled="true" index="8"/>
-			<mx:HRule id="h8" y="161" width="400" height="1" styleName="lineTwo"/>
+			<mx:HRule id="h8" y="161" width="400" height="1" styleName="searchBoxHRule"/>
 			<Component:searchText y="162" id="s9" doubleClickEnabled="true" index="9"/>
-			<mx:HRule id="h9" y="181" width="400" height="1" styleName="lineTwo"/>
+			<mx:HRule id="h9" y="181" width="400" height="1" styleName="searchBoxHRule"/>
 			<Component:searchText y="182" id="s10" doubleClickEnabled="true" index="10"/> 
-			<mx:HRule id="h10" y="201" width="400" height="1" styleName="lineTwo"/>
+			<mx:HRule id="h10" y="201" width="400" height="1" styleName="searchBoxHRule"/>
 		</mx:Canvas>
 	
-		<mx:Button id="addAll" x="53" y="239" styleName="addAllRes" />
-		<mx:Button id="nextBtn" x="376" y="240" styleName="nextSearch" enabled="false"/>
-		<mx:Label id="page" x="361" y="230" styleName="topRes" text="0" width="16"/>
-		<mx:Button id="preBtn" x="350" y="240" styleName="preSearch" enabled="false"/>
+		<mx:Button id="addAll" label="全部加入" left="8" bottom="2" styleName="addAllBtn" toolTip="当前页所有歌曲"/>
+		<mx:Button id="nextBtn" x="378" y="232" styleName="nextSearchBtn" enabled="false" width="8" height="12"/>
+		<mx:Label id="page" x="361" y="229" styleName="pageText" text="0" width="16"/>
+		<mx:Button id="preBtn" x="348" y="232" styleName="preSearchBtn" enabled="false" width="8" height="12"/>
 	</mx:Canvas>		
 	
 	<mx:Parallel id="listDown">

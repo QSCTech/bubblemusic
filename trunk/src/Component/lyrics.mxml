@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Box xmlns:mx="http://www.adobe.com/2006/mxml" width="453" height="303" styleName="lyrics" xmlns:reflector="as3.reflector.*">
-	<mx:HBox width="450" height="300" verticalAlign="middle" horizontalAlign="center" >
-		
-		
-		
-		<mx:VBox height="200" horizontalScrollPolicy="off" verticalScrollPolicy="off">
-			<mx:Image id="picture" width="120" height="150" />
-			<reflector:Reflector id="reflectorPic" target="{picture}" alpha="0.3" falloff="0.5"/>
-		</mx:VBox>
-		<mx:VRule height="268" width="1"/>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" width="500" height="300" xmlns:reflector="as3.reflector.*" 
+	verticalAlign="middle" horizontalAlign="center" verticalScrollPolicy="off" horizontalScrollPolicy="off" styleName="searchCanvas">
 
-		<mx:Canvas width="272" height="83%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
-			<mx:Label id="lrc0" y="30" width="270" textAlign="center" />
-			<mx:Label id="lrc1" y="50" width="270" textAlign="center" />
-			<mx:Label id="lrc2" y="70" width="270" textAlign="center" />
-			<mx:Label id="lrc3" y="90" width="270" textAlign="center" />
-			<mx:Label id="lrc4" y="110" width="270" textAlign="center" />
-			<mx:Label id="lrc5" y="130" width="270" textAlign="center" styleName="lyricOn" />
-			<mx:Label id="lrc6" y="150" width="270" textAlign="center" />
-			<mx:Label id="lrc7" y="170" width="270" textAlign="center" />
-			<mx:Label id="lrc8" y="190" width="270" textAlign="center"/>
-			<mx:Label id="lrc9" y="210" width="270" textAlign="center"/>
-			<mx:Label id="lrc10" y="230" width="270" textAlign="center"/>
-		</mx:Canvas>
 		
-	</mx:HBox>
+	<mx:VBox height="200" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+		<mx:Image id="picture" width="140" height="140" />
+		<reflector:Reflector id="reflectorPic" target="{picture}" alpha="0.3" falloff="0.5"/>
+	</mx:VBox>
+	<mx:VRule height="90%"/>
+
+	<mx:VBox height="90%" width="300" horizontalScrollPolicy="off" verticalScrollPolicy="off" verticalAlign="middle" horizontalAlign="center">
+		<mx:Label id="lrc0" y="30" width="300" textAlign="center" styleName="lyricNormal"/>
+		<mx:Label id="lrc1" y="50" width="300" textAlign="center" styleName="lyricNormal"/>
+		<mx:Label id="lrc2" y="70" width="300" textAlign="center" styleName="lyricNormal"/>
+		<mx:Label id="lrc3" y="90" width="300" textAlign="center" styleName="lyricNormal"/>
+		<mx:Label id="lrc4" y="110" width="300" textAlign="center" styleName="lyricNormal"/>
+		<mx:Label id="lrc5" y="130" width="300" textAlign="center" styleName="lyricOn"/>
+		<mx:Label id="lrc6" y="150" width="300" textAlign="center" styleName="lyricNormal"/>
+		<mx:Label id="lrc7" y="170" width="300" textAlign="center" styleName="lyricNormal"/>
+		<mx:Label id="lrc8" y="190" width="300" textAlign="center" styleName="lyricNormal"/>
+		<mx:Label id="lrc9" y="210" width="300" textAlign="center" styleName="lyricNormal"/>
+		<mx:Label id="lrc10" y="230" width="300" textAlign="center" styleName="lyricNormal"/>
+	</mx:VBox>
+		
+		
+
 	<mx:Parallel id="LRCeffect">
 		<mx:Move target="{lrc0}" yFrom="30" yTo="10" duration="500"/>
 		<mx:Move target="{lrc1}" yFrom="50" yTo="30" duration="500"/>
@@ -42,4 +42,4 @@
 	<mx:Move id="LRCon" target="{lrc5}"/>
 	
 	
-</mx:Box>
+</mx:HBox>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="120" height="300" verticalScrollPolicy="off" horizontalScrollPolicy="off" styleName="specialCanvas">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			
+			import mx.managers.PopUpManager;
+            import mx.controls.Text;
+            
+			[Bindable]
+			public var text:String = "";
+			
+			public function close():void{     
+				PopUpManager.removePopUp(this);     
+			}
+		]]>
+	</mx:Script>
+	<mx:LinkButton label="X" styleName="specialCloseLBtn" toolTip="关闭" x="94" y="1" click="close()"
+		borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" />
+	<mx:VBox width="100" horizontalCenter="0" top="33" horizontalAlign="center">
+		
+		<mx:LinkButton label="我的收藏" styleName="specialLBtn" toolTip="随机欣赏您所收藏的音乐"/>
+		<mx:LinkButton label="chip&amp;chops" styleName="specialLBtn" toolTip="休闲网独家音乐收藏"/>
+		<mx:LinkButton label="333333" styleName="specialLBtn"/>
+		<mx:LinkButton label="222222" styleName="specialLBtn"/>
+		<mx:LinkButton label="333333" styleName="specialLBtn"/>
+		<mx:LinkButton label="444444" styleName="specialLBtn"/>
+		<mx:LinkButton label="555555" styleName="specialLBtn"/>
+	</mx:VBox>
+	<mx:Text x="10" y="10" text="泡专题" styleName="specialText" />
+	<mx:HRule top="27" horizontalCenter="0" styleName="specialHRule"/>
+</mx:Canvas>
