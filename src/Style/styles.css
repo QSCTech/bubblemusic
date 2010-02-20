@@ -7,25 +7,593 @@
 		themeColor: #ccff66;
 	}
 
-	Application{
-		backgroundGradientAlphas:1.0, 1.0; 
-		backgroundGradientColors:#C6BFC6, #AA9BAA;
-	}
-	
-	ToolTip
-	{
-		color: #2F1F2F;
-		fontSize: 12;
-		backgroundColor: #D2BCD3;
-	}
-	
-	.logo
-	{
-		color:#AAAAAA;
-		upSkin:Embed(source="logo.swf" ,symbol="logoup");
-		downSkin:Embed(source="logo.swf" ,symbol="logodown");
-		overSkin:Embed(source="logo.swf" ,symbol="logoover");
-	}
+
+/* CSS file */
+Application
+{
+	backgroundGradientAlphas:1.0, 1.0; 
+	backgroundGradientColors:#ededed, #ededed;
+}
+ToolTip
+{
+	fontSize:12;
+	color: #000000;
+	backgroundColor: #E5E5E5;
+}
+global
+{
+	color: #000000;
+	themeColor:#ffffff;
+	fontSize:12;
+}
+Alert
+{
+	backgroundColor: #D7D7D7;
+	borderColor: #D7D7D7;
+	fontSize: 12;
+	color:#e00025;
+}	
+/*logo*/
+.logoBtn
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="logo_up");
+	downSkin:Embed(source="bubble.swf" ,symbol="logo_down");
+	overSkin:Embed(source="bubble.swf" ,symbol="logo_over");
+	rollOverEffect: Glow;
+}
+/*top*/
+.topLBtn
+{
+	textRollOverColor: #FFFFFF;
+	textSelectedColor: #FFFFFF;
+	color: #FFFFFF;
+	paddingLeft: 3;
+	paddingRight: 3;
+	rollOverColor: #E00025;
+	selectionColor: #E00025;
+	themeColor:#E00025;
+	fontWeight: bold;
+}
+.topCanvas
+{
+	backgroundColor:#000000;
+	borderColor:#000000;
+	borderStyle: solid;
+	backgroundAlpha: 1;
+	dropShadowColor:#000000;
+	dropShadowEnabled:true;
+}
+/*searchBar*/
+ComboBox
+{
+	color:#FFFFFF;
+	fillAlphas:1.0, 1.0;
+	fillColors:#000000, #000000, #000000, #000000;
+	themeColor:#000000;
+	borderColor:#000000;
+	cornerRadius:4;
+	selectionColor:#000000;
+	rollOverColor:#e00025;
+	textRollOverColor:#000000;
+	textSelectedColor: #e00025;
+	dropdownStyleName: comboBoxDropdown;
+	mouseDownEffect: Glow;
+	rollOverEffect: Glow;
+	paddingLeft:3;
+	paddingRight:3;
+}
+.comboBoxDropdown
+{
+	backgroundColor: #D7D7D7;
+	color: #474747;
+	cornerRadius: 4;
+	borderColor: #E00025;
+}
+.searchBtn
+{
+	fontSize: 12;
+	borderColor:#000000;
+	fillAlphas: 1.0, 1.0;
+	fillColors: #000000, #000000;
+	themeColor:#000000;
+	color: #FFFFFF;
+	textRollOverColor: #FFFFFF;
+	textSelectedColor: #FFFFFF;
+	mouseDownEffect: Glow;
+	rollOverEffect: Glow;
+	paddingLeft:3;
+	paddingRight:3;
+	fontWeight:bold;
+}
+TextInput
+{
+	color:#E00025 ;
+	backgroundColor:#EDEDED; 
+	borderColor:#000000 ;
+	fontSize:12 ;
+	themeColor:#e00025 ;
+	cornerRadius:5; 
+	borderStyle:solid;
+
+	paddingTop: 2;
+	paddingLeft: 3;
+	mouseDownEffect: Glow;
+}
+
+
+
+/*playerSongs*/
+.triBtn
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="tri_up");
+	downSkin:Embed(source="bubble.swf" ,symbol="tri_down");
+	overSkin:Embed(source="bubble.swf" ,symbol="tri_over");
+}
+.shareBtn
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="share_up");
+	downSkin:Embed(source="bubble.swf" ,symbol="share_down");
+	overSkin:Embed(source="bubble.swf" ,symbol="share_over");
+	themeColor:#e00025;
+	rollOverEffect: Glow;
+}
+.storeBtn
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="store_up");
+	downSkin:Embed(source="bubble.swf" ,symbol="store_down");
+	overSkin:Embed(source="bubble.swf" ,symbol="store_over");
+	themeColor:#e00025;
+	rollOverEffect: Glow;
+}
+.deleteBtn
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="delete_up");
+	downSkin:Embed(source="bubble.swf" ,symbol="delete_down");
+	overSkin:Embed(source="bubble.swf" ,symbol="delete_over");
+	themeColor:#e00025;
+	rollOverEffect: Glow;
+}
+.playerSongText
+{
+	color:#000000;
+}
+.playerSongTextOn
+{
+	color:#e00025;
+}
+.playerOn
+{
+	borderStyle:solid; 
+	borderColor:#e00025; 
+	cornerRadius:10;
+}
+.playerCanvas
+{
+}
+.playerEven
+{ 
+	backgroundColor:#000000;
+}
+.musicListCanvas
+{
+	 cornerRadius:15; 
+	 borderStyle:solid; 
+	 borderColor:#000000; 
+}
+HRule
+{
+	strokeColor:#000000;
+	strokeWidth:1;
+} 
+/*searchBox*/
+.searchCanvas
+{
+	backgroundColor:#EDEDED; 
+	borderStyle:solid; 
+	borderColor:#EDEDED; 
+	cornerRadius:15;
+}
+.searchTopText
+{
+	color:#000000;
+	fontSize: 12;
+}
+.searchText
+{
+	color:#474747;
+	fontSize: 12;
+}
+.searchTextOn
+{
+	color:#e00025;
+	fontSize: 12;
+}
+.pageText
+{
+	color:#474747;
+	fontSize: 12;
+}
+.nextSearchBtn
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="nextSearch_up");
+	downSkin:Embed(source="bubble.swf" ,symbol="nextSearch_down");
+	overSkin:Embed(source="bubble.swf" ,symbol="nextSearch_over");
+	disabledSkin:Embed(source="bubble.swf" ,symbol="nextSearch_dis");
+}
+.preSearchBtn
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="preSearch_up");
+	downSkin:Embed(source="bubble.swf" ,symbol="preSearch_down");
+	overSkin:Embed(source="bubble.swf" ,symbol="preSearch_over");
+	disabledSkin:Embed(source="bubble.swf" ,symbol="preSearch_dis");
+}
+.addBtn
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="add_up");
+	downSkin:Embed(source="bubble.swf" ,symbol="add_down");
+	overSkin:Embed(source="bubble.swf" ,symbol="add_over");
+}
+.addAllBtn
+{
+	paddingLeft: 2;
+	paddingRight: 2;
+	paddingTop: 2;
+	paddingBottom: 2;
+	textRollOverColor: #5D5D5D;
+	textSelectedColor: #5D5D5D;
+	disabledColor: #B2B2B2;
+	borderColor: #D2D2D2;
+	fillAlphas: 0.0, 0.0, 0.0, 0.0;
+	color: #5D5D5D;
+	themeColor: #D2D2D2;
+	fontSize: 9;
+}
+.backLyricLBtn
+{
+	color: #474747;
+	rollOverColor: #B2B2B2;
+	selectionColor: #B2B2B2;
+	textRollOverColor: #474747;
+	fontSize: 9;
+	paddingLeft: 2;
+	paddingRight: 2;
+	paddingBottom: 2;
+	paddingTop: 2;
+}
+.searchTopHRule
+{
+	strokeColor:#5d5d5d;
+	strokeWidth:1;
+}
+.searchBoxHRule
+{
+	strokeColor:#b2b2b2;
+	strokeWidth:1;
+}
+
+
+
+
+/*lyrics*/
+.lyricsCanvas
+{
+	backgroundColor:#5a4c66;
+	borderColor:#5a4c66;
+	borderStyle: solid;
+	backgroundAlpha: 1;
+	dropShadowColor:#000000;
+	dropShadowEnabled:true;
+	shadowDirection:right;
+	shadowDistance:3;
+	cornerRadius:10;
+}
+VRule
+{
+	strokeColor:#000000;
+	strokeWidth:1;
+} 
+.lyricOn
+{
+	color:#e00025;
+	fontSize: 12;
+}
+.lyricNormal
+{
+	color:#000000;
+	fontSize: 12;
+}
+
+/*now*/
+.nowCanvas
+{
+	backgroundColor:#d7d7d7;
+	backgroundAlpha: 1;
+	borderColor:#000000;
+	borderStyle:solid;
+	cornerRadius:20;
+	shadowDirection:right;
+	shadowDistance:3;
+	dropShadowColor:#000000;
+	dropShadowEnabled:true;
+}
+.nowLBtn
+{
+	textRollOverColor:#5d5d5d;
+	textSelectedColor:#5d5d5d;
+	themeColor:#ededed;
+	color:#5d5d5d;
+	paddingLeft:3;
+	paddingRight:3;
+	fontWeight: bold;
+}
+ProgressBar
+{
+	barColor: #1E1E1E;
+	verticalGap: 0;
+	trackHeight: 8;
+	borderColor: #000000;
+	rollOverEffect: Glow;
+	labelWidth: 0;
+	themeColor: #000000;
+	trackColors: #ff0000;
+}
+.nowSongLBtn
+{
+	textRollOverColor:#e00025;
+	textSelectedColor:#e00025;
+	color:#e00025;
+	paddingLeft:3;
+	paddingRight:3;
+	fontWeight: bold;
+}
+.nowText
+{
+	color:#e00025;
+	fontSize: 12;
+}
+.nowTimeText
+{
+	color:#000000;
+	fontSize: 12;
+}
+HSlider
+{
+	trackColors: #000000;
+	thumbUpSkin:Embed(source="bubble.swf" ,symbol="volume_up");
+	thumbDownSkin:Embed(source="bubble.swf" ,symbol="volume_down");
+	thumbOverSkin:Embed(source="bubble.swf" ,symbol="volume_over");
+	trackSkin: Embed(source="bubble.swf",symbol="HSlider_track");
+}
+.unsilentBtn
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="unsilent_up");
+	downSkin:Embed(source="bubble.swf" ,symbol="unsilent_down");
+	overSkin:Embed(source="bubble.swf" ,symbol="unsilent_over");
+}
+.silentBtn
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="silent_up");
+	downSkin:Embed(source="bubble.swf" ,symbol="silent_down");
+	overSkin:Embed(source="bubble.swf" ,symbol="silent_over");
+}
+.nextBtn
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="next_up");
+	downSkin:Embed(source="bubble.swf" ,symbol="next_down");
+	overSkin:Embed(source="bubble.swf" ,symbol="next_over");
+}
+.playBtn
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="play_up");
+	downSkin:Embed(source="bubble.swf" ,symbol="play_down");
+	overSkin:Embed(source="bubble.swf" ,symbol="play_over");
+}
+.pauseBtn
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="pause_up");
+	downSkin:Embed(source="bubble.swf" ,symbol="pause_down");
+	overSkin:Embed(source="bubble.swf" ,symbol="pause_over");
+}
+
+
+.tipBtn
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="tip_up");
+	downSkin:Embed(source="bubble.swf" ,symbol="tip_down");
+	overSkin:Embed(source="bubble.swf" ,symbol="tip_over");
+	disabledSkin:Embed(source="bubble.swf" ,symbol="tip_dis");
+}
+.versionText
+{
+	color:#474747;
+	fontSize: 12;
+}
+
+/* mood */
+.upBtn{
+	color:#AAAAAA;
+	upSkin:Embed(source="updown.swf" ,symbol="upup");
+	downSkin:Embed(source="updown.swf" ,symbol="updown");
+	overSkin:Embed(source="updown.swf" ,symbol="upover");
+	disabledSkin:Embed(source="updown.swf" ,symbol="updis");
+}
+
+.downBtn{
+	color:#AAAAAA;
+	upSkin:Embed(source="updown.swf" ,symbol="downup");
+	downSkin:Embed(source="updown.swf" ,symbol="downdown");
+	overSkin:Embed(source="updown.swf" ,symbol="downover");
+	disabledSkin:Embed(source="updown.swf" ,symbol="downdis");
+}
+.moodBtn{
+	fontSize:12; 
+	fontWeight:normal;
+	themeColor:#669900;
+	borderColor:#99CC33;
+	color:#669900;
+	paddingLeft:4;
+	paddingRight:4;
+	textRollOverColor:#336600;
+	textSelectedColor:#99cc33;
+	paddingLeft:2;
+	paddingRight:2;
+}
+.moodText{
+	color:#669900;
+}
+.moodText2{
+	color:#99cc33;
+}
+.mood{
+	backgroundColor:#FFFFFF;
+	borderColor:#99cc00;
+	color:#FFFFFF;
+	backgroundAlpha:1;
+	borderAlpha:0.8;
+}
+.moodList{
+	backgroundColor:#eaeaea;
+}
+.moodHRule{
+	color:#ccff66;
+}
+/* share */
+.shareBox{
+	backgroundColor:#EDEDED;
+	cornerRadius: 6;
+	borderColor:#474747;
+	borderStyle: solid;
+	dropShadowEnabled:true; 
+	dropShadowColor:#474747;
+	shadowDirection:right;
+	shadowDistance:2;
+}
+.shareText{
+	color:#000000;
+}
+.shareBoxBtn{
+	paddingLeft: 3;
+	paddingRight: 3;
+	textRollOverColor: #000000;
+	textSelectedColor: #000000;
+	disabledColor: #B2B2B2;
+	borderColor: #D2D2D2;
+	fillAlphas: 0.0, 0.0, 0.0, 0.0;
+	color: #000000;
+	themeColor: #D2D2D2;
+	fontWeight: normal;
+	fillColors: #FFFFFF, #FFFFFF;
+}
+.shareCloseLBtn{
+	color:#474747;
+	textRollOverColor:#000000;
+	textSelectedColor:#000000;
+}
+/* special */
+.specialCanvas
+{
+	backgroundColor:#EDEDED;
+	cornerRadius: 6;
+	borderColor:#474747;
+	borderStyle: solid;
+	dropShadowEnabled:true; 
+	dropShadowColor:#474747;
+	shadowDirection:right;
+	shadowDistance:2;
+}
+.specialLBtn
+{
+	textRollOverColor: #FFFFFF;
+	textSelectedColor: #FFFFFF;
+	color: #474747;
+	paddingLeft: 3;
+	paddingRight: 3;
+	rollOverColor: #E00025;
+	selectionColor: #E00025;
+	themeColor:#E00025;
+	fontWeight: normal;
+}
+.specialCloseLBtn
+{
+	textRollOverColor: #000000;
+	textSelectedColor: #000000;
+	color: #474747;
+	fontWeight: normal;
+}	
+.specialText
+{
+	color:#000000;
+	fontWeight:bold;
+}
+.specialHRule
+{
+	strokeColor:#B2B2B2;
+	strokeWidth:1;
+}
+
+
+
+.mainCanvas
+{
+	backgroundColor:#EDEDED;
+	cornerRadius: 10;
+	borderColor:#B2B2B2;
+	borderStyle: solid;
+	dropShadowEnabled:true; 
+	dropShadowColor:#B2B2B2;
+	shadowDirection:right;
+	shadowDistance:2;
+}	
+.topText
+{
+	color:#000000;
+	fontSize:14;
+}
+.followText
+{
+	color:#474747;
+	fontSize:12;
+}
+.littleLBtn
+{
+	color: #474747;
+	rollOverColor: #B2B2B2;
+	selectionColor: #B2B2B2;
+	textRollOverColor: #474747;
+	fontSize: 10;
+	paddingLeft: 2;
+	paddingRight: 2;
+	paddingBottom: 2;
+	paddingTop: 2;
+	fontWeight: normal;
+}
+.normalBtn
+{
+	paddingLeft: 3;
+	paddingRight: 3;
+	textRollOverColor: #000000;
+	textSelectedColor: #000000;
+	borderColor: #D2D2D2;
+	color: #474747;
+	themeColor: #D2D2D2;
+	fontWeight: normal;
+	mouseDownEffect: Glow;
+}
+.popupInput
+{
+	color:#474747 ;
+	backgroundColor:#EDEDED; 
+	borderColor:#474747 ;
+	fontSize:12 ;
+	themeColor:#474747 ;
+	cornerRadius:5; 
+	borderStyle:solid;
+	paddingTop: 2;
+	paddingLeft: 3;
+	mouseDownEffect: Glow;
+}
+
+
 	
 /*弹出登录&注册框*/	
 	Panel{
@@ -39,412 +607,7 @@
 		color:#2F1F2F;
 	}
 	
-	Alert
-	{
-		backgroundColor: #1A0C1A;
-		borderColor: #1A0C1A;
-		fontSize: 12;
-		themeColor:#CCFF66;
-		buttonStyleName: buttomDeep;
-	}
 
-	
-	
-	
-/*player CSS*/	
-	
-	/*中间按钮s*/
-	.playerButtoms{
-		backgroundColor:#2B1E2C;
-	}
-	.resetList{
-		color:#AAAAAA;
-		upSkin:Embed(source="reset.swf" ,symbol="skinup");
-		downSkin:Embed(source="reset.swf" ,symbol="skindown");
-		overSkin:Embed(source="reset.swf" ,symbol="skinover");
-	}
 
-	/*歌曲列表三颗按钮*/
-	.buttomLight{
-		cornerRadius:1;
-		themeColor:#BAF75D;
-		fontSize:12;
-		color:#3D313E;
-	}
-	.addBtn{
-		color:#AAAAAA;
-		upSkin:Embed(source="three.swf" ,symbol="addup");
-		downSkin:Embed(source="three.swf" ,symbol="adddown");
-		overSkin:Embed(source="three.swf" ,symbol="addover");
-	}
-	
-	.shareBtn{
-		color:#AAAAAA;
-		upSkin:Embed(source="three.swf" ,symbol="playup");
-		downSkin:Embed(source="three.swf" ,symbol="playdown");
-		overSkin:Embed(source="three.swf" ,symbol="playover");
-	}
-	
-	.storeBtn{
-		color:#AAAAAA;
-		upSkin:Embed(source="three.swf" ,symbol="storeup");
-		downSkin:Embed(source="three.swf" ,symbol="storedown");
-		overSkin:Embed(source="three.swf" ,symbol="storeover");
-	}
-	
-	.deleteBtn{
-		color:#AAAAAA;
-		upSkin:Embed(source="three.swf" ,symbol="deleteup");
-		downSkin:Embed(source="three.swf" ,symbol="deletedown");
-		overSkin:Embed(source="three.swf" ,symbol="deleteover");
-	}
-	
-	/*播放器大框架*/
-	.player{
-		fillAlphas:1.0, 1.0;
-		fillColors:#241625, #241625;
-		cornerRadius:10;
-	}
-	/*歌曲列表深色*/
-	.player1{
-		backgroundColor:#2B1E2C;
-	}
-	/*歌曲列表浅色*/
-	.player2{
-		backgroundColor:#332634;
-	}
-	.player3{
-		backgroundColor:#574757;
-	}
-	/*歌曲列表rollover*/
-	.player4{
-		backgroundColor:#625463;
-	}
-	
-	/*歌曲列表字*/
-	.musicListText{
-		color:#AFA2B0;
-	}
-	.musicListRoOver{
-		color:#BAF75D;
-	}
-	/*快进按钮*/
-	.buttomNext{
-		color:#AAAAAA;
-		upSkin:Embed(source="next.swf" ,symbol="next_up");
-		downSkin:Embed(source="next.swf" ,symbol="next_down");
-		overSkin:Embed(source="next.swf" ,symbol="next_over");
-	}
-	
-	/*播放按钮*/
-	.buttomPlay{
-		color:#AAAAAA;
-		upSkin:Embed(source="p&p.swf" ,symbol="play_up");
-		downSkin:Embed(source="p&p.swf" ,symbol="play_down");
-		overSkin:Embed(source="p&p.swf" ,symbol="play_over");
-	}
-	
-	/*暂停按钮*/
-	.buttomPause{
-		color:#AAAAAA;
-		upSkin:Embed(source="p&p.swf" ,symbol="pause_up");
-		downSkin:Embed(source="p&p.swf" ,symbol="pause_down");
-		overSkin:Embed(source="p&p.swf" ,symbol="pause_over");
-	}
-	
-	/*播放器顶部歌曲信息颜色*/
-	.songLabel{
-		color:#AFA2B0; 
-		fontSize:12;
-	}
-	.playerLabel{
-		color:#836985; 
-		fontSize:12;
-	}
-	.albumLabel{
-		color:#735f74; 
-		fontSize:12;
-	}
-	
-	.progressSong{
-		themeColor:#433443; 
-		borderColor:#554755; 
-		trackColors:#786d78;
-	}
-	
-	.volume{
-		thumbUpSkin:Embed(source="volume.swf" ,symbol="thumbUpSkin");
-		thumbDownSkin:Embed(source="volume.swf" ,symbol="thumbDownSkin");
-		thumbOverSkin:Embed(source="volume.swf" ,symbol="thumbOverSkin");
-		thumbOffset:5;
-	}
-	
-	.silent1{
-		color:#AAAAAA;
-		upSkin:Embed(source="silence.swf" ,symbol="silenceup");
-		downSkin:Embed(source="silence.swf" ,symbol="silencedown");
-		overSkin:Embed(source="silence.swf" ,symbol="silenceover");
-	}
-	.silent2{
-		color:#AAAAAA;
-		upSkin:Embed(source="silence.swf" ,symbol="silentup");
-		downSkin:Embed(source="silence.swf" ,symbol="silentdown");
-		overSkin:Embed(source="silence.swf" ,symbol="silentover");
-	}
 
-/*搜索结果CSS*/
-	.searchBox{
-	backgroundColor:#1C121D;
-	cornerRadius: 10;
-	borderColor:#1C121D;
-	borderStyle: solid;
-	}
-
-	.searchText{
-	backgroundColor:#1C121D;
-	borderColor:#1C121D;
-	borderStyle: solid;
-	}
-	
-	.lineOne{
-	strokeColor:#887B89;
-	}
-	.lineTwo{
-	strokeColor:#332634;
-	}
-	
-	.topRes{
-		fontSize:12;
-		color:#69606A;
-		fontWeight:bold;
-	}
-
-	.followRes{
-		color:#625463;
-		fontsize:12;
-	}
-	
-	.addAllRes{
-		color:#AAAAAA;
-		upSkin:Embed(source="addall.swf" ,symbol="skinup");
-		downSkin:Embed(source="addall.swf" ,symbol="skindown");
-		overSkin:Embed(source="addall.swf" ,symbol="skinover");
-	}
-	
-	.nextSearch{
-		color:#AAAAAA;
-		upSkin:Embed(source="searchnext.swf" ,symbol="rightup");
-		downSkin:Embed(source="searchnext.swf" ,symbol="rightdown");
-		overSkin:Embed(source="searchnext.swf" ,symbol="rightover");
-		disabledSkin:Embed(source="searchnext.swf" ,symbol="rightdis");
-	}
-	
-	.preSearch{
-		color:#AAAAAA;
-		upSkin:Embed(source="searchpre.swf" ,symbol="leftup");
-		downSkin:Embed(source="searchpre.swf" ,symbol="leftdown");
-		overSkin:Embed(source="searchpre.swf" ,symbol="leftover");
-		disabledSkin:Embed(source="searchpre.swf" ,symbol="leftdis");
-	}
-	
-	.backLyric{
-		color:#AAAAAA;
-		upSkin:Embed(source="backLyric.swf" ,symbol="backLyric_up");
-		downSkin:Embed(source="backLyric.swf" ,symbol="backLyric_down");
-		overSkin:Embed(source="backLyric.swf" ,symbol="backLyric_over");
-	}
-	
-/*歌词区CSS*/
-	.lyrics{
-	backgroundColor:#1C121D;
-	borderColor:#1C121D;
-	borderStyle: solid;
-	cornerRadius: 10;
-	}
-	/*
-	TextArea{
-		backgroundAlpha:0.0; 
-		fontSize:12;
-		color:#69606A; 
-		borderThickness:0;
-		themeColor:#1C121D;
-	}
-	*/
-	Label{
-		fontSize:12;
-		color:#69606A;
-	}
-	VRule{
-		strokeColor:#69606A;
-		themeColor:#BAF75D; 
-	}
-	
-	
-	
-	
-/*top区CSS*/
-	.buttomDeep{
-		color: #B8AAB9;
-		textRollOverColor: #B8AAB9;
-		themeColor: #CCFF66;
-		fontSize: 12;
-		fillAlphas: 1.0, 1.0;
-		fillColors: #765F76, #2F1F2F, #2F1F2F, #2F1F2F;
-		paddingLeft: 10;
-		textSelectedColor: #2F1F2F;
-	}
-	.topBottom{
-		backgroundColor:#241625;
-		borderStyle: solid;
-		cornerRadius: 10;
-		backgroundAlpha: 0.5;
-		
-	}
-	.bBottom{
-		backgroundColor:#241625;
-		borderStyle: solid;
-		cornerRadius: 10;
-	}	
-	
-	.playerTop{
-		backgroundColor:#615661;
-	}
-	
-	LinkButton{
-		themeColor:#BAF75D;
-		color:#B8AAB9 ;
-		alpha:1.0 ;
-		fontSize:12;
-		textRollOverColor:#7ac30b;
-	}
-
-	TextInput{
-		color:#9C9C9C ;
-		backgroundColor:#FFFFFF; 
-		borderColor:#B8AAB9 ;
-		fontSize:12 ;
-		themeColor:#BAF75D ;
-	}
-	ComboBox{
-		color:#B8AAB9 ;
-		fillAlphas:1.0, 1.0;
-		fillColors:#3F3240, #3F3240;
-		themeColor:#BAF75D;
-		borderColor:#B8AAB9;
-		cornerRadius:4;
-		selectionColor:#B8AAB9;
-		rollOverColor:#d5fa9d;
-		textRollOverColor:#5b8816;
-	}
-	
-	.lyricOn{
-		color:#baf75d;
-		fontWeight:bold;
-	
-	}
-	
-	.downBottom{
-		backgroundColor:#695b69;
-		borderStyle: solid;
-		cornerRadius: 10;
-		borderColor:#695b69;
-	}
-	
-	.downBtn{
-		fontSize:12;
-		textRollOverColor:#baf75d;
-		textSelectedColor:#B8AAB9;
-		color:#B8AAB9; 
-	}
-	
-	.link2{
-		fontSize:12;
-		textRollOverColor:#baf75d;
-		textSelectedColor:#241625;
-		color:#B8AAB9;
-		paddingLeft:2;
-		paddingRight:2;
-		paddingTop:2;
-		paddingBottom:2;
-	}
-	
-/*web safe**********************************/
-	/* share */
-	.shareBox{
-		backgroundColor:#ccff66;
-		cornerRadius: 6;
-		borderColor:#99CC33;
-		borderStyle: solid;
-	}
-	.shareText{
-		color:#669900;
-	}
-	.share{
-		fontSize:12;
-		fontWeight:normal;
-		themeColor:#669900;
-		borderColor:#99CC33;
-		color:#669900;
-		paddingLeft:4;
-		paddingRight:4;
-		textRollOverColor:#336600;
-		textSelectedColor:#99cc33;
-		paddingLeft:2;
-		paddingRight:2;
-	}
-	.shareClose{
-		color:#669900;
-		textRollOverColor:#336600;
-		textSelectedColor:#99cc33;
-	}
-	
-	/* mood */
-	.upBtn{
-		color:#AAAAAA;
-		upSkin:Embed(source="updown.swf" ,symbol="upup");
-		downSkin:Embed(source="updown.swf" ,symbol="updown");
-		overSkin:Embed(source="updown.swf" ,symbol="upover");
-		disabledSkin:Embed(source="updown.swf" ,symbol="updis");
-	}
-
-	.downBtn{
-		color:#AAAAAA;
-		upSkin:Embed(source="updown.swf" ,symbol="downup");
-		downSkin:Embed(source="updown.swf" ,symbol="downdown");
-		overSkin:Embed(source="updown.swf" ,symbol="downover");
-		disabledSkin:Embed(source="updown.swf" ,symbol="downdis");
-	}
-	.moodBtn{
-		fontSize:12; 
-		fontWeight:normal;
-		themeColor:#669900;
-		borderColor:#99CC33;
-		color:#669900;
-		paddingLeft:4;
-		paddingRight:4;
-		textRollOverColor:#336600;
-		textSelectedColor:#99cc33;
-		paddingLeft:2;
-		paddingRight:2;
-	}
-	.moodText{
-		color:#669900;
-	}
-	.moodText2{
-		color:#99cc33;
-	}
-	.mood{
-		backgroundColor:#FFFFFF;
-		borderColor:#99cc00;
-		color:#FFFFFF;
-		backgroundAlpha:1;
-		borderAlpha:0.8;
-	}
-	.moodList{
-		backgroundColor:#eaeaea;
-	}
-	.moodHRule{
-		color:#ccff66;
-	}
- 
 

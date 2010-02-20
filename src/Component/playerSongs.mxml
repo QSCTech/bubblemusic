@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="260" height="20" styleName="player1"
-	horizontalScrollPolicy="off" verticalScrollPolicy="off">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="300" height="25" horizontalScrollPolicy="off" verticalScrollPolicy="off" styleName="playerCanvas">
 	<mx:Script>
 		<![CDATA[
 			[Bindable]
@@ -10,17 +9,14 @@
 		]]>
 	</mx:Script>
 	
-	
-	<mx:Image id="tri" source="Style/tri.GIF" verticalCenter="0" left="6" visible="false"/>
-	
-	<mx:Canvas id="textBox" x="19" width="230" height="20" verticalCenter="0" horizontalScrollPolicy="off" verticalScrollPolicy="off">
-		<mx:Label x="0" text="{text}" styleName="musicListText" id="labelText" fontSize="12" verticalCenter="0"/>
+	<mx:Button id="tri" x="8" styleName="triBtn" width="8" height="8" verticalCenter="4" visible="false"/>
+	<mx:Canvas id="textBox" x="19" width="270" height="20" verticalCenter="0" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+		<mx:Label text="{text}" styleName="playerSongText" id="labelText" fontSize="12" verticalCenter="0" x="0"/>
 	</mx:Canvas>
-	
-	<mx:Button id="littleMusicShare" x="216" label="分享" styleName="shareBtn" width="12" height="12" verticalCenter="6" visible="false"/>
-	<mx:Button id="littleMusicCollect" x="231" label="收藏" styleName="storeBtn" width="12" height="12" verticalCenter="6" visible="false"/>
-	<mx:Button id="littleMusicDelete" x="246" label="删除" styleName="deleteBtn" width="12" height="12" verticalCenter="6" visible="false"/>
-	
+	<mx:Button id="littleMusicShare" right="37" toolTip="分享" styleName="shareBtn" width="14" height="14" visible="false" y="12"/>
+		<mx:Button id="littleMusicCollect" right="20" toolTip="收藏" styleName="storeBtn" width="14" height="14" visible="false" y="12"/>
+		<mx:Button id="littleMusicDelete" right="3" toolTip="删除" styleName="deleteBtn" width="14" height="14" visible="false" y="12"/>
 	<mx:Move id="moveLeft" target="{labelText}"/> 
+	
 	
 </mx:Canvas>

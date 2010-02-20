@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" width="300" height="170" title="登录" layout="absolute">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="300" height="170" styleName="mainCanvas">
 	
 	
 	<mx:Script source="../as3/Login/loginScript.as" />
-    
-    <mx:Label text="用  户：" y="20" left="15"/>
-    <mx:Label text="密  码：" y="56" left="15"/>
-    <mx:TextInput id="txtUsername" y="20" width="193" right="20"/>
-    <mx:TextInput id="txtPassword" y="56" width="193" right="20" displayAsPassword="true"/>
+    <mx:Text x="20" y="21" text="登陆" fontSize="14" color="#000000" styleName="topText"/>
+   	<mx:LinkButton y="21" label="注册新账号" fontSize="12" styleName="littleLBtn" right="20"/>
+    <mx:LinkButton y="21" label="找回密码" fontSize="12" styleName="littleLBtn" right="100"/>
+    <mx:Label text="用  户：" y="56" left="20" styleName="followText"/>
+    <mx:Label text="密  码：" y="92" left="20" styleName="followText"/>
+    <mx:TextInput id="txtUsername" y="56" width="193" right="20" styleName="popupInput"/>
+    <mx:TextInput id="txtPassword" y="92" width="193" right="20" displayAsPassword="true"  styleName="popupInput"/>
   
-    <mx:Button id="loginSub" y="96" label="登录" horizontalCenter="-60" click="loginHandle()"/>
-    <mx:Button id="loginReset" y="96" label="重置" horizontalCenter="0" click="resetHandle()"/>
-    <mx:Button id="loginCancel" y="96" label="取消" horizontalCenter="60" click="close()"/>
-</mx:Panel>
+    <mx:Button id="loginSub" y="132" label="登录" horizontalCenter="-60" click="loginHandle()" styleName="normalBtn"/>
+    <mx:Button id="loginReset" y="132" label="重置" horizontalCenter="0" click="resetHandle()" styleName="normalBtn"/>
+    <mx:Button id="loginCancel" y="132" label="取消" horizontalCenter="60" click="close()" styleName="normalBtn"/>
+</mx:Canvas>
