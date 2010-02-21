@@ -56,6 +56,11 @@ package as3.Net
 			conn.call("Music.login",new Responder(result,onFault),username,userpw);
 			conn.close();
 		}
-
+		public function getSpecial(result:Function, page:int):void{
+			conn.connect(URL);
+			conn.call("Music.getSubject",new Responder(result,onFault),page);
+			conn.close();
+		}
+		
 	}
 }

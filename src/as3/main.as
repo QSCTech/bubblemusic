@@ -912,6 +912,7 @@
 		var specialWin:special = new special();
 	    PopUpManager.addPopUp(specialWin,this,false);
 	    PopUpManager.centerPopUp(specialWin);
+	    specialWin.init();
 	    specialWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
 	    specialWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
 	}
@@ -923,6 +924,7 @@
 		var registerWin:register = new register();
 	    PopUpManager.addPopUp(registerWin,this,true);
 	    PopUpManager.centerPopUp(registerWin);
+	    
 	}
 	/**
 	 * 登陆

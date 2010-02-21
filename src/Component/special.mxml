@@ -1,33 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="120" height="300" verticalScrollPolicy="off" horizontalScrollPolicy="off" styleName="specialCanvas">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="150" height="300" verticalScrollPolicy="off" horizontalScrollPolicy="off" styleName="mainCanvas">
 	
-	<mx:Script>
-		<![CDATA[
-			import mx.controls.Alert;
-			
-			import mx.managers.PopUpManager;
-            import mx.controls.Text;
-            
-			[Bindable]
-			public var text:String = "";
-			
-			public function close():void{     
-				PopUpManager.removePopUp(this);     
-			}
-		]]>
-	</mx:Script>
-	<mx:LinkButton label="X" styleName="specialCloseLBtn" toolTip="关闭" x="94" y="1" click="close()"
-		borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" />
-	<mx:VBox width="100" horizontalCenter="0" top="33" horizontalAlign="center">
-		
-		<mx:LinkButton label="我的收藏" styleName="specialLBtn" toolTip="随机欣赏您所收藏的音乐"/>
-		<mx:LinkButton label="chip&amp;chops" styleName="specialLBtn" toolTip="休闲网独家音乐收藏"/>
-		<mx:LinkButton label="333333" styleName="specialLBtn"/>
-		<mx:LinkButton label="222222" styleName="specialLBtn"/>
-		<mx:LinkButton label="333333" styleName="specialLBtn"/>
-		<mx:LinkButton label="444444" styleName="specialLBtn"/>
-		<mx:LinkButton label="555555" styleName="specialLBtn"/>
-	</mx:VBox>
-	<mx:Text x="10" y="10" text="泡专题" styleName="specialText" />
-	<mx:HRule top="27" horizontalCenter="0" styleName="specialHRule"/>
+	<mx:Script source="../as3/Special/special.as" />
+	
+	<mx:LinkButton label="X" styleName="closeLBtn" toolTip="关闭" click="close()"
+		borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]"  right="0" top="1"/>
+	<mx:Canvas width="90%" horizontalCenter="0" top="39" height="240" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+		<mx:LinkButton id="s1" styleName="specialLBtn" y="0" horizontalCenter="0"/>
+		<mx:LinkButton id="s2" styleName="specialLBtn" y="30" horizontalCenter="0"/>
+		<mx:LinkButton id="s3" styleName="specialLBtn" y="60" horizontalCenter="0"/>
+		<mx:LinkButton id="s4" styleName="specialLBtn" y="90" horizontalCenter="0"/>
+		<mx:LinkButton id="s5" styleName="specialLBtn" y="120" horizontalCenter="0"/>
+		<mx:LinkButton id="s6" styleName="specialLBtn" y="150" horizontalCenter="0"/>
+		<mx:LinkButton id="s7" styleName="specialLBtn" y="180" horizontalCenter="0"/>
+		<mx:LinkButton id="s8" styleName="specialLBtn" y="210" horizontalCenter="0"/>
+	</mx:Canvas>
+	<mx:Text x="10" y="12" text="泡专题" styleName="topText" />
+	<mx:HRule top="32" horizontalCenter="0" styleName="popupHRule" width="90%"/>
+	
+	<mx:Button id="pre" bottom="5" right="50" width="13" height="13" styleName="prePageBtn" click="getPre()"/>
+	<mx:Button id="next" bottom="5" right="10" width="13" height="13" styleName="nextPageBtn" click="getNext()"/>
+	<mx:Text id="pageText" text="1" bottom="1" styleName="followText" x="106"/>
+	
+	<mx:Parallel id="specialNext">
+		<mx:Move target="{s1}" yFrom="240" yTo="0" duration="500" />
+		<mx:Move target="{s2}" yFrom="270" yTo="30" duration="500"/>
+		<mx:Move target="{s3}" yFrom="300" yTo="60" duration="500"/>
+		<mx:Move target="{s4}" yFrom="330" yTo="90" duration="500"/>
+		<mx:Move target="{s5}" yFrom="360" yTo="120" duration="500"/>
+		<mx:Move target="{s6}" yFrom="390" yTo="150" duration="500"/>
+		<mx:Move target="{s7}" yFrom="420" yTo="180" duration="500"/>
+		<mx:Move target="{s8}" yFrom="450" yTo="210" duration="500"/>
+	</mx:Parallel>
+	
+	<mx:Parallel id="specialPre">
+		<mx:Move target="{s1}" yFrom="-240" yTo="0" duration="500"/>
+		<mx:Move target="{s2}" yFrom="-210" yTo="30" duration="500"/>
+		<mx:Move target="{s3}" yFrom="-180" yTo="60" duration="500"/>
+		<mx:Move target="{s4}" yFrom="-150" yTo="90" duration="500"/>
+		<mx:Move target="{s5}" yFrom="-120" yTo="120" duration="500"/>
+		<mx:Move target="{s6}" yFrom="-90" yTo="150" duration="500"/>
+		<mx:Move target="{s7}" yFrom="-60" yTo="180" duration="500"/>
+		<mx:Move target="{s8}" yFrom="-30" yTo="210" duration="500"/>
+	</mx:Parallel>
 </mx:Canvas>

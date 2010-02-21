@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="80" styleName="shareBox" verticalScrollPolicy="off" horizontalScrollPolicy="off" >
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="80" styleName="mainCanvas" verticalScrollPolicy="off" horizontalScrollPolicy="off" >
 	
 	<mx:Script>
 		<![CDATA[
@@ -28,12 +28,12 @@
 		]]>
 	</mx:Script>
     
-    <mx:Label id="shareInfo" text="{text}" styleName="shareText" top="8" left="10" fontSize="12"/>
-	<mx:Label text="复制以下链接至浏览器，可直接试听~" styleName="shareText" top="25" left="10"/>
-	<mx:TextInput id="songAddress" width="330" bottom="10" left="10" text="{address}"/>
-	<mx:Button id="copyAddress" label="复制" width="40" height="24" bottom="10" right="10" styleName="shareBoxBtn" click="copy();"/>
-	<mx:LinkButton id="shareClose" label="X" styleName="shareCloseLBtn" click="close()" x="372" toolTip="关闭"
+    <mx:Label id="shareInfo" text="{text}" styleName="followText" top="8" left="10" fontSize="12"/>
+	<mx:Label text="复制以下链接至浏览器，可直接试听~" styleName="followText" top="25" left="10"/>
+	<mx:TextInput id="songAddress" width="330" bottom="10" left="10" text="{address}" styleName="popupInput"/>
+	<mx:Button id="copyAddress" label="复制" width="40" height="24" bottom="10" right="10" styleName="normalBtn" click="copy();"/>
+	<mx:LinkButton id="shareClose" label="X" styleName="closeLBtn" click="close()" x="372" toolTip="关闭"
 		borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" />
-	<mx:Text text="复制成功" id="isOK" top="25" right="10" styleName="shareText" visible="false"/>
+	<mx:Text text="复制成功" id="isOK" top="25" right="10" styleName="followText" visible="false"/>
 	
 </mx:Canvas>

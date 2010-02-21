@@ -23,8 +23,10 @@
 	public function init():void{
 		rpc = new RPC();
 		rpc.getComment(this.getMood,this.index,1);
+		
 	}
 	
+
 	/**  
 	 * 得到歌曲id  
 	 * 
@@ -62,7 +64,7 @@
 		
 		rpc.getComment(this.getMood,this.index,page);
 		pageText.text = String(page);
-		moodNext.play();
+		moodSmall.play();
 	}   
 	
 	/**  
@@ -74,7 +76,7 @@
 		
 		rpc.getComment(this.getMood,this.index,page);
 		pageText.text = String(page);
-		moodPre.play();
+		moodSmall.play();
 	}   
 	
 	/**  
@@ -108,11 +110,11 @@
 		var page:int = int(pageText.text);
 
         if(page>9)
-        	pageText.x = 363;
+        	pageText.x = 378;
         else
-            pageText.x = 368;
+            pageText.x = 383;
         
-        if(list[9])
+        if(list[8])
         	next.enabled = true;
         else 
         	next.enabled = false;
@@ -121,41 +123,39 @@
         	pre.enabled = true;
         else 
         	pre.enabled = false;
-        	
-		if(list[0]){
-			m1.username.text = list[0].user;
-			m1.comment.text = list[0].comment;
-		} else { m1.username.text = ""; m1.comment.text = "";}
+        
+        if(list[0]){
+			t1.text = list[0].user;
+			m1.toolTip = list[0].comment;
+		} else { t1.text = ""; m1.toolTip = "";}
 		if(list[1]){
-			m2.username.text = list[1].user;
-			m2.comment.text = list[1].comment;
-		} else { m2.username.text = ""; m2.comment.text = "";}
+			t2.text = list[1].user;
+			m2.toolTip = list[1].comment;
+		} else { t2.text = ""; m2.toolTip = "";}
 		if(list[2]){
-			m3.username.text = list[2].user;
-			m3.comment.text = list[2].comment;
-		} else { m3.username.text = ""; m3.comment.text = "";}
+			t3.text = list[2].user;
+			m3.toolTip = list[2].comment;
+		} else { t3.text = ""; m3.toolTip = "";}
 		if(list[3]){
-			m4.username.text = list[3].user;
-			m4.comment.text = list[3].comment;
-		} else { m4.username.text = ""; m4.comment.text = "";}
+			t4.text = list[3].user;
+			m4.toolTip = list[3].comment;
+		} else { t4.text = ""; m4.toolTip = "";}
 		if(list[4]){
-			m5.username.text = list[4].user;
-			m5.comment.text = list[4].comment;
-		} else { m5.username.text = ""; m5.comment.text = "";}
+			t5.text = list[4].user;
+			m5.toolTip = list[4].comment;
+		} else { t5.text = ""; m5.toolTip = "";}
 		if(list[5]){
-			m6.username.text = list[5].user;
-			m6.comment.text = list[5].comment;
-		} else { m6.username.text = ""; m6.comment.text = "";}
+			t6.text = list[5].user;
+			m6.toolTip = list[5].comment;
+		} else { t6.text = ""; m6.toolTip = "";}
 		if(list[6]){
-			m7.username.text = list[6].user;
-			m7.comment.text = list[6].comment;
-		} else { m7.username.text = ""; m7.comment.text = "";}
+			t7.text = list[6].user;
+			m7.toolTip = list[6].comment;
+		} else { t7.text = ""; m7.toolTip = "";}
 		if(list[7]){
-			m8.username.text = list[7].user;
-			m8.comment.text = list[7].comment;
-		} else { m8.username.text = ""; m8.comment.text = "";}
-		if(list[8]){
-			m9.username.text = list[8].user;
-			m9.comment.text = list[8].comment;
-		} else { m9.username.text = ""; m9.comment.text = "";}
+			t8.text = list[7].user;
+			m8.toolTip = list[7].comment;
+		} else { t8.text = ""; m8.toolTip = "";}
+		
+		
 	}

@@ -62,15 +62,12 @@
 			
 		</mx:State>
 		<mx:State name="lyricState">
-			<mx:SetProperty target="{button1}" name="y"/>
-			<mx:SetStyle target="{button1}" name="top" value="0"/>
-			<mx:SetProperty target="{button1}" name="x"/>
-			<mx:SetStyle target="{button1}" name="left" value="50"/>
+			
 		</mx:State>	
 	</mx:states>
 	
 	<bubble:top id="top" left="0" right="0" top="0"  />
-	<mx:Button x="89" y="10" styleName="logoBtn" />
+	<mx:Button x="89" y="10" styleName="logoBtn" left="40" top="0" />
 	<bubble:now id="now" horizontalCenter="0" top="120"/>
 	
 	<mx:HBox id="middle" verticalCenter="80" horizontalCenter="0">
