@@ -23,7 +23,7 @@ ToolTip
 global
 {
 	color: #000000;
-	themeColor:#ffffff;
+	themeColor:#E00025;
 	fontSize:12;
 }
 Alert
@@ -213,20 +213,6 @@ HRule
 	color:#474747;
 	fontSize: 12;
 }
-.nextSearchBtn
-{
-	upSkin:Embed(source="bubble.swf" ,symbol="nextSearch_up");
-	downSkin:Embed(source="bubble.swf" ,symbol="nextSearch_down");
-	overSkin:Embed(source="bubble.swf" ,symbol="nextSearch_over");
-	disabledSkin:Embed(source="bubble.swf" ,symbol="nextSearch_dis");
-}
-.preSearchBtn
-{
-	upSkin:Embed(source="bubble.swf" ,symbol="preSearch_up");
-	downSkin:Embed(source="bubble.swf" ,symbol="preSearch_down");
-	overSkin:Embed(source="bubble.swf" ,symbol="preSearch_over");
-	disabledSkin:Embed(source="bubble.swf" ,symbol="preSearch_dis");
-}
 .addBtn
 {
 	upSkin:Embed(source="bubble.swf" ,symbol="add_up");
@@ -409,98 +395,8 @@ HSlider
 	fontSize: 12;
 }
 
-/* mood */
-.upBtn{
-	color:#AAAAAA;
-	upSkin:Embed(source="updown.swf" ,symbol="upup");
-	downSkin:Embed(source="updown.swf" ,symbol="updown");
-	overSkin:Embed(source="updown.swf" ,symbol="upover");
-	disabledSkin:Embed(source="updown.swf" ,symbol="updis");
-}
 
-.downBtn{
-	color:#AAAAAA;
-	upSkin:Embed(source="updown.swf" ,symbol="downup");
-	downSkin:Embed(source="updown.swf" ,symbol="downdown");
-	overSkin:Embed(source="updown.swf" ,symbol="downover");
-	disabledSkin:Embed(source="updown.swf" ,symbol="downdis");
-}
-.moodBtn{
-	fontSize:12; 
-	fontWeight:normal;
-	themeColor:#669900;
-	borderColor:#99CC33;
-	color:#669900;
-	paddingLeft:4;
-	paddingRight:4;
-	textRollOverColor:#336600;
-	textSelectedColor:#99cc33;
-	paddingLeft:2;
-	paddingRight:2;
-}
-.moodText{
-	color:#669900;
-}
-.moodText2{
-	color:#99cc33;
-}
-.mood{
-	backgroundColor:#FFFFFF;
-	borderColor:#99cc00;
-	color:#FFFFFF;
-	backgroundAlpha:1;
-	borderAlpha:0.8;
-}
-.moodList{
-	backgroundColor:#eaeaea;
-}
-.moodHRule{
-	color:#ccff66;
-}
-/* share */
-.shareBox{
-	backgroundColor:#EDEDED;
-	cornerRadius: 6;
-	borderColor:#474747;
-	borderStyle: solid;
-	dropShadowEnabled:true; 
-	dropShadowColor:#474747;
-	shadowDirection:right;
-	shadowDistance:2;
-}
-.shareText{
-	color:#000000;
-}
-.shareBoxBtn{
-	paddingLeft: 3;
-	paddingRight: 3;
-	textRollOverColor: #000000;
-	textSelectedColor: #000000;
-	disabledColor: #B2B2B2;
-	borderColor: #D2D2D2;
-	fillAlphas: 0.0, 0.0, 0.0, 0.0;
-	color: #000000;
-	themeColor: #D2D2D2;
-	fontWeight: normal;
-	fillColors: #FFFFFF, #FFFFFF;
-}
-.shareCloseLBtn{
-	color:#474747;
-	textRollOverColor:#000000;
-	textSelectedColor:#000000;
-}
-/* special */
-.specialCanvas
-{
-	backgroundColor:#EDEDED;
-	cornerRadius: 6;
-	borderColor:#474747;
-	borderStyle: solid;
-	dropShadowEnabled:true; 
-	dropShadowColor:#474747;
-	shadowDirection:right;
-	shadowDistance:2;
-}
+
 .specialLBtn
 {
 	textRollOverColor: #FFFFFF;
@@ -513,26 +409,18 @@ HSlider
 	themeColor:#E00025;
 	fontWeight: normal;
 }
-.specialCloseLBtn
+.popupHRule
+{
+	strokeColor:#B2B2B2;
+	strokeWidth:1;
+}
+.closeLBtn
 {
 	textRollOverColor: #000000;
 	textSelectedColor: #000000;
 	color: #474747;
 	fontWeight: normal;
 }	
-.specialText
-{
-	color:#000000;
-	fontWeight:bold;
-}
-.specialHRule
-{
-	strokeColor:#B2B2B2;
-	strokeWidth:1;
-}
-
-
-
 .mainCanvas
 {
 	backgroundColor:#EDEDED;
@@ -592,8 +480,32 @@ HSlider
 	paddingLeft: 3;
 	mouseDownEffect: Glow;
 }
-
-
+.moodBtn 
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="mood_up");
+	downSkin:Embed(source="bubble.swf" ,symbol="mood_down");
+	overSkin:Embed(source="bubble.swf" ,symbol="mood_over");
+	rollOverEffect: Glow;
+}
+.moodWhiteText
+{
+	color:#FFFFFF;
+	fontSize:12;
+}
+.nextPageBtn
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="nextSearch_up");
+	downSkin:Embed(source="bubble.swf" ,symbol="nextSearch_down");
+	overSkin:Embed(source="bubble.swf" ,symbol="nextSearch_over");
+	disabledSkin:Embed(source="bubble.swf" ,symbol="nextSearch_dis");
+}
+.prePageBtn
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="preSearch_up");
+	downSkin:Embed(source="bubble.swf" ,symbol="preSearch_down");
+	overSkin:Embed(source="bubble.swf" ,symbol="preSearch_over");
+	disabledSkin:Embed(source="bubble.swf" ,symbol="preSearch_dis");
+}
 	
 /*弹出登录&注册框*/	
 	Panel{

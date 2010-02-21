@@ -30,9 +30,9 @@
 		</mx:Canvas>
 	
 		<mx:Button id="addAll" label="全部加入" left="8" bottom="2" styleName="addAllBtn" toolTip="当前页所有歌曲"/>
-		<mx:Button id="nextBtn" x="378" y="232" styleName="nextSearchBtn" enabled="false" width="8" height="12"/>
+		<mx:Button id="nextBtn" x="378" y="232" styleName="nextPageBtn" enabled="false" width="8" height="12"/>
 		<mx:Label id="page" x="361" y="229" styleName="pageText" text="0" width="16"/>
-		<mx:Button id="preBtn" x="348" y="232" styleName="preSearchBtn" enabled="false" width="8" height="12"/>
+		<mx:Button id="preBtn" x="348" y="232" styleName="prePageBtn" enabled="false" width="8" height="12"/>
 	</mx:Canvas>		
 	
 	<mx:Parallel id="listDown">
