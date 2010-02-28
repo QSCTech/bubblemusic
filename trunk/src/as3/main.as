@@ -3,11 +3,11 @@
  * 
  */
 
+	import Component.login;
 	import Component.mood;
+	import Component.register;
 	import Component.share;
 	import Component.special;
-	import Component.register;
-	import Component.login;
 	
 	import as3.Lyric.LRCDecoder;
 	import as3.Net.RPC;
@@ -935,7 +935,7 @@
 	    PopUpManager.addPopUp(loginWin,this,true);
 	    PopUpManager.centerPopUp(loginWin);
 	}
-	public function callBack():void{
+	public function callBack(user:String):void{
 		top.loginBtn.label = "设置";
 		top.registerBtn.label = "退出";
 		top.welcomText.text = "欢迎你，";
