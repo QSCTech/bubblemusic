@@ -28,7 +28,7 @@
     </mx:Script>
     
 	<mx:HBox right="5" top="5" height="24" verticalAlign="middle" horizontalAlign="right">
-		<mx:Text id="welcomText"/>
+		<mx:Text id="welcomText" color="#FFFFFF"/>
 		<mx:LinkButton label="登录" id="loginBtn" styleName="topLBtn"/>
 		<mx:LinkButton label="注册" id="registerBtn" styleName="topLBtn"/>
 		<mx:LinkButton label="帮助" id="helpBtn" styleName="topLBtn"/>

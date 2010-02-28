@@ -46,7 +46,14 @@ package as3.PlayControl
 				isPlay = false;
 			}
 			music = new Sound();
+			music.addEventListener(Event.COMPLETE,onMusicLoaded);
 			music.load(new URLRequest(musicFile));
+			//channel = music.play(0);
+			//channel.addEventListener(Event.SOUND_COMPLETE,nextMusic);
+			//isPlay = true;
+		}
+		
+		private function onMusicLoaded(event:Event):void{
 			channel = music.play(0);
 			channel.addEventListener(Event.SOUND_COMPLETE,nextMusic);
 			isPlay = true;
