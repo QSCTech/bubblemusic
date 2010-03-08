@@ -13,17 +13,18 @@
 			[Bindable]
 			public var address:String = "";
 			
+			public var copied:Function;  
 			
-			public function close():void{  
-			//	if(callBack != null){                         
-			//		callBack(share);                 
-			//	}       
+			public function close():void{     
 				PopUpManager.removePopUp(this);     
 			}
 			
 			private function copy():void{
 				System.setClipboard(address);
-				isOK.visible = true;
+				if(copied != null){
+					copied("复制成功");                 
+				} 
+				close();
 			}
 		]]>
 	</mx:Script>
