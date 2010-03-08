@@ -1,14 +1,11 @@
 /*CSS file*/
-	ScrollBar{
-		fillAlphas: 1.0, 1.0;
-		fillColors: #736873, #736873, #736873, #736873;
-		borderColor: #241625;
-		trackColors: #241625, #3E323F;
-		themeColor: #ccff66;
-	}
-
-
-/* CSS file */
+ScrollBar{
+	fillAlphas: 1.0, 1.0;
+	fillColors: #EDEDED, #EDEDED, #EDEDED, #EDEDED;
+	borderColor: #000000;
+	trackColors: #000000, #000000;
+	themeColor: #ccff66;
+}
 Application
 {
 	backgroundGradientAlphas:1.0, 1.0; 
@@ -31,7 +28,7 @@ Alert
 	backgroundColor: #D7D7D7;
 	borderColor: #D7D7D7;
 	fontSize: 12;
-	color:#e00025;
+	color:#474747;
 }	
 /*logo*/
 .logoBtn
@@ -62,6 +59,19 @@ Alert
 	backgroundAlpha: 1;
 	dropShadowColor:#000000;
 	dropShadowEnabled:true;
+	cornerRadius:25;
+}
+.topCanvas2
+{
+	backgroundColor:#000000;
+	borderColor:#000000;
+	borderStyle: solid;
+	backgroundAlpha: 0;
+	dropShadowColor:#000000;
+	dropShadowEnabled:true;
+	cornerRadius:25;
+	borderThickness:4;
+	alpha:1;
 }
 /*searchBar*/
 ComboBox
@@ -507,18 +517,17 @@ HSlider
 	disabledSkin:Embed(source="bubble.swf" ,symbol="preSearch_dis");
 }
 	
-/*弹出登录&注册框*/	
-	Panel{
-		borderColor:#2F1F2F; 
-		themeColor:#CCFF66;
-		color:#1A0C1A;
-		fontSize:12;
-	}
+
 	
 	.welcomeUsername{
 		color:#2F1F2F;
 	}
 	
+.bottomHRule
+{
+	strokeColor:#E00025;
+	strokeWidth:1;
+}
 
 
 

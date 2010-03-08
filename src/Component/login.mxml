@@ -4,7 +4,7 @@
 	
 	<mx:Script source="../as3/Login/loginScript.as" />
     <mx:Text x="20" y="21" text="登陆" styleName="topText"/>
-   	<mx:LinkButton y="21" label="注册新账号" fontSize="12" styleName="littleLBtn" right="20"/>
+   	<mx:LinkButton y="21" label="注册新账号" fontSize="12" styleName="littleLBtn" right="20" click="registerNew()"/>
     <mx:LinkButton y="21" label="找回密码" fontSize="12" styleName="littleLBtn" right="100"/>
     <mx:Label text="用  户：" y="56" left="20" styleName="followText"/>
     <mx:Label text="密  码：" y="92" left="20" styleName="followText"/>
