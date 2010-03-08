@@ -8,6 +8,7 @@
 	import Component.register;
 	import Component.share;
 	import Component.special;
+	import Component.top;
 	
 	import as3.Lyric.LRCDecoder;
 	import as3.Net.RPC;
@@ -42,9 +43,8 @@
 	public var LRC:Array = new Array();
 	public var lrcnum:int;
 	public var isSilent:int = 0;
-	public var isMood:int = 0;
-	public var isShare:int = 0;
-
+	public var isLyric:int = 1;
+	public var userName:String = "";
 	
 	[Bindable]
 	public var Version:String = "Bubble jay 0.5 (12.24.r48) Christmas Edition.Powered by QSCtech";
@@ -117,6 +117,7 @@
 	    now.moodMusic.addEventListener(MouseEvent.CLICK,moodMusic);
 	    now.shareMusic.addEventListener(MouseEvent.CLICK,shareMusic);
 	    now.specialList.addEventListener(MouseEvent.CLICK,specialList);
+	    now.hideLyric.addEventListener(MouseEvent.CLICK,lyricShow);
 	    top.registerBtn.addEventListener(MouseEvent.CLICK,registerShow);
 	    top.loginBtn.addEventListener(MouseEvent.CLICK,loginShow);
 	    
@@ -164,6 +165,33 @@
 	    musicList.l10.littleMusicDelete.addEventListener(MouseEvent.CLICK,musicDelete);
 	    musicList.l11.littleMusicDelete.addEventListener(MouseEvent.CLICK,musicDelete);
 	    musicList.l12.littleMusicDelete.addEventListener(MouseEvent.CLICK,musicDelete);
+	    
+	    musicList.l1.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);
+	    musicList.l2.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);
+	    musicList.l3.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);
+	    musicList.l4.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);
+	    musicList.l5.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);
+	    musicList.l6.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);
+	    musicList.l7.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);
+	    musicList.l8.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);
+	    musicList.l9.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);
+	    musicList.l10.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);
+	    musicList.l11.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);
+	    musicList.l12.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);
+	    
+	    musicList.l1.littleMusicShare.addEventListener(MouseEvent.CLICK,musicShare);
+	    musicList.l2.littleMusicShare.addEventListener(MouseEvent.CLICK,musicShare);
+	    musicList.l3.littleMusicShare.addEventListener(MouseEvent.CLICK,musicShare);
+	    musicList.l4.littleMusicShare.addEventListener(MouseEvent.CLICK,musicShare);
+	    musicList.l5.littleMusicShare.addEventListener(MouseEvent.CLICK,musicShare);
+	    musicList.l6.littleMusicShare.addEventListener(MouseEvent.CLICK,musicShare);
+	    musicList.l7.littleMusicShare.addEventListener(MouseEvent.CLICK,musicShare);
+	    musicList.l8.littleMusicShare.addEventListener(MouseEvent.CLICK,musicShare);
+	    musicList.l9.littleMusicShare.addEventListener(MouseEvent.CLICK,musicShare);
+	    musicList.l10.littleMusicShare.addEventListener(MouseEvent.CLICK,musicShare);
+	    musicList.l11.littleMusicShare.addEventListener(MouseEvent.CLICK,musicShare);
+	    musicList.l12.littleMusicShare.addEventListener(MouseEvent.CLICK,musicShare);
+	    
 	}
 
 	/**
@@ -178,8 +206,8 @@
         now.nowAlbum.label = list[0].album;
         now.rssPlayer.label = "关注\"" + list[0].title + "\"";
         now.nowMusic.toolTip = "搜索歌曲\"" + list[0].title + "\"";
-		now.nowAuthor.toolTip = "搜索歌手\"" + list[0].title + "\"";
-        now.nowAlbum.toolTip = "搜索专辑\"" + list[0].title + "\"";
+		now.nowAuthor.toolTip = "搜索歌手\"" + list[0].author + "\"";
+        now.nowAlbum.toolTip = "搜索专辑\"" + list[0].album + "\"";
         
         resetPlaylistX();     
 		if(list[0]){
@@ -218,13 +246,6 @@
 		if(list[11]){
 			musicList.l12.text = list[11].title + " - " + list[11].author;
 		} else { musicList.l12.text = ""; }
-		
-	//	if(isMood){
-	//		moodUpdate();
-	//	}
-	//	if(isShare){
-	//		shareUpdate();
-	//	}
 	}
 	
 	/**
@@ -535,15 +556,23 @@
 	 * 显示歌词组件
 	 */
 	public function lyricShow(event:Event):void{
-		currentState = "lyricState";
-		//top.currentState = "logined";
+		if(isLyric){
+			
+			isLyric = 0;
+			now.hideLyric.label = "显示歌词";
+		}
+		else{
+			currentState = "lyricState";
+			isLyric = 1;
+			now.hideLyric.label = "隐藏歌词";
+		}
 	}
 	
 	/**
 	 * 显示搜索结果
 	 */
 	public function searchShow(event:Event):void{
-		
+		lyricShow(event);
 		if(top.searchTarget.text!=""){
 			rpc.getSearchList(onGetSearchList,top.searchIndex.selectedLabel,top.searchTarget.text,1);
 			currentState = "searchRes";
@@ -769,6 +798,19 @@
 	}
 	
 	/**
+	 * 收藏播放列表中歌曲 
+	 */
+	private function musicCollect(event:MouseEvent):void{
+		var i:int = event.currentTarget.owner.index - 1;
+		if(userName != ""){
+			
+		}
+		else{
+			Alert.show("登录后才能收藏歌曲！");
+		}
+	}
+	
+	/**
 	 * 删除播放列表中歌曲 
 	 */
 	private function musicDelete(event:MouseEvent):void{
@@ -782,10 +824,7 @@
 			this.syncPlayList(playList);
 			this.listEffect(i);
 		}
-		
-		
 	}
-	
 	
 	/**
 	 * 同步当前播放歌曲信息到底部状态栏和浏览器标题 
@@ -872,7 +911,6 @@
 		PopUpManager.addPopUp(moodWin,this,false);
 	    PopUpManager.centerPopUp(moodWin);
 	//    moodWin.callBack = callBack;
-	    isMood = 1;
 	    moodWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
 	    moodWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
 	}
@@ -886,12 +924,20 @@
 		shareWin.address = "http://10.76.8.200/bubble/bubble/#" + playList[0].id;
 	    PopUpManager.addPopUp(shareWin,this,false);
 	    PopUpManager.centerPopUp(shareWin);
-	 //   shareWin.callBack = callBack;
-	    isShare = 1;
 	    shareWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
 	    shareWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
 	}
-		
+	
+	private function musicShare(event:MouseEvent):void{
+		var i:int = event.currentTarget.owner.index - 1;
+		var shareWin:share = new share();
+		shareWin.text = "分享\"" + playList[i].title + "\"给好友吧~";
+		shareWin.address = "http://10.76.8.200/bubble/bubble/#" + playList[1].id;
+	    PopUpManager.addPopUp(shareWin,this,false);
+	    PopUpManager.centerPopUp(shareWin);
+	    shareWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
+	    shareWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
+	}	
 	/**
 	 * 弹出窗口的处理
 	 */
@@ -922,9 +968,9 @@
 	 */	
 	private function registerShow(event:MouseEvent):void{
 		var registerWin:register = new register();
+		registerWin.login = loginNew;
 	    PopUpManager.addPopUp(registerWin,this,true);
 	    PopUpManager.centerPopUp(registerWin);
-	    
 	}
 	/**
 	 * 登陆
@@ -932,12 +978,36 @@
 	private function loginShow(event:MouseEvent):void{
 		var loginWin:login = new login();
 		loginWin.callBack = callBack;
+		loginWin.register = registerNew;
 	    PopUpManager.addPopUp(loginWin,this,true);
 	    PopUpManager.centerPopUp(loginWin);
 	}
 	public function callBack(user:String):void{
-		top.loginBtn.label = "设置";
-		top.registerBtn.label = "退出";
-		top.welcomText.text = "欢迎你，";
+		top.welcomeText.text = user + "，Let's Bubble~" ;
+		top.currentState = "logined";
+		userName = user;
 	}
 	
+	/**
+	 * 这两个函数如果直接用前面的不行><
+	 */	
+	private function registerNew():void{
+		var registerWin:register = new register();
+		registerWin.login = loginNew;
+	    PopUpManager.addPopUp(registerWin,this,true);
+	    PopUpManager.centerPopUp(registerWin);
+	}
+	private function loginNew():void{
+		var loginWin:login = new login();
+		loginWin.callBack = callBack;
+		loginWin.register = registerNew;
+	    PopUpManager.addPopUp(loginWin,this,true);
+	    PopUpManager.centerPopUp(loginWin);
+	}
+	/**
+	 * 登录后退出
+	 */	
+	public function exitUser():void{
+		top.welcomeText.text = "" ;
+		top.currentState = "";
+	}

@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="300" height="216" x="50" horizontalCenter="0" 
-	styleName="mainCanvas">
-
-   <mx:Script>
-        <![CDATA[ 
-        
-            import mx.managers.PopUpManager;
-            import mx.controls.Text;
-
-            private function close():void{
-            	PopUpManager.removePopUp(this);
-            }
-
-       ]]>
-    </mx:Script>
+	styleName="mainCanvas" fontSize="12">
     
-   <mx:Label text="用  户：" y="60" left="20" styleName="followText"/>
-   <mx:Label text="密  码：" y="89" left="20" styleName="followText"/>
-   <mx:Label text="确认密码：" y="118" left="20" styleName="followText"/>
-   <mx:Label text="邮  箱：" y="147" left="20" styleName="followText"/>
-   <mx:TextInput y="87" width="193" right="20" styleName="popupInput"/>
-   <mx:TextInput y="58" width="193" right="20" styleName="popupInput"/>
-   <mx:TextInput y="116" width="193" right="20" styleName="popupInput"/>
-   <mx:TextInput y="145" width="193" right="20" styleName="popupInput"/>
-   <mx:Button label="注册" horizontalCenter="-60" bottom="10" styleName="normalBtn"/>
-   <mx:Button label="重置" horizontalCenter="0" bottom="10" styleName="normalBtn"/>
-   <mx:Button label="取消" horizontalCenter="60" click="close()" bottom="10" styleName="normalBtn"/>
-   <mx:Text x="20" y="21" text="注册" fontSize="14" color="#000000" styleName="topText"/>
-   <mx:LinkButton x="186" y="21" label="已有账号登陆" fontSize="12" styleName="littleLBtn"/>
-		
+    <mx:Script source="../as3/Register/register.as" />
+   
+    <mx:Label text="用  户：" y="60" left="20" styleName="followText"/>
+    <mx:Label text="密  码：" y="89" left="20" styleName="followText"/>
+    <mx:Label text="确认密码：" y="118" left="20" styleName="followText"/>
+    <mx:Label text="内网邮箱：" y="147" left="20" styleName="followText"/>
+   
+    <mx:TextInput id="username" y="58" width="193" right="20" styleName="popupInput"/>
+    <mx:TextInput id="password" y="87" width="193" right="20" styleName="popupInput" displayAsPassword="true"/>
+    <mx:TextInput id="passwordAgain" y="116" width="193" right="20" styleName="popupInput" displayAsPassword="true"/>
+    <mx:TextInput id="email" y="145" width="193" right="20" styleName="popupInput" />
+    <mx:Button label="注册" horizontalCenter="-60" bottom="10" styleName="normalBtn" click="registerHandle()"/>
+    <mx:Button label="重置" horizontalCenter="0" bottom="10" styleName="normalBtn" click="resetHandle()"/>
+    <mx:Button label="取消" horizontalCenter="60" click="onclose()" bottom="10" styleName="normalBtn"/>
+    <mx:Text x="20" y="21" text="注册" fontSize="14" color="#000000" styleName="topText"/>
+    <mx:LinkButton x="186" y="21" label="已有账号登陆" fontSize="12" styleName="littleLBtn" click="loginNew()"/>
+	
+	<mx:EmailValidator id="emailCheck" source="{email}" property="text" invalidCharError="非法字符" 
+		invalidDomainError="非法域" invalidIPDomainError="非法IP域" missingAtSignError="缺少@附" 
+		missingPeriodInDomainError="缺少后缀域" missingUsernameError="缺少用户名" required="true" requiredFieldError="请填写内网邮箱"/>
+	<mx:StringValidator id="pwCheck" maxLength="16" minLength="6" tooLongError="密码长度应在6-16位之间" tooShortError="密码长度应在6-16位之间"
+	    required="true" requiredFieldError="请输入密码" source="{password}" property="text"/>
+	<mx:StringValidator id="pwCheckAgain" maxLength="16" minLength="6" tooLongError="密码长度应在6-16位之间" tooShortError="密码长度应在6-16位之间"
+	    required="true" requiredFieldError="请再次输入密码" source="{passwordAgain}" property="text"/>
+	<mx:StringValidator id="userCheck" maxLength="16" minLength="6" tooLongError="用户名长度应在6-16位之间" tooShortError="用户名长度应在6-16位之间"
+	    required="true" requiredFieldError="请输入用户名" source="{username}" property="text" />
+	    	
 </mx:Canvas>

@@ -3,23 +3,16 @@
 	
 	import mx.controls.Alert;
 	import mx.managers.PopUpManager;     
-	 
-	public var callBack:Function;                  
+	
+	public var callBack:Function;  
+	public var register:Function;      
 	public var islogin:Boolean = false;  
 	public var rpc:RPC = new RPC();
 
 	
 	public function close():void{         
 		PopUpManager.removePopUp(this);     
-	}          
-	
-	public function dropIt(event:MouseEvent):void{       
-		event.currentTarget.stopDrag();     
-	}           
-	
-	public function dragIt(event:MouseEvent):void{       
-		event.currentTarget.startDrag();     
-	}                   
+	}                         
 	
 	public function loginHandle():void{                 
 		if(txtUsername.text == "" || txtPassword.text == ""){                         
@@ -30,11 +23,18 @@
 		}         
 	}
 
-	public function onResult(result:Boolean):void{
-		if(result == true){
+	public function onResult(result:String):void{
+		if(result == "登陆成功"){
+			if(callBack != null){
+				callBack(txtUsername.text);                 
+			}  
 			this.onclose();
-		} else {
-			Alert.show("用户名或密码错误");
+		} 
+		else if(result == "密码不正确"){
+			Alert.show("密码不正确");
+		}
+		else{
+			Alert.show("用户名不存在");
 		}
 	}
 
@@ -43,10 +43,13 @@
 		txtPassword.text = "";         
 	}                  
 	
-	public function onclose():void{                 
-		if(callBack != null){
-			Alert.show("asdf");
-			callBack(txtUsername.text);                 
-		}                 
+	public function onclose():void{                             
 		PopUpManager.removePopUp(this);         
 	} 
+	
+	public function registerNew():void{ 
+		this.onclose();
+		if(register != null){
+			register();                 
+		}  	
+	}

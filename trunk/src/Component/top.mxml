@@ -1,49 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="66" styleName="topCanvas" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+	 <mx:states>
+	 	 <mx:State name="logined">
+	 	 	 <mx:RemoveChild target="{loginBtn}"/>
+	 	 	 <mx:RemoveChild target="{registerBtn}"/>
+	 	 	 <mx:AddChild relativeTo="{helpBtn}" position="before">
+	 	 	 	 <mx:LinkButton label="退出" id="exitBtn" styleName="topLBtn"/>
+	 	 	 </mx:AddChild>
+	 	 	 <mx:AddChild relativeTo="{exitBtn}" position="before">
+	 	 	 	 <mx:LinkButton label="设置" id="setBtn" styleName="topLBtn"/>
+	 	 	 </mx:AddChild>
+	 	 	 <mx:AddChild relativeTo="{setBtn}" position="before">
+	 	 	 	 <mx:LinkButton label="上传歌曲" id="uploadBtn" styleName="topLBtn"/>
+	 	 	 </mx:AddChild>
+	 	 	 <mx:SetEventHandler target="{exitBtn}" handlerFunction="exitUser" name="click"/>
+	 	 </mx:State>
+	 	 
+	 	 <mx:State name="unlogined"/>
+	 	 
+	 </mx:states>
+	 
 	 <mx:Script>
    
         <![CDATA[
-        	import mx.managers.PopUpManager;
-		    import mx.containers.TitleWindow;
-		    import mx.core.IFlexDisplayObject;
-		    import mx.controls.Alert;
-		    
-            public function showRegister():void {
-			   var registerWin:IFlexDisplayObject=PopUpManager.createPopUp(this.owner,register,true);
-			   //showhelp.move(stage.stageWidth,stage.stageHeight);
-			   PopUpManager.centerPopUp(registerWin);
-			}
-			public function showLogin():void {
-				var loginObject:login = new login;
-				loginObject.callBack = callBack;
-			  	PopUpManager.addPopUp(loginObject,this.owner,true);
-			   
-			   //showhelp.move(stage.stageWidth,stage.stageHeight);
-			   PopUpManager.centerPopUp(loginObject);
-			}
-			public function callBack():void{
-				//Can do anything here~
+        	
+        	public function exitUser():void{
+				this.currentState = "unlogined";
+				
 			}
     	]]>
     </mx:Script>
     
-	<mx:HBox right="5" top="5" height="24" verticalAlign="middle" horizontalAlign="right">
-		<mx:Text id="welcomText" color="#FFFFFF"/>
-		<mx:LinkButton label="登录" id="loginBtn" styleName="topLBtn"/>
-		<mx:LinkButton label="注册" id="registerBtn" styleName="topLBtn"/>
-		<mx:LinkButton label="帮助" id="helpBtn" styleName="topLBtn"/>
-	</mx:HBox>
+    
+    <mx:HBox width="100%" verticalAlign="middle">
+    	<mx:Canvas styleName="topCanvas" width="100%" height="45">
+			<mx:HBox right="10" height="24" verticalAlign="middle" horizontalAlign="right" verticalCenter="0">
+				<mx:Text id="welcomeText" color="#FFFFFF"/>
+				<mx:LinkButton label="登录" id="loginBtn" styleName="topLBtn"/>
+				<mx:LinkButton label="注册" id="registerBtn" styleName="topLBtn"/>
+				<mx:LinkButton label="帮助" id="helpBtn" styleName="topLBtn"/>
+			</mx:HBox>    	
+	    </mx:Canvas>
 	
-	<mx:HBox bottom="5" right="5">
-		<mx:TextInput right="165" bottom="8" id="searchTarget" height="24" />
-		<mx:ComboBox right="65" fontSize="12" bottom="8" id="searchIndex"  >
-			<mx:String>全部搜索</mx:String>
-			<mx:String>搜歌名</mx:String>
-			<mx:String>搜歌手</mx:String>
-			<mx:String>搜专辑</mx:String>
-			<mx:String>搜专题</mx:String>
-		</mx:ComboBox>
-		<mx:Button id="searchBtn" label="搜索" right="10" bottom="8" styleName="searchBtn" />
-	</mx:HBox>
-	
+		<mx:Canvas styleName="topCanvas2" height="45">
+			<mx:HBox right="10" verticalCenter="0" left="10">
+				<mx:TextInput right="165" bottom="8" id="searchTarget" height="24"  cornerRadius="10"/>
+				<mx:ComboBox right="65" fontSize="12" bottom="8" id="searchIndex"  >
+					<mx:String>全部搜索</mx:String>
+					<mx:String>搜歌名</mx:String>
+					<mx:String>搜歌手</mx:String>
+					<mx:String>搜专辑</mx:String>
+					<mx:String>搜专题</mx:String>
+				</mx:ComboBox>
+				<mx:Button id="searchBtn" label="搜索" right="10" bottom="8" styleName="searchBtn"  cornerRadius="10"/>
+			</mx:HBox>
+		</mx:Canvas>
+    </mx:HBox>
+	<mx:Button styleName="logoBtn" left="40" top="0"   width="168.45" height="125"/>
 </mx:Canvas>

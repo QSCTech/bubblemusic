@@ -13,7 +13,7 @@
 	</mx:HBox>	
 	<mx:Canvas right="16" top="10" width="778">
 		<mx:HBox left="0" width="182" top="0">
-			<mx:LinkButton id="showLyric" y="10" label="隐藏歌词" styleName="nowLBtn"
+			<mx:LinkButton id="hideLyric" y="10" label="隐藏歌词" styleName="nowLBtn"
 				borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" />
 			<mx:LinkButton id="resetList" y="10" label="重置列表" styleName="nowLBtn"
 				borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" />
