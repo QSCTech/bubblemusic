@@ -8,7 +8,6 @@
 	import Component.register;
 	import Component.share;
 	import Component.special;
-	import Component.top;
 	
 	import as3.Lyric.LRCDecoder;
 	import as3.Net.RPC;
@@ -922,6 +921,7 @@
 		var shareWin:share = new share();
 		shareWin.text = "分享\"" + playList[0].title + "\"给好友吧~";
 		shareWin.address = "http://10.76.8.200/bubble/bubble/#" + playList[0].id;
+		shareWin.copied = tipsShow;
 	    PopUpManager.addPopUp(shareWin,this,false);
 	    PopUpManager.centerPopUp(shareWin);
 	    shareWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
@@ -933,6 +933,7 @@
 		var shareWin:share = new share();
 		shareWin.text = "分享\"" + playList[i].title + "\"给好友吧~";
 		shareWin.address = "http://10.76.8.200/bubble/bubble/#" + playList[1].id;
+		shareWin.copied = tipsShow;
 	    PopUpManager.addPopUp(shareWin,this,false);
 	    PopUpManager.centerPopUp(shareWin);
 	    shareWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
@@ -986,6 +987,7 @@
 		top.welcomeText.text = user + "，Let's Bubble~" ;
 		top.currentState = "logined";
 		userName = user;
+	//	top.exitBtn.addEventListener(MouseEvent.CLICK,exitUser);
 	}
 	
 	/**
@@ -1004,10 +1006,8 @@
 	    PopUpManager.addPopUp(loginWin,this,true);
 	    PopUpManager.centerPopUp(loginWin);
 	}
-	/**
-	 * 登录后退出
-	 */	
-	public function exitUser():void{
-		top.welcomeText.text = "" ;
-		top.currentState = "";
+
+	private function tipsShow(tip:String):void{
+		tipText.text = tip;
+		tipShow.play();
 	}

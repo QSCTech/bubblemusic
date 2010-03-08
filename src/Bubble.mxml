@@ -59,11 +59,13 @@
 			<mx:SetEventHandler target="{searchList.s8.littleSearchAdd}" handlerFunction="addOneMusicBtn" name="click"/>
 			<mx:SetEventHandler target="{searchList.s9.littleSearchAdd}" handlerFunction="addOneMusicBtn" name="click"/>
 			<mx:SetEventHandler target="{searchList.s10.littleSearchAdd}" handlerFunction="addOneMusicBtn" name="click"/>	
-			
 		</mx:State>
+		
 		<mx:State name="lyricState">
-			
 		</mx:State>	
+		
+	
+		
 	</mx:states>
 	
 	<bubble:top id="top" />
@@ -74,11 +76,25 @@
 		<bubble:lyrics id="lyric" verticalCenter="0"/>
 	</mx:HBox>	
 	<mx:Canvas horizontalCenter="0" width="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off" height="100">
-		<mx:Button id="bubbleTip" bottom="0" right="115" styleName="tipBtn"/>
 		<mx:Label text="{Version}" bottom="5" horizontalCenter="0" styleName="versionText"/>
+		<mx:Canvas id="tipCanvas" width="200" height="56" right="56" styleName="tipCanvas" y="100">
+			<mx:Text id="tipText" text="" horizontalCenter="0" verticalCenter="0"/>
+		</mx:Canvas>
+		<mx:Button id="bubbleTip" bottom="0" right="115" styleName="tipBtn"/>
 		<mx:HRule width="100%" bottom="0" styleName="bottomHRule"/>
 	</mx:Canvas>
 	
+	<mx:Parallel id="tipShow" effectEnd="tipStay.play()">
+		<mx:Fade target="{tipCanvas}" alphaFrom="0.0" alphaTo="1.0" duration="1000"/>
+		<mx:Move target="{tipCanvas}" yFrom="100" yTo="0" duration="1000"/>		
+	</mx:Parallel>
+	<mx:Parallel id="tipStay" effectEnd="tipFade.play()">
+		<mx:Move target="{tipCanvas}" yFrom="0" yTo="0" duration="1000"/>
+	</mx:Parallel>
+	<mx:Parallel id="tipFade">
+		<mx:Fade target="{tipCanvas}" alphaFrom="1.0" alphaTo="0.0" duration="1000"/>
+		<mx:Move target="{tipCanvas}" yFrom="0" yTo="100" duration="1000"/>
+	</mx:Parallel>
 	
 	<mx:transitions>
 		<mx:Transition id="searchTrans" fromState="*" toState="searchRes">
@@ -93,6 +109,7 @@
 				<mx:Dissolve alphaFrom="0.0" alphaTo="1.0" duration="1000"/>
 			</mx:Parallel>
 		</mx:Transition>
+
 	</mx:transitions>
 	
 </mx:Application>
