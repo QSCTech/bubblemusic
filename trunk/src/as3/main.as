@@ -57,7 +57,7 @@
 		//以下列表仅用于测试
 		var arg:String = flash.external.ExternalInterface.call("getIndex");
 		rpc.getMusicList(onGetMusicList,arg);
-
+		
 		musicControl.setNextMusic( this.nextMusic);
 		now.next.addEventListener(MouseEvent.CLICK,nextMusic);
 		now.playandpause.addEventListener(MouseEvent.CLICK,pauseAndPlay);
@@ -191,8 +191,9 @@
 	    musicList.l11.littleMusicShare.addEventListener(MouseEvent.CLICK,musicShare);
 	    musicList.l12.littleMusicShare.addEventListener(MouseEvent.CLICK,musicShare);
 	    
+	    rpc.getNotes(tipsShow);
 	}
-
+	
 	/**
 	 *同步播放列表,当播放列表改动后,同步到播放器界面上 
 	 * @param playList
@@ -203,7 +204,7 @@
 		now.nowMusic.label = list[0].title;
 		now.nowAuthor.label = list[0].author;
         now.nowAlbum.label = list[0].album;
-        now.rssPlayer.label = "关注\"" + list[0].title + "\"";
+        now.rssPlayer.label = "关注\"" + list[0].author + "\"";
         now.nowMusic.toolTip = "搜索歌曲\"" + list[0].title + "\"";
 		now.nowAuthor.toolTip = "搜索歌手\"" + list[0].author + "\"";
         now.nowAlbum.toolTip = "搜索专辑\"" + list[0].album + "\"";
@@ -932,7 +933,7 @@
 		var i:int = event.currentTarget.owner.index - 1;
 		var shareWin:share = new share();
 		shareWin.text = "分享\"" + playList[i].title + "\"给好友吧~";
-		shareWin.address = "http://10.76.8.200/bubble/bubble/#" + playList[1].id;
+		shareWin.address = "http://10.76.8.200/bubble/bubble/#" + playList[i].id;
 		shareWin.copied = tipsShow;
 	    PopUpManager.addPopUp(shareWin,this,false);
 	    PopUpManager.centerPopUp(shareWin);
@@ -960,6 +961,7 @@
 	    PopUpManager.addPopUp(specialWin,this,false);
 	    PopUpManager.centerPopUp(specialWin);
 	    specialWin.init();
+	    specialWin.callback = onGetMusicList;
 	    specialWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
 	    specialWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
 	}
@@ -1009,5 +1011,6 @@
 
 	private function tipsShow(tip:String):void{
 		tipText.text = tip;
+		tipFadeMove.yFrom = tipShowMove.yTo = 65 - tipText.height;
 		tipShow.play();
 	}

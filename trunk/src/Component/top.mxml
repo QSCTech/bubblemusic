@@ -54,5 +54,5 @@
 			</mx:HBox>
 		</mx:Canvas>
     </mx:HBox>
-	<mx:Button styleName="logoBtn" left="40" top="0"   width="168.45" height="125"/>
+	<mx:Button styleName="logoBtn" left="40" top="0" scaleX="0.8" scaleY="0.8"/>
 </mx:Canvas>

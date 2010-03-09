@@ -5,7 +5,7 @@
 	
 	<mx:LinkButton label="X" styleName="closeLBtn" toolTip="关闭" click="close()"
 		borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]"  right="0" top="1"/>
-	<mx:Canvas width="90%" horizontalCenter="0" top="39" height="240" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+	<mx:Canvas width="90%" horizontalCenter="0" top="39" height="236" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 		<mx:LinkButton id="s1" styleName="specialLBtn" y="0" horizontalCenter="0"/>
 		<mx:LinkButton id="s2" styleName="specialLBtn" y="30" horizontalCenter="0"/>
 		<mx:LinkButton id="s3" styleName="specialLBtn" y="60" horizontalCenter="0"/>
@@ -18,9 +18,9 @@
 	<mx:Text x="10" y="12" text="泡专题" styleName="topText" />
 	<mx:HRule top="32" horizontalCenter="0" styleName="popupHRule" width="90%"/>
 	
-	<mx:Button id="pre" bottom="5" right="50" width="13" height="13" styleName="prePageBtn" click="getPre()"/>
-	<mx:Button id="next" bottom="5" right="10" width="13" height="13" styleName="nextPageBtn" click="getNext()"/>
-	<mx:Text id="pageText" text="1" bottom="1" styleName="followText" x="106"/>
+	<mx:Button id="pre" bottom="8" right="49" width="10" height="10" styleName="prePageBtn" click="getPre()"/>
+	<mx:Button id="next" bottom="8" right="15" width="10" height="10" styleName="nextPageBtn" click="getNext()"/>
+	<mx:Text id="pageText" text="1" bottom="2" styleName="followText" x="106"/>
 	
 	<mx:Parallel id="specialNext">
 		<mx:Move target="{s1}" yFrom="240" yTo="0" duration="500" />

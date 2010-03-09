@@ -66,6 +66,15 @@ package as3.Net
 			conn.call("Music.getSubject",new Responder(result,onFault),page);
 			conn.close();
 		}
-		
+		public function getSpecialMusic(result:Function, id:int):void{
+			conn.connect(URL);
+			conn.call("Music.getSubjectMusic",new Responder(result,onFault),id);
+			conn.close();
+		}
+		public function getNotes(result:Function):void{
+			conn.connect(URL);
+			conn.call("Music.getNotice",new Responder(result,onFault));
+			conn.close();
+		}
 	}
 }
