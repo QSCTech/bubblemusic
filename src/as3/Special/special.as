@@ -5,13 +5,15 @@
 	 
 	import as3.Net.RPC;
 	
+	import flash.events.MouseEvent;
+	
 	import mx.managers.PopUpManager;
-    import mx.controls.Alert;
                  
 	private var rpc:RPC;
-    public var specialResult:Array = new Array();
-
-   
+    public var specialResult:Array = new Array();	
+	public var callback:Function;  
+	private var specialId:int;
+	
 	/**  
 	 * 初始  
 	 * 
@@ -19,7 +21,14 @@
 	public function init():void{
 		rpc = new RPC();
 		rpc.getSpecial(this.getSpecial,1);
-		
+		s1.addEventListener(MouseEvent.CLICK,getSpecialMusicList);
+		s2.addEventListener(MouseEvent.CLICK,getSpecialMusicList);
+		s3.addEventListener(MouseEvent.CLICK,getSpecialMusicList);
+		s4.addEventListener(MouseEvent.CLICK,getSpecialMusicList);
+		s5.addEventListener(MouseEvent.CLICK,getSpecialMusicList);
+		s6.addEventListener(MouseEvent.CLICK,getSpecialMusicList);
+		s7.addEventListener(MouseEvent.CLICK,getSpecialMusicList);
+		s8.addEventListener(MouseEvent.CLICK,getSpecialMusicList);
 	}
 	
 	/**  
@@ -63,6 +72,18 @@
 		this.syncSpecialList(specialResult);
 	}
 	
+	
+	public function getSpecialMusicList(event:MouseEvent):void{
+		var i:int = int(event.currentTarget.id.substr(-1)) - 1;
+		specialId = specialResult[i].id;
+		rpc.getSpecialMusic(this.callSpecial,specialId);
+		  
+	}
+	public function callSpecial(result:Array):void{
+		if(callback != null){
+			callback(result);                 
+		}
+	}
 	/**  
 	 * 初始化专题列表  
 	 * 
@@ -90,31 +111,31 @@
 			s1.toolTip = list[0].description;
 		} else { s1.label = ""; s1.toolTip = "";}
 		if(list[1]){
-			s2.label = list[0].name;
+			s2.label = list[1].name;
 			s2.toolTip = list[1].description;
 		} else { s2.label = ""; s2.toolTip = "";}
 		if(list[2]){
-			s3.label = list[0].name;
+			s3.label = list[2].name;
 			s3.toolTip = list[2].description;
 		} else { s3.label = ""; s3.toolTip = "";}
 		if(list[3]){
-			s4.label = list[0].name;
+			s4.label = list[3].name;
 			s4.toolTip = list[3].description;
 		} else { s4.label = ""; s4.toolTip = "";}
 		if(list[4]){
-			s5.label = list[0].name;
+			s5.label = list[4].name;
 			s5.toolTip = list[4].description;
 		} else { s5.label = ""; s5.toolTip = "";}
 		if(list[5]){
-			s6.label = list[0].name;
+			s6.label = list[5].name;
 			s6.toolTip = list[5].description;
 		} else { s6.label = ""; s6.toolTip = "";}
 		if(list[6]){
-			s7.label = list[0].name;
+			s7.label = list[6].name;
 			s7.toolTip = list[6].description;
 		} else { s7.label = ""; s7.toolTip = "";}
 		if(list[7]){
-			s8.label = list[0].name;
+			s8.label = list[7].name;
 			s8.toolTip = list[7].description;
 		} else { s8.label = ""; s8.toolTip = "";}
 		

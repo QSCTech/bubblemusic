@@ -62,6 +62,15 @@
 		</mx:State>
 		
 		<mx:State name="lyricState">
+			<mx:SetProperty target="{tipCanvas}" name="height"/>
+			<mx:SetProperty target="{bubbleTip}" name="scaleX" value="1.2"/>
+			<mx:SetProperty target="{bubbleTip}" name="scaleY" value="1.2"/>
+			<mx:SetProperty target="{bubbleTip}" name="width" value="50"/>
+			<mx:SetProperty target="{bubbleTip}" name="height" value="25"/>
+			<mx:SetProperty target="{tipCanvas}" name="width" value="250"/>
+			<mx:SetStyle target="{tipCanvas}" name="right" value="30"/>
+			<mx:SetProperty target="{tipText}" name="text"/>
+			<mx:SetProperty target="{tipText}" name="width" value="220"/>
 		</mx:State>	
 		
 	
@@ -76,24 +85,25 @@
 		<bubble:lyrics id="lyric" verticalCenter="0"/>
 	</mx:HBox>	
 	<mx:Canvas horizontalCenter="0" width="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off" height="100">
+		
 		<mx:Label text="{Version}" bottom="5" horizontalCenter="0" styleName="versionText"/>
-		<mx:Canvas id="tipCanvas" width="200" height="56" right="56" styleName="tipCanvas" y="100">
-			<mx:Text id="tipText" text="" horizontalCenter="0" verticalCenter="0"/>
+		<mx:Canvas id="tipCanvas" width="250" right="56" styleName="tipCanvas" y="100">
+			<mx:Text id="tipText" horizontalCenter="0" verticalCenter="0" styleName="tipText" textAlign="center"/>
 		</mx:Canvas>
-		<mx:Button id="bubbleTip" bottom="0" right="115" styleName="tipBtn"/>
+		<mx:Button id="bubbleTip" bottom="0" right="125" styleName="tipBtn" width="50" height="25"/>
 		<mx:HRule width="100%" bottom="0" styleName="bottomHRule"/>
 	</mx:Canvas>
 	
 	<mx:Parallel id="tipShow" effectEnd="tipStay.play()">
 		<mx:Fade target="{tipCanvas}" alphaFrom="0.0" alphaTo="1.0" duration="1000"/>
-		<mx:Move target="{tipCanvas}" yFrom="100" yTo="0" duration="1000"/>		
+		<mx:Move id="tipShowMove" target="{tipCanvas}" yFrom="100" duration="1000"/>		
 	</mx:Parallel>
 	<mx:Parallel id="tipStay" effectEnd="tipFade.play()">
-		<mx:Move target="{tipCanvas}" yFrom="0" yTo="0" duration="1000"/>
+		<mx:Fade target="{tipCanvas}" alphaFrom="1.0" alphaTo="1.0" duration="1000"/>
 	</mx:Parallel>
 	<mx:Parallel id="tipFade">
 		<mx:Fade target="{tipCanvas}" alphaFrom="1.0" alphaTo="0.0" duration="1000"/>
-		<mx:Move target="{tipCanvas}" yFrom="0" yTo="100" duration="1000"/>
+		<mx:Move id="tipFadeMove" target="{tipCanvas}" yTo="100" duration="1000"/>
 	</mx:Parallel>
 	
 	<mx:transitions>

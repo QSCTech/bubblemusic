@@ -32,11 +32,15 @@ Alert
 }
 .tipCanvas
 {
-	backgroundColor:#000000;
-	borderColor:#000000;
+	backgroundColor:#E00025;
+	borderColor:#E00025;
 	borderStyle: solid;
-	backgroundAlpha: 0.3;
-	cornerRadius:15;
+	cornerRadius:20;
+}
+.tipText
+{
+	fontSize: 12;
+	color:#ffffff;
 }	
 /*logo*/
 .logoBtn
