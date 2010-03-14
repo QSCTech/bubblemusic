@@ -93,7 +93,7 @@ ComboBox
 	fillColors:#000000, #000000, #000000, #000000;
 	themeColor:#000000;
 	borderColor:#000000;
-	cornerRadius:4;
+	cornerRadius:10;
 	selectionColor:#000000;
 	rollOverColor:#e00025;
 	textRollOverColor:#000000;
@@ -101,18 +101,18 @@ ComboBox
 	dropdownStyleName: comboBoxDropdown;
 	mouseDownEffect: Glow;
 	rollOverEffect: Glow;
-	paddingLeft:3;
-	paddingRight:3;
+	paddingLeft:6;
+	paddingRight:2;
 }
 .comboBoxDropdown
 {
 	backgroundColor: #D7D7D7;
 	color: #474747;
-	cornerRadius: 4;
 	borderColor: #E00025;
 }
 .searchBtn
 {
+	cornerRadius: 10;
 	fontSize: 12;
 	borderColor:#000000;
 	fillAlphas: 1.0, 1.0;
@@ -136,7 +136,6 @@ TextInput
 	themeColor:#e00025 ;
 	cornerRadius:5; 
 	borderStyle:solid;
-
 	paddingTop: 2;
 	paddingLeft: 3;
 	mouseDownEffect: Glow;

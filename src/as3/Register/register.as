@@ -19,24 +19,26 @@
 		else if(password.text != passwordAgain.text){
 			Alert.show("两次输入的密码不一致，请重新输入！"); 
 			resetPassword();
-		}              
+		} 
+		else if(email.text.substr(-10)!="zju.edu.cn"){
+			Alert.show("请填写内网邮箱，谢谢合作!"); 
+			resetEmail();
+		}             
 		else{                         
 			rpc.registerCheck(onResult,username.text,password.text,email.text);                                         
 		}         
 	}
 	
 	public function onResult(result:String):void{
-		if(result == "注册成功"){
+		if(result == username.text){
 			if(callBack != null){
 				callBack(username.text);                 
 			}  
 			this.onclose();
 		} 
-		else if(result == "用户名存在"){
-			Alert.show("对不起，该用户名已存在，请更改用户名！");
-		}
 		else{
-			Alert.show("对不起，请填写内网邮箱！");
+			Alert.show("对不起，该用户名已存在，请更改用户名！");
+			resetHandle();
 		}
 	}
 	
@@ -50,7 +52,9 @@
 		password.text == "";
 		passwordAgain.text == "";     
 	} 
-	
+	public function resetEmail():void{
+		email.text == "";  
+	}
 	public function onclose():void{                             
 		PopUpManager.removePopUp(this);         
 	} 

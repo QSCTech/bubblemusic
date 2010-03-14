@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300" styleName="mainCanvas" >
+	<mx:VBox width="90%" horizontalCenter="0" height="90%" verticalCenter="0">
+		<mx:Text id="storeTopText" text="收藏“歌曲名”" fontSize="14" styleName="topText"/>
+		<mx:Label text="为歌曲添加tag，以便于您收藏管理您的音乐吧~" styleName="followText"/>
+		
+		<mx:Label text="Your Tags:" styleName="followText"/>
+		<mx:HBox width="100%" height="100%">
+			<mx:LinkButton label="jay" styleName="specialLBtn"/>
+			<mx:LinkButton label="jay" styleName="specialLBtn"/>
+			<mx:LinkButton label="jayrerwer" styleName="specialLBtn"/>
+			<mx:LinkButton label="jay" styleName="specialLBtn"/>
+			<mx:LinkButton label="jayjeyjeyuihrwk" styleName="specialLBtn"/>
+			<mx:LinkButton label="jay" styleName="specialLBtn"/>
+			<mx:LinkButton label="jay" styleName="specialLBtn"/>
+			<mx:LinkButton label="jayrerer" styleName="specialLBtn"/>
+			<mx:LinkButton label="jayjay" styleName="specialLBtn"/>		
+		</mx:HBox>
+	</mx:VBox> 
+	 	
+	 
+</mx:Canvas>

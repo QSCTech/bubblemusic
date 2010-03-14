@@ -79,12 +79,12 @@
 	
 	<bubble:top id="top" />
 	<bubble:now id="now" horizontalCenter="0"/>
-	<mx:Spacer height="20"/>
+	<mx:Spacer height="5"/>
 	<mx:HBox id="middle" horizontalCenter="0" height="100%">
 		<bubble:musicList id="musicList" verticalCenter="0"/>
 		<bubble:lyrics id="lyric" verticalCenter="0"/>
 	</mx:HBox>	
-	<mx:Canvas horizontalCenter="0" width="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off" height="100">
+	<mx:Canvas horizontalCenter="0" width="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off" height="70">
 		
 		<mx:Label text="{Version}" bottom="5" horizontalCenter="0" styleName="versionText"/>
 		<mx:Canvas id="tipCanvas" width="250" right="56" styleName="tipCanvas" y="100">

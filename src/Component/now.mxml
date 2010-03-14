@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="900" height="120" horizontalScrollPolicy="off" verticalScrollPolicy="off" styleName="nowCanvas">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="900" height="110" horizontalScrollPolicy="off" verticalScrollPolicy="off" styleName="nowCanvas">
 
 	<mx:HBox verticalCenter="0" horizontalCenter="0">
 		<mx:LinkButton id="nowMusic" label="" styleName="nowSongLBtn" left="10"
@@ -28,13 +28,13 @@
 		</mx:HBox>
 	</mx:Canvas>
 	
-	<mx:Button id="next" x="112.65" y="82" styleName="nextBtn" height="27" width="27"/>
-	<mx:Button id="playandpause" x="59.7" y="54" styleName="pauseBtn" height="80" width="80"/>
+	<mx:Button id="next" styleName="nextBtn" height="27" width="27" bottom="4" left="105.65"/>
+	<mx:Button id="playandpause" styleName="pauseBtn" height="80" width="80" left="54" verticalCenter="36"/>
 	
-	<mx:ProgressBar id="songpos" x="23" y="99.55" width="820" scaleY="1" 
-		labelWidth="0" minimum="0" maximum="1" direction="right" mode="manual"/>
+	<mx:ProgressBar id="songpos" x="23" width="820" scaleY="1" 
+		labelWidth="0" minimum="0" maximum="1" direction="right" mode="manual" bottom="-12"/>
 		
-	<mx:Label id="time" text="0:00" y="94" styleName="nowTimeText" right="16"/>
-	<mx:HSlider id="volume" minimum="0" maximum="1" value="0.6" liveDragging="true" showDataTip="false" left="700.4" bottom="25.849998"/>
-	<mx:Button x="868.4" y="86.15" id="setSilent" styleName="unsilentBtn"  scaleX="0.9" scaleY="0.9"/>
+	<mx:Label id="time" text="0:00" styleName="nowTimeText" right="16" bottom="0"/>
+	<mx:HSlider id="volume" minimum="0" maximum="1" value="0.6" liveDragging="true" showDataTip="false" left="704.4" bottom="21"/>
+	<mx:Button id="setSilent" styleName="unsilentBtn"  scaleX="0.9" scaleY="0.9" right="3.4099884" bottom="14"/>
 </mx:Canvas>

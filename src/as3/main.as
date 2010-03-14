@@ -303,6 +303,7 @@
 		lyric.lrc10.text = "";
 		LRC = LRCDecoder.decoder(str);
 		musicControl.newPlay(playList[0].url);
+		
 		addEventListener(Event.ENTER_FRAME, onEnterFrame);
 		this.syncMusicInfo(playList[0].title, playList[0].author ,playList[0].album);
 		rpc.getNextMusic(this.getNextMusic);
@@ -442,16 +443,7 @@
 			removeEventListener(Event.ENTER_FRAME,onEnterFrame);
 		}
 	}
-/*
-	private function scrollLyric():void{
-		lyric.LRCon.xFrom = 0;
-		lyric.LRCon.xTo = 0 - lyric.lrc5.width + 272; 
-		lyric.LRCon.repeatCount = 1; //loop 
-        lyric.LRCon.repeatDelay = 0; //loop time
-		lyric.LRCon.duration = (lyric.lrc5.width-272)*20;
-		lyric.LRCon.play();
-	}
-*/
+
 	/**
 	 *播放列表项的鼠标双击事件,当双击某一项时,则播放该项 
 	 * @param event 事件源
@@ -961,11 +953,14 @@
 	    PopUpManager.addPopUp(specialWin,this,false);
 	    PopUpManager.centerPopUp(specialWin);
 	    specialWin.init();
-	    specialWin.callback = onGetMusicList;
+	    specialWin.callback = onGetSpecialList;
 	    specialWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
 	    specialWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
 	}
-	
+	public function onGetSpecialList(result:Array):void{
+		onGetMusicList(result);
+		musicControl.setNextMusic(this.nextMusic);
+	}
 	/**
 	 * 注册
 	 */	
