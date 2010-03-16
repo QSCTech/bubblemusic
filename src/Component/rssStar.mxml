@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="500" styleName="mainCanvas" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+	<mx:Script source="../as3/rssStar/rssStar.as" />
+	
+	<mx:LinkButton id="shareClose" label="X" styleName="closeLBtn" x="472" toolTip="关闭" click="close()"
+		borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" />
+		
+	<mx:VBox width="460" verticalGap="0" horizontalAlign="right" horizontalCenter="0" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+		<mx:Spacer height="12"/>
+		<mx:HBox>
+			<mx:Text text="泡歌手" styleName="topText" />
+			<mx:Spacer width="296"/>
+			<mx:LinkButton label="我的关注的歌手" fontSize="12" styleName="littleLBtn"/>
+		</mx:HBox>
+		<mx:HRule width="100%"/>
+		<mx:VBox id="allBox" width="100%" horizontalAlign="center" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+			<mx:Spacer height="6"/>
+			<mx:Text text="{text}"/>
+			<mx:Text text="{text2}"/>
+			<mx:HBox>
+				<mx:Button id="rssDone" label="确定" styleName="normalBtn"/>
+				<mx:Button id="rssCancel" label="取消" styleName="normalBtn"/>	
+			</mx:HBox>
+		</mx:VBox>
+		<mx:Spacer height="12"/>
+	</mx:VBox>
+	
+</mx:Canvas>

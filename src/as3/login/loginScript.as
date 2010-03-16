@@ -23,14 +23,14 @@
 		}         
 	}
 
-	public function onResult(result:String):void{
-		if(result == "登陆成功"){
+	public function onResult(result:int):void{
+		if(result > 0){
 			if(callBack != null){
 				callBack(txtUsername.text);                 
 			}  
 			this.onclose();
 		} 
-		else if(result == "密码不正确"){
+		else if(result == -2){
 			Alert.show("密码不正确");
 		}
 		else{

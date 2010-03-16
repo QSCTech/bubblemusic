@@ -35,6 +35,5 @@
 	<mx:Button id="copyAddress" label="复制" width="40" height="24" bottom="10" right="10" styleName="normalBtn" click="copy();"/>
 	<mx:LinkButton id="shareClose" label="X" styleName="closeLBtn" click="close()" x="372" toolTip="关闭"
 		borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" />
-	<mx:Text text="复制成功" id="isOK" top="25" right="10" styleName="followText" visible="false"/>
 	
 </mx:Canvas>

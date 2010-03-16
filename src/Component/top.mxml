@@ -8,13 +8,11 @@
 	 	 	 	 <mx:LinkButton label="退出" id="exitBtn" styleName="topLBtn" click="exitUser()"/>
 	 	 	 </mx:AddChild>
 	 	 	 <mx:AddChild relativeTo="{exitBtn}" position="before">
-	 	 	 	 <mx:LinkButton label="设置" id="setBtn" styleName="topLBtn"/>
+	 	 	 	 <mx:LinkButton label="我的收藏" id="setBtn" styleName="topLBtn"/>
 	 	 	 </mx:AddChild>
 	 	 	 <mx:AddChild relativeTo="{setBtn}" position="before">
 	 	 	 	 <mx:LinkButton label="上传歌曲" id="uploadBtn" styleName="topLBtn"/>
 	 	 	 </mx:AddChild>
-	 	 	 
-	 	
 	 	 </mx:State>
 	 	 
 	 	 <mx:State name="unlogined"/>
@@ -24,10 +22,11 @@
     <mx:Script>
     	<![CDATA[
     		import mx.controls.Alert;
-    		
+    		public var callback:Function;
 			public function exitUser():void{
 				this.currentState = "unlogined";
 				welcomeText.text = "";
+				callback();
 			}
     	]]>
     </mx:Script>

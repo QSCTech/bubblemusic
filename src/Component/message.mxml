@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300" styleName="mainCanvas">
+	
+	<mx:LinkButton id="shareClose" label="X" styleName="closeLBtn" x="372" toolTip="关闭"
+		borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" />
+		
+	<mx:List x="118" y="49" width="253"></mx:List>
+	
+</mx:Canvas>

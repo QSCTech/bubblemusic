@@ -76,5 +76,11 @@ package as3.Net
 			conn.call("Music.getNotice",new Responder(result,onFault));
 			conn.close();
 		}
+		
+		public function getAllList(result:Function,username:String):void{
+			conn.connect(URL);
+			conn.call("Music.getAllDiyList",new Responder(result,onFault),username);
+			conn.close();
+		}
 	}
 }
