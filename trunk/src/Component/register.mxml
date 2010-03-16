@@ -16,7 +16,7 @@
     <mx:Button label="注册" horizontalCenter="-60" bottom="10" styleName="normalBtn" click="registerHandle()"/>
     <mx:Button label="重置" horizontalCenter="0" bottom="10" styleName="normalBtn" click="resetHandle()"/>
     <mx:Button label="取消" horizontalCenter="60" click="onclose()" bottom="10" styleName="normalBtn"/>
-    <mx:Text x="20" y="21" text="注册" fontSize="14" styleName="topText"/>
+    <mx:Text x="20" y="21" text="注册" styleName="topText"/>
     <mx:LinkButton x="186" y="21" label="已有账号登陆" fontSize="12" styleName="littleLBtn" click="loginNew()"/>
 	
 	<mx:EmailValidator id="emailCheck" source="{email}" property="text" invalidCharError="非法字符" 

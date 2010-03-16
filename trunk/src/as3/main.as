@@ -3,11 +3,13 @@
  * 
  */
 
+	import Component.listDIY;
 	import Component.login;
 	import Component.mood;
 	import Component.register;
 	import Component.share;
 	import Component.special;
+	import Component.rssStar;
 	
 	import as3.Lyric.LRCDecoder;
 	import as3.Net.RPC;
@@ -117,6 +119,9 @@
 	    now.shareMusic.addEventListener(MouseEvent.CLICK,shareMusic);
 	    now.specialList.addEventListener(MouseEvent.CLICK,specialList);
 	    now.hideLyric.addEventListener(MouseEvent.CLICK,lyricShow);
+	    now.diyList.addEventListener(MouseEvent.CLICK,diyShow);
+	    now.rssPlayer.addEventListener(MouseEvent.CLICK,rssShow);
+	    now.storeMusic.addEventListener(MouseEvent.CLICK,collectMusic);
 	    top.registerBtn.addEventListener(MouseEvent.CLICK,registerShow);
 	    top.loginBtn.addEventListener(MouseEvent.CLICK,loginShow);
 	    
@@ -177,6 +182,7 @@
 	    musicList.l10.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);
 	    musicList.l11.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);
 	    musicList.l12.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);
+	   
 	    
 	    musicList.l1.littleMusicShare.addEventListener(MouseEvent.CLICK,musicShare);
 	    musicList.l2.littleMusicShare.addEventListener(MouseEvent.CLICK,musicShare);
@@ -190,9 +196,11 @@
 	    musicList.l10.littleMusicShare.addEventListener(MouseEvent.CLICK,musicShare);
 	    musicList.l11.littleMusicShare.addEventListener(MouseEvent.CLICK,musicShare);
 	    musicList.l12.littleMusicShare.addEventListener(MouseEvent.CLICK,musicShare);
-	    
+	    top.callback = resetUser;
 	    rpc.getNotes(tipsShow);
 	}
+	
+	
 	
 	/**
 	 *同步播放列表,当播放列表改动后,同步到播放器界面上 
@@ -801,7 +809,14 @@
 			Alert.show("登录后才能收藏歌曲！");
 		}
 	}
-	
+	private function collectMusic(event:MouseEvent):void{
+		if(userName != ""){
+			
+		}
+		else{
+			Alert.show("登录后才能收藏歌曲！");
+		}
+	}
 	/**
 	 * 删除播放列表中歌曲 
 	 */
@@ -1008,4 +1023,41 @@
 		tipText.text = tip;
 		tipFadeMove.yFrom = tipShowMove.yTo = 65 - tipText.height;
 		tipShow.play();
+	}
+	
+	/**
+	 * DIY播放列表
+	 */
+	 private function diyShow(event:MouseEvent):void{
+		var diyWin:listDIY = new listDIY();
+		PopUpManager.addPopUp(diyWin,this,false);
+	    PopUpManager.centerPopUp(diyWin);
+	    diyWin.init(userName);
+	    diyWin.logNew = loginNew;
+	    diyWin.regNew = registerNew;
+	    diyWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
+	    diyWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
+	}	
+	/**
+	 * 关注歌手
+	 */
+	private function rssShow(event:MouseEvent):void{
+		if(userName != ""){
+			var rssWin:rssStar = new rssStar();
+			PopUpManager.addPopUp(rssWin,this,false);
+	    	PopUpManager.centerPopUp(rssWin);
+	    	rssWin.text = "关注\"" + playList[0].author + "\"？";
+	    	rssWin.text2 = "我们将在第一时间把\"" + playList[0].author + "\"的新歌推荐给您~";
+	    	rssWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
+	    	rssWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
+		}
+		else{
+			Alert.show("嗨，注册登录后就能关注您喜欢的歌手啦~");
+		}
+	}
+	/**
+	 * 登录后点退出，重置用户名变量
+	 */
+	private function resetUser():void{
+		userName = "";
 	}
