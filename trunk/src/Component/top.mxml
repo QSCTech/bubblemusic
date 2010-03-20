@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off" height="113">
 	 <mx:states>
 	 	 <mx:State name="logined">
 	 	 	 <mx:RemoveChild target="{loginBtn}"/>

@@ -16,7 +16,7 @@
 		<mx:Label id="lrc3" y="90" width="300" textAlign="center" styleName="lyricNormal"/>
 		<mx:Label id="lrc4" y="110" width="300" textAlign="center" styleName="lyricNormal"/>
 		<mx:Label id="lrc5" y="130" width="300" textAlign="center" styleName="lyricOn"/>
-		<mx:Label id="lrc6" y="150" width="300" textAlign="center" styleName="lyricNormal"/>
+		<mx:Label id="lrc6" width="300" textAlign="center" styleName="lyricNormal"/>
 		<mx:Label id="lrc7" y="170" width="300" textAlign="center" styleName="lyricNormal"/>
 		<mx:Label id="lrc8" y="190" width="300" textAlign="center" styleName="lyricNormal"/>
 		<mx:Label id="lrc9" y="210" width="300" textAlign="center" styleName="lyricNormal"/>
@@ -26,20 +26,17 @@
 		
 
 	<mx:Parallel id="LRCeffect">
-		<mx:Move target="{lrc0}" yFrom="30" yTo="10" duration="500"/>
-		<mx:Move target="{lrc1}" yFrom="50" yTo="30" duration="500"/>
-		<mx:Move target="{lrc2}" yFrom="70" yTo="50" duration="500"/>
-		<mx:Move target="{lrc3}" yFrom="90" yTo="70" duration="500"/>
-		<mx:Move target="{lrc4}" yFrom="110" yTo="90" duration="500"/>
-		<mx:Move target="{lrc5}" yFrom="130" yTo="110" duration="500"/>
-		<mx:Move target="{lrc6}" yFrom="150" yTo="130" duration="500"/>
-		<mx:Move target="{lrc7}" yFrom="170" yTo="150" duration="500"/>
-		<mx:Move target="{lrc8}" yFrom="190" yTo="170" duration="500"/>
-		<mx:Move target="{lrc9}" yFrom="210" yTo="190" duration="500"/>
-		<mx:Move target="{lrc10}" yFrom="230" yTo="210" duration="500"/>
+		<mx:Move target="{lrc0}" yFrom="50" yTo="30" duration="500"/>
+		<mx:Move target="{lrc1}" yFrom="70" yTo="50" duration="500"/>
+		<mx:Move target="{lrc2}" yFrom="90" yTo="70" duration="500"/>
+		<mx:Move target="{lrc3}" yFrom="110" yTo="90" duration="500"/>
+		<mx:Move target="{lrc4}" yFrom="130" yTo="110" duration="500"/>
+		<mx:Move target="{lrc5}" yFrom="150" yTo="130" duration="500"/>
+		<mx:Move target="{lrc6}" yFrom="170" yTo="150" duration="500"/>
+		<mx:Move target="{lrc7}" yFrom="190" yTo="170" duration="500"/>
+		<mx:Move target="{lrc8}" yFrom="210" yTo="190" duration="500"/>
+		<mx:Move target="{lrc9}" yFrom="230" yTo="210" duration="500"/>
+		<mx:Move target="{lrc10}" yFrom="250" yTo="230" duration="500"/>
 	</mx:Parallel>
-	
-	<mx:Move id="LRCon" target="{lrc5}"/>
-	
 	
 </mx:HBox>
