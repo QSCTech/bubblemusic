@@ -1021,7 +1021,6 @@
 
 	private function tipsShow(tip:String):void{
 		tipText.text = tip;
-		tipFadeMove.yFrom = tipShowMove.yTo = 65 - tipText.height;
 		tipShow.play();
 	}
 	
