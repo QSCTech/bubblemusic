@@ -58,9 +58,10 @@ package as3.Net
 		}
 		public function registerCheck(result:Function, username:String, userpw:String, userem:String):void{
 			conn.connect(URL);
-			conn.call("Music.login",new Responder(result,onFault),username,userpw);
+			conn.call("Music.register",new Responder(result,onFault),username,userpw,userem);
 			conn.close();
 		}
+
 		public function getSpecial(result:Function, page:int):void{
 			conn.connect(URL);
 			conn.call("Music.getSubject",new Responder(result,onFault),page);

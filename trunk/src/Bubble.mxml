@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns:bubble="Component.*" applicationComplete="initPlayList()"  currentState="lyricState" verticalGap="0" horizontalGap="0">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns:bubble="Component.*" applicationComplete="initPlayList()" currentState="lyricState" verticalGap="0" horizontalGap="0">
 	
 	
 	<mx:Style source="Style/styles.css"/>	
@@ -62,7 +62,6 @@
 		</mx:State>
 		
 		<mx:State name="lyricState">
-			
 		</mx:State>	
 		
 	
@@ -72,15 +71,15 @@
 	<bubble:top id="top" />
 	<bubble:now id="now" horizontalCenter="0"/>
 	<mx:Spacer height="10"/>
-	<mx:HBox id="middle" horizontalCenter="0" height="100%">
+	<mx:HBox id="middle" horizontalCenter="0" height="100%" verticalAlign="middle" >
 		<bubble:musicList id="musicList" verticalCenter="0"/>
 		<bubble:lyrics id="lyric" verticalCenter="0"/>
 	</mx:HBox>	
-	<mx:Canvas horizontalCenter="0" width="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off" height="40">
+	<mx:Canvas horizontalCenter="0" width="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off" height="30">
 		<mx:Label text="{Version}" bottom="0" horizontalCenter="-80" styleName="versionText"/>
-		<mx:Canvas height="40" right="80" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+		<mx:Canvas height="30" right="80" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 			<mx:Button id="bubbleTip" styleName="tipBtn" width="40" height="20" horizontalCenter="0" bottom="0"/>
-			<mx:Canvas id="tipCanvas" width="250" styleName="tipCanvas" y="40" horizontalCenter="0">
+			<mx:Canvas id="tipCanvas" width="250" styleName="tipCanvas" y="30" horizontalCenter="0">
 				<mx:Text id="tipText" horizontalCenter="0" verticalCenter="0" styleName="tipText" textAlign="center"/>
 			</mx:Canvas>
 		</mx:Canvas>
@@ -90,7 +89,7 @@
 	<mx:Parallel id="tipShow" effectEnd="tipStay.play()">
 		<mx:Fade target="{tipCanvas}" alphaFrom="0.0" alphaTo="1.0" duration="1000"/>
 		<mx:Fade target="{tipText}" alphaFrom="0.0" alphaTo="1.0" duration="1000"/>
-		<mx:Move id="tipShowMove" target="{tipCanvas}" yFrom="40" yTo="0" duration="1000"/>		
+		<mx:Move id="tipShowMove" target="{tipCanvas}" yFrom="30" yTo="0" duration="1000"/>		
 	</mx:Parallel>
 	<mx:Parallel id="tipStay" effectEnd="tipFade.play()">
 		<mx:Fade target="{tipCanvas}" alphaFrom="1.0" alphaTo="1.0" duration="1000"/>
@@ -98,7 +97,7 @@
 	<mx:Parallel id="tipFade">
 		<mx:Fade target="{tipCanvas}" alphaFrom="1.0" alphaTo="0.0" duration="1000"/>
 		<mx:Fade target="{tipText}" alphaFrom="1.0" alphaTo="0.0" duration="1000"/>
-		<mx:Move id="tipFadeMove" target="{tipCanvas}" yTo="40" yFrom="0" duration="1000"/>
+		<mx:Move id="tipFadeMove" target="{tipCanvas}" yTo="30" yFrom="0" duration="1000"/>
 	</mx:Parallel>
 	
 	<mx:transitions>

@@ -1,75 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="310" height="300" xmlns:Component="Component.*"  styleName="musicListCanvas" >
-	<mx:Canvas verticalCenter="0" horizontalCenter="0" width="300" height="289" horizontalScrollPolicy="off" verticalScrollPolicy="off">
-		<mx:HRule id="h1" y="24" width="280" height="1" horizontalCenter="0"/>
-		<mx:HRule id="h2" y="48" width="280" height="1" horizontalCenter="0"/>
-		<mx:HRule id="h3" y="72" width="280" height="1" horizontalCenter="0"/>
-		<mx:HRule id="h4" y="96" width="280" height="1" horizontalCenter="0"/>
-		<mx:HRule id="h5" y="120" width="280" height="1" horizontalCenter="0"/>
-		<mx:HRule id="h6" y="144" width="280" height="1" horizontalCenter="0"/>
-		<mx:HRule id="h7" y="168" width="280" height="1" horizontalCenter="0"/>
-		<mx:HRule id="h8" y="192" width="280" height="1" horizontalCenter="0"/>
-		<mx:HRule id="h9" y="216" width="280" height="1" horizontalCenter="0"/>
-		<mx:HRule id="h10" y="240" width="280" height="1" horizontalCenter="0"/>
-		<mx:HRule id="h11" y="264" width="280" height="1" horizontalCenter="0"/>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="310" height="240" xmlns:Component="Component.*"  styleName="musicListCanvas" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+	<mx:Canvas verticalCenter="0" horizontalCenter="0" width="300" height="230" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+		<mx:HRule id="h1" y="19" width="280" height="1" horizontalCenter="0"/>
+		<mx:HRule id="h2" y="38" width="280" height="1" horizontalCenter="0"/>
+		<mx:HRule id="h3" y="57" width="280" height="1" horizontalCenter="0"/>
+		<mx:HRule id="h4" y="76" width="280" height="1" horizontalCenter="0"/>
+		<mx:HRule id="h5" y="95" width="280" height="1" horizontalCenter="0"/>
+		<mx:HRule id="h6" y="114" width="280" height="1" horizontalCenter="0"/>
+		<mx:HRule id="h7" y="133" width="280" height="1" horizontalCenter="0"/>
+		<mx:HRule id="h8" y="152" width="280" height="1" horizontalCenter="0"/>
+		<mx:HRule id="h9" y="171" width="280" height="1" horizontalCenter="0"/>
+		<mx:HRule id="h10" y="190" width="280" height="1" horizontalCenter="0"/>
+		<mx:HRule id="h11" y="209" width="280" height="1" horizontalCenter="0"/>
 		<Component:playerSongs id="l1"  y="0" doubleClickEnabled="true" index="1" />
-		<Component:playerSongs id="l2" y="24" doubleClickEnabled="true" index="2" />
-		<Component:playerSongs id="l3"  y="48" doubleClickEnabled="true" index="3" />
-		<Component:playerSongs id="l4" y="72" doubleClickEnabled="true" index="4" />
-		<Component:playerSongs id="l5" y="96" doubleClickEnabled="true" index="5" />
-		<Component:playerSongs id="l6" y="120" doubleClickEnabled="true" index="6" />
-		<Component:playerSongs id="l7" y="144" doubleClickEnabled="true" index="7" />
-		<Component:playerSongs id="l8" y="168" doubleClickEnabled="true" index="8" />
-		<Component:playerSongs id="l9" y="192" doubleClickEnabled="true" index="9" />
-		<Component:playerSongs id="l10" y="216" doubleClickEnabled="true" index="10" />
-		<Component:playerSongs id="l11" y="240" doubleClickEnabled="true" index="11" />
-		<Component:playerSongs id="l12" y="264" doubleClickEnabled="true" index="12" />
+		<Component:playerSongs id="l2" y="19" doubleClickEnabled="true" index="2" />
+		<Component:playerSongs id="l3"  y="38" doubleClickEnabled="true" index="3" />
+		<Component:playerSongs id="l4" y="57" doubleClickEnabled="true" index="4" />
+		<Component:playerSongs id="l5" y="76" doubleClickEnabled="true" index="5" />
+		<Component:playerSongs id="l6" y="95" doubleClickEnabled="true" index="6" />
+		<Component:playerSongs id="l7" y="114" doubleClickEnabled="true" index="7" />
+		<Component:playerSongs id="l8" y="133" doubleClickEnabled="true" index="8" />
+		<Component:playerSongs id="l9" y="152" doubleClickEnabled="true" index="9" />
+		<Component:playerSongs id="l10" y="171" doubleClickEnabled="true" index="10" />
+		<Component:playerSongs id="l11" y="190" doubleClickEnabled="true" index="11" />
+		<Component:playerSongs id="l12" y="209" doubleClickEnabled="true" index="12" />
 	</mx:Canvas>
 	
 	
 	<mx:Array id="listEffectArray">
-		<mx:Move target="{l1}" yFrom="24" yTo="0" duration="500"/>
-		<mx:Move target="{l2}" yFrom="48" yTo="24" duration="500"/>
-		<mx:Move target="{l3}" yFrom="72" yTo="48" duration="500"/>
-		<mx:Move target="{l4}" yFrom="96" yTo="72" duration="500"/>
-		<mx:Move target="{l5}" yFrom="120" yTo="96" duration="500"/>
-		<mx:Move target="{l6}" yFrom="144" yTo="120" duration="500"/>
-		<mx:Move target="{l7}" yFrom="168" yTo="144" duration="500"/>
-		<mx:Move target="{l8}" yFrom="192" yTo="168" duration="500"/>
-		<mx:Move target="{l9}" yFrom="216" yTo="192" duration="500"/>
-		<mx:Move target="{l10}" yFrom="240" yTo="216" duration="500"/>
-		<mx:Move target="{l11}" yFrom="264" yTo="240" duration="500"/>
-		<mx:Move target="{l12}" yFrom="288" yTo="264" duration="500"/>
+		<mx:Move target="{l1}" yFrom="19" yTo="0" duration="500"/>
+		<mx:Move target="{l2}" yFrom="38" yTo="19" duration="500"/>
+		<mx:Move target="{l3}" yFrom="57" yTo="38" duration="500"/>
+		<mx:Move target="{l4}" yFrom="76" yTo="57" duration="500"/>
+		<mx:Move target="{l5}" yFrom="95" yTo="76" duration="500"/>
+		<mx:Move target="{l6}" yFrom="114" yTo="95" duration="500"/>
+		<mx:Move target="{l7}" yFrom="133" yTo="114" duration="500"/>
+		<mx:Move target="{l8}" yFrom="152" yTo="133" duration="500"/>
+		<mx:Move target="{l9}" yFrom="171" yTo="152" duration="500"/>
+		<mx:Move target="{l10}" yFrom="190" yTo="171" duration="500"/>
+		<mx:Move target="{l11}" yFrom="209" yTo="190" duration="500"/>
+		<mx:Move target="{l12}" yFrom="228" yTo="209" duration="500"/>
 	</mx:Array>
 	
 	<mx:Array id="listAddedEffect">
-		<mx:Move target="{l1}" yFrom="-24" yTo="0" duration="500"/>
-		<mx:Move target="{l2}" yFrom="0" yTo="24" duration="500"/>
-		<mx:Move target="{l3}" yFrom="24" yTo="48" duration="500"/>
-		<mx:Move target="{l4}" yFrom="48" yTo="72" duration="500"/>
-		<mx:Move target="{l5}" yFrom="72" yTo="96" duration="500"/>
-		<mx:Move target="{l6}" yFrom="96" yTo="120" duration="500"/>
-		<mx:Move target="{l7}" yFrom="120" yTo="144" duration="500"/>
-		<mx:Move target="{l8}" yFrom="144" yTo="168" duration="500"/>
-		<mx:Move target="{l9}" yFrom="168" yTo="192" duration="500"/>
-		<mx:Move target="{l10}" yFrom="192" yTo="216" duration="500"/>
-		<mx:Move target="{l11}" yFrom="216" yTo="240" duration="500"/>
-		<mx:Move target="{l12}" yFrom="240" yTo="264" duration="500"/>
+		<mx:Move target="{l1}" yFrom="-19" yTo="0" duration="500"/>
+		<mx:Move target="{l2}" yFrom="0" yTo="19" duration="500"/>
+		<mx:Move target="{l3}" yFrom="19" yTo="38" duration="500"/>
+		<mx:Move target="{l4}" yFrom="38" yTo="57" duration="500"/>
+		<mx:Move target="{l5}" yFrom="57" yTo="76" duration="500"/>
+		<mx:Move target="{l6}" yFrom="76" yTo="95" duration="500"/>
+		<mx:Move target="{l7}" yFrom="95" yTo="114" duration="500"/>
+		<mx:Move target="{l8}" yFrom="114" yTo="133" duration="500"/>
+		<mx:Move target="{l9}" yFrom="133" yTo="152" duration="500"/>
+		<mx:Move target="{l10}" yFrom="152" yTo="171" duration="500"/>
+		<mx:Move target="{l11}" yFrom="171" yTo="190" duration="500"/>
+		<mx:Move target="{l12}" yFrom="190" yTo="209" duration="500"/>
 	</mx:Array>
 	
 	<mx:Array id="listDoubleEffect">
 		<mx:Move target="{l1}" yTo="0" duration="500"/>
-		<mx:Move target="{l2}" yTo="24" duration="500"/>
-		<mx:Move target="{l3}" yTo="48" duration="500"/>
-		<mx:Move target="{l4}" yTo="72" duration="500"/>
-		<mx:Move target="{l5}" yTo="96" duration="500"/>
-		<mx:Move target="{l6}" yTo="120" duration="500"/>
-		<mx:Move target="{l7}" yTo="144" duration="500"/>
-		<mx:Move target="{l8}" yTo="168" duration="500"/>
-		<mx:Move target="{l9}" yTo="192" duration="500"/>
-		<mx:Move target="{l10}" yTo="216" duration="500"/>
-		<mx:Move target="{l11}" yTo="240" duration="500"/>
-		<mx:Move target="{l12}" yTo="264" duration="500"/>
+		<mx:Move target="{l2}" yTo="19" duration="500"/>
+		<mx:Move target="{l3}" yTo="38" duration="500"/>
+		<mx:Move target="{l4}" yTo="57" duration="500"/>
+		<mx:Move target="{l5}" yTo="76" duration="500"/>
+		<mx:Move target="{l6}" yTo="95" duration="500"/>
+		<mx:Move target="{l7}" yTo="114" duration="500"/>
+		<mx:Move target="{l8}" yTo="133" duration="500"/>
+		<mx:Move target="{l9}" yTo="152" duration="500"/>
+		<mx:Move target="{l10}" yTo="171" duration="500"/>
+		<mx:Move target="{l11}" yTo="190" duration="500"/>
+		<mx:Move target="{l12}" yTo="209" duration="500"/>
 	</mx:Array>
 	
 	
