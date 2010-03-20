@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="900" height="110" horizontalScrollPolicy="off" verticalScrollPolicy="off" styleName="nowCanvas">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="900" height="100" horizontalScrollPolicy="off" verticalScrollPolicy="off" styleName="nowCanvas">
 
-	<mx:HBox verticalCenter="0" horizontalCenter="0">
+	<mx:HBox verticalCenter="5" horizontalCenter="0">
 		<mx:LinkButton id="nowMusic" label="" styleName="nowSongLBtn" left="10"
 			borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" toolTip=""/>
 		<mx:Label text="•" styleName="nowText"/>
@@ -32,7 +32,7 @@
 	</mx:Canvas>
 	
 	<mx:Button id="next" styleName="nextBtn" height="27" width="27" bottom="4" left="105.65"/>
-	<mx:Button id="playandpause" styleName="pauseBtn" height="80" width="80" left="54" verticalCenter="36"/>
+	<mx:Button id="playandpause" styleName="pauseBtn" height="77" width="77" left="55" verticalCenter="32"/>
 	
 	<mx:ProgressBar id="songpos" x="23" width="820" scaleY="1" 
 		labelWidth="0" minimum="0" maximum="1" direction="right" mode="manual" bottom="-12"/>

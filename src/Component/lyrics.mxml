@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" width="500" height="300" xmlns:reflector="as3.reflector.*" 
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" width="500" height="260" xmlns:reflector="as3.reflector.*" 
 	verticalAlign="middle" horizontalAlign="center" verticalScrollPolicy="off" horizontalScrollPolicy="off" styleName="searchCanvas">
 
 		
-	<mx:VBox height="200" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+	<mx:VBox height="200" verticalAlign="middle" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 		<mx:Image id="picture" width="140" height="140" />
 		<reflector:Reflector id="reflectorPic" target="{picture}" alpha="0.3" falloff="0.5"/>
 	</mx:VBox>
 	<mx:VRule height="90%"/>
 
-	<mx:VBox height="90%" width="300" horizontalScrollPolicy="off" verticalScrollPolicy="off" verticalAlign="middle" horizontalAlign="center">
-		<mx:Label id="lrc0" y="30" width="300" textAlign="center" styleName="lyricNormal"/>
-		<mx:Label id="lrc1" y="50" width="300" textAlign="center" styleName="lyricNormal"/>
-		<mx:Label id="lrc2" y="70" width="300" textAlign="center" styleName="lyricNormal"/>
-		<mx:Label id="lrc3" y="90" width="300" textAlign="center" styleName="lyricNormal"/>
-		<mx:Label id="lrc4" y="110" width="300" textAlign="center" styleName="lyricNormal"/>
-		<mx:Label id="lrc5" y="130" width="300" textAlign="center" styleName="lyricOn"/>
-		<mx:Label id="lrc6" width="300" textAlign="center" styleName="lyricNormal"/>
-		<mx:Label id="lrc7" y="170" width="300" textAlign="center" styleName="lyricNormal"/>
-		<mx:Label id="lrc8" y="190" width="300" textAlign="center" styleName="lyricNormal"/>
-		<mx:Label id="lrc9" y="210" width="300" textAlign="center" styleName="lyricNormal"/>
-		<mx:Label id="lrc10" y="230" width="300" textAlign="center" styleName="lyricNormal"/>
-	</mx:VBox>
+	<mx:Canvas height="220" width="300" horizontalScrollPolicy="off" verticalScrollPolicy="off" verticalCenter="0">
+		<mx:Label id="lrc0" y="0" width="300" textAlign="center" styleName="lyricNormal"/>
+		<mx:Label id="lrc1" y="20" width="300" textAlign="center" styleName="lyricNormal"/>
+		<mx:Label id="lrc2" y="40" width="300" textAlign="center" styleName="lyricNormal"/>
+		<mx:Label id="lrc3" y="60" width="300" textAlign="center" styleName="lyricNormal"/>
+		<mx:Label id="lrc4" y="80" width="300" textAlign="center" styleName="lyricNormal"/>
+		<mx:Label id="lrc5" y="100" width="300" textAlign="center" styleName="lyricOn"/>
+		<mx:Label id="lrc6" y="120" width="300" textAlign="center" styleName="lyricNormal"/>
+		<mx:Label id="lrc7" y="140" width="300" textAlign="center" styleName="lyricNormal"/>
+		<mx:Label id="lrc8" y="160" width="300" textAlign="center" styleName="lyricNormal"/>
+		<mx:Label id="lrc9" y="180" width="300" textAlign="center" styleName="lyricNormal"/>
+		<mx:Label id="lrc10" y="200" width="300" textAlign="center" styleName="lyricNormal"/>
+	</mx:Canvas>
 		
 		
 
 	<mx:Parallel id="LRCeffect">
-		<mx:Move target="{lrc0}" yFrom="50" yTo="30" duration="500"/>
-		<mx:Move target="{lrc1}" yFrom="70" yTo="50" duration="500"/>
-		<mx:Move target="{lrc2}" yFrom="90" yTo="70" duration="500"/>
-		<mx:Move target="{lrc3}" yFrom="110" yTo="90" duration="500"/>
-		<mx:Move target="{lrc4}" yFrom="130" yTo="110" duration="500"/>
-		<mx:Move target="{lrc5}" yFrom="150" yTo="130" duration="500"/>
-		<mx:Move target="{lrc6}" yFrom="170" yTo="150" duration="500"/>
-		<mx:Move target="{lrc7}" yFrom="190" yTo="170" duration="500"/>
-		<mx:Move target="{lrc8}" yFrom="210" yTo="190" duration="500"/>
-		<mx:Move target="{lrc9}" yFrom="230" yTo="210" duration="500"/>
-		<mx:Move target="{lrc10}" yFrom="250" yTo="230" duration="500"/>
+		<mx:Move target="{lrc0}" yFrom="20" yTo="0" duration="500"/>
+		<mx:Move target="{lrc1}" yFrom="40" yTo="20" duration="500"/>
+		<mx:Move target="{lrc2}" yFrom="60" yTo="40" duration="500"/>
+		<mx:Move target="{lrc3}" yFrom="80" yTo="60" duration="500"/>
+		<mx:Move target="{lrc4}" yFrom="100" yTo="80" duration="500"/>
+		<mx:Move target="{lrc5}" yFrom="120" yTo="100" duration="500"/>
+		<mx:Move target="{lrc6}" yFrom="140" yTo="120" duration="500"/>
+		<mx:Move target="{lrc7}" yFrom="160" yTo="140" duration="500"/>
+		<mx:Move target="{lrc8}" yFrom="180" yTo="160" duration="500"/>
+		<mx:Move target="{lrc9}" yFrom="200" yTo="180" duration="500"/>
+		<mx:Move target="{lrc10}" yFrom="220" yTo="200" duration="500"/>
 	</mx:Parallel>
 	
 </mx:HBox>

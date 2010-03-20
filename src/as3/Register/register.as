@@ -29,16 +29,25 @@
 		}         
 	}
 	
-	public function onResult(result:String):void{
-		if(result == username.text){
+	public function onResult(result:int):void{
+		if(result > 0){
 			if(callBack != null){
 				callBack(username.text);                 
 			}  
 			this.onclose();
 		} 
-		else{
-			Alert.show("对不起，该用户名已存在，请更改用户名！");
+		else if(result == -3){
+			Alert.show("对不起，该用户名已存在，请注册其他用户名");
 			resetHandle();
+		}
+		else if(result == -5){
+			Alert.show("对不起，该email不允许被注册");
+		}
+		else if(result == -6){
+			Alert.show("对不起，该email已被注册");
+		}
+		else{
+			Alert.show(""+result);
 		}
 	}
 	
