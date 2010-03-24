@@ -59,6 +59,7 @@
 {
 	margin:7px;
 	margin-bottom:10px;
+	font-size:14px;
 }
 #pop_up h3
 {
@@ -66,6 +67,7 @@
 	width:100%;
 	margin:0px;
 	font-weight:bold;
+	font-size:14px;
 }
 #pop_up .detail
 {

@@ -13,6 +13,7 @@
 	$year = $id3->year;
 	$track = $id3->track;
 	$genre = $id3->genre;
+	$genreno = $id3->genreno;
 	//frame stuff
 	$mpeg_ver = $id3->mpeg_ver;
 	$layer = $id3->layer;
@@ -23,20 +24,21 @@
 	
 	$html = "<h2>$name</h2>
 			<table class='detail'>
+				<input type='hidden' name='music_id' value='$music_id' />
 				<tr>
 					<td colspan='2'><h3>歌曲信息</h3></td>
 				</tr>
 				<tr>
 					<td><b>歌曲名</b></td>
-					<td>$name</td>
+					<td><input name=\"music_name\" value=\"$name\"/></td>
 				</tr>
 				<tr>
 					<td><b>专辑</b></td>
-					<td>$album</td>
+					<td><input name=\"album_name\" value=\"$album\" /></td>
 				</tr>
 				<tr>
 					<td><b>表演家</b></td>
-					<td>$artists</td>
+					<td><input name=\"artists_name\" value=\"$artists\" /></td>
 				</tr>
 				<tr>
 					<td><b>发行年份</b></td>
@@ -48,7 +50,16 @@
 				</tr>
 				<tr>
 					<td><b>流派</b></td>
-					<td>$genre</td>
+					<td>
+						<select name='genre'>";
+				foreach($genre_list as $key=>$item){
+					if($genreno != $key)
+						$html.="<option value='$key'>$item</option>";
+					else
+						$html.="<option value='$key' selected>$item</option>";
+				}
+				$html.=	"</select>
+					</td>
 				</tr>
 			</table>
 			<div class='divid'></div>
@@ -83,6 +94,8 @@
 			<div class='path'><b>歌词路径：</b><span class='lrc_path'>{$path['lrc']}</span></div>
 			<h3>上传歌词:</h3>
 			<input type='file' name='upload' id='upload' />
+			<br />
+			<button class='update'>更新信息</button>
 			";
 	echo $html;
 ?>

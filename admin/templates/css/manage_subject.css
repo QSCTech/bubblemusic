@@ -50,7 +50,7 @@
 	margin-left:-2px;
 	background-color:#234380;
 	border:none;
-	cursor:pointer;
+	cursor:n-resize;
 }
 .scroll_bar .bar .pagetip
 {
@@ -71,15 +71,15 @@
 {
 	cursor:pointer;
 }
-/***********添加新的专题模块**************/
-#add_subject
+/***********修改专题模块**************/
+#edit_subject
 {
 	margin:20px 10px 10px 10px;
 	width:900px;
 	position:relative;
 	float:left;
 }
-#add_subject h2
+#edit_subject h2
 {
 	font-size:16px;
 	line-height:30px;
@@ -87,11 +87,24 @@
 	margin:-2px -2px;
 	margin-left:20px;
 }
-#add_subject form
+#edit_subject form
 {
 	margin:10px;
 }
-#add_subject .close_button
+#edit_subject form p
+{
+	margin:3px;
+}
+#edit_subject form textarea
+{
+	width:500px;
+	height:50px;
+}
+#edit_subject form .button
+{
+	margin-left:200px;
+}
+#edit_subject .close_button
 {
 	position:absolute;
 	width:30px;

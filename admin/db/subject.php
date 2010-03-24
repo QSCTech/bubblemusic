@@ -1,4 +1,4 @@
- <?php
+<?php
 	function db_subject_get_subject_num()
 	{
 		global $db_prefix;	
@@ -72,12 +72,20 @@
 		return db_insert($sql, $value);
 	}
 	
-	function db_subject_update_subject_cover($subject_id, $image_file)
+	function db_subject_update_subject_cover($subject_id, $sid)
 	{
 		global $db_prefix;
 		
 		$sql = "UPDATE {$db_prefix}subject";
-		return db_update($sql, array("image_file"=>$image_file), array("subject_id"=>$subject_id));
+		return db_update($sql, array("sid"=>$sid), array("subject_id"=>$subject_id));
+	}
+	
+	function db_subject_update_subject($subject_id, $value)
+	{
+		global $db_prefix;
+		
+		$sql = "UPDATE {$db_prefix}subject";
+		return db_update($sql, $value, array("subject_id"=>$subject_id));	
 	}
 	
 	function db_subject_del_subject($subject_id)
@@ -106,4 +114,3 @@
 		}
 		return mysql_query($sql);
 	}
-?>

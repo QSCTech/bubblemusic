@@ -56,6 +56,14 @@
 		return db_insert($sql, $value);
 	}
 	
+	function db_album_update_album($value, $album_id)
+	{
+		global $db_prefix;
+		
+		$sql = "UPDATE {$db_prefix}album ";
+		return db_update($sql, $value, array("album_id"=>$album_id));
+	}
+	
 	function db_album_del_album($album_id){
 		global $db_prefix;
 		
@@ -63,4 +71,3 @@
 		
 		return mysql_query($sql);
 	}
-?>

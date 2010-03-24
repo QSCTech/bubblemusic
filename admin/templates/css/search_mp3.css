@@ -14,7 +14,7 @@ ul#mp3_list li
 	margin-top:20px;
 	float:left;
 	width:100%;
-	border:2px solid rgb(200,200,200);
+	/*border:2px solid rgb(200,200,200);*/
 }
 
 ul#mp3_list li h2
@@ -47,11 +47,9 @@ ul#mp3_list li form select{
 	margin-top:10px;
 	font-family:"微软雅黑";
 }
-ul#mp3_list li img.button
+ul#mp3_list li img.do_add
 {
 	margin-top:30px;
-	width:97px;
-	height:41px;
 	background:none;
 	cursor:pointer;
 	width:100px;

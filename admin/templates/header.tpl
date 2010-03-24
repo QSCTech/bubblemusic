@@ -6,12 +6,11 @@
         <input type="text" class="text" name="key"/>
         <input type="submit" class="submit" style="display:none;"/>
         <div class="input_right"></div>
-        
         {literal}
         <script language="javascript">
 			$("#search .input_right").click(function(){
-											 $("#search .submit").click();
-											 })
+				 $("#search .submit").click();
+			})
 		</script>
         {/literal}
         

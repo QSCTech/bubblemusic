@@ -124,8 +124,6 @@ ul#subject_list li div.name h4
 	margin:7px;
 }
 
-
-/********一下来自manage.css #add_subject**********/
 #add_subject
 {
 	margin:20px 10px 10px 10px;
@@ -144,6 +142,19 @@ ul#subject_list li div.name h4
 #add_subject form
 {
 	margin:10px;
+}
+#add_subject form p
+{
+	margin:3px;
+}
+#add_subject form textarea
+{
+	width:500px;
+	height:50px
+}
+#add_subject form .button
+{
+	margin-left:200px;
 }
 #add_subject .close_button
 {

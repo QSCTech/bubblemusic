@@ -20,10 +20,17 @@
 		return db_get_one($sql);
 	}
 	
+	function db_artists_update_artists($value, $artists_id)
+	{
+		global $db_prefix;
+		
+		$sql = "UPDATE {$db_prefix}artists ";
+		return db_update($sql, $value, array("artists_id"=>$artists_id));
+	}
+	
 	function db_artists_add_artists($value){
 		global $db_prefix;
 		
 		$sql = "INSERT INTO {$db_prefix}artists ";
 		return db_insert($sql, $value);
 	}
-?>

@@ -89,7 +89,7 @@
 			$targetFile = PATH_PICTURE."$sid";
 			move_uploaded_file($_FILES["Filedata"]["tmp_name"], $targetFile);
 			//更新数据库
-			db_subject_update_subject_cover($subject_id, $targetFile);
+			db_subject_update_subject_cover($subject_id, $sid);
 			
 			return  "var json = {'src':\"$targetFile\"}";
 		}
