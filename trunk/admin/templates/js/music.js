@@ -11,7 +11,8 @@ $(document).ready(function(){
 		}
 	)
 	$("#music_list tbody tr .music_name").click(function(){
-		pop_up(600,400,"<img src='templates/images/loading_big.gif' class='loading'/>");
+		
+		pop_up(600,430,"<img src='templates/images/loading_big.gif' class='loading'/>");
 		//ajax请求
 		var data = {request : "get_music_detail"};
 		music_id = data.music_id = parseInt($(this).parents("tr").attr("id"));
@@ -20,17 +21,34 @@ $(document).ready(function(){
 			$("#pop_up .loading").replaceWith(html);
 			
 			$("#upload").uploadify({
-			"uploader" : "templates/lib/uploadify/uploadify.swf",
-			'script' : "ajax.php",
-			'auto' : true,
-			'scriptData' : {'request' : 'upload_lrc',
+				"uploader" : "templates/lib/uploadify/uploadify.swf",
+				'script' : "ajax.php",
+				'auto' : true,
+				'scriptData' : {'request' : 'upload_lrc',
 							"music_id" : music_id},
-			'cancelImg' : 'templates/lib/uploadify/cancel.png',
-			'onComplete' : function(event, queueID, fileObj, response, data){
-				eval(response);
-				$("#pop_up .lrc_path").html(json.lrc_path);
-			}
-		})
+				'cancelImg' : 'templates/lib/uploadify/cancel.png',
+				'onComplete' : function(event, queueID, fileObj, response, data){
+					eval(response);
+					$("#pop_up .lrc_path").html(json.lrc_path);
+				}
+			})
+			$(".update").click(function(){
+				var do_add = this;
+				
+				var data = {request : "update_mp3"};
+				var pop_up = $(do_add).parents("#pop_up")
+				pop_up.find("input").each(function(){
+					eval("data."+this.name + '="' + this.value + '"');
+				})
+				pop_up.find("select").each(function(){
+					eval("data."+this.name + '="' + this.value + '"');
+				})
+				
+				//ajax请求
+				$.post("ajax.php", data, function(html){
+					window.location.reload();
+				});
+			})
 		});
 	})
 	

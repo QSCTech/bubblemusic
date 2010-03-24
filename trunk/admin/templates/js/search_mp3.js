@@ -2,27 +2,36 @@
  * @author lang
  */
 $(document).ready(function(){
-	$("#mp3_list img.button").bind("click",add_mp3)
+	$("#mp3_list img.do_add").bind("click",add_mp3)
 })
 
 function add_mp3(){
-	var button = this;
+	var do_add = this;
 		
 	var data = {request : "add_mp3"};
-	var li = $(button).parents("li")
+	var li = $(do_add).parents("li")
 	li.find("input").each(function(){
 		eval("data."+this.name + '="' + this.value + '"');
 	})
-	data.genre = li.find("select").val();
+	li.find("select").each(function(){
+		eval("data."+this.name + '="' + this.value + '"');
+	})
 	
 	//ajax请求
 	$.post("ajax.php", data, function(json){
-		button.src = "templates/images/done.png";
-		if (json) {
+		try{
 			eval(json);
+			if(!json.result){
+				do_add.src = "templates/images/error.png";
+			}else{
+				do_add.src = "templates/images/done.png";
+			}
+		}
+		catch(e){
+			do_add.src = "templates/images/error.png";
 		}
 	});
-	button.src = "templates/images/loading_big.gif";
-	$(button).unbind("click");
+	do_add.src = "templates/images/loading_big.gif";
+	$(do_add).unbind("click");
 }
 

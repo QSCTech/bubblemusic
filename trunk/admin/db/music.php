@@ -37,7 +37,7 @@
 	{
 		global $db_prefix;	
 		
-		$sql = "SELECT count(music_id) FROM {$db_prefix}music WHERE music_name LIKE '%$keyword%' ";
+		$sql = "SELECT count(music_id) FROM {$db_prefix}music WHERE music_name LIKE \"%$keyword%\" ";
 		
 		$row = db_get_one($sql);
 		return $row[0];
@@ -47,7 +47,7 @@
 	{
 		global $db_prefix;	
 		
-		$sql = "SELECT * FROM {$db_prefix}music WHERE music_name LIKE '%$keyword%' ";
+		$sql = "SELECT * FROM {$db_prefix}music WHERE music_name LIKE \"%$keyword%\" ";
 		
 		//列表排列方式
 		$order_by = $order_by ? $order_by : "music_id DESC";
@@ -66,7 +66,7 @@
 	function db_music_get_music4music_name($name){
 		global $db_prefix;
 		
-		$sql = "SELECT * FROM {$db_prefix}music WHERE music_name = '$name'";
+		$sql = "SELECT * FROM {$db_prefix}music WHERE music_name = \"$name\"";
 		return db_get_rows($sql);
 	}
 	
@@ -80,7 +80,7 @@
 	function db_music_get_music4album_name($name){
 		global $db_prefix;
 		
-		$sql = "SELECT * FROM {$db_prefix}music WHERE album_name = '$name'";
+		$sql = "SELECT * FROM {$db_prefix}music WHERE album_name = \"$name\"";
 		return db_get_rows($sql);
 	}
 	
@@ -94,7 +94,7 @@
 	function db_music_get_music4artists_name($name){
 		global $db_prefix;
 		
-		$sql = "SELECT * FROM {$db_prefix}music WHERE artists_name = '$name'";
+		$sql = "SELECT * FROM {$db_prefix}music WHERE artists_name = \"$name\"";
 		return db_get_rows($sql);
 	}
 	
@@ -134,6 +134,7 @@
 		
 		return mysql_query($sql);
 	}
+	
 	function db_music_del_music4album_id($album_id){
 		global $db_prefix;
 		
@@ -141,4 +142,22 @@
 		
 		return mysql_query($sql);
 	}
-?>
+	
+	function db_music_update_music($value, $music_id)
+	{
+		global $db_prefix;
+		
+		$sql = "UPDATE {$db_prefix}music ";
+		return db_update($sql, $value, array("music_id"=>$music_id));
+	}
+	
+	function db_music_update_lyric($music_id, $lyric){
+		global $db_prefix;
+		
+		$lyric = addslashes($lyric);
+		$sql = "INSERT INTO  {$db_prefix}lyric";
+		$lyric_id = db_insert($sql, array("lyric"=>$lyric));
+		
+		$sql = "UPDATE {$db_prefix}music";
+		return db_update($sql, array("lyric_id"=>$lyric_id), array("music_id"=>$music_id));
+	}

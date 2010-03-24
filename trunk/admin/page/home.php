@@ -1,6 +1,6 @@
 <?php
   class page_home{
-		public function page_home($smarty){
+		public function page_home(&$smarty){
 			$page = isset($_GET["page"]) ? $_GET["page"] : 1;
 			$page_size = isset($_GET["page_size"]) ? $_GET["page_size"] : 15;
 			

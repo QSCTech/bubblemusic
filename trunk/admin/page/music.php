@@ -1,6 +1,6 @@
 <?php
   class page_music{
-		public function page_music($smarty){
+		public function page_music(&$smarty){
 			global $genre_list;
 			
 			$album_id = isset($_GET["aid"]) ? $_GET["aid"] : NULL;

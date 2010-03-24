@@ -14,12 +14,12 @@ $(document).ready(function(){
     $(".close_button").click(function(){
         $(this).parent("div.block").remove();
     })
-    $("#add_subject input[type=button]").click(function(){
-        if (!$("#add_subject input[name=subject_name]").val()) {
-            $("#add_subject p.warn").html("还没有填入专题名啊。。。。")
+    $("#edit_subject input[type=button]").click(function(){
+        if (!$("#edit_subject input[name=subject_name]").val()) {
+            $("#edit_subject p.warn").html("还没有填入专题名啊。。。。")
         }
         else {
-            $("#add_subject input[type=submit]").click();
+            $("#edit_subject input[type=submit]").click();
         }
     })
 	//工具栏
@@ -34,26 +34,28 @@ $(document).ready(function(){
 	var slider = $(".scroll_bar .bar .slider");
 	var bar = $(".scroll_bar .bar");
 	slider.height(bar.height()/page_all);
-	slider.mousedown(function(e){
-		this.positionY_old = e.clientY;
-		$(document.body).mousemove(function(e){
-			var top = slider.offset().top - bar.offset().top + e.clientY - this.positionY_old;
-			this.positionY_old = e.clientY;
+	
+	slider.draggable({
+		grid: [20,bar.height()/page_all],
+		axis: 'y',
+		containment: 'parent',
+		start: function() {
+			
+		},
+		drag: function() {
+			var top = slider.offset().top - bar.offset().top
+			
 			if (top >= 0 && top + slider.height() <= bar.height()) {
 				//计算页数
 				page = Math.ceil((top + slider.height()*0.3)/ slider.height());
-				slider.css({
-					"margin-top": top + "px"
-				});
 				slider.attr("title", page+" / "+page_all);
 				$(".tool_bar .page").html(page+" / "+page_all);
 			}
-		})
-	})
-	$(document.body).mouseup(function(e){
-		get_page()
-		$(document.body).unbind("mousemove");
-	})
+		},
+		stop: function() {
+			get_page();
+		}
+	});
 })
 
 function prepare(){
@@ -66,11 +68,12 @@ function prepare(){
     
     $("#music_list li img").click(add_music2subject);
     $("#subject_music_list li img").click(remove_subject_music);
-	
+	/*
 	var slider = $(".scroll_bar .bar .slider");
 	slider.css({
 		"margin-top": slider.height() * (page-1) + "px"
-	});;
+	});
+	*/
 }
 
 function add_music2subject(){
@@ -144,6 +147,7 @@ function get_next_page(){
             $("#music_list ul").html(html);
 			$(".tool_bar .page").html(page+" / "+page_all);
             prepare();
+			music_list_ori = $("#music_list ul").html();
 		});
 	}
 }
@@ -161,6 +165,7 @@ function get_prev_page(){
             $("#music_list ul").html(html);
 			$(".tool_bar .page").html(page+" / "+page_all);
             prepare();
+			music_list_ori = $("#music_list ul").html();
 		});
 	}
 }
@@ -176,6 +181,7 @@ function get_page(){
         $("#music_list ul").html(html);
 		$(".tool_bar .page").html(page+" / "+page_all);
         prepare();
+		music_list_ori = $("#music_list ul").html();
 	});
 }
 

@@ -69,8 +69,36 @@
 		$artists_name = $music["artists_name"];
 		
 		$file = array();
-		$file["mp3"] = SOURCE.$yearMonth."/$artists_name - $album_name/$music_name.mp3";
-		$file["lrc"] = SOURCE.$yearMonth."/$artists_name - $album_name/$music_name.lrc";
+		$file["mp3"] = SOURCE.$yearMonth . "/" . $artists_name . " - ".  $album_name . "/". $music_name . ".mp3";
+		$file["lrc"] = SOURCE.$yearMonth . "/" . $artists_name . " - ".  $album_name . "/". $music_name . ".lrc";
 		return $file;
 	}
+	
+	function escape($str)   {   
+      preg_match_all("/[\x80-\xff].|[\x01-\x7f]+/",$str,$r);   
+      $ar   =   $r[0];   
+      foreach($ar   as   $k=>$v)   {   
+          if(ord($v[0])   <   128)   
+              $ar[$k]   =   rawurlencode($v);   
+          else   
+              $ar[$k]   =   "%u".bin2hex(iconv("GB2312","UCS-2",$v));   
+      }   
+      return   join("",$ar);   
+  }   
+    
+  function   unescape($str)   {   
+      $str   =   rawurldecode($str);   
+      preg_match_all("/%u.{4}|&#x.{4};|&#\d+;|.+/U",$str,$r);   
+      $ar   =   $r[0];   
+      foreach($ar   as   $k=>$v)   {   
+          if(substr($v,0,2)   ==   "%u")   
+              $ar[$k]   =   iconv("UCS-2","GBK",pack("H4",substr($v,-4)));   
+          elseif(substr($v,0,3)   ==   "&#x")   
+              $ar[$k]   =   iconv("UCS-2","GBK",pack("H4",substr($v,3,-1)));   
+          elseif(substr($v,0,2)   ==   "&#")   {   
+              $ar[$k]   =   iconv("UCS-2","GBK",pack("n",substr($v,2,-1)));   
+          }   
+      }   
+      return   join("",$ar);   
+  } 
 ?>

@@ -5,7 +5,8 @@
 body
 {
 	margin:0px;
-	background-color:#CCC;
+	/*background-image:url(../images/wallpaper.jpg);*/
+	background-color:#F2F2F2;
 	font-size:12px;
 	text-align:center;
 	font-family:"微软雅黑";
@@ -60,17 +61,19 @@ h1, h2, h3, h4, h5
 .block
 {
 	border:none; 
-	background:url(../images/block_bg.png);
+	/*background:url(../images/block_bg.png);*/
 	background-repeat:no-repeat;
 	/*IE下*/
 	*border:2px solid rgb(200,200,200);
 	/*阴影*/
-	-webkit-box-shadow:1px 1px 5px black;	/*webkit浏览器*/
-	-moz-box-shadow:1px 1px 5px black;		/*火狐浏览器*/
+	-webkit-box-shadow:1px 1px 8px black;	/*webkit浏览器*/
+	-moz-box-shadow:1px 1px 8px black;		/*火狐浏览器*/
 	box-shadow:1px 1px 5px black;
+	
 	/*圆角*/
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;	
+	border-radius: 8px;	
 }
 
 p.info
@@ -91,10 +94,15 @@ p.warn
 
 input
 {
-	background:none;
-	/*圆角*/
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
+	border:1px solid rgb(200,200,200);
+	font-size:14px;
+	font-family:"微软雅黑";
+}
+textarea
+{
+	border:1px solid rgb(200,200,200);
+	font-size:14px;
+	font-family:"微软雅黑";
 }
 /*****************一般按钮********************/
 button,
@@ -108,9 +116,6 @@ button,
 	font-family:"微软雅黑";
 	cursor:pointer;
 	margin-left:10px;
-	/*去掉圆角*/
-	-moz-border-radius: 0px;
-	-webkit-border-radius: px;
 }
 button:active,
 .button:active
@@ -130,6 +135,9 @@ button:active,
 	background-image:url(../images/banner_bg.png);
 	float:left;
 	width:100%;
+	
+	filter:alpha(opacity=70);
+	opacity:0.7;
 }
 #banner h1
 {
@@ -171,10 +179,6 @@ button:active,
 	border:none;
 	float:left;
 	padding-top:3px;
-	/*去掉圆角*/
-	-moz-border-radius: 0px;
-	-webkit-border-radius: 0px;
-	
 }
 #search .input_right
 {
@@ -200,6 +204,8 @@ button:active,
 	float:left;
 	height:400px;
 	background-color:#D1D7E2;
+	filter:alpha(opacity=80);
+	opacity:0.8;
 }
 
 #right
@@ -213,9 +219,10 @@ button:active,
 	box-shadow:1px 1px 5px black;
 }
 
-#left ul
+#left .user_info
 {
-	margin-top:30px;
+	font-size:16px;
+	margin:20px 10px;
 }
 
 #left ul li

@@ -105,13 +105,13 @@ class id3 {
      * Note: If/when ID3v2 is implemented this method will probably get another
      *       parameters.
      */
-    //function write($v1 = true) {
-    //if ($this->debug) print($this->debugbeg . "write()<HR>\n");
-    //if ($v1) {
-    //    $this->_write_v1();
-    //}
-    //if ($this->debug) print($this->debugend);
-    //} // write()
+    function write($v1 = true) {
+    	if ($this->debug) print($this->debugbeg . "write()<HR>\n");
+    	if ($v1) {
+    	    $this->_write_v1();
+    	}
+    	if ($this->debug) print($this->debugend);
+    } // write()
 
     /*
      * study() - does extra work to get the MPEG frame info.
@@ -188,7 +188,7 @@ class id3 {
     */
 
     $id3tag = $this->_decode_v1($r);
-
+	
     if($id3tag) {
         $this->id3v1 = true;
 
@@ -495,7 +495,6 @@ $version)<HR>\n");
      */
     function _decode_v1($rawtag) {
     if ($this->debug) print($this->debugbeg . "_decode_v1(\$rawtag)<HR>\n");
-
     if ($rawtag[125] == Chr(0) and $rawtag[126] != Chr(0)) {
         // ID3 v1.1
         $format = 
@@ -505,9 +504,8 @@ $version)<HR>\n");
         $format = 
 'a3TAG/a30NAME/a30ARTISTS/a30ALBUM/a4YEAR/a30COMMENT/C1GENRENO';
     }
-
+	
     $id3tag = unpack($format, $rawtag);
-    //if ($this->debug) print_r($id3tag);
 
     if ($id3tag['TAG'] == 'TAG') {
         $id3tag['GENRE'] = $this->getgenre($id3tag['GENRENO']);
@@ -526,45 +524,45 @@ $version)<HR>\n");
      * if there is an error it will return false and a message will be
      * put in $this->error
      */
-    //function _write_v1() {
-    //if ($this->debug) print($this->debugbeg . "_write_v1()<HR>\n");
+    function _write_v1() {
+    	if ($this->debug) print($this->debugbeg . "_write_v1()<HR>\n");
 
-    //$file = $this->file;
+    	$file = $this->file;
 
-    //if (! ($f = fopen($file, 'r+b')) ) {
-    //    $this->error = 'Unable to open ' . $file;
-    //    return false;
-    //}
+    	if (! ($f = fopen($file, 'r+b')) ) {
+    	    $this->error = 'Unable to open ' . $file;
+    	    return false;
+    	}
 
-    //if (fseek($f, -128, SEEK_END) == -1) {
-    //    $this->error = 'Unable to see to end - 128 of ' . $file;
-    //    return false;
-    //}
+    	if (fseek($f, -128, SEEK_END) == -1) {
+    	    $this->error = 'Unable to see to end - 128 of ' . $file;
+    	    return false;
+    	}
 
-    //$this->genreno = $this->getgenreno($this->genre, $this->genreno);
+    	$this->genreno = $this->getgenreno($this->genre, $this->genreno);
 
-    //$newtag = $this->_encode_v1();
+    	$newtag = $this->_encode_v1();
 
-    //$r = fread($f, 128);
+    	$r = fread($f, 128);
 
-    //if ($this->_decode_v1($r)) {
-    //    if (fseek($f, -128, SEEK_END) == -1) {
-    //    $this->error = 'Unable to see to end - 128 of ' . $file;
-    //    return false;
-    //    }
-    //    fwrite($f, $newtag);
-    //} else {
-    //    if (fseek($f, 0, SEEK_END) == -1) {
-    //    $this->error = 'Unable to see to end of ' . $file;
-    //    return false;
-    //    }
-    //    fwrite($f, $newtag);
-    //}
-    //fclose($f);
+    	if ($this->_decode_v1($r)) {
+    	    if (fseek($f, -128, SEEK_END) == -1) {
+    	    $this->error = 'Unable to see to end - 128 of ' . $file;
+    	    return false;
+    	    }
+    	    fwrite($f, $newtag);
+    	} else {
+    	    if (fseek($f, 0, SEEK_END) == -1) {
+    	    $this->error = 'Unable to see to end of ' . $file;
+    	    return false;
+    	    }
+    	    fwrite($f, $newtag);
+    	}
+    	fclose($f);
 
 
-    //if ($this->debug) print($this->debugend);
-    //} // _write_v1()
+    	if ($this->debug) print($this->debugend);
+    } // _write_v1()
 
     /*
      * _encode_v1() - encode the ID3 tag
@@ -1001,5 +999,3 @@ $bytes)<HR>\n");
             );
     } // genres()
 } // end of class id3
-
-?>

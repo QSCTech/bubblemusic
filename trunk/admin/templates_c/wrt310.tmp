@@ -1,0 +1,32 @@
+<?php /* Smarty version 2.6.22, created on 2009-12-11 18:08:30
+         compiled from left.tpl */ ?>
+<div id="left">
+	<ul>
+    	<li <?php if ($this->_tpl_vars['file'] == 'home'): ?>class ="hover"<?php endif; ?>>
+        	<a href="./?action=page_home">专辑管理</a>
+        </li>
+        <li <?php if ($this->_tpl_vars['file'] == 'music'): ?>class="hover"<?php endif; ?>>
+        	<a href="./?action=page_music&ltype=list">音乐管理</a>
+        </li>
+        <li <?php if ($this->_tpl_vars['file'] == 'subject'): ?>class="hover"<?php endif; ?>>
+        	<a href="./?action=page_subject">专题管理</a>
+        </li>
+        <li <?php if ($this->_tpl_vars['file'] == 'search_mp3'): ?>class="hover"<?php endif; ?>>
+        	<a href="./?action=page_search_mp3">搜索ftp</a>
+        </li>
+        <li>
+        	<br />
+            <h3><b>注：</b></h3>
+            该网站不再支持IE6- -！（或任何使用IE6内核的浏览器）
+        </li>
+        <li>
+        	<br />
+            <h3><b>上传歌曲说明</b></h3>
+            将歌曲歌词上传到ftp的upload_temp目录下
+            （ftp地址：10.76.8.200，用户名：bubble，密码:bubble），
+            然后进入ftp搜索页面查看上传的歌曲，点击add进行添加<br />
+            <b>文件名规则：</b>歌曲名和歌词名相同(歌词名后缀lrc)，图片名跟专辑名相同（图片限定jpg）<br />
+            <b>备注：</b>如果有出现无法添加的情况，请修改文件名后重新添加（文件名尽量不要出现符号，暂时只支持英文文件名）
+        </li>
+    </ul>
+</div>

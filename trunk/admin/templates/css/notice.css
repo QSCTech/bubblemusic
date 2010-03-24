@@ -1,0 +1,74 @@
+#add_notice
+{
+	margin:20px 10px 10px 10px;
+	width:900px;
+	position:relative;
+	float:left;
+}
+#add_notice h2
+{
+	font-size:16px;
+	line-height:30px;
+	font-family:"微软雅黑";
+	margin:-2px -2px;
+	margin-left:20px;
+}
+#add_notice form
+{
+	margin:10px;
+}
+#add_notice form p
+{
+	margin:3px;
+}
+#add_notice form textarea
+{
+	width:500px;
+	height:50px
+}
+#add_notice form .button
+{
+	margin-left:200px;
+}
+#add_notice .close_button
+{
+	position:absolute;
+	width:30px;
+	height:30px;
+	left:885px;
+	top:-10px;
+	cursor:pointer;
+}
+
+ul#notice_list
+{
+	width:870px;
+	text-align:left;
+	margin:20px;
+}
+
+ul#notice_list li
+{
+	margin-top:20px;
+	float:left;
+	width:100%;
+	/*border:2px solid rgb(200,200,200);*/
+}
+
+ul#notice_list li h2
+{
+	border-bottom:1px dashed #00F;
+}
+ul#notice_list li h2
+{
+	font-size:14px;
+	font-family:"黑体";
+	margin:0px;
+	line-height:20px;
+	padding-left:10px;
+}
+ul#notice_list li p
+{
+	margin:20px;
+	float:left;
+}
