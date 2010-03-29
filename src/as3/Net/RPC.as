@@ -29,9 +29,9 @@ package as3.Net
 			conn.call("Music.search",new Responder(result,onFault),a,b,c);
 			conn.close();
 		}
-		public function getNextMusic(result:Function):void{
+		public function getNextMusic(result:Function,num:int):void{
 			conn.connect(URL);
-			conn.call("Music.getNextMusic", new Responder(result,onFault));
+			conn.call("Music.getNextMusic", new Responder(result,onFault),num);
 			conn.close();
 		}
 		
