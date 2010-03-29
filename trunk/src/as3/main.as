@@ -7,9 +7,9 @@
 	import Component.login;
 	import Component.mood;
 	import Component.register;
+	import Component.rssStar;
 	import Component.share;
 	import Component.special;
-	import Component.rssStar;
 	
 	import as3.Lyric.LRCDecoder;
 	import as3.Net.RPC;
@@ -260,6 +260,7 @@
 	 * 当一首音乐播放完后,执行播放下一首音乐的操作,包括播放列表的同步
 	 */
 	public function nextMusic(event:Event):void{
+		rpc.getNextMusic(this.getNextMusic,1);
 		musicControl.pausePlay();
 		lrcnum = 0;
 		LRC.splice(0,LRC.length);
@@ -272,8 +273,12 @@
 		this.listEffect(1);
 	}
 	
-	private function getNextMusic(result:Object):void{
-		this.playList.push(result);
+	private function getNextMusic(result:Array):void{
+		if(result.length > 0){
+			for(var i:int = 0; i<result.length; i++){
+				this.playList.push(result[i]);
+			}
+		}
 	}
 	
 	
@@ -316,7 +321,6 @@
 		
 		addEventListener(Event.ENTER_FRAME, onEnterFrame);
 		this.syncMusicInfo(playList[0].title, playList[0].author ,playList[0].album);
-		rpc.getNextMusic(this.getNextMusic);
 	}
 	
 	private function resetPlaylistX():void{
@@ -465,15 +469,16 @@
 			playList.shift();
 		}
 		this.syncPlayList(playList);
-		this.listEffect(i-1);
+		this.listEffect(1);
 		event.currentTarget.moveLeft.stop();
 		
 		lrcnum = 0;
 		LRC.splice(0,LRC.length);
-		musicControl.pausePlay();
+		musicControl.newPlay(playList[0].url);
+		rpc.getNextMusic(this.getNextMusic,i-1);
 		lrcLoader.load(new URLRequest(playList[0].lrc));
 		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
-		resetPlaylistX();     //////////////////////////////////////
+		resetPlaylistX(); 
 	}
 	
 	/**
@@ -828,7 +833,7 @@
 			nextMusic(event);
 		}
 		else{
-			rpc.getNextMusic(this.getNextMusic);
+			rpc.getNextMusic(this.getNextMusic,1);
 			playList.splice(i-1,1);
 			this.syncPlayList(playList);
 			this.listEffect(i);
