@@ -20,7 +20,7 @@ package as3.PlayControl
 		private var nextMusic:Function;
 		public var progressPos:Number;
 		private static var temp:Number; 
-		public var isLoading:Boolean;
+		public var volume:Number;
 
 		
 		/**
@@ -29,8 +29,8 @@ package as3.PlayControl
 		public function playControl()
 		{
 			pasPos = 0;
-			channel = new SoundChannel();
 			isPlay = false;
+			volume = 0.7;
 		}
 		
 
@@ -41,25 +41,18 @@ package as3.PlayControl
 		 */
 		public function newPlay(musicFile:String):void{
 			if(isPlay){
-				//music.close();
 				channel.stop();
 				isPlay = false;
 			}
 			music = new Sound();
-			music.addEventListener(Event.COMPLETE,onMusicLoaded);
 			music.load(new URLRequest(musicFile));
-			//channel = music.play(0);
-			//channel.addEventListener(Event.SOUND_COMPLETE,nextMusic);
-			//isPlay = true;
-		}
-		
-		private function onMusicLoaded(event:Event):void{
 			channel = music.play(0);
 			channel.addEventListener(Event.SOUND_COMPLETE,nextMusic);
+			var soundTransform:SoundTransform = new SoundTransform();
+			soundTransform.volume = volume;
+			channel.soundTransform = soundTransform;
 			isPlay = true;
 		}
-		
-		
 		
 		
 		/**
@@ -86,24 +79,24 @@ package as3.PlayControl
 			}
 		}
 		
-		/**
-		 * 调整音量
-		 */
 		
 		public function setNextMusic(next:Function):void{
 			this.nextMusic = next;
 		}
 		
-		
+		/**
+		 * 调整音量
+		 */
 		
 		public function changeSoundSize(value:Number):void   {    
 			var transform:SoundTransform = channel.soundTransform;  
 			transform.volume = value;
-			channel.soundTransform = transform;   
+			volume = value;
+			channel.soundTransform = transform;
 		}
 		
 		public function progressSet():void{
-			 progressPos = channel.position/music.length;
+			 progressPos = channel.position/ (music.length / music.bytesLoaded * music.bytesTotal);
 		}
 		
 		public function fadeSound(value:Number):void{   

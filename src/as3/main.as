@@ -266,7 +266,8 @@
 		playList.shift();
 		lrcLoader.load(new URLRequest(playList[0].lrc));
 		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
-		resetPlaylistX();     //////////////////////////////////////
+		musicControl.newPlay(playList[0].url);
+		resetPlaylistX();
 		this.syncPlayList(playList);
 		this.listEffect(1);
 	}
@@ -285,6 +286,7 @@
 		this.playList = result;
 		this.syncPlayList(playList);
 		this.listEffect(1);
+		musicControl.newPlay(playList[0].url);
 		lrcLoader.load(new URLRequest(playList[0].lrc));
 		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
 	}
@@ -310,7 +312,7 @@
 		lyric.lrc9.text = "";
 		lyric.lrc10.text = "";
 		LRC = LRCDecoder.decoder(str);
-		musicControl.newPlay(playList[0].url);
+		
 		
 		addEventListener(Event.ENTER_FRAME, onEnterFrame);
 		this.syncMusicInfo(playList[0].title, playList[0].author ,playList[0].album);
