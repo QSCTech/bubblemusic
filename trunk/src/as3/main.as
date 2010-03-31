@@ -57,7 +57,9 @@
 	 * 
 	 */	
 	public function initPlayList():void{
-		
+		//获取sid自动登录
+		var sid:String = flash.external.ExternalInterface.call("getSid");
+		rpc.autoLogin(onLogin,sid);
 		//以下列表仅用于测试
 		var arg:String = flash.external.ExternalInterface.call("getIndex");
 		rpc.getMusicList(onGetMusicList,arg);
@@ -299,7 +301,22 @@
 		}
 	}
 	
-	
+	/**
+	 *自动登录回调
+	 */	
+	 public function onLogin(result:Object):void{
+		if(result.user_id > 0){  
+			top.welcomeText.text = result.user_name + "，Let's Bubble~" ;
+			top.currentState = "logined";
+			flash.external.ExternalInterface.call("setSid", result.sid);
+		} 
+		else if(result.user_id == -2){
+			Alert.show("密码不正确");
+		}
+		else{
+			Alert.show("用户名不存在");
+		}
+	 }
 	/**
 	 *当得到播放列表后,执行相应操作 
 	 * @param result
