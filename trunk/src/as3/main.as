@@ -47,6 +47,7 @@
 	public var isLyric:int = 1;
 	public var userName:String = "";
 	public var isLoop:int = 0;
+	public var isFinished:int = 0;
 	
 	[Bindable]
 	public var Version:String = "Bubble Music 1.0 (2010.4.1.r70) April Fool's Edition.Powered by QSCtech";
@@ -262,21 +263,32 @@
 	 * 当一首音乐播放完后,执行播放下一首音乐的操作,包括播放列表的同步
 	 */
 	public function nextMusic(event:Event):void{
+		removeEventListener(Event.ENTER_FRAME,onEnterFrame);
 		rpc.getNextMusic(this.getNextMusic,1);
 		musicControl.pausePlay();
 		lrcnum = 0;
 		LRC.splice(0,LRC.length);
 		
+	//	if(isFinished == 1 && userName!=""){
+	//		rpc.addUserCredit(this.addCredit,userName,playList[0].id);
+	//	}
 		if(isLoop == 0){
 			playList.shift();
 		}
 			
+			
+
 		lrcLoader.load(new URLRequest(playList[0].lrc));
 		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
 		musicControl.newPlay(playList[0].url);
 		resetPlaylistX();
 		this.syncPlayList(playList);
 		this.listEffect(1);
+	}
+	
+	private function addCredit(result:int):void{
+		var updateCredit:int = result;
+		top.credit.text = String(updateCredit);
 	}
 	
 	private function getNextMusic(result:Array):void{
@@ -398,21 +410,21 @@
 				if(LRC[lrcnum]){
 					lyric.lrc5.text = LRC[lrcnum].lrc.toString();
 				}
-				if(LRC[lrcnum+1]){
+				if(LRC[lrcnum+1]&&(lrcnum+1)<LRC.length){
 					lyric.lrc6.text = LRC[lrcnum+1].lrc.toString();
-				}
-				if(LRC[lrcnum+2]){
+				}else{lyric.lrc6.text = ""}
+				if(LRC[lrcnum+2]&&(lrcnum+2)<LRC.length){
 					lyric.lrc7.text = LRC[lrcnum+2].lrc.toString();
-				}
-				if(LRC[lrcnum+3]){
+				}else{lyric.lrc7.text = ""}
+				if(LRC[lrcnum+3]&&(lrcnum+3)<LRC.length){
 					lyric.lrc8.text = LRC[lrcnum+3].lrc.toString();
-				}
-				if(LRC[lrcnum+4]){
+				}else{lyric.lrc8.text = ""}
+				if(LRC[lrcnum+4]&&(lrcnum+4)<LRC.length){
 					lyric.lrc9.text = LRC[lrcnum+4].lrc.toString();
-				}
-				if(LRC[lrcnum+5]){
+				}else{lyric.lrc9.text = ""}
+				if(LRC[lrcnum+5]&&(lrcnum+5)<LRC.length){
 					lyric.lrc10.text = LRC[lrcnum+5].lrc.toString();
-				}
+				}else{lyric.lrc10.text = ""}
 				
 				lyric.LRCeffect.stop();
 				lyric.LRCeffect.play();
@@ -438,27 +450,28 @@
 				if(LRC[lrcnum]){
 					lyric.lrc5.text = LRC[lrcnum].lrc.toString();
 				}
-				if(LRC[lrcnum+1]){
+				if(LRC[lrcnum+1]&&(lrcnum+1)<LRC.length){
 					lyric.lrc6.text = LRC[lrcnum+1].lrc.toString();
-				}
-				if(LRC[lrcnum+2]){
+				}else{lyric.lrc6.text = ""}
+				if(LRC[lrcnum+2]&&(lrcnum+2)<LRC.length){
 					lyric.lrc7.text = LRC[lrcnum+2].lrc.toString();
-				}
-				if(LRC[lrcnum+3]){
+				}else{lyric.lrc7.text = ""}
+				if(LRC[lrcnum+3]&&(lrcnum+3)<LRC.length){
 					lyric.lrc8.text = LRC[lrcnum+3].lrc.toString();
-				}
-				if(LRC[lrcnum+4]){
+				}else{lyric.lrc8.text = ""}
+				if(LRC[lrcnum+4]&&(lrcnum+4)<LRC.length){
 					lyric.lrc9.text = LRC[lrcnum+4].lrc.toString();
-				}
-				if(LRC[lrcnum+5]){
+				}else{lyric.lrc9.text = ""}
+				if(LRC[lrcnum+5]&&(lrcnum+5)<LRC.length){
 					lyric.lrc10.text = LRC[lrcnum+5].lrc.toString();
-				}
+				}else{lyric.lrc10.text = ""}
 				
 				lyric.LRCeffect.stop();
 				lyric.LRCeffect.play();
 			}
 		}else{
-			removeEventListener(Event.ENTER_FRAME,onEnterFrame);
+			if(time<LRC[lrcnum].time)
+				lrcnum-=2;
 		}
 	}
 
@@ -1079,7 +1092,9 @@
 	private function resetUser():void{
 		userName = "";
 	}
-	
+	/**
+	 * 单曲循环播放
+	 */
 	public function setLoop(event:Event):void{
 		if(isLoop == 0){
 			isLoop = 1;
