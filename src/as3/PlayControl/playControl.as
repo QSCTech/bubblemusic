@@ -119,19 +119,19 @@ package as3.PlayControl
 			channel.soundTransform = transform;
 		}
 		public function fadePause(event:Event):void{
-				this.pausePlay();
+			this.pausePlay();
 		}
 		public function setPos(value:Number):void{
-			     if(isPlay){
-			       this.pausePlay();
-			       pasPos = value*music.length;
-			       this.pursuePlay();
-			     }
-			     else{
-			       pasPos = value*music.length;
-			       this.pursuePlay();
-			       this.pausePlay();
-			     }
+			 if(isPlay){
+			   this.pausePlay();
+			   pasPos = value*music.length;
+			   this.pursuePlay();
+			 }
+			 else{
+			   pasPos = value*music.length;
+			   this.pursuePlay();
+			   this.pausePlay();
+			 }
 		}
 		
 	}
