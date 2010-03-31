@@ -23,14 +23,15 @@
 		}         
 	}
 
-	public function onResult(result:int):void{
-		if(result > 0){
+	public function onResult(result:Object):void{
+		if(result.user_id > 0){
 			if(callBack != null){
 				callBack(txtUsername.text);                 
 			}  
 			this.onclose();
+			flash.external.ExternalInterface.call("setSid", result.sid);
 		} 
-		else if(result == -2){
+		else if(result.user_id == -2){
 			Alert.show("密码不正确");
 		}
 		else{

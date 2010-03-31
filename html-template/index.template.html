@@ -30,9 +30,9 @@ var requiredRevision = ${version_revision};
 // -->
 </script>
 <script language="JavaScript" type="text/javascript">
-//CookieÉèÖÃ¼°¶ÁÈ¡²Ù×÷
+//Cookieï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
 function setTitle(music, author, album){
-	document.title = music + " - " + author + " - " + album + " Bubble Music ÇóÊÇ³±ÆìÏÂÍøÕ¾";
+	document.title = music + " - " + author + " - " + album + " Bubble Music ï¿½ï¿½ï¿½Ç³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¾";
 }
 function getIndex(){
 	var url = window.location.href;
@@ -60,7 +60,25 @@ function setCookie(list){
 	musicList += "; expires=" + date.toGMTString();
 	document.cookie = musicList;
 }
-
+function getSid(){
+	var cokie = document.cookie.split("; ");
+	var sid = "0";
+	for(var i = 0;i < cokie.length;i ++){
+		var temp = cokie[i].split("=");
+		if(temp[0] == "bubble_usid"){
+			sid = unescape(temp[1]);
+			break;
+		}
+	}
+	return sid;
+}
+function setSid(sid){
+	var cookieData = "bubble_usid="+escape(sid);
+	var date = new Date();
+	date.setTime(date.getTime() + 17*24*3600*1000);
+	cookieData += "; expires=" + date.toGMTString();
+	document.cookie = cookieData;
+}
 </script>
 </head>
 
