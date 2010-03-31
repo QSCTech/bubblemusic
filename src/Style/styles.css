@@ -4,7 +4,7 @@ ScrollBar{
 	fillColors: #EDEDED, #EDEDED, #EDEDED, #EDEDED;
 	borderColor: #000000;
 	trackColors: #000000, #000000;
-	themeColor: #ccff66;
+	themeColor: #E00025;
 }
 Application
 {
@@ -239,33 +239,34 @@ HRule
 	upSkin:Embed(source="bubble.swf" ,symbol="add_up");
 	downSkin:Embed(source="bubble.swf" ,symbol="add_down");
 	overSkin:Embed(source="bubble.swf" ,symbol="add_over");
+	rollOverEffect: Glow;
 }
 .addAllBtn
 {
-	paddingLeft: 2;
-	paddingRight: 2;
-	paddingTop: 2;
-	paddingBottom: 2;
+	paddingLeft: 1;
+	paddingRight: 1;
+	paddingTop: 1;
+	paddingBottom: 1;
 	textRollOverColor: #5D5D5D;
 	textSelectedColor: #5D5D5D;
-	disabledColor: #B2B2B2;
+	disabledColor: #D9D9D9;
 	borderColor: #D2D2D2;
 	fillAlphas: 0.0, 0.0, 0.0, 0.0;
 	color: #5D5D5D;
 	themeColor: #D2D2D2;
-	fontSize: 9;
+	fontSize: 10;
 }
 .backLyricLBtn
 {
 	color: #474747;
-	rollOverColor: #B2B2B2;
-	selectionColor: #B2B2B2;
+	rollOverColor: #D9D9D9;
+	selectionColor: #D9D9D9;
 	textRollOverColor: #474747;
-	fontSize: 9;
-	paddingLeft: 2;
-	paddingRight: 2;
-	paddingBottom: 2;
-	paddingTop: 2;
+	fontSize: 10;
+	paddingLeft: 1;
+	paddingRight: 1;
+	paddingBottom: 1;
+	paddingTop: 1;
 }
 .searchTopHRule
 {
@@ -274,7 +275,7 @@ HRule
 }
 .searchBoxHRule
 {
-	strokeColor:#b2b2b2;
+	strokeColor:#D9D9D9;
 	strokeWidth:1;
 }
 
@@ -376,30 +377,35 @@ HSlider
 	upSkin:Embed(source="bubble.swf" ,symbol="unsilent_up");
 	downSkin:Embed(source="bubble.swf" ,symbol="unsilent_down");
 	overSkin:Embed(source="bubble.swf" ,symbol="unsilent_over");
+	rollOverEffect: Glow;
 }
 .silentBtn
 {
 	upSkin:Embed(source="bubble.swf" ,symbol="silent_up");
 	downSkin:Embed(source="bubble.swf" ,symbol="silent_down");
 	overSkin:Embed(source="bubble.swf" ,symbol="silent_over");
+	rollOverEffect: Glow;
 }
 .nextBtn
 {
 	upSkin:Embed(source="bubble.swf" ,symbol="next_up");
 	downSkin:Embed(source="bubble.swf" ,symbol="next_down");
 	overSkin:Embed(source="bubble.swf" ,symbol="next_over");
+	rollOverEffect: Glow;
 }
 .playBtn
 {
 	upSkin:Embed(source="bubble.swf" ,symbol="play_up");
 	downSkin:Embed(source="bubble.swf" ,symbol="play_down");
 	overSkin:Embed(source="bubble.swf" ,symbol="play_over");
+	rollOverEffect: Glow;
 }
 .pauseBtn
 {
 	upSkin:Embed(source="bubble.swf" ,symbol="pause_up");
 	downSkin:Embed(source="bubble.swf" ,symbol="pause_down");
 	overSkin:Embed(source="bubble.swf" ,symbol="pause_over");
+	rollOverEffect: Glow;
 }
 
 
@@ -432,7 +438,7 @@ HSlider
 }
 .popupHRule
 {
-	strokeColor:#B2B2B2;
+	strokeColor:#D9D9D9;
 	strokeWidth:1;
 }
 .closeLBtn
@@ -446,10 +452,10 @@ HSlider
 {
 	backgroundColor:#EDEDED;
 	cornerRadius: 10;
-	borderColor:#B2B2B2;
+	borderColor:#D9D9D9;
 	borderStyle: solid;
 	dropShadowEnabled:true; 
-	dropShadowColor:#B2B2B2;
+	dropShadowColor:#D9D9D9;
 	shadowDirection:right;
 	shadowDistance:2;
 }	
@@ -466,8 +472,8 @@ HSlider
 .littleLBtn
 {
 	color: #474747;
-	rollOverColor: #B2B2B2;
-	selectionColor: #B2B2B2;
+	rollOverColor: #D9D9D9;
+	selectionColor: #D9D9D9;
 	textRollOverColor: #474747;
 	fontSize: 10;
 	paddingLeft: 2;

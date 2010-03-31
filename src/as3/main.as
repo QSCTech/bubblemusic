@@ -46,9 +46,10 @@
 	public var isSilent:int = 0;
 	public var isLyric:int = 1;
 	public var userName:String = "";
+	public var isLoop:int = 0;
 	
 	[Bindable]
-	public var Version:String = "Bubble jay 0.5 (12.24.r48) Christmas Edition.Powered by QSCtech";
+	public var Version:String = "Bubble Music 1.0 (2010.4.1.r70) April Fool's Edition.Powered by QSCtech";
 	
 	/**
 	 *初始化播放列表 
@@ -122,6 +123,7 @@
 	    now.diyList.addEventListener(MouseEvent.CLICK,diyShow);
 	    now.rssPlayer.addEventListener(MouseEvent.CLICK,rssShow);
 	    now.storeMusic.addEventListener(MouseEvent.CLICK,collectMusic);
+	    now.loopPlay.addEventListener(MouseEvent.CLICK,setLoop);
 	    top.registerBtn.addEventListener(MouseEvent.CLICK,registerShow);
 	    top.loginBtn.addEventListener(MouseEvent.CLICK,loginShow);
 	    
@@ -169,7 +171,7 @@
 	    musicList.l10.littleMusicDelete.addEventListener(MouseEvent.CLICK,musicDelete);
 	    musicList.l11.littleMusicDelete.addEventListener(MouseEvent.CLICK,musicDelete);
 	    musicList.l12.littleMusicDelete.addEventListener(MouseEvent.CLICK,musicDelete);
-	    
+	/*    
 	    musicList.l1.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);
 	    musicList.l2.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);
 	    musicList.l3.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);
@@ -182,7 +184,7 @@
 	    musicList.l10.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);
 	    musicList.l11.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);
 	    musicList.l12.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);
-	   
+	   */
 	    
 	    musicList.l1.littleMusicShare.addEventListener(MouseEvent.CLICK,musicShare);
 	    musicList.l2.littleMusicShare.addEventListener(MouseEvent.CLICK,musicShare);
@@ -264,7 +266,11 @@
 		musicControl.pausePlay();
 		lrcnum = 0;
 		LRC.splice(0,LRC.length);
-		playList.shift();
+		
+		if(isLoop == 0){
+			playList.shift();
+		}
+			
 		lrcLoader.load(new URLRequest(playList[0].lrc));
 		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
 		musicControl.newPlay(playList[0].url);
@@ -389,11 +395,9 @@
 				if(LRC[lrcnum-1]){
 					lyric.lrc4.text = LRC[lrcnum-1].lrc.toString();
 				}
-				
-				lyric.lrc5.text = LRC[lrcnum].lrc.toString();
-			//	if(lyric.lrc5.width>272)
-			//		lyric.LRCeffect.addEventListener(EffectEvent.EFFECT_END,scrollLyric);
-				
+				if(LRC[lrcnum]){
+					lyric.lrc5.text = LRC[lrcnum].lrc.toString();
+				}
 				if(LRC[lrcnum+1]){
 					lyric.lrc6.text = LRC[lrcnum+1].lrc.toString();
 				}
@@ -431,9 +435,9 @@
 				if(LRC[lrcnum-1]){
 					lyric.lrc4.text = LRC[lrcnum-1].lrc.toString();
 				}
-				
-				lyric.lrc5.text = LRC[lrcnum].lrc.toString();
-				
+				if(LRC[lrcnum]){
+					lyric.lrc5.text = LRC[lrcnum].lrc.toString();
+				}
 				if(LRC[lrcnum+1]){
 					lyric.lrc6.text = LRC[lrcnum+1].lrc.toString();
 				}
@@ -479,6 +483,7 @@
 		lrcLoader.load(new URLRequest(playList[0].lrc));
 		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
 		resetPlaylistX(); 
+		
 	}
 	
 	/**
@@ -862,13 +867,16 @@
 	}
 	
 	/**
-	 * 底部状态栏按专辑搜索
+	 * 按专辑搜索
 	 */
 	private function albumSearch(event:MouseEvent):void{
 		rpc.getSearchList(onGetSearchList,"搜专辑",now.nowAlbum.label,1);
 		currentState = "searchRes";
 		searchList.searchTitle.text = "\"" + now.nowAlbum.label + "\"的搜索结果";
 		searchList.page.text = String(1);
+		top.searchIndex.text = "搜专辑";
+		top.searchTarget.text = now.nowAlbum.label;
+		
 	}
 	
 	/**
@@ -879,6 +887,8 @@
 		currentState = "searchRes";
 		searchList.searchTitle.text = "\"" + now.nowAuthor.label + "\"的搜索结果";
 		searchList.page.text = String(1);
+		top.searchIndex.text = "搜歌手";
+		top.searchTarget.text = now.nowAuthor.label;
 	}
 	
 	/**
@@ -889,6 +899,8 @@
 		currentState = "searchRes";
 		searchList.searchTitle.text = "\"" + now.nowMusic.label + "\"的搜索结果";
 		searchList.page.text = String(1);
+		top.searchIndex.text = "搜歌名";
+		top.searchTarget.text = now.nowMusic.label;
 	}
 	/**
 	 * 下载音乐
@@ -1066,4 +1078,15 @@
 	 */
 	private function resetUser():void{
 		userName = "";
+	}
+	
+	public function setLoop(event:Event):void{
+		if(isLoop == 0){
+			isLoop = 1;
+			now.loopPlay.label = "顺序播放";
+		}
+		else{
+			isLoop = 0;
+			now.loopPlay.label = "单曲循环";
+		}	
 	}
