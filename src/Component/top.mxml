@@ -55,7 +55,6 @@
 					<mx:String>搜歌名</mx:String>
 					<mx:String>搜歌手</mx:String>
 					<mx:String>搜专辑</mx:String>
-					<mx:String>搜专题</mx:String>
 				</mx:ComboBox>
 				<mx:Button id="searchBtn" label="搜索" right="10" bottom="8" styleName="searchBtn"/>
 			</mx:HBox>

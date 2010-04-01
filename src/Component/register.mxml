@@ -26,7 +26,7 @@
 	    required="true" requiredFieldError="请输入密码" source="{password}" property="text"/>
 	<mx:StringValidator id="pwCheckAgain" maxLength="16" minLength="6" tooLongError="密码长度应在6-16位之间" tooShortError="密码长度应在6-16位之间"
 	    required="true" requiredFieldError="请再次输入密码" source="{passwordAgain}" property="text"/>
-	<mx:StringValidator id="userCheck" maxLength="16" minLength="6" tooLongError="用户名长度应在6-16位之间" tooShortError="用户名长度应在6-16位之间"
+	<mx:StringValidator id="userCheck" maxLength="12" minLength="1" tooLongError="用户名长度应在12位以内" tooShortError="用户名长度应在12位以内"
 	    required="true" requiredFieldError="请输入用户名" source="{username}" property="text" />
 	    	
 </mx:Canvas>
