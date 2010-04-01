@@ -51,7 +51,7 @@
 	public var isFinished:int = 1;
 	public var isSearch:int;//isSearch=1显示搜索结果,isSearch=2显示听过的歌曲
 	[Bindable]
-	public var Version:String = "Bubble Music 1.0 (2010.4.1.r70) April Fool's Edition.Powered by QSCtech";
+	public var Version:String = "Bubble Music 1.0 (2010.4.1.r73) April Fool's Edition.Powered by QSCtech";
 	
 	/**
 	 *初始化播放列表 
@@ -206,9 +206,7 @@
 	    top.getUserListened = getUserListened;
 	    rpc.getNotes(tipsShow);
 	}
-	
-	
-	
+
 	/**
 	 *同步播放列表,当播放列表改动后,同步到播放器界面上 
 	 * @param playList
@@ -216,9 +214,6 @@
 	 */	
 	private function syncPlayList(list:Array):void{
 
-		now.nowMusic.label = list[0].title;
-		now.nowAuthor.label = list[0].author;
-        now.nowAlbum.label = list[0].album;
         now.rssPlayer.label = "关注\"" + list[0].author + "\"";
         now.nowMusic.toolTip = "搜索歌曲\"" + list[0].title + "\"";
 		now.nowAuthor.toolTip = "搜索歌手\"" + list[0].author + "\"";
@@ -270,8 +265,7 @@
 		removeEventListener(Event.ENTER_FRAME,onEnterFrame);
 		rpc.getNextMusic(this.getNextMusic,1);
 		musicControl.pausePlay();
-		
-				
+	
 		lrcnum = 0;
 		LRC.splice(0,LRC.length);
 		
@@ -293,10 +287,9 @@
 		isFinished = 1;
 	}
 	
-	private function addCredit(result:int):void{
-		top.credit.text = "泡泡数：" + String(result);
-	}
-	
+	/**
+	 * 听完一首歌自动随机获取歌曲
+	 */	
 	private function getNextMusic(result:Array):void{
 		if(result.length > 0){
 			for(var i:int = 0; i<result.length; i++){
@@ -306,12 +299,14 @@
 	}
 	
 	/**
-	 *自动登录回调
+	 * 自动登录回调
 	 */	
 	 public function onLogin(result:Object):void{
 		if(result.user_id > 0){  
 			top.welcomeText.text = result.user_name + "，Let's Bubble~" ;
 			top.credit.text = "泡泡数：" + String(result.user_credit);
+			userName = result.user_name;
+			userId = result.user_id;
 			top.currentState = "logined";
 			flash.external.ExternalInterface.call("setSid", result.sid);
 		} 
@@ -322,10 +317,10 @@
 			Alert.show("用户名不存在");
 		}
 	 }
+	 
 	/**
 	 *当得到播放列表后,执行相应操作 
 	 * @param result
-	 * 
 	 */	
 	public function onGetMusicList(result:Array):void{
 		this.playList = result;
@@ -335,8 +330,6 @@
 		lrcLoader.load(new URLRequest(playList[0].lrc));
 		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
 	}
-	
-	
 	
 	/**
 	 * 当歌词加载完成，开始对歌词进行处理
@@ -377,9 +370,7 @@
 		musicList.l11.labelText.x = 0;
 		musicList.l12.labelText.x = 0;
 	}
-	
-	
-	
+
 	/**
 	 * 处理倒影的显示
 	 */
@@ -522,6 +513,9 @@
 		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
 		resetPlaylistX(); 
 	}
+	/**
+	 * 空函数
+	 */
 	private function blank():void{
 	}
 	
@@ -553,8 +547,9 @@
 			isSilent = 0;
 		}
 	}
+	
 	/**
-	 *控制进度
+	 * 自定义进度条位置
 	 */
 	public function setPos(event:Event):void{
 		var pasPos:Number = now.songpos.contentMouseX/now.songpos.width
@@ -569,12 +564,16 @@
 		}
 		musicControl.changeSoundSize(now.volume.value);
 	}
+	
 	/**
 	 * 按暂停后，音乐淡出
 	 */
 	public function fadeVolume(event:Event):void{
 		musicControl.fadeSound(now.volume.value);
 	}
+	/**
+	 * 按暂停后，音乐淡入
+	 */
 	public function fadeVolumeIn(event:Event):void{
 		musicControl.fadeSoundIn(now.volume.value);
 	}
@@ -626,11 +625,13 @@
 		//searchList.page.text = String(0);
 	
 	}
+	/**
+	 * 按回车自动搜索
+	 */
 	private function keyEnter(event:KeyboardEvent):void{
 		if(event.keyCode == 13){
 			this.searchShow(event);
 		}
-		
 	}
 
 	/**
@@ -642,7 +643,7 @@
 	}
 	
 	/**
-	 * 布局搜索信息
+	 * 布局搜索或者听过歌曲信息
 	 */
 	private function syncSearchList(list:Array):void{
 		var page:int = int(searchList.page.text);
@@ -694,7 +695,7 @@
 	}
 	
 	/**
-	 * 获取下一页搜索结果
+	 * 获取下一页搜索或者听过歌曲结果
 	 */
 	private function nextSearchPage(event:Event):void{
 		var page:int = int(searchList.page.text) + 1;
@@ -707,9 +708,8 @@
 		searchList.page.text = String(page);
 		searchList.listDown.play();
 	}
-	
 	/**
-	 * 获取前一页搜索结果
+	 * 获取前一页搜索或者听过歌曲结果
 	 */
 	private function preSearchPage(event:Event):void{
 		var page:int = int(searchList.page.text) - 1;
@@ -725,27 +725,23 @@
 	
 	/**
 	 * 将搜索结果中一首歌加入歌曲列表
+	 * 用于直接双击搜索结果
 	 */
 	private function addOneMusic(event:MouseEvent):void{
-		
 		var i:int = event.currentTarget.index;
 		playList.splice(1,0,searchResult[i-1]);
-		
-	//	musicControl.setNextMusic( this.nextMusic);
-		resetPlaylistX();     //////////////////////////////////////
-		
+		resetPlaylistX(); 
 		this.syncPlayList(playList);
 		this.listAddedEffect(1);
 	}
-	
+	/**
+	 * 将搜索结果中一首歌加入歌曲列表
+	 * 用于点击小箭头按钮
+	 */
 	private function addOneMusicBtn(event:MouseEvent):void{
 		var i:int = event.currentTarget.owner.index;
-		
 		playList.splice(1,0,searchResult[i-1]);
-		
-	//	musicControl.setNextMusic( this.nextMusic);
-		resetPlaylistX();     //////////////////////////////////////
-		
+		resetPlaylistX();  
 		this.syncPlayList(playList);
 		this.listAddedEffect(1);
 	}
@@ -765,39 +761,6 @@
 	}
 	
 	/**
-	 * 加每行播放列表的三颗按钮
-	 */
-	private function addMusicBtn(event:MouseEvent):void {
-		if(event.currentTarget.text!=""){
-			var i:int = event.currentTarget.index;
-			event.currentTarget.styleName = "playerOn";
-
-			event.currentTarget.labelText.styleName = "playerSongTextOn";  //字颜色
-			event.currentTarget.littleMusicShare.visible = true;
-			event.currentTarget.littleMusicCollect.visible = true;
-			event.currentTarget.littleMusicDelete.visible = true;
-			event.currentTarget.tri.visible = true;
-		}		
-	}
-	
-	/**
-	 * 移除每行播放列表的三颗按钮
-	 */
-	private function removeMusicBtn(event:MouseEvent):void {
-		
-		var i:int = event.currentTarget.index;
-		
-			event.currentTarget.styleName = "playerCanvas";
-
-		event.currentTarget.labelText.styleName = "playerSongText";  
-		event.currentTarget.littleMusicShare.visible = false;
-		event.currentTarget.littleMusicCollect.visible = false;
-		event.currentTarget.littleMusicDelete.visible = false;
-		event.currentTarget.tri.visible = false;
-
-	}
-	
-	/**
 	 * 歌曲名较长，鼠标移上向左滚动
 	 */
 	private function textScollLeft(event:MouseEvent):void{
@@ -810,22 +773,44 @@
             event.currentTarget.moveLeft.play(); 
   		}
  	}
- 	
  	/**
 	 * 歌曲名较长，鼠标移开向右滚动
 	 */
  	private function textScollRight(event:MouseEvent):void{
- 		
-	//	if(event.currentTarget.labelText.width>230){
 			event.currentTarget.moveLeft.xFrom = event.currentTarget.labelText.x;   
             event.currentTarget.moveLeft.xTo = 0; 
             event.currentTarget.moveLeft.repeatCount = 1; //loop 
             event.currentTarget.moveLeft.repeatDelay = 0; //loop time 
             event.currentTarget.moveLeft.duration = (event.currentTarget.labelText.width-270)*20; //the time of scroll once 
             event.currentTarget.moveLeft.play(); 
-  	//	}
-  		
  	}
+ 	
+	/**
+	 * 加每行播放列表的三颗按钮
+	 */
+	private function addMusicBtn(event:MouseEvent):void {
+		if(event.currentTarget.text!=""){
+			var i:int = event.currentTarget.index;
+			event.currentTarget.styleName = "playerOn";
+			event.currentTarget.labelText.styleName = "playerSongTextOn";  //字颜色
+			event.currentTarget.littleMusicShare.visible = true;
+			event.currentTarget.littleMusicCollect.visible = true;
+			event.currentTarget.littleMusicDelete.visible = true;
+			event.currentTarget.tri.visible = true;
+		}		
+	}
+	/**
+	 * 移除每行播放列表的三颗按钮
+	 */
+	private function removeMusicBtn(event:MouseEvent):void {
+		var i:int = event.currentTarget.index;
+		event.currentTarget.styleName = "playerCanvas";
+		event.currentTarget.labelText.styleName = "playerSongText";  
+		event.currentTarget.littleMusicShare.visible = false;
+		event.currentTarget.littleMusicCollect.visible = false;
+		event.currentTarget.littleMusicDelete.visible = false;
+		event.currentTarget.tri.visible = false;
+	}
 	
 	/**
 	 * 加每行搜索结果列表的按钮 
@@ -836,7 +821,6 @@
 			event.currentTarget.littleSearchAdd.visible = true;
 		}
 	}
-	
 	/**
 	 * 移除每行搜索结果的按钮
 	 */
@@ -848,7 +832,8 @@
 	}
 	
 	/**
-	 * 收藏播放列表中歌曲 
+	 * 收藏播放列表中歌曲
+	 * 用于正在播放的歌曲
 	 */
 	private function musicCollect(event:MouseEvent):void{
 		var i:int = event.currentTarget.owner.index - 1;
@@ -859,6 +844,10 @@
 			Alert.show("登录后才能收藏歌曲！");
 		}
 	}
+	/**
+	 * 收藏播放列表中歌曲 
+	 * 用于播放列表中的歌曲
+	 */
 	private function collectMusic(event:MouseEvent):void{
 		if(userName != ""){
 			
@@ -867,6 +856,7 @@
 			Alert.show("登录后才能收藏歌曲！");
 		}
 	}
+	
 	/**
 	 * 删除播放列表中歌曲 
 	 */
@@ -887,7 +877,7 @@
 	}
 	
 	/**
-	 * 同步当前播放歌曲信息到底部状态栏和浏览器标题 
+	 * 同步当前播放歌曲信息到状态栏和浏览器标题 
 	 */
 	private function syncMusicInfo(music:String, author:String, album:String):void{
 		now.nowMusic.label = music;
@@ -919,7 +909,6 @@
 		top.searchTarget.text = now.nowAlbum.label;
 		isSearch = 1;
 	}
-	
 	/**
 	 * 按歌手搜索
 	 */
@@ -932,7 +921,6 @@
 		top.searchTarget.text = now.nowAuthor.label;
 		isSearch = 1;
 	}
-	
 	/**
 	 * 按歌名搜索
 	 */
@@ -945,6 +933,7 @@
 		top.searchTarget.text = now.nowMusic.label;
 		isSearch = 1;
 	}
+	
 	/**
 	 * 下载音乐
 	 */
@@ -953,6 +942,9 @@
 		flash.net.navigateToURL(URL,"_blank");
 	}
 	
+	/**
+	 * 向播放列表中删除歌曲，列表动画添加
+	 */
 	private function listEffect(from:int):void{
 		var effect:Parallel = new Parallel();
 		for (var i:int=from-1; i<12; i++){
@@ -960,6 +952,9 @@
 		}
 		effect.play();
 	}
+	/**
+	 * 向播放列表中添加歌曲，列表动画添加
+	 */
 	private function listAddedEffect(from:int):void{
 		var effect:Parallel = new Parallel();
 		
@@ -973,19 +968,24 @@
 	 * 音乐心情
 	 */
 	private function moodMusic(event:MouseEvent):void{
-		var moodWin:mood = new mood();
-		moodWin.text = playList[0].title;
-		moodWin.setIndex(playList[0].id);
-		moodWin.init();
-		PopUpManager.addPopUp(moodWin,this,false);
-	    PopUpManager.centerPopUp(moodWin);
-	//    moodWin.callBack = callBack;
-	    moodWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
-	    moodWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
+		if(userName!=""){
+			var moodWin:mood = new mood();
+			moodWin.text = playList[0].title;
+			moodWin.usernameMood = userName;
+			moodWin.setIndex(playList[0].id);
+			moodWin.init();
+			PopUpManager.addPopUp(moodWin,this,false);
+		    PopUpManager.centerPopUp(moodWin);
+		    moodWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
+		    moodWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
+		}
+		else
+			Alert.show("嗨，注册登录后就能和其他用户一起泡心情啦~");	
 	}
 	
 	/**
 	 * 分享音乐
+	 * 用于正在播放的歌曲
 	 */
 	private function shareMusic(event:MouseEvent):void{
 		var shareWin:share = new share();
@@ -997,7 +997,10 @@
 	    shareWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
 	    shareWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
 	}
-	
+	/**
+	 * 分享音乐
+	 * 用于播放列表里的歌
+	 */
 	private function musicShare(event:MouseEvent):void{
 		var i:int = event.currentTarget.owner.index - 1;
 		var shareWin:share = new share();
@@ -1009,6 +1012,7 @@
 	    shareWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
 	    shareWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
 	}	
+	
 	/**
 	 * 弹出窗口的处理
 	 */
@@ -1040,17 +1044,19 @@
 		var specialTips:String = "专题\""+ specialName + "\"加载成功";
 		tipsShow(specialTips);
 	}
+	
 	/**
 	 * 注册
 	 */	
 	private function registerShow(event:MouseEvent):void{
 		var registerWin:register = new register();
 		registerWin.login = loginNew;
+		registerWin.callBack = callBack;
 	    PopUpManager.addPopUp(registerWin,this,true);
 	    PopUpManager.centerPopUp(registerWin);
 	}
 	/**
-	 * 登陆
+	 * 登录
 	 */	
 	private function loginShow(event:MouseEvent):void{
 		var loginWin:login = new login();
@@ -1059,20 +1065,26 @@
 	    PopUpManager.addPopUp(loginWin,this,true);
 	    PopUpManager.centerPopUp(loginWin);
 	}
+	/**
+	 * 登录、注册成功后的回调函数
+	 */
 	public function callBack(result:Object):void{
 		top.welcomeText.text = result.user_name + "，Let's Bubble~" ;
 		top.credit.text = "泡泡数：" + String(result.user_credit);
 		top.currentState = "logined";
 		userName = result.user_name;
 		userId = result.user_id;
+		tipsShow("登录成功~");
 	}
 	
 	/**
 	 * 这两个函数如果直接用前面的不行><
+	 * 用于登录和注册窗口的切换
 	 */	
 	private function registerNew():void{
 		var registerWin:register = new register();
 		registerWin.login = loginNew;
+		registerWin.callBack = callBack;
 	    PopUpManager.addPopUp(registerWin,this,true);
 	    PopUpManager.centerPopUp(registerWin);
 	}
@@ -1083,7 +1095,10 @@
 	    PopUpManager.addPopUp(loginWin,this,true);
 	    PopUpManager.centerPopUp(loginWin);
 	}
-
+	
+	/**
+	 * 消息提醒
+	 */
 	private function tipsShow(tip:String):void{
 		tipText.text = tip;
 		tipShow.play();
@@ -1120,13 +1135,16 @@
 		}
 	}
 	/**
-	 * 登录后点退出，重置用户名变量
+	 * 登录后点退出，重置用户名&ID变量
 	 */
 	private function resetUser():void{
 		userName = "";
 		userId = 0;
 	}
 	
+	/**
+	 * 获取用户刚刚听过的歌曲列表
+	 */
 	private function getUserListened():void{
 		rpc.getUserListen(onGetListenedList,userId,1);
 		currentState = "searchRes";
@@ -1134,14 +1152,13 @@
 		searchList.page.text = String(1);
 		isSearch = 2;
 	}
-	
 	public function onGetListenedList(result:Array):void{
 		this.listenedResult = result;
 		this.syncSearchList(listenedResult);
 	}
 	
 	/**
-	 * 单曲循环播放
+	 * 单曲循环播放、顺序播放切换
 	 */
 	public function setLoop(event:Event):void{
 		if(isLoop == 0){
@@ -1154,4 +1171,11 @@
 			now.loopPlay.label = "单曲循环";
 			tipsShow("切换为顺序播放模式");
 		}	
+	}
+	
+	/**
+	 * 每听完一首歌，更新积分
+	 */	
+	private function addCredit(result:int):void{
+		top.credit.text = "泡泡数：" + String(result);
 	}

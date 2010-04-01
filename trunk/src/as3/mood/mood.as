@@ -15,6 +15,8 @@
     
 	[Bindable]
 	public var text:String = "";
+	[Bindable]
+	public var usernameMood:String = "";
 	
 	/**  
 	 * 初始  
@@ -23,7 +25,6 @@
 	public function init():void{
 		rpc = new RPC();
 		rpc.getComment(this.getMood,this.index,1);
-		
 	}
 	
 
