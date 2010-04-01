@@ -26,7 +26,7 @@
 	public function onResult(result:Object):void{
 		if(result.user_id > 0){
 			if(callBack != null){
-				callBack(txtUsername.text);                 
+				callBack(result);                 
 			}  
 			this.onclose();
 			flash.external.ExternalInterface.call("setSid", result.sid);

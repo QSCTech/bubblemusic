@@ -37,6 +37,7 @@
 	public var playList:Array = new Array();
 	//远程数据调用
 	public var searchResult:Array = new Array();
+	public var listenedResult:Array = new Array();
 	//远程数据调用
 	public var rpc:RPC = new RPC();
 	
@@ -44,11 +45,11 @@
 	public var LRC:Array = new Array();
 	public var lrcnum:int;
 	public var isSilent:int = 0;
-	public var isLyric:int = 1;
 	public var userName:String = "";
+	public var userId:Number = 0;
 	public var isLoop:int = 0;
-	public var isFinished:int = 0;
-	
+	public var isFinished:int = 1;
+	public var isSearch:int;//isSearch=1显示搜索结果,isSearch=2显示听过的歌曲
 	[Bindable]
 	public var Version:String = "Bubble Music 1.0 (2010.4.1.r70) April Fool's Edition.Powered by QSCtech";
 	
@@ -202,6 +203,7 @@
 	    musicList.l11.littleMusicShare.addEventListener(MouseEvent.CLICK,musicShare);
 	    musicList.l12.littleMusicShare.addEventListener(MouseEvent.CLICK,musicShare);
 	    top.callback = resetUser;
+	    top.getUserListened = getUserListened;
 	    rpc.getNotes(tipsShow);
 	}
 	
@@ -271,26 +273,23 @@
 		lrcnum = 0;
 		LRC.splice(0,LRC.length);
 		
-	//	if(isFinished == 1 && userName!=""){
-	//		rpc.addUserCredit(this.addCredit,userName,playList[0].id);
-	//	}
+		rpc.addUserListen(addCredit,userId,playList[0].id);
+		
 		if(isLoop == 0){
 			playList.shift();
 		}
 			
-			
-
 		lrcLoader.load(new URLRequest(playList[0].lrc));
 		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
 		musicControl.newPlay(playList[0].url);
 		resetPlaylistX();
 		this.syncPlayList(playList);
 		this.listEffect(1);
+		isFinished = 1;
 	}
 	
 	private function addCredit(result:int):void{
-		var updateCredit:int = result;
-		top.credit.text = String(updateCredit);
+		top.credit.text = "泡泡数：" + String(result);
 	}
 	
 	private function getNextMusic(result:Array):void{
@@ -307,6 +306,7 @@
 	 public function onLogin(result:Object):void{
 		if(result.user_id > 0){  
 			top.welcomeText.text = result.user_name + "，Let's Bubble~" ;
+			top.credit.text = "泡泡数：" + String(result.user_credit);
 			top.currentState = "logined";
 			flash.external.ExternalInterface.call("setSid", result.sid);
 		} 
@@ -486,10 +486,10 @@
 				lyric.LRCeffect.stop();
 				lyric.LRCeffect.play();
 			}
-		}else{
-			if(time<LRC[lrcnum].time)
-				lrcnum-=2;
-		}
+		}else{ 
+			if(time<LRC[lrcnum].time)  //之前在这里就removeADDEVENTLISTENER了，所以进度条在最后的地方都不动了。
+				lrcnum-=2;             //而且运行到没有歌词的地方，再点进度条前面，歌词不会再滚动回去了。
+		}							   //现在没有这些问题了~
 	}
 
 	/**
@@ -513,6 +513,7 @@
 		lrcLoader.load(new URLRequest(playList[0].lrc));
 		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
 		resetPlaylistX(); 
+
 		
 	}
 	
@@ -551,17 +552,17 @@
 		var pasPos:Number = now.songpos.contentMouseX/now.songpos.width
 		if(musicControl.isPlay){
 			musicControl.setPos(pasPos);
-			now.playandpause.styleName = "pauseBtn";
-		
 		}
 		else{
 			musicControl.setPos(pasPos);
 			now.songpos.setProgress(pasPos,1);
+			now.playandpause.styleName = "pauseBtn";
+			pauseAndPlay(event);
 		}
 		musicControl.changeSoundSize(now.volume.value);
 	}
 	/**
-	 * 按暂停后，音乐淡出——！！没有用。。。
+	 * 按暂停后，音乐淡出
 	 */
 	public function fadeVolume(event:Event):void{
 		musicControl.fadeSound(now.volume.value);
@@ -598,28 +599,19 @@
 	 * 显示歌词组件
 	 */
 	public function lyricShow(event:Event):void{
-		if(isLyric){
-			
-			isLyric = 0;
-			now.hideLyric.label = "显示歌词";
-		}
-		else{
-			currentState = "lyricState";
-			isLyric = 1;
-			now.hideLyric.label = "隐藏歌词";
-		}
+		currentState = "lyricState";
 	}
 	
 	/**
 	 * 显示搜索结果
 	 */
 	public function searchShow(event:Event):void{
-		lyricShow(event);
 		if(top.searchTarget.text!=""){
 			rpc.getSearchList(onGetSearchList,top.searchIndex.selectedLabel,top.searchTarget.text,1);
 			currentState = "searchRes";
 			searchList.page.text = String(1);
 			searchList.searchTitle.text = "\"" + top.searchTarget.text + "\"的搜索结果";
+			isSearch = 1;
 		}
 		else
 			Alert.show("请输入搜索内容！");
@@ -698,8 +690,12 @@
 	 */
 	private function nextSearchPage(event:Event):void{
 		var page:int = int(searchList.page.text) + 1;
-		
-		rpc.getSearchList(onGetSearchList,top.searchIndex.selectedLabel,top.searchTarget.text,page);
+		if(isSearch ==1){
+			rpc.getSearchList(onGetSearchList,top.searchIndex.selectedLabel,top.searchTarget.text,page);
+		}
+		else if(isSearch ==2){
+			rpc.getUserListen(onGetListenedList,userId,page);
+		}
 		searchList.page.text = String(page);
 		searchList.listDown.play();
 	}
@@ -709,8 +705,12 @@
 	 */
 	private function preSearchPage(event:Event):void{
 		var page:int = int(searchList.page.text) - 1;
-		
-		rpc.getSearchList(onGetSearchList,top.searchIndex.selectedLabel,top.searchTarget.text,page);
+		if(isSearch ==1){
+			rpc.getSearchList(onGetSearchList,top.searchIndex.selectedLabel,top.searchTarget.text,page);
+		}
+		else if(isSearch ==2){
+			rpc.getUserListen(onGetListenedList,userId,page);
+		}
 		searchList.page.text = String(page);
 		searchList.listUp.play();
 	}
@@ -906,7 +906,7 @@
 		searchList.page.text = String(1);
 		top.searchIndex.text = "搜专辑";
 		top.searchTarget.text = now.nowAlbum.label;
-		
+		isSearch = 1;
 	}
 	
 	/**
@@ -919,6 +919,7 @@
 		searchList.page.text = String(1);
 		top.searchIndex.text = "搜歌手";
 		top.searchTarget.text = now.nowAuthor.label;
+		isSearch = 1;
 	}
 	
 	/**
@@ -931,6 +932,7 @@
 		searchList.page.text = String(1);
 		top.searchIndex.text = "搜歌名";
 		top.searchTarget.text = now.nowMusic.label;
+		isSearch = 1;
 	}
 	/**
 	 * 下载音乐
@@ -1021,9 +1023,11 @@
 	    specialWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
 	    specialWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
 	}
-	public function onGetSpecialList(result:Array):void{
+	public function onGetSpecialList(result:Array,specialName:String):void{
 		onGetMusicList(result);
 		musicControl.setNextMusic(this.nextMusic);
+		var specialTips:String = "专题\""+ specialName + "\"加载成功";
+		tipsShow(specialTips);
 	}
 	/**
 	 * 注册
@@ -1044,11 +1048,12 @@
 	    PopUpManager.addPopUp(loginWin,this,true);
 	    PopUpManager.centerPopUp(loginWin);
 	}
-	public function callBack(user:String):void{
-		top.welcomeText.text = user + "，Let's Bubble~" ;
+	public function callBack(result:Object):void{
+		top.welcomeText.text = result.user_name + "，Let's Bubble~" ;
+		top.credit.text = "泡泡数：" + String(result.user_credit);
 		top.currentState = "logined";
-		userName = user;
-	//	top.exitBtn.addEventListener(MouseEvent.CLICK,exitUser);
+		userName = result.user_name;
+		userId = result.user_id;
 	}
 	
 	/**
@@ -1108,7 +1113,22 @@
 	 */
 	private function resetUser():void{
 		userName = "";
+		userId = 0;
 	}
+	
+	private function getUserListened():void{
+		rpc.getUserListen(onGetListenedList,userId,1);
+		currentState = "searchRes";
+		searchList.searchTitle.text = "刚刚听过的歌曲";
+		searchList.page.text = String(1);
+		isSearch = 2;
+	}
+	
+	public function onGetListenedList(result:Array):void{
+		this.listenedResult = result;
+		this.syncSearchList(listenedResult);
+	}
+	
 	/**
 	 * 单曲循环播放
 	 */
@@ -1116,9 +1136,11 @@
 		if(isLoop == 0){
 			isLoop = 1;
 			now.loopPlay.label = "顺序播放";
+			tipsShow("切换为单曲循环模式");
 		}
 		else{
 			isLoop = 0;
 			now.loopPlay.label = "单曲循环";
+			tipsShow("切换为顺序播放模式");
 		}	
 	}

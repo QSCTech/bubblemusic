@@ -87,11 +87,18 @@ package as3.Net
 			conn.call("Music.getAllDiyList",new Responder(result,onFault),username);
 			conn.close();
 		}
-	/*	
-		public function addUserCredit(result:Function,username:String,id:int):void{
+		
+		public function addUserListen(result:Function,userid:Number,songid:int):void{
 			conn.connect(URL);
-			conn.call("Music.addUserCredit",new Responder(result,onFault),username,id);
+			conn.call("Music.addUserListen",new Responder(result,onFault),userid,songid);
 			conn.close();
-		}*/
+		}
+		
+		public function getUserListen(result:Function,userid:Number,page:int):void{
+			conn.connect(URL);
+			conn.call("Music.getUserListen",new Responder(result,onFault),userid,page);
+			conn.close();
+		}
+		
 	}
 }
