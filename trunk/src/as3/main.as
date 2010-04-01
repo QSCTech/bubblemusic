@@ -269,7 +269,7 @@
 		lrcnum = 0;
 		LRC.splice(0,LRC.length);
 		
-		if(musicControl.pos>0.9)
+		if(musicControl.pos>0.9 && userId!=0)
 			rpc.addUserListen(addCredit,userId,playList[0].id);
 		else
 			rpc.addUserDelete(blank,userId,playList[0].id);
@@ -496,7 +496,8 @@
 	public function doubleClickListItem(event:MouseEvent):void{
 		var i:int = event.currentTarget.index;
 		
-		rpc.addUserDelete(blank,userId,playList[0].id);
+		if(userId!=0)
+			rpc.addUserDelete(blank,userId,playList[0].id);
 		
 		for(var j:int = 1; j<i; j++){
 			playList.shift();
