@@ -13,6 +13,7 @@
     public var specialResult:Array = new Array();	
 	public var callback:Function;  
 	private var specialId:int;
+	private var specialName:String;
 	
 	/**  
 	 * 初始  
@@ -76,12 +77,13 @@
 	public function getSpecialMusicList(event:MouseEvent):void{
 		var i:int = int(event.currentTarget.id.substr(-1)) - 1;
 		specialId = specialResult[i].id;
+		specialName = specialResult[i].name;
 		rpc.getSpecialMusic(this.callSpecial,specialId);
 		  
 	}
 	public function callSpecial(result:Array):void{
 		if(callback != null){
-			callback(result);                 
+			callback(result,specialName);                 
 		}
 	}
 	/**  
