@@ -270,11 +270,16 @@
 		removeEventListener(Event.ENTER_FRAME,onEnterFrame);
 		rpc.getNextMusic(this.getNextMusic,1);
 		musicControl.pausePlay();
+		
+				
 		lrcnum = 0;
 		LRC.splice(0,LRC.length);
 		
-		rpc.addUserListen(addCredit,userId,playList[0].id);
-		
+		if(musicControl.pos>0.9)
+			rpc.addUserListen(addCredit,userId,playList[0].id);
+		else
+			rpc.addUserDelete(blank,userId,playList[0].id);
+			
 		if(isLoop == 0){
 			playList.shift();
 		}
@@ -499,6 +504,9 @@
 	 */	
 	public function doubleClickListItem(event:MouseEvent):void{
 		var i:int = event.currentTarget.index;
+		
+		rpc.addUserDelete(blank,userId,playList[0].id);
+		
 		for(var j:int = 1; j<i; j++){
 			playList.shift();
 		}
@@ -513,8 +521,8 @@
 		lrcLoader.load(new URLRequest(playList[0].lrc));
 		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
 		resetPlaylistX(); 
-
-		
+	}
+	private function blank():void{
 	}
 	
 	/**
@@ -864,6 +872,9 @@
 	 */
 	private function musicDelete(event:MouseEvent):void{
 		var i:int = event.currentTarget.owner.index;
+		
+		rpc.addUserDelete(blank,userId,playList[i-1].id);
+		
 		if(i == 1){
 			nextMusic(event);
 		}

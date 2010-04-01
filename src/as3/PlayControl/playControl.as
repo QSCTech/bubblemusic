@@ -21,7 +21,7 @@ package as3.PlayControl
 		public var progressPos:Number;
 		private static var temp:Number; 
 		public var volume:Number;
-
+		public var pos:Number;
 		
 		/**
 		 * 进行初始化操作
@@ -64,6 +64,7 @@ package as3.PlayControl
 				pasPos = channel.position;
 				channel.stop();
 				isPlay = false;
+				pos = pasPos/music.length;
 			}
 		}
 		

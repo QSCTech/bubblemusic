@@ -94,6 +94,12 @@ package as3.Net
 			conn.close();
 		}
 		
+		public function addUserDelete(result:Function,userid:Number,songid:int):void{
+			conn.connect(URL);
+			conn.call("Music.addUserDelete",new Responder(result,onFault),userid,songid);
+			conn.close();
+		}
+		
 		public function getUserListen(result:Function,userid:Number,page:int):void{
 			conn.connect(URL);
 			conn.call("Music.getUserListen",new Responder(result,onFault),userid,page);
