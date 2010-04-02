@@ -973,6 +973,8 @@
 			var moodWin:mood = new mood();
 			moodWin.text = playList[0].title;
 			moodWin.usernameMood = userName;
+			moodWin.userIdMood = userId;
+			moodWin.callback = addCredit;
 			moodWin.setIndex(playList[0].id);
 			moodWin.init();
 			PopUpManager.addPopUp(moodWin,this,false);
@@ -1052,7 +1054,7 @@
 	private function registerShow(event:MouseEvent):void{
 		var registerWin:register = new register();
 		registerWin.login = loginNew;
-		registerWin.callBack = callBack;
+		registerWin.callBack = registerDone;
 	    PopUpManager.addPopUp(registerWin,this,true);
 	    PopUpManager.centerPopUp(registerWin);
 	}
@@ -1066,8 +1068,20 @@
 	    PopUpManager.addPopUp(loginWin,this,true);
 	    PopUpManager.centerPopUp(loginWin);
 	}
+	
 	/**
-	 * 登录、注册成功后的回调函数
+	 * 注册成功后的回调函数
+	 */
+	public function registerDone(result:Object):void{
+		top.welcomeText.text = result.user_name + "，Let's Bubble~" ;
+		top.credit.text = "泡泡数：" + String(result.user_credit);
+		top.currentState = "logined";
+		userName = result.user_name;
+		userId = result.user_id;
+		tipsShow("注册成功~");
+	}
+	/**
+	 * 登录成功后的回调函数
 	 */
 	public function callBack(result:Object):void{
 		top.welcomeText.text = result.user_name + "，Let's Bubble~" ;

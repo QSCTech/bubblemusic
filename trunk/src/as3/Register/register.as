@@ -29,21 +29,22 @@
 		}         
 	}
 	
-	public function onResult(result:int):void{
-		if(result > 0){
+	public function onResult(result:Object):void{
+		if(result.user_id > 0){
 			if(callBack != null){
-				callBack(username.text);                 
+				callBack(result);                 
 			}  
 			this.onclose();
+			flash.external.ExternalInterface.call("setSid", result.sid);
 		} 
-		else if(result == -3){
+		else if(result.user_id == -3){
 			Alert.show("对不起，该用户名已存在，请注册其他用户名");
 			resetHandle();
 		}
-		else if(result == -5){
+		else if(result.user_id == -5){
 			Alert.show("对不起，该email不允许被注册");
 		}
-		else if(result == -6){
+		else if(result.user_id == -6){
 			Alert.show("对不起，该email已被注册");
 		}
 		else{

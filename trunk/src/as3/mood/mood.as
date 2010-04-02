@@ -11,12 +11,14 @@
 	private var rpc:RPC;
 	private var index:int;
     public var moodResult:Array = new Array();
-    public var callBack:Function;
+    public var callback:Function;
     
 	[Bindable]
 	public var text:String = "";
 	[Bindable]
 	public var usernameMood:String = "";
+	[Bindable]
+	public var userIdMood:int;
 	
 	/**  
 	 * 初始  
@@ -52,8 +54,7 @@
 	 * 
 	 */
 	public function resetHandle():void{                 
-		moodText.text = "";                 
-		username.text = "";         
+		moodText.text = "";                  
 	}
 	
 	/**  
@@ -89,11 +90,14 @@
 			Alert.show("请输入完整信息！");
 		}
 		else{
-			rpc.addComment(this.getMood,this.index,moodText.text,username.text);
+			rpc.addComment(this.getMood,this.index,moodText.text,userIdMood);
+			rpc.addCredit(this.addCredit,userIdMood);
 			resetHandle();
 		}
 	}                  
-	
+	public function addCredit(result:int):void{
+		callback(result);
+	}
 	/**  
 	 * 得到心情列表  
 	 * 

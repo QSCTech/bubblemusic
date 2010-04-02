@@ -35,9 +35,9 @@ package as3.Net
 			conn.close();
 		}
 		
-		public function addComment(result:Function,musicid:int,comment:String,username:String):void{
+		public function addComment(result:Function,musicid:int,comment:String,userid:int):void{
 			conn.connect(URL);
-			conn.call("Music.addComment", new Responder(result,onFault),musicid,comment,username);
+			conn.call("Music.addComment", new Responder(result,onFault),musicid,comment,userid);
 			conn.close();
 		}
 		
@@ -88,23 +88,28 @@ package as3.Net
 			conn.close();
 		}
 		
-		public function addUserListen(result:Function,userid:Number,songid:int):void{
+		public function addUserListen(result:Function,userid:int,songid:int):void{
 			conn.connect(URL);
 			conn.call("Music.addUserListen",new Responder(result,onFault),userid,songid);
 			conn.close();
 		}
 		
-		public function addUserDelete(result:Function,userid:Number,songid:int):void{
+		public function addUserDelete(result:Function,userid:int,songid:int):void{
 			conn.connect(URL);
 			conn.call("Music.addUserDelete",new Responder(result,onFault),userid,songid);
 			conn.close();
 		}
 		
-		public function getUserListen(result:Function,userid:Number,page:int):void{
+		public function getUserListen(result:Function,userid:int,page:int):void{
 			conn.connect(URL);
 			conn.call("Music.getUserListen",new Responder(result,onFault),userid,page);
 			conn.close();
 		}
 		
+		public function addCredit(result:Function,userid:int):void{
+			conn.connect(URL);
+			conn.call("Music.addCredit",new Responder(result,onFault),userid);
+			conn.close();
+		}
 	}
 }

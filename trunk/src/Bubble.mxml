@@ -79,7 +79,7 @@
 		<mx:Label text="{Version}" bottom="0" horizontalCenter="-80" styleName="versionText"/>
 		<mx:Canvas height="30" right="80" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 			<mx:Button id="bubbleTip" styleName="tipBtn" width="40" height="20" horizontalCenter="0" bottom="0"/>
-			<mx:Canvas id="tipCanvas" width="250" styleName="tipCanvas" y="30" horizontalCenter="0">
+			<mx:Canvas id="tipCanvas" width="250" styleName="tipCanvas" y="30" horizontalCenter="0" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 				<mx:Text id="tipText" horizontalCenter="0" verticalCenter="0" styleName="tipText" textAlign="center"/>
 			</mx:Canvas>
 		</mx:Canvas>
