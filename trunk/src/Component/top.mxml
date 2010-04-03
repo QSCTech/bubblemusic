@@ -4,7 +4,7 @@
 	 	 <mx:State name="logined">
 	 	 	 <mx:RemoveChild target="{loginBtn}"/>
 	 	 	 <mx:RemoveChild target="{registerBtn}"/>
-	 	 	 <mx:AddChild relativeTo="{helpBtn}" position="before">
+	 	 	 <mx:AddChild relativeTo="{l1}" position="in">
 	 	 	 	 <mx:LinkButton label="退出" id="exitBtn" styleName="topLBtn" click="exitUser()"/>
 	 	 	 </mx:AddChild>
 	 	 	 <mx:AddChild relativeTo="{exitBtn}" position="before">
@@ -36,12 +36,12 @@
     
     <mx:HBox width="100%" verticalAlign="middle">
     	<mx:Canvas styleName="topCanvas" width="100%" height="45">
-			<mx:HBox right="15" height="24" verticalAlign="middle" horizontalAlign="right" verticalCenter="0">
+			<mx:HBox id="l1" right="15" height="24" verticalAlign="middle" horizontalAlign="right" verticalCenter="0">
 				<mx:Text id="welcomeText" color="#FFFFFF"/>
 				<mx:Text id="credit" color="#FFFFFF" />
 				<mx:LinkButton label="登录" id="loginBtn" styleName="topLBtn"/>
 				<mx:LinkButton label="注册" id="registerBtn" styleName="topLBtn"/>
-				<mx:LinkButton label="帮助" id="helpBtn" styleName="topLBtn"/>
+				
 			</mx:HBox>    	
 	    </mx:Canvas>
 	

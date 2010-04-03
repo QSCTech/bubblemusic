@@ -37,7 +37,6 @@
 	public var playList:Array = new Array();
 	//远程数据调用
 	public var searchResult:Array = new Array();
-	public var listenedResult:Array = new Array();
 	//远程数据调用
 	public var rpc:RPC = new RPC();
 	
@@ -51,7 +50,7 @@
 	public var isFinished:int = 1;
 	public var isSearch:int;//isSearch=1显示搜索结果,isSearch=2显示听过的歌曲
 	[Bindable]
-	public var Version:String = "Bubble Music 1.0 (2010.4.1.r73) April Fool's Edition.Powered by QSCtech";
+	public var Version:String = "Bubble Music 1.0 (2010.4.1.r77) April Fool's Edition.Powered by QSCtech";
 	
 	/**
 	 *初始化播放列表 
@@ -310,12 +309,7 @@
 			top.currentState = "logined";
 			flash.external.ExternalInterface.call("setSid", result.sid);
 		} 
-		else if(result.user_id == -2){
-			Alert.show("密码不正确");
-		}
-		else{
-			Alert.show("用户名不存在");
-		}
+		
 	 }
 	 
 	/**
@@ -704,7 +698,7 @@
 			rpc.getSearchList(onGetSearchList,top.searchIndex.selectedLabel,top.searchTarget.text,page);
 		}
 		else if(isSearch ==2){
-			rpc.getUserListen(onGetListenedList,userId,page);
+			rpc.getUserListen(onGetSearchList,userId,page);
 		}
 		searchList.page.text = String(page);
 		searchList.listDown.play();
@@ -718,7 +712,7 @@
 			rpc.getSearchList(onGetSearchList,top.searchIndex.selectedLabel,top.searchTarget.text,page);
 		}
 		else if(isSearch ==2){
-			rpc.getUserListen(onGetListenedList,userId,page);
+			rpc.getUserListen(onGetSearchList,userId,page);
 		}
 		searchList.page.text = String(page);
 		searchList.listUp.play();
@@ -1162,15 +1156,11 @@
 	 * 获取用户刚刚听过的歌曲列表
 	 */
 	private function getUserListened():void{
-		rpc.getUserListen(onGetListenedList,userId,1);
+		rpc.getUserListen(onGetSearchList,userId,1);
 		currentState = "searchRes";
 		searchList.searchTitle.text = "刚刚听过的歌曲";
 		searchList.page.text = String(1);
 		isSearch = 2;
-	}
-	public function onGetListenedList(result:Array):void{
-		this.listenedResult = result;
-		this.syncSearchList(listenedResult);
 	}
 	
 	/**
