@@ -7,8 +7,10 @@ package as3.Net
 	public class RPC
 	{
 		private var conn:NetConnection;
-	//    private var URL:String = "http://10.76.8.200/bubble/amfphp/gateway.php";
-		private var URL:String = "http://localhost/amfphp/gateway.php";
+	    private var URL:String = "http://www.qsc.zju.edu.cn/apps/bubble/amfphp/gateway.php";
+	    
+	    
+	//	private var URL:String = "http://localhost/amfphp/gateway.php";
 		
 		public function RPC()
 		{

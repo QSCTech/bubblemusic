@@ -941,6 +941,7 @@
 	private function downMusic(event:MouseEvent):void{
 		var URL:URLRequest = new URLRequest(playList[0].url);
 		flash.net.navigateToURL(URL,"_blank");
+		Alert.show("由于涉及版权问题，请在下载后24小时内删除歌曲，谢谢合作^^");
 	}
 	
 	/**
