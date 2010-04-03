@@ -10,7 +10,7 @@ package as3.Net
 	    private var URL:String = "http://www.qsc.zju.edu.cn/apps/bubble/amfphp/gateway.php";
 	    
 	    
-	//	private var URL:String = "http://localhost/amfphp/gateway.php";
+		//private var URL:String = "http://localhost/amfphp/gateway.php";
 		
 		public function RPC()
 		{
