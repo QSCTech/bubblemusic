@@ -4,7 +4,7 @@
 	<mx:Button id="next" x="69" y="48.5" styleName="buttomNext" scaleX="0.5" scaleY="0.5"/>
 	<mx:Button id="playandpause" x="36" y="35" styleName="buttomPause" scaleX="0.65" scaleY="0.65" />
 	
-	<mx:Canvas right="19" y="12" textAlign="right" width="183" height="18">
+	<mx:Canvas right="19" y="12" textAlign="right" width="183" height="18" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 		<mx:Label id="songLabel" y="0" styleName="songLabel" right="0" width="183"/>
 	</mx:Canvas>
 	<mx:Canvas right="19" y="31" textAlign="right" width="161" height="18" horizontalScrollPolicy="off" verticalScrollPolicy="off">

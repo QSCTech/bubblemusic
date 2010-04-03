@@ -3,15 +3,15 @@ package as3.Net
 	import flash.net.NetConnection;
 	import flash.net.ObjectEncoding;
 	import flash.net.Responder;
+	import mx.controls.Alert;
 	
 	public class RPC
 	{
 		private var conn:NetConnection;
-	    private var URL:String = "http://www.qsc.zju.edu.cn/apps/bubble/amfphp/gateway.php";
-	    
-	    
+		private var URL:String = "http://www.qsc.zju.edu.cn/apps/bubble/amfphp/gateway.php";
+		//private var URL:String = "http://10.76.8.200/bubble/amfphp/gateway.php";
 		//private var URL:String = "http://localhost/amfphp/gateway.php";
-		
+	   
 		public function RPC()
 		{
 			conn = new NetConnection();
@@ -108,9 +108,9 @@ package as3.Net
 			conn.close();
 		}
 		
-		public function addCredit(result:Function,userid:int):void{
+		public function getCredit(result:Function,userid:int):void{
 			conn.connect(URL);
-			conn.call("Music.addCredit",new Responder(result,onFault),userid);
+			conn.call("Music.getUserInfo",new Responder(result,onFault),userid);
 			conn.close();
 		}
 	}

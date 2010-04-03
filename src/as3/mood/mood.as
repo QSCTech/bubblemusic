@@ -91,18 +91,18 @@
 		}
 		else{
 			rpc.addComment(this.getMood,this.index,moodText.text,userIdMood);
-			rpc.addCredit(this.addCredit,userIdMood);
 			resetHandle();
 		}
 	}                  
-	public function addCredit(result:int):void{
-		callback(result);
+	public function addCredit(result:Object):void{
+		callback(result.user_credit);
 	}
 	/**  
 	 * 得到心情列表  
 	 * 
 	 */
 	public function getMood(result:Array):void{
+		rpc.getCredit(this.addCredit,userIdMood);
 		this.moodResult = result;
 		this.syncMoodList(moodResult);
 	}

@@ -41,7 +41,7 @@
 				<mx:Text id="credit" color="#FFFFFF" />
 				<mx:LinkButton label="登录" id="loginBtn" styleName="topLBtn"/>
 				<mx:LinkButton label="注册" id="registerBtn" styleName="topLBtn"/>
-				
+				<mx:Text id="helpBtn"/>
 			</mx:HBox>    	
 	    </mx:Canvas>
 	
