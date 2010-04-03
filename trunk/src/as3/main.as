@@ -269,7 +269,9 @@
 		LRC.splice(0,LRC.length);
 		
 		if(musicControl.pos>0.9 && userId!=0)
+		{
 			rpc.addUserListen(addCredit,userId,playList[0].id);
+		}
 		else
 			rpc.addUserDelete(blank,userId,playList[0].id);
 			
@@ -309,9 +311,7 @@
 			top.currentState = "logined";
 			flash.external.ExternalInterface.call("setSid", result.sid);
 		} 
-		
 	 }
-	 
 	/**
 	 *当得到播放列表后,执行相应操作 
 	 * @param result

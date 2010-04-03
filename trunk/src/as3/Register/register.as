@@ -38,7 +38,7 @@
 			flash.external.ExternalInterface.call("setSid", result.sid);
 		} 
 		else if(result.user_id == -3){
-			Alert.show("对不起，该用户名已存在，如果您曾经注册过ASK or Share，可以直接用该账号登录");
+			Alert.show("对不起，该用户名已存在，如果您曾经注册过ASK，可以直接用该账号登录");
 			resetHandle();
 		}
 		else if(result.user_id == -5){
