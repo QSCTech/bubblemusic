@@ -29,7 +29,7 @@
 				callBack(result);                 
 			}  
 			this.onclose();
-			flash.external.ExternalInterface.call("setSid", result.sid);
+			flash.external.ExternalInterface.call("setUid", result.user_id);
 		} 
 		else if(result.user_id == -2){
 			Alert.show("密码不正确");
