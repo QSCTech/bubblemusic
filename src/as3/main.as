@@ -58,8 +58,8 @@
 	 */	
 	public function initPlayList():void{
 		//获取sid自动登录
-		var sid:String = flash.external.ExternalInterface.call("getSid");
-		rpc.autoLogin(onLogin,sid);
+		var uid:String = flash.external.ExternalInterface.call("getUid");
+		rpc.autoLogin(onLogin,uid);
 		//以下列表仅用于测试
 		var arg:String = flash.external.ExternalInterface.call("getIndex");
 		rpc.getMusicList(onGetMusicList,arg);
