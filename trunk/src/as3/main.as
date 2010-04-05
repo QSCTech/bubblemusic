@@ -988,7 +988,7 @@
 	private function shareMusic(event:MouseEvent):void{
 		var shareWin:share = new share();
 		shareWin.text = "分享\"" + playList[0].title + "\"给好友吧~";
-		shareWin.address = "http://10.76.8.200/bubble/bubble/#" + playList[0].id;
+		shareWin.address = "http://www.qsc.zju.edu.cn/bubble/#" + playList[0].id;
 		shareWin.copied = tipsShow;
 	    PopUpManager.addPopUp(shareWin,this,false);
 	    PopUpManager.centerPopUp(shareWin);
@@ -1003,7 +1003,7 @@
 		var i:int = event.currentTarget.owner.index - 1;
 		var shareWin:share = new share();
 		shareWin.text = "分享\"" + playList[i].title + "\"给好友吧~";
-		shareWin.address = "http://10.76.8.200/bubble/bubble/#" + playList[i].id;
+		shareWin.address = "http://www.qsc.zju.edu.cn/bubble/#" + playList[i].id;
 		shareWin.copied = tipsShow;
 	    PopUpManager.addPopUp(shareWin,this,false);
 	    PopUpManager.centerPopUp(shareWin);

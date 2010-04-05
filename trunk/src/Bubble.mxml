@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns:bubble="Component.*" applicationComplete="initPlayList()" currentState="lyricState" verticalGap="0" horizontalGap="0">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns:bubble="Component.*" applicationComplete="initPlayList()" 
+	currentState="lyricState" verticalGap="0" horizontalGap="0">
 	
 	
 	<mx:Style source="Style/styles.css"/>	
