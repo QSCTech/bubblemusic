@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="900" height="100" horizontalScrollPolicy="off" verticalScrollPolicy="off" styleName="nowCanvas">
 
-	<mx:HBox verticalCenter="5" horizontalCenter="45" width="750" horizontalAlign="center">
+	<mx:HBox verticalCenter="5" horizontalCenter="45" width="750" horizontalAlign="center" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 		<mx:LinkButton id="nowMusic" label="" styleName="nowSongLBtn" left="10"
 			borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" toolTip=""/>
 		<mx:Label text="•" styleName="nowText" width="10"/>
