@@ -635,7 +635,7 @@
 	public function onGetSearchList(result:Array):void{
 		this.searchResult = result;
 		
-		searchList.s1.search.text = "正在搜索，请稍后";
+		searchList.s1.search.text = "正在搜索，请稍后...";
 		searchList.s2.search.text = "";
 		searchList.s3.search.text = "";
 		searchList.s4.search.text = "";
@@ -645,10 +645,10 @@
 		searchList.s8.search.text = "";
 		searchList.s9.search.text = "";
 		searchList.s10.search.text = "";
-		
-		this.syncSearchList(searchResult);
 		searchList.nextBtn.enabled = false;
 		searchList.preBtn.enabled = false;
+		this.syncSearchList(searchResult);
+		
 	}
 	
 	/**
@@ -701,7 +701,8 @@
 		if(list[9]){
 			searchList.s10.search.text = list[9].title + " - " + list[9].author + " - " + list[9].album;
 		} else { searchList.s10.search.text = ""; }
-		searchList.listDown.play();
+		//searchList.listDown.play();
+		//searchList.listDown.play();
 	}
 	
 	/**
@@ -730,6 +731,7 @@
 			rpc.getUserListen(onGetSearchList,userId,page);
 		}
 		searchList.page.text = String(page);
+		
 	}
 	
 	/**
