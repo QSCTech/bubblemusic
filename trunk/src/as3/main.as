@@ -877,8 +877,11 @@
 		rpc.addUserDelete(blank,userId,playList[i-1].id);
 		
 		if(i == 1){
+			if(isLoop == 1){
+				playList.shift();
+			}
 			nextMusic(event);
-			playList.shift();
+			
 		}
 		else{
 			rpc.getNextMusic(this.getNextMusic,1);
