@@ -511,7 +511,7 @@
 	/**
 	 * 空函数
 	 */
-	private function blank():void{
+	private function blank(result:int):void{
 	}
 	
 	/**

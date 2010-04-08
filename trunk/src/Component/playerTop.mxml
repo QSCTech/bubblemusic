@@ -31,5 +31,4 @@
 		<mx:Move target="{albumLabel}" yFrom="0" yTo="-18" repeatCount="0" repeatDelay="3000" duration="1000" />
 	</mx:Parallel>
 	
-	
 </mx:Canvas>
