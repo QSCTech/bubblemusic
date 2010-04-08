@@ -8,9 +8,12 @@ package as3.Net
 	public class RPC
 	{
 		private var conn:NetConnection;
+
 		private var URL:String = "http://www.qsc.zju.edu.cn/apps/bubble/amfphp/gateway.php";
+
 		//private var URL:String = "http://10.76.8.200/bubble/amfphp/gateway.php";
 		//private var URL:String = "http://localhost/amfphp/gateway.php";
+
 		public function RPC()
 		{
 			conn = new NetConnection();
@@ -88,7 +91,39 @@ package as3.Net
 			conn.call("Music.getAllDiyList",new Responder(result,onFault),username);
 			conn.close();
 		}
-		
+
+		public function addFavouriteClass(result:Function,userIndex:int,className:String):void{
+			conn.connect(URL);
+			conn.call("Music.createPlaylist",new Responder(result,onFault),userIndex,className,1);
+			conn.close();
+		}
+		public function getFavouriteClass(result:Function,userIndex:int):void{
+			conn.connect(URL);
+			conn.call("Music.getPlaylist",new Responder(result,onFault),userIndex,1);
+			conn.close();
+		}
+		public function addClassMusic(result:Function,classIndex:int,musicIndex:int):void{
+			conn.connect(URL);
+			conn.call("Music.addPlaylistMusic",new Responder(result,onFault),classIndex,musicIndex,1);
+			conn.close();
+		}
+		public function getClassMusic(result:Function,classIndex:int):void{
+		    conn.connect(URL);
+			conn.call("Music.getPlaylistMusic",new Responder(result,onFault),classIndex,1);
+			conn.close();
+		}
+		public function delFavouriteClass(result:Function,classIndex:int):void{
+			conn.connect(URL);
+			conn.call("Music.delPlaylist",new Responder(result,onFault),classIndex);
+			conn.close();
+		}
+		public function delClassMusic(result:Function,classIndex:int,musicIndex:int):void{
+			conn.connect(URL);
+			conn.call("Music.delPlaylistMusic",new Responder(result,onFault),classIndex,musicIndex);
+			conn.close();
+		}
+
+	
 		public function addUserListen(result:Function,userid:int,songid:int):void{
 			conn.connect(URL);
 			conn.call("Music.addUserListen",new Responder(result,onFault),userid,songid);
@@ -112,5 +147,6 @@ package as3.Net
 			conn.call("Music.getUserInfo",new Responder(result,onFault),userid);
 			conn.close();
 		}
+
 	}
 }
