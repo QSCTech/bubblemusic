@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="113" styleName="mainCanvas" xmlns:Component="Component.*" verticalScrollPolicy="off" horizontalScrollPolicy="off" name="collectFavourite">
+    <mx:Script source="../as3/Favourite/FavouriteScript.as" />
+    <mx:Text x="10" text="收藏歌曲    {musicName}" styleName="topText" height="24" width="220" top="10"/>
+    <mx:Text x="269" text="请选择分类：" styleName="topText" height="24" width="88" top="10"/>
+    <mx:Label text="添加分类" left="10" styleName="followText" width="56" bottom="44"/>
+    <mx:TextInput id="txtClassName" width="219" right="105" styleName="popupInput" bottom="43"/>
+    <mx:Button id="collect" label="确定" horizontalCenter="-62" click="addFavouriteHandle()" styleName="normalBtn" bottom="11"/>
+    <mx:Button id="collectCancel" label="取消" horizontalCenter="48" click="close()" styleName="normalBtn" bottom="11"/>
+    <mx:Button id="typeAdd" label="添加" horizontalCenter="130"  click="addClass()" styleName="normalBtn" width="56" bottom="42"/>
+    <mx:Button label="返回分类列表" id="returnBtn" visible="false"/>
+</mx:Canvas>

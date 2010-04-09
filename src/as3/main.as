@@ -3,6 +3,8 @@
  * 
  */
 
+	import Component.Favourite;
+	import Component.MyFavourite;
 	import Component.listDIY;
 	import Component.login;
 	import Component.mood;
@@ -309,6 +311,7 @@
 			userName = result.user_name;
 			userId = result.user_id;
 			top.currentState = "logined";
+			top.setBtn.addEventListener(MouseEvent.CLICK,getFavouriteMusic);
 			flash.external.ExternalInterface.call("setSid", result.sid);
 		} 
 	 }
@@ -849,8 +852,16 @@
 	private function musicCollect(event:MouseEvent):void{
 		var i:int = event.currentTarget.owner.index - 1;
 		if(userName != ""){
-			
-		}
+			var FavouriteWin:Favourite = new Favourite();
+	        FavouriteWin.setIndex(playList[i].id);
+	        FavouriteWin.userIndex = userId;
+	        FavouriteWin.musicName = playList[i].title;
+		    PopUpManager.addPopUp(FavouriteWin,this,false);
+	        PopUpManager.centerPopUp(FavouriteWin);
+	        FavouriteWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
+	        FavouriteWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
+	        FavouriteWin.getFavouriteClass(FavouriteWin.userIndex);
+	     }
 		else{
 			Alert.show("登录后才能收藏歌曲！");
 		}
@@ -861,13 +872,35 @@
 	 */
 	private function collectMusic(event:MouseEvent):void{
 		if(userName != ""){
-			
+	    var FavouriteWin:Favourite = new Favourite();
+	    FavouriteWin.setIndex(playList[0].id);
+	    FavouriteWin.userIndex = userId;
+	    FavouriteWin.musicName = playList[0].title;
+		PopUpManager.addPopUp(FavouriteWin,this,false);
+	    PopUpManager.centerPopUp(FavouriteWin);
+	    FavouriteWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
+	    FavouriteWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
+	    FavouriteWin.getFavouriteClass(FavouriteWin.userIndex)		
 		}
 		else{
 			Alert.show("登录后才能收藏歌曲！");
 		}
 	}
 	
+	/**
+	 * 获取收藏列表
+	 */
+	private function getFavouriteMusic(event:MouseEvent):void{
+		var myFavouriteWin:MyFavourite = new MyFavourite();
+		myFavouriteWin.setIndex(playList[0].id)
+	    myFavouriteWin.userIndex = userId;
+		PopUpManager.addPopUp(myFavouriteWin,this,false);
+	    PopUpManager.centerPopUp(myFavouriteWin);
+	    myFavouriteWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
+	    myFavouriteWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
+	    myFavouriteWin.getFavouriteClass(myFavouriteWin.userIndex);
+	    myFavouriteWin.callBack = addFavouriteSong
+	}
 	/**
 	 * 删除播放列表中歌曲 
 	 */
@@ -1083,6 +1116,7 @@
 	    PopUpManager.addPopUp(loginWin,this,true);
 	    PopUpManager.centerPopUp(loginWin);
 	}
+
 	
 	/**
 	 * 注册成功后的回调函数
@@ -1094,6 +1128,7 @@
 		userName = result.user_name;
 		userId = result.user_id;
 		tipsShow("注册成功~");
+	    top.setBtn.addEventListener(MouseEvent.CLICK,getFavouriteMusic);
 	}
 	/**
 	 * 登录成功后的回调函数
@@ -1105,6 +1140,7 @@
 		userName = result.user_name;
 		userId = result.user_id;
 		tipsShow("登录成功~");
+		top.setBtn.addEventListener(MouseEvent.CLICK,getFavouriteMusic);
 	}
 	
 	/**
@@ -1171,6 +1207,15 @@
 		userName = "";
 		userId = 0;
 	}
+	private function addFavouriteSong(music:Object):void{
+		if(music == null);
+		else {
+			playList.splice(1,0,music);
+		    resetPlaylistX();
+		    this.syncPlayList(playList);
+		    this.listAddedEffect(1);
+		}
+	}
 	
 	/**
 	 * 获取用户刚刚听过的歌曲列表
@@ -1204,4 +1249,5 @@
 	 */	
 	private function addCredit(result:int):void{
 		top.credit.text = "泡泡数：" + String(result);
+
 	}
