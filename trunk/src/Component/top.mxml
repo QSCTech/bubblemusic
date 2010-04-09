@@ -5,10 +5,21 @@
 	 	 	 <mx:RemoveChild target="{loginBtn}"/>
 	 	 	 <mx:RemoveChild target="{registerBtn}"/>
 	 	 	 <mx:AddChild relativeTo="{l1}" position="in">
-	 	 	 	 <mx:LinkButton label="退出" id="exitBtn" styleName="topLBtn" click="exitUser()"/>
+	 	 	 	 <mx:LinkButton label="退出" id="exitBtn" styleName="topLBtn" />
 	 	 	 </mx:AddChild>
 	 	 	 <mx:AddChild relativeTo="{exitBtn}" position="before">
+
+	 	 	 
+
 	 	 	 	 <mx:LinkButton label="刚刚听过" id="listenBtn" styleName="topLBtn" click="getListened()"/>
+
+	 	 	 </mx:AddChild>
+	 	 	 <mx:AddChild relativeTo="{exitBtn}" position="before">
+
+	 	 	 	 <mx:LinkButton label="我的收藏" id="setBtn"  styleName="topLBtn"/>
+
+	 	 	 	
+
 	 	 	 </mx:AddChild>
 	 	 	 
 	 	 </mx:State>

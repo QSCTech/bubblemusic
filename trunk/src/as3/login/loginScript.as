@@ -27,8 +27,9 @@
 		if(result.user_id > 0){
 			if(callBack != null){
 				callBack(result);                 
+
 			}  
-			this.onclose();
+			this.close();
 			flash.external.ExternalInterface.call("setUid", result.user_id);
 		} 
 		else if(result.user_id == -2){
@@ -44,12 +45,8 @@
 		txtPassword.text = "";         
 	}                  
 	
-	public function onclose():void{                             
-		PopUpManager.removePopUp(this);         
-	} 
-	
 	public function registerNew():void{ 
-		this.onclose();
+		this.close();
 		if(register != null){
 			register();                 
 		}  	

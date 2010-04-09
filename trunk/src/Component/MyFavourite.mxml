@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="101" styleName="mainCanvas" xmlns:Component="Component.*" verticalScrollPolicy="off" horizontalScrollPolicy="off" currentState="classList">
+    <mx:Script source="../as3/Favourite/FavouriteScript.as" />
+    <mx:Text x="10" y="10" text="我的收藏-分类列表" styleName="topText" height="24" width="128" id="topText"/>
+    <mx:Button id="collect" label="关闭" click="close()" styleName="normalBtn" x="329" bottom="10"/>
+   
+    <mx:TextInput id="txtClassName" width="219" right="101" styleName="popupInput" bottom="10" visible="false"/>
+<mx:states>
+	<mx:State name="classList" />
+	<mx:State name="musicList">
+		<mx:AddChild relativeTo="{topText}" position="after">
+			<mx:Button label="返回分类列表" id="returnBtn" styleName="normalBtn" bottom="10" left="10" width="97" click="returnToClasslist()"/>
+		</mx:AddChild>
+		<mx:SetProperty name="doubleClickEnabled" value="true"/>
+		<mx:RemoveChild target="{topText}"/>
+		<mx:AddChild relativeTo="{returnBtn}" position="before">
+			<mx:Text x="10" y="10" text="{ClassList[classIndex]['playlist_name']}  分类下的曲目：" styleName="topText" height="24" width="359" id="ClassText"/>
+		</mx:AddChild>
+	</mx:State>
+</mx:states>
+</mx:Canvas>
