@@ -16,7 +16,7 @@
 	 	 	 </mx:AddChild>
 	 	 	 <mx:AddChild relativeTo="{exitBtn}" position="before">
 
-	 	 	 	 <mx:LinkButton label="我的收藏" id="setBtn"  styleName="topLBtn"/>
+	 	 	 	 <mx:LinkButton label="我的收藏" id="setBtn"  styleName="topLBtn" visible="false"/>
 
 	 	 	 	
 
