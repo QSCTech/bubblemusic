@@ -3,16 +3,15 @@ package as3.Net
 	import flash.net.NetConnection;
 	import flash.net.ObjectEncoding;
 	import flash.net.Responder;
-	import mx.controls.Alert;
 	
 	public class RPC
 	{
 		private var conn:NetConnection;
 
-		private var URL:String = "http://www.qsc.zju.edu.cn/apps/bubble/amfphp/gateway.php";
+		//private var URL:String = "http://www.qsc.zju.edu.cn/apps/bubble/amfphp/gateway.php";
 
 		//private var URL:String = "http://10.76.8.200/bubble/amfphp/gateway.php";
-		//private var URL:String = "http://localhost/amfphp/gateway.php";
+		private var URL:String = "http://localhost/amfphp/gateway.php";
 
 		public function RPC()
 		{
@@ -97,16 +96,35 @@ package as3.Net
 			conn.call("Music.createPlaylist",new Responder(result,onFault),userIndex,className,1);
 			conn.close();
 		}
+		
+		
+		public function checkFavMusic(result:Function,musicIndex:int,userIndex:int):void{
+			conn.connect(URL);
+			conn.call("Music.checkFavMusic",new Responder(result,onFault),musicIndex,userIndex);
+			conn.close();
+		}
 		public function getFavouriteClass(result:Function,userIndex:int):void{
 			conn.connect(URL);
 			conn.call("Music.getPlaylist",new Responder(result,onFault),userIndex,1);
 			conn.close();
 		}
-		public function addClassMusic(result:Function,classIndex:int,musicIndex:int):void{
+		public function addFavMusic(result:Function,musicIndex:int,userIndex:int,Vboxes:Array):void{
 			conn.connect(URL);
-			conn.call("Music.addPlaylistMusic",new Responder(result,onFault),classIndex,musicIndex,1);
+			conn.call("Music.addPlaylistMusic",new Responder(result,onFault),musicIndex,userIndex,Vboxes);
 			conn.close();
 		}
+		public function getUserFavourite(result:Function,userIndex:int,page:int):void{
+			conn.connect(URL);
+			conn.call("Music.getPlaylistMusic",new Responder(result,onFault),userIndex,page);
+			conn.close();
+		}
+		public function getUserClass(result:Function,userIndex:int):void{
+			conn.connect(URL);
+			conn.call("Music.getPlaylistMusic",new Responder(result,onFault),userIndex);
+			conn.close();
+		}
+		
+		
 		public function getClassMusic(result:Function,classIndex:int):void{
 		    conn.connect(URL);
 			conn.call("Music.getPlaylistMusic",new Responder(result,onFault),classIndex,1);
@@ -123,6 +141,9 @@ package as3.Net
 			conn.close();
 		}
 
+
+
+
 	
 		public function addUserListen(result:Function,userid:int,songid:int):void{
 			conn.connect(URL);
@@ -136,7 +157,7 @@ package as3.Net
 			conn.close();
 		}
 		
-		public function getUserListen(result:Function,userid:int,page:int):void{
+		public function getUserListened(result:Function,userid:int,page:int):void{
 			conn.connect(URL);
 			conn.call("Music.getUserListen",new Responder(result,onFault),userid,page);
 			conn.close();

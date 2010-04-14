@@ -1,25 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="20" width="346" currentState="unChoosed" >
-   
- <mx:states>
- <mx:State name="unchoosed" />
- <mx:State name="choosed" >
-    <mx:AddChild relativeTo="{littleClassDelete}" position="before">
-    	<mx:Label text="已选中" x="263"/>
-    </mx:AddChild>
-    <mx:SetProperty target="{text}" name="x" value="0"/>
-    <mx:SetProperty target="{text}" name="y" value="0"/>
- </mx:State>
- </mx:states>
- <mx:Script>
-		<![CDATA[		    
-                 [Bindable]
-                 public var index:int = 0;
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="20" width="120"  borderColor="#E00025" borderStyle="solid" cornerRadius="10">
+	<mx:Script>
+	 	<![CDATA[		    
+			 [Bindable]
+			 public var index:int = 0;
+			 [Bindable]
+			 public var text:String = "";
 		]]>
 	</mx:Script>
- <mx:Button id="littleClassDelete" right="3" toolTip="删除" styleName="deleteBtn" width="14" height="14" visible="true" y="10"/>
- <mx:HRule width="340" height="1" x="3" y="19"/>
- <mx:Label id="text" width="306"/>
+	<mx:Text width="110" styleName="followText" left="5" verticalCenter="0" height="18" text="{text}"/>
+	<mx:Button id="littleClassDelete" right="0" toolTip="删除" styleName="deleteBtn" width="14" height="14" visible="false" y="9"/>
 </mx:Canvas>	
 

@@ -25,8 +25,9 @@
 				borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" visible="false"/>
 		</mx:HBox>
 		<mx:HBox right="0" verticalAlign="" top="0">
+
 			<mx:LinkButton id="rssPlayer" y="10" label="关注“周杰伦”" styleName="nowLBtn" visible="false"/>
-			<mx:LinkButton id="storeMusic" y="10" label="收藏" styleName="nowLBtn" visible="false"/>
+			<mx:LinkButton id="storeMusic" y="10" label="收藏" styleName="nowLBtn" visible="true"/>
 			<mx:LinkButton id="shareMusic" y="10" label="分享" styleName="nowLBtn"/>
 			<mx:LinkButton id="moodMusic" y="10" label="泡心情" styleName="nowLBtn"/>
 			<mx:LinkButton id="downMusic" y="10" label="下载" styleName="nowLBtn"/>

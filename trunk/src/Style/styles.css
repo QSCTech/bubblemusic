@@ -86,7 +86,7 @@ Alert
 	alpha:1;
 }
 /*searchBar*/
-ComboBox
+.searchComboBox
 {
 	color:#FFFFFF;
 	fillAlphas:1.0, 1.0;
@@ -263,6 +263,7 @@ HRule
 	selectionColor: #D9D9D9;
 	textRollOverColor: #474747;
 	fontSize: 10;
+	fontWeight: normal;
 	paddingLeft: 1;
 	paddingRight: 1;
 	paddingBottom: 1;
@@ -436,6 +437,8 @@ HSlider
 	themeColor:#E00025;
 	fontWeight: normal;
 }
+
+
 .popupHRule
 {
 	strokeColor:#D9D9D9;
@@ -467,6 +470,11 @@ HSlider
 .followText
 {
 	color:#474747;
+	fontSize:12;
+}
+.redText
+{
+	color:#E00025;
 	fontSize:12;
 }
 .littleLBtn
@@ -535,17 +543,40 @@ HSlider
 }
 	
 
-	
-	.welcomeUsername{
-		color:#2F1F2F;
-	}
-	
+
 .bottomHRule
 {
 	strokeColor:#E00025;
 	strokeWidth:1;
 }
 
+ComboBox
+{
+	color:#000000;
+	themeColor:#e00025;
+	borderColor:#000000;
+	selectionColor:#000000;
+	rollOverColor:#e00025;
+	textRollOverColor:#000000;
+	textSelectedColor: #e00025;
+	dropdownStyleName: comboBoxDropdown;
+	mouseDownEffect: Glow;
+	rollOverEffect: Glow;
+}
 
 
+.specialLBtn2
+{
+	textRollOverColor: #FFFFFF;
+	textSelectedColor: #FFFFFF;
+	color: #474747;
+	paddingLeft: 2;
+	paddingRight: 2;
+	rollOverColor: #E00025;
+	selectionColor: #E00025;
+	themeColor:#E00025;
+	fontWeight: normal;
+	paddingBottom:1;
+	paddingTop:1;
+}
 
