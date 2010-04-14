@@ -5,10 +5,10 @@
 	 
 	import as3.Net.RPC;
 	
+	import mx.controls.Alert;
 	import mx.managers.PopUpManager;
-    import mx.controls.Alert;
                  
-	private var rpc:RPC;
+	private var rpc:RPC = new RPC();
 	private var index:int;
     public var moodResult:Array = new Array();
     public var callback:Function;

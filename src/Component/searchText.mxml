@@ -6,7 +6,11 @@
 			public var index:int = 0;
 		]]>
 	</mx:Script>
-	<mx:Label id="search" x="13" styleName="searchText" width="375" verticalCenter="0"/>
+	<mx:HBox width="390" verticalCenter="0" horizontalCenter="0" verticalScrollPolicy="off" horizontalScrollPolicy="off" horizontalGap="0">
+		<mx:Label id="search" x="13" styleName="searchText" width="390"/>
+		<mx:Label id="tag" x="13" styleName="redText"/>
+	</mx:HBox>
+	
 	<mx:Button id="littleSearchAdd" label="添加" styleName="addBtn" width="12" height="12" verticalCenter="6" right="0" visible="false" activate="true"/>
 
 </mx:Canvas>

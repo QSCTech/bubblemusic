@@ -5,7 +5,8 @@
 	<mx:Canvas width="402" height="250" verticalScrollPolicy="off" horizontalScrollPolicy="off" horizontalCenter="0" verticalCenter="0">
 		<mx:Label id="searchTitle" x="0" y="2" styleName="searchTopText"/>
 		<mx:HRule x="0" y="21" width="400" height="1" styleName="searchTopHRule" />
-		<mx:LinkButton id="backLyric" label="返回歌词" right="0" top="2" height="18" styleName="backLyricLBtn" fontSize="10" fontWeight="normal"/>
+		<mx:LinkButton id="backLyric" label="返回歌词" right="0" top="2" height="18" styleName="backLyricLBtn"/>
+		<mx:LinkButton id="showTags" label="Tags" right="50" top="2" height="18" styleName="backLyricLBtn" visible="false"/>
 		<mx:Canvas id="searchList" y="22" width="402" height="202" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 			<Component:searchText y="2" id="s1" doubleClickEnabled="true" index="1"/>
 			<mx:HRule id="h1" y="21" width="400" height="1" styleName="searchBoxHRule"/>

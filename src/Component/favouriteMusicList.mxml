@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="101" styleName="mainCanvas" xmlns:Component="Component.*" verticalScrollPolicy="off" horizontalScrollPolicy="off" doubleClickEnabled="true">
-    <mx:Script source="../as3/Favourite/FavouriteScript.as" />
+
     <mx:Text x="10" y="10" text="{classList_name}" styleName="topText" height="24" width="128"/>
     <mx:Button id="collect" label="关闭" click="close()" styleName="normalBtn" x="329" bottom="10"/>
    

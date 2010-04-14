@@ -49,7 +49,7 @@
 			
 			<mx:SetEventHandler target="{searchList.addAll}" handlerFunction="addAllMusic" name="click"/>
 			<mx:SetEventHandler target="{searchList.backLyric}" handlerFunction="lyricShow" name="click"/>
-			
+			<mx:SetEventHandler target="{searchList.showTags}" handlerFunction="tagShow" name="click"/>
 			<mx:SetEventHandler target="{searchList.s1.littleSearchAdd}" handlerFunction="addOneMusicBtn" name="click"/>
 			<mx:SetEventHandler target="{searchList.s2.littleSearchAdd}" handlerFunction="addOneMusicBtn" name="click"/>
 			<mx:SetEventHandler target="{searchList.s3.littleSearchAdd}" handlerFunction="addOneMusicBtn" name="click"/>

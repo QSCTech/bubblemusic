@@ -8,18 +8,11 @@
 	 	 	 	 <mx:LinkButton label="退出" id="exitBtn" styleName="topLBtn" />
 	 	 	 </mx:AddChild>
 	 	 	 <mx:AddChild relativeTo="{exitBtn}" position="before">
-
-	 	 	 
-
 	 	 	 	 <mx:LinkButton label="刚刚听过" id="listenBtn" styleName="topLBtn" click="getListened()"/>
-
 	 	 	 </mx:AddChild>
 	 	 	 <mx:AddChild relativeTo="{exitBtn}" position="before">
 
-	 	 	 	 <mx:LinkButton label="我的收藏" id="setBtn"  styleName="topLBtn" visible="false"/>
-
-	 	 	 	
-
+	 	 	 	 <mx:LinkButton label="我的收藏" id="setBtn"  styleName="topLBtn" click="getFavourite()"/>
 	 	 	 </mx:AddChild>
 	 	 	 
 	 	 </mx:State>
@@ -33,6 +26,7 @@
     		import mx.controls.Alert;
     		public var callback:Function;
     		public var getUserListened:Function;
+    		public var getUserFavourite:Function;
 			public function exitUser():void{
 				this.currentState = "unlogined";
 				welcomeText.text = "";
@@ -41,6 +35,9 @@
 			}
 			public function getListened():void{
 				getUserListened();
+			}
+			public function getFavourite():void{
+				getUserFavourite();
 			}
     	]]>
     </mx:Script>
@@ -59,16 +56,16 @@
 		
     </mx:HBox>
     <mx:Canvas styleName="topCanvas2" height="45"  right="0" top="55">
-			<mx:HBox right="10" verticalCenter="0" left="10">
-				<mx:TextInput right="165" bottom="8" id="searchTarget" height="24"  cornerRadius="10"/>
-				<mx:ComboBox right="65" fontSize="12" bottom="8" id="searchIndex"  >
-					<mx:String>全部搜索</mx:String>
-					<mx:String>搜歌名</mx:String>
-					<mx:String>搜歌手</mx:String>
-					<mx:String>搜专辑</mx:String>
-				</mx:ComboBox>
-				<mx:Button id="searchBtn" label="搜索" right="10" bottom="8" styleName="searchBtn"/>
-			</mx:HBox>
-		</mx:Canvas>
+		<mx:HBox right="10" verticalCenter="0" left="10">
+			<mx:TextInput right="165" bottom="8" id="searchTarget" height="24"  cornerRadius="10"/>
+			<mx:ComboBox right="65" fontSize="12" bottom="8" id="searchIndex" styleName="searchComboBox">
+				<mx:String>全部搜索</mx:String>
+				<mx:String>搜歌名</mx:String>
+				<mx:String>搜歌手</mx:String>
+				<mx:String>搜专辑</mx:String>
+			</mx:ComboBox>
+			<mx:Button id="searchBtn" label="搜索" right="10" bottom="8" styleName="searchBtn"/>
+		</mx:HBox>
+	</mx:Canvas>
 	<mx:Button styleName="logoBtn" left="40" top="0" scaleX="0.8" scaleY="0.8"/>
 </mx:Canvas>
