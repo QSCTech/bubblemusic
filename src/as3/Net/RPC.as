@@ -4,14 +4,16 @@ package as3.Net
 	import flash.net.ObjectEncoding;
 	import flash.net.Responder;
 	
+	import mx.controls.Alert;
+	
 	public class RPC
 	{
 		private var conn:NetConnection;
 
-		//private var URL:String = "http://www.qsc.zju.edu.cn/apps/bubble/amfphp/gateway.php";
+		private var URL:String = "http://www.qsc.zju.edu.cn/apps/bubble/amfphp/gateway.php";
 
 		//private var URL:String = "http://10.76.8.200/bubble/amfphp/gateway.php";
-		private var URL:String = "http://localhost/amfphp/gateway.php";
+		//private var URL:String = "http://localhost/amfphp/gateway.php";
 
 		public function RPC()
 		{
@@ -101,7 +103,7 @@ package as3.Net
 		
 		public function getUserFavTag(result:Function,userIndex:int):void{
 			conn.connect(URL);
-			conn.call("Music.getUserFavTag",new Responder(result,onFault),userIndex,1);
+			conn.call("Music.getUserFavTag",new Responder(result,onFault),userIndex);
 			conn.close();
 		}
 		
@@ -113,6 +115,7 @@ package as3.Net
 		
 		public function addUserFav(result:Function,musicIndex:int,userIndex:int,tags:String):void{
 			conn.connect(URL);
+			Alert.show
 			conn.call("Music.addUserFav",new Responder(result,onFault),musicIndex,userIndex,tags);
 			conn.close();
 		}
@@ -141,8 +144,6 @@ package as3.Net
 			conn.close();
 		}
 		
-		
-		
 		public function delFavouriteClass(result:Function,classIndex:int):void{
 			conn.connect(URL);
 			conn.call("Music.delPlaylist",new Responder(result,onFault),classIndex);
@@ -153,10 +154,6 @@ package as3.Net
 			conn.call("Music.delPlaylistMusic",new Responder(result,onFault),classIndex,musicIndex);
 			conn.close();
 		}
-
-
-
-
 	
 		public function addUserListen(result:Function,userid:int,songid:int):void{
 			conn.connect(URL);
@@ -181,6 +178,5 @@ package as3.Net
 			conn.call("Music.getUserInfo",new Responder(result,onFault),userid);
 			conn.close();
 		}
-
 	}
 }
