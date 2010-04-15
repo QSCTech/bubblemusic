@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="20" width="120"  borderColor="#E00025" borderStyle="solid" cornerRadius="10">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="20" width="120" styleName="littleRoundCanvas">
 	<mx:Script>
 	 	<![CDATA[		    
 			 [Bindable]

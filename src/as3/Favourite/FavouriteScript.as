@@ -13,15 +13,14 @@
     public var musicIndex:int;
     [Bindable]
     public var musicName:String;
-    public var music:Object = null;
-    public var rpc:RPC = new RPC();
-    [Bindable]
-    private var ClassList:Array = new Array();
-    private var classIndex:int = -1; 
-    private var Vboxes:Array = new Array();
-    private var musicList:Array = new Array();
-    private var tagNum:int = 0;
 
+	public var rpc:RPC = new RPC();
+	[Bindable]
+	private var classList:Array = new Array();  //保存用户tags
+	private var Vboxes:Array = new Array();  //保存当前歌曲tags数组
+	private var tagNum:int = 0;
+	public var stored:Function;
+	
 	/**
 	* 关闭面板
 	*/
@@ -33,16 +32,15 @@
 	* 判断歌曲是否被收藏过
 	*/
 	public function checkFavMusic(musicID:int, userID:int):void{
-		rpc.checkFavMusic(onCheckFavResult,musicID,userID);
+		rpc.checkUserFav(onCheckFavResult,musicID,userID);
 	}
+	/**
+	* 判断歌曲是否被收藏过返回函数
+	*/
 	public function onCheckFavResult(result:Array):void{
-		if(result[0]==0){
-			isStored.text = "可以为歌曲添加0-3个tag，以便于您管理您收藏的音乐吧~";
-		}
-		else{
-			Alert.show("此tag已添加~");
+		if(result[0]!=""){
 			isStored.text = "您已收藏过该歌曲,可以修改或添加保存的tags~";
-			for(var count:int = 1; result[count]!=""; count++){
+			for(var count:int = 1; count < result.length; count++){
 				var vbox:ClassVBox = new ClassVBox();
 				vbox.text = result[count];
 				tags.addChild(vbox);
@@ -54,20 +52,24 @@
 				vbox.index = tagNum;
 			}
 		}
+		else{
+			isStored.text = "为歌曲添加0-3个tag，以便于您管理您收藏的音乐~";
+		}
 	}
 	
 	/**
 	* 得到用户已有的tags
 	*/
 	public function getFavouriteClass(userID:int):void{
-		rpc.getFavouriteClass(onResultGetClass,userID);
+		rpc.getUserFavTag(onResultGetClass,userID);
 	}
+	/**
+	* 得到用户已有的tags返回函数，布局在combox下
+	*/
 	public function onResultGetClass(result:Array):void{
-		clr();
-		ClassList.splice(0);
 		var count:int;
 		for(count=0;count<result.length;count++){
-			ClassList[count]=result[count].playlist_name;
+			classList[count]=result[count].playlist_name;
 		}
 	}
 
@@ -83,6 +85,7 @@
 					txtClassName.selectedIndex = -1;
 					break;
 				}	
+				
 			if(count > tagNum){
 				var vbox:ClassVBox = new ClassVBox();
 				vbox.text = txtClassName.text;
@@ -130,132 +133,21 @@
 	* 添加用户收藏歌曲
 	*/
 	public function addFavouriteHandle():void{
-		rpc.addFavMusic(onAddFavResult,musicIndex,userIndex,Vboxes);
+		var tags:String = "";
+		for(var i:int = 0;i<Vboxes.length-1;i++){
+			tags += Vboxes[i] + ",";
+		}
+		tags = tags + Vboxes[i];
+		rpc.addUserFav(onAddFavResult,musicIndex,userIndex,tags);
 	}
 	/**
-	* 添加用户收藏歌曲回调函数
+	* 添加用户收藏歌曲返回函数
 	*/
 	public function onAddFavResult(result:Boolean):void{
 		if (result){
-			Alert.show("收藏歌曲成功");
+			stored("收藏成功^^");
    	    	this.close();
 		}
 		else Alert.show("对不起><正在泡音乐的人太多了,请重试^^");
 	}
 	
-////////////////////////////////// 	
-	
-   
-    public function delFavouriteClass(classID:int):void{
-   	  rpc.delFavouriteClass(onResultDelClass,classID);
-   	}
-   /**
-   * 选择分类
-   */
-    public function chooseClass(event:MouseEvent):void{
-    	classIndex = event.currentTarget.index;
-    	for each(var box:ClassVBox in Vboxes ) box.currentState = "unchoosed"
-    	event.currentTarget.currentState = "choosed";
-    }
-   /**
-   * 展开分类中的歌曲
-   */
-    public function showMusicList(event:MouseEvent):void{
-    	classIndex = event.currentTarget.index;
-    	this.currentState = "musicList" ;
-    	clr();
-    	getClassMusic(ClassList[classIndex]["playlist_id"]);
-    }
-    
-  
-   /**
-   * 返回分类列表
-   */
-   public function returnToClasslist():void{
-   	  this.currentState = "classList";
-   	  clr();
-
-   }
-   
-   
-	
-	public function addFavourite(classID:int,musicID:int):void{
-		
-	}
-   
-   
-	
-	public function onResultAddClass(result:int):void{
-		if (result) {
-			Alert.show("添加分类成功");
-			this.getFavouriteClass(userIndex);
-		}
-		else Alert.show("对不起><服务器超负荷运作中,请重试^^");
-	}
-   
-	 
-   public function getClassMusic(classID:int):void{
-   	 rpc.getClassMusic(onResultGet,classID);
-   }
-   
-   /**
-   * 获取收藏分类
-   */
-   
-  
-   public function getClassListHandle():void{
-   	 this.getFavouriteClass(userIndex);
-   }
-    /**
-    * 返回函数
-    */
-	
-	
-   public function onResultGet(result:Object):void{
-   	  clr();
-   	  musicList.splice(0);
-   	  musicList = result.slice(0);
-   	  showMusic(); 
-   }
-  
-	public function onResultDelClass(result:int):void{
-		if (result) {
-			Alert.show("删除分类成功");
-			this.getFavouriteClass(userIndex);
-		}
-		else Alert.show("服务器忙,请重试");
-	}
-   public function delResult(result:Boolean):void{
-   	    if (result) {
-   	      Alert.show("删除分类成功");
-   	      this.getClassMusic(ClassList[classIndex]["playlist_id"]);
-   	    }
-   	    else Alert.show("服务器忙,请重试");
-   }
-/**
- * 显示列表函数
- */
-
-	
-	
-     public function showMusic():void{
-    	var count:int;
-   	    for( count=0;count<musicList.length;count++){
-   	  	 var vbox:ClassVBox = new ClassVBox();
-         
-         vbox.index = count;
-         Vboxes[count] = vbox;
-          }
-     }
- /**
- * 清除列表函数
- */
-    public function clr():void{
-   	  musicList.splice(0);
-   	  for each (var box:ClassVBox in Vboxes){
-   	  	box.littleClassDelete.removeEventListener(MouseEvent.CLICK,deleteClass);
-   	  	this.height -= 20;
-   	  	this.removeChild(box);
-   	  }
-   	 
-   	}

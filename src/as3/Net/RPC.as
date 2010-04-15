@@ -91,45 +91,58 @@ package as3.Net
 			conn.close();
 		}
 
-		public function addFavouriteClass(result:Function,userIndex:int,className:String):void{
+
+	
+		public function checkUserFav(result:Function,musicIndex:int,userIndex:int):void{
 			conn.connect(URL);
-			conn.call("Music.createPlaylist",new Responder(result,onFault),userIndex,className,1);
+			conn.call("Music.checkUserFav",new Responder(result,onFault),musicIndex,userIndex);
 			conn.close();
 		}
 		
+		public function getUserFavTag(result:Function,userIndex:int):void{
+			conn.connect(URL);
+			conn.call("Music.getUserFavTag",new Responder(result,onFault),userIndex,1);
+			conn.close();
+		}
 		
-		public function checkFavMusic(result:Function,musicIndex:int,userIndex:int):void{
+		public function getUserFavArtists(result:Function,userID:int):void{
 			conn.connect(URL);
-			conn.call("Music.checkFavMusic",new Responder(result,onFault),musicIndex,userIndex);
+			conn.call("Music.getUserFavArtists",new Responder(result,onFault),userID);
 			conn.close();
 		}
-		public function getFavouriteClass(result:Function,userIndex:int):void{
+		
+		public function addUserFav(result:Function,musicIndex:int,userIndex:int,tags:String):void{
 			conn.connect(URL);
-			conn.call("Music.getPlaylist",new Responder(result,onFault),userIndex,1);
+			conn.call("Music.addUserFav",new Responder(result,onFault),musicIndex,userIndex,tags);
 			conn.close();
 		}
-		public function addFavMusic(result:Function,musicIndex:int,userIndex:int,Vboxes:Array):void{
-			conn.connect(URL);
-			conn.call("Music.addPlaylistMusic",new Responder(result,onFault),musicIndex,userIndex,Vboxes);
-			conn.close();
-		}
+		
 		public function getUserFavourite(result:Function,userIndex:int,page:int):void{
 			conn.connect(URL);
-			conn.call("Music.getPlaylistMusic",new Responder(result,onFault),userIndex,page);
-			conn.close();
-		}
-		public function getUserClass(result:Function,userIndex:int):void{
-			conn.connect(URL);
-			conn.call("Music.getPlaylistMusic",new Responder(result,onFault),userIndex);
+			conn.call("Music.getUserFav",new Responder(result,onFault),userIndex,page);
 			conn.close();
 		}
 		
-		
-		public function getClassMusic(result:Function,classIndex:int):void{
+		public function getUserClassMusic(result:Function,userIndex:int,page:int,classIndex:int):void{
 		    conn.connect(URL);
-			conn.call("Music.getPlaylistMusic",new Responder(result,onFault),classIndex,1);
+			conn.call("Music.getUserFav",new Responder(result,onFault),page,classIndex);
 			conn.close();
 		}
+		
+		public function getUserSingerMusic(result:Function,userIndex:int,page:int,classIndex:int,authorID:int):void{
+		    conn.connect(URL);
+			conn.call("Music.getUserFav",new Responder(result,onFault),page,classIndex,authorID);
+			conn.close();
+		}
+		
+		public function delUserFav(result:Function,musicIndex:int,userIndex:int):void{
+			conn.connect(URL);
+			conn.call("Music.delUserFav",new Responder(result,onFault),musicIndex,userIndex);
+			conn.close();
+		}
+		
+		
+		
 		public function delFavouriteClass(result:Function,classIndex:int):void{
 			conn.connect(URL);
 			conn.call("Music.delPlaylist",new Responder(result,onFault),classIndex);

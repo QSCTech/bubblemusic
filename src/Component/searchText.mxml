@@ -11,6 +11,8 @@
 		<mx:Label id="tag" x="13" styleName="redText"/>
 	</mx:HBox>
 	
-	<mx:Button id="littleSearchAdd" label="添加" styleName="addBtn" width="12" height="12" verticalCenter="6" right="0" visible="false" activate="true"/>
+	<mx:Button id="littleSearchUpdate" right="34" toolTip="修改" styleName="updateBtn" width="14" height="14" y="9" visible="false"/>
+	<mx:Button id="littleSearchDelete" right="17" toolTip="删除" styleName="deleteBtn" width="14" height="14" y="9" visible="false"/>
+	<mx:Button id="littleSearchAdd" right="0" label="添加" styleName="addBtn" width="14" height="14" verticalCenter="6" visible="false"/>
 
 </mx:Canvas>
