@@ -2,7 +2,7 @@
  * 主控制类,也是最顶层的类方法,负责统筹调用所有底层类方法
  * 
  */
-
+	import Component.delFav;
 	import Component.Favourite;
 	import Component.listDIY;
 	import Component.login;
@@ -51,6 +51,8 @@
 	public var isLoop:int = 0;
 	public var isFinished:int = 1;
 	public var isSearch:int;//isSearch=1显示搜索结果,isSearch=2显示听过的歌曲,isSearch=3显示收藏的歌曲
+	public var tagID:int = 0;
+	public var singerID:int = 0;
 	[Bindable]
 	public var Version:String = "Bubble Music 1.2 (2010.4.14.r87) April Fool's Edition.Powered by QSCtech";
 	
@@ -620,8 +622,6 @@
 		}
 		else
 			Alert.show("请输入搜索内容！");
-		//searchList.page.text = String(0);
-	
 	}
 	/**
 	 * 按回车自动搜索
@@ -658,11 +658,10 @@
 	 * 布局搜索或者听过歌曲信息
 	 */
 	private function syncSearchList(list:Array):void{
-		var page:int = int(searchList.page.text);
-		
-        if(isSearch == 1 || isSearch == 2){
-        	searchList.showTags.visible = false;
-        	searchList.s1.tag.width = 0;
+		var page:int = int(searchList.page.text);		
+   		if(isSearch==1 || isSearch==2){
+	    	searchList.showTags.visible = false;
+	    	searchList.s1.tag.width = 0;
 			searchList.s2.tag.width = 0;
 			searchList.s3.tag.width = 0;
 			searchList.s4.tag.width = 0;
@@ -682,18 +681,8 @@
 			searchList.s8.search.width = 390;
 			searchList.s9.search.width = 390;
 			searchList.s10.search.width = 390;
-			searchList.s1.tag.text = "";
-			searchList.s2.tag.text = "";
-			searchList.s3.tag.text = "";
-			searchList.s4.tag.text = "";
-			searchList.s5.tag.text = "";
-			searchList.s6.tag.text = "";
-			searchList.s7.tag.text = "";
-			searchList.s8.tag.text = "";
-			searchList.s9.tag.text = "";
-			searchList.s10.tag.text = "";
-        }
-        
+   		}
+
         if(page>9)
         	searchList.page.x = 356;
         else
@@ -710,37 +699,37 @@
         	searchList.preBtn.enabled = false;
 		if(list[0]){
 			searchList.s1.search.text = list[0].title + " - " + list[0].author + " - " + list[0].album;
-		} else { searchList.s1.search.text = "对不起，没有您想搜索的歌曲！"; }
+		} else { searchList.s1.search.text = ""; searchList.s1.tag.text = ""; }
 		if(list[1]){
 			searchList.s2.search.text = list[1].title + " - " + list[1].author + " - " + list[1].album;
-		} else { searchList.s2.search.text = ""; }
+		} else { searchList.s2.search.text = ""; searchList.s2.tag.text = "";}
 		if(list[2]){
 			searchList.s3.search.text = list[2].title + " - " + list[2].author + " - " + list[2].album;
-		} else { searchList.s3.search.text = ""; }
+		} else { searchList.s3.search.text = ""; searchList.s3.tag.text = "";}
 		if(list[3]){
 			searchList.s4.search.text = list[3].title + " - " + list[3].author + " - " + list[3].album;
-		} else { searchList.s4.search.text = ""; }
+		} else { searchList.s4.search.text = ""; searchList.s4.tag.text = "";}
 		if(list[4]){
 			searchList.s5.search.text = list[4].title + " - " + list[4].author + " - " + list[4].album;
-		} else { searchList.s5.search.text = ""; }
+		} else { searchList.s5.search.text = ""; searchList.s5.tag.text = "";}
 		if(list[5]){
 			searchList.s6.search.text = list[5].title + " - " + list[5].author + " - " + list[5].album;
-		} else { searchList.s6.search.text = ""; }
+		} else { searchList.s6.search.text = ""; searchList.s6.tag.text = "";}
 		if(list[6]){
 			searchList.s7.search.text = list[6].title + " - " + list[6].author + " - " + list[6].album;
-		} else { searchList.s7.search.text = ""; }
+		} else { searchList.s7.search.text = ""; searchList.s7.tag.text = "";}
 		if(list[7]){
 			searchList.s8.search.text = list[7].title + " - " + list[7].author + " - " + list[7].album;
-		} else { searchList.s8.search.text = ""; }
+		} else { searchList.s8.search.text = ""; searchList.s8.tag.text = "";}
 		if(list[8]){
 			searchList.s9.search.text = list[8].title + " - " + list[8].author + " - " + list[8].album;
-		} else { searchList.s9.search.text = ""; }
+		} else { searchList.s9.search.text = ""; searchList.s9.tag.text = "";}
 		if(list[9]){
 			searchList.s10.search.text = list[9].title + " - " + list[9].author + " - " + list[9].album;
-		} else { searchList.s10.search.text = ""; }
+		} else { searchList.s10.search.text = ""; searchList.s10.tag.text = "";}
 		
 		/*显示收藏的时候布局tag信息*/
-		if(isSearch==3){
+		if(isSearch==3 || isSearch==4){
 			searchList.showTags.visible = true;
 			searchList.s1.tag.width = 70;
 			searchList.s2.tag.width = 70;
@@ -774,9 +763,7 @@
 			searchList.s10.tag.text = list[9].tag;
 		}
 	}
-	private function clearTags():void{
-		
-	}
+
 	/**
 	 * 获取下一页搜索或者听过歌曲结果
 	 */
@@ -787,6 +774,12 @@
 		}
 		else if(isSearch ==2){
 			rpc.getUserListened(onGetSearchList,userId,page);
+		}
+		else if(isSearch ==3){
+			rpc.getUserClassMusic(onGetSearchList,userId,page,tagID);
+		}
+		else if(isSearch ==4){
+			rpc.getUserSingerMusic(onGetSearchList,userId,page,0,singerID);
 		}
 		searchList.page.text = String(page);
 		
@@ -899,73 +892,26 @@
 	 * 加每行搜索结果列表的按钮 
 	 */
 	private function addSearchTextBtn(event:MouseEvent):void {
-		if(event.currentTarget.search.text != ""){
+		if(event.currentTarget.search.text != "" ){
 			event.currentTarget.search.styleName = "searchTextOn";  //字颜色
 			event.currentTarget.littleSearchAdd.visible = true;
+			if(isSearch == 3){
+				event.currentTarget.littleSearchUpdate.visible = true;
+				event.currentTarget.littleSearchDelete.visible = true;
+			}
 		}
+		
 	}
 	/**
 	 * 移除每行搜索结果的按钮
 	 */
 	private function removeSearchTextBtn(event:MouseEvent):void {
-		
 		event.currentTarget.search.styleName = "searchText";  //字颜色
 		event.currentTarget.littleSearchAdd.visible = false;
-		
+		event.currentTarget.littleSearchUpdate.visible = false;
+		event.currentTarget.littleSearchDelete.visible = false;
 	}
 	
-	/**
-	 * 收藏播放列表中歌曲
-	 * 用于播放列表中的歌曲
-	 */
-	private function musicCollect(event:MouseEvent):void{
-		var i:int = event.currentTarget.owner.index - 1;
-		if(userName != ""){
-			var FavouriteWin:Favourite = new Favourite();
-	        FavouriteWin.musicIndex = playList[i].id;
-	        FavouriteWin.userIndex = userId;
-	        FavouriteWin.musicName = playList[i].title;
-		    PopUpManager.addPopUp(FavouriteWin,this,true);
-	        PopUpManager.centerPopUp(FavouriteWin);
-	        FavouriteWin.checkFavMusic(playList[i].id,userId);
-	        FavouriteWin.getFavouriteClass(FavouriteWin.userIndex);
-	     }
-		else{
-			Alert.show("嗨，注册登录后就可以收藏歌曲啦~");
-		}
-	}
-	/**
-	 * 收藏播放列表中歌曲 
-	 * 用于正在播放的歌曲
-	 */
-	private function collectMusic(event:MouseEvent):void{
-		if(userName != ""){
-		    var FavouriteWin:Favourite = new Favourite();
-		    FavouriteWin.musicIndex = playList[0].id;
-		    FavouriteWin.userIndex = userId;
-		    FavouriteWin.musicName = playList[0].title;
-			PopUpManager.addPopUp(FavouriteWin,this,true);
-		    PopUpManager.centerPopUp(FavouriteWin);
-		    FavouriteWin.checkFavMusic(playList[0].id,userId);
-		    FavouriteWin.getFavouriteClass(FavouriteWin.userIndex);		
-		}
-		else{
-			Alert.show("嗨，注册登录后就可以收藏歌曲啦~");
-		}
-	}
-	
-	/**
-	 * 获取收藏列表
-	 *//*
-	private function getFavouriteMusic(event:MouseEvent):void{
-		var myFavouriteWin:MyFavourite = new MyFavourite();
-		myFavouriteWin.setIndex(playList[0].id)
-	    myFavouriteWin.userIndex = userId;
-		PopUpManager.addPopUp(myFavouriteWin,this,true);
-	    PopUpManager.centerPopUp(myFavouriteWin);
-	    myFavouriteWin.getFavouriteClass(myFavouriteWin.userIndex);
-	    myFavouriteWin.callBack = addFavouriteSong;
-	}*/
 	/**
 	 * 删除播放列表中歌曲 
 	 */
@@ -1315,15 +1261,114 @@
 	}
 	
 	/**
-	 * 显示用户所有标签
+	 * 收藏播放列表中歌曲
+	 * 用于播放列表中的歌曲
+	 */
+	private function musicCollect(event:MouseEvent):void{
+		var i:int = event.currentTarget.owner.index - 1;
+		if(userName != ""){
+			var FavouriteWin:Favourite = new Favourite();
+	        FavouriteWin.musicIndex = playList[i].id;
+	        FavouriteWin.userIndex = userId;
+	        FavouriteWin.musicName = playList[i].title;
+		    PopUpManager.addPopUp(FavouriteWin,this,true);
+	        PopUpManager.centerPopUp(FavouriteWin);
+	        FavouriteWin.checkFavMusic(playList[i].id,userId);
+	        FavouriteWin.getFavouriteClass(FavouriteWin.userIndex);
+	        FavouriteWin.stored = tipsShow;
+	     }
+		else{
+			Alert.show("嗨，注册登录后就可以收藏歌曲啦~");
+		}
+	}
+	/**
+	 * 收藏播放列表中歌曲 
+	 * 用于正在播放的歌曲
+	 */
+	private function collectMusic(event:MouseEvent):void{
+		if(userName != ""){
+		    var FavouriteWin:Favourite = new Favourite();
+		    FavouriteWin.musicIndex = playList[0].id;
+		    FavouriteWin.userIndex = userId;
+		    FavouriteWin.musicName = playList[0].title;
+			PopUpManager.addPopUp(FavouriteWin,this,true);
+		    PopUpManager.centerPopUp(FavouriteWin);
+		    FavouriteWin.checkFavMusic(playList[0].id,userId);
+		    FavouriteWin.getFavouriteClass(FavouriteWin.userIndex);		
+		    FavouriteWin.stored = tipsShow;
+		}
+		else{
+			Alert.show("嗨，注册登录后就可以收藏歌曲啦~");
+		}
+	}
+	
+	/**
+	 * 显示用户所有tags和singers
 	 */
 	private function tagShow(event:Event):void{
 		var tagWin:myTags = new myTags();
 		PopUpManager.addPopUp(tagWin,this,false);
 	    PopUpManager.centerPopUp(tagWin);
+	    tagWin.userIndex = userId;
+	    tagWin.init();
+	    tagWin.tagID = tagSongShow;
+	    tagWin.singerID = singerSongShow;
 	    tagWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
 	    tagWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
 	}
 	
+	/**
+	* 获取用户某个收藏tag的歌曲
+	*/
+	private function tagSongShow(id:int):void{
+		rpc.getUserClassMusic(onGetSearchList,userId,1,id);
+		currentState = "searchRes";
+		searchList.searchTitle.text = "我的收藏";
+		searchList.page.text = String(1);
+		isSearch = 3;
+	}
 	
+	/**
+	* 获取用户某个收藏歌手的歌曲
+	*/
+	private function singerSongShow(id:int):void{
+		rpc.getUserSingerMusic(onGetSearchList,userId,1,0,id);
+		currentState = "searchRes";
+		searchList.searchTitle.text = "我的收藏";
+		searchList.page.text = String(1);
+		isSearch = 4;
+	}
 	
+	/**
+	* 修改收藏的歌曲tags
+	*/
+	public function aditFav(event:MouseEvent):void{
+		var i:int = event.currentTarget.owner.index - 1;
+		if(userName != ""){
+			var FavouriteWin:Favourite = new Favourite();
+	        FavouriteWin.musicIndex = searchResult[i].id;
+	        FavouriteWin.userIndex = userId;
+	        FavouriteWin.musicName = searchResult[i].title;
+	        FavouriteWin.checkFavMusic(searchResult[i].id,userId);
+	        FavouriteWin.getFavouriteClass(FavouriteWin.userIndex);
+	        FavouriteWin.stored = tipsShow;
+		    PopUpManager.addPopUp(FavouriteWin,this,true);
+	        PopUpManager.centerPopUp(FavouriteWin);
+		}
+	}
+	
+	/**
+	* 删除收藏的歌曲
+	*/
+	public function deleteFav(event:MouseEvent):void{
+		var i:int = event.currentTarget.owner.index - 1;
+		if(userName != ""){
+			var delFavWin:delFav = new delFav();
+			delFavWin.musicIndex = searchResult[i].id;
+	        delFavWin.userIndex = userId;
+	        delFavWin.musicName = searchResult[i].title;
+	        delFavWin.callback = tipsShow; 
+			PopUpManager.addPopUp(delFavWin,this,true);
+	        PopUpManager.centerPopUp(delFavWin); 
+		}
+	}

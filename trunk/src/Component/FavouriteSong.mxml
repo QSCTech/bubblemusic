@@ -1,5 +1,0 @@
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="20" width="346" doubleClickEnabled="true">
- <mx:Button id="littleClassDelete" right="3" toolTip="删除" styleName="deleteBtn" width="14" height="14" visible="true" y="10"/>
- <mx:HRule width="340" height="1" x="3" y="19"/>
- <mx:Label id="text" text=""/>
-</mx:Canvas>

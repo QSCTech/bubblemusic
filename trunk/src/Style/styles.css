@@ -62,6 +62,7 @@ Alert
 	selectionColor: #E00025;
 	themeColor:#E00025;
 	fontWeight: bold;
+	fontSize:12;
 }
 .topCanvas
 {
@@ -171,6 +172,14 @@ TextInput
 	upSkin:Embed(source="bubble.swf" ,symbol="delete_up");
 	downSkin:Embed(source="bubble.swf" ,symbol="delete_down");
 	overSkin:Embed(source="bubble.swf" ,symbol="delete_over");
+	themeColor:#e00025;
+	rollOverEffect: Glow;
+}
+.updateBtn
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="update_up");
+	downSkin:Embed(source="bubble.swf" ,symbol="update_down");
+	overSkin:Embed(source="bubble.swf" ,symbol="update_over");
 	themeColor:#e00025;
 	rollOverEffect: Glow;
 }
@@ -334,6 +343,7 @@ VRule
 	paddingLeft:3;
 	paddingRight:3;
 	fontWeight: bold;
+	fontSize:12;
 }
 ProgressBar
 {
@@ -354,6 +364,7 @@ ProgressBar
 	paddingLeft:3;
 	paddingRight:3;
 	fontWeight: bold;
+	fontSize:12 ;
 }
 .nowText
 {
@@ -436,6 +447,7 @@ HSlider
 	selectionColor: #E00025;
 	themeColor:#E00025;
 	fontWeight: normal;
+	fontSize:12;
 }
 
 
@@ -450,6 +462,7 @@ HSlider
 	textSelectedColor: #000000;
 	color: #474747;
 	fontWeight: normal;
+	fontSize:12 ;
 }	
 .mainCanvas
 {
@@ -475,6 +488,11 @@ HSlider
 .redText
 {
 	color:#E00025;
+	fontSize:12;
+}
+.lightText
+{
+	color:#474747;
 	fontSize:12;
 }
 .littleLBtn
@@ -549,7 +567,11 @@ HSlider
 	strokeColor:#E00025;
 	strokeWidth:1;
 }
-
+.lightHRule
+{
+	strokeColor:#474747;
+	strokeWidth:1;
+}
 ComboBox
 {
 	color:#000000;
@@ -565,18 +587,26 @@ ComboBox
 }
 
 
-.specialLBtn2
+LinkButton
 {
 	textRollOverColor: #FFFFFF;
 	textSelectedColor: #FFFFFF;
 	color: #474747;
-	paddingLeft: 2;
-	paddingRight: 2;
+	paddingLeft: 0;
+	paddingRight: 0;
 	rollOverColor: #E00025;
 	selectionColor: #E00025;
 	themeColor:#E00025;
 	fontWeight: normal;
-	paddingBottom:1;
-	paddingTop:1;
+	paddingBottom:0;
+	paddingTop:0;
+	fontSize:11 ;
 }
+.littleRoundCanvas
+{
+	borderColor:#474747;
+	borderStyle:solid;
+	cornerRadius:10;
+}
+
 

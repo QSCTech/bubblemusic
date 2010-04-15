@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="75" styleName="mainCanvas" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+	<mx:Script source="../as3/Favourite/delFav.as"/>
+	
+	<mx:Text y="10" id="storeTopText" text="删除歌曲-'{musicName}'？" fontSize="14" styleName="topText" horizontalCenter="0" width="390" textAlign="center"/>
+	<mx:HBox horizontalAlign="center" width="380" y="40" horizontalCenter="0">
+	    <mx:Button id="collect" label="删除" horizontalCenter="-62" click="delFavHandle()" styleName="normalBtn" bottom="11"/>
+	    <mx:Button id="collectCancel" label="取消" horizontalCenter="48" click="close()" styleName="normalBtn" bottom="11"/>
+    </mx:HBox>
+</mx:Canvas>
