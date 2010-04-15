@@ -178,7 +178,7 @@
 	    musicList.l10.littleMusicDelete.addEventListener(MouseEvent.CLICK,musicDelete);
 	    musicList.l11.littleMusicDelete.addEventListener(MouseEvent.CLICK,musicDelete);
 	    musicList.l12.littleMusicDelete.addEventListener(MouseEvent.CLICK,musicDelete);
-	   
+
 	    musicList.l1.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);
 	    musicList.l2.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);
 	    musicList.l3.littleMusicCollect.addEventListener(MouseEvent.CLICK,musicCollect);

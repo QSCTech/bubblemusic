@@ -38,7 +38,7 @@
 	* 判断歌曲是否被收藏过返回函数
 	*/
 	public function onCheckFavResult(result:Array):void{
-		if(result[0]!=""){
+		if(result){
 			isStored.text = "您已收藏过该歌曲,可以修改或添加保存的tags~";
 			for(var count:int = 1; count < result.length; count++){
 				var vbox:ClassVBox = new ClassVBox();
@@ -68,8 +68,10 @@
 	*/
 	public function onResultGetClass(result:Array):void{
 		var count:int;
-		for(count=0;count<result.length;count++){
-			classList[count]=result[count].playlist_name;
+		if(result){
+			for(count=0;count<result.length;count++){
+				classList[count]=result[count].tag_name;
+			}
 		}
 	}
 
@@ -81,7 +83,6 @@
 			var count:int = 0;
 			for(count = 0;count<=tagNum;count++)
 				if(txtClassName.text == Vboxes[count]){
-					Alert.show("此tag已添加~");
 					txtClassName.selectedIndex = -1;
 					break;
 				}	
@@ -138,6 +139,7 @@
 			tags += Vboxes[i] + ",";
 		}
 		tags = tags + Vboxes[i];
+		Alert.show(tags);
 		rpc.addUserFav(onAddFavResult,musicIndex,userIndex,tags);
 	}
 	/**
