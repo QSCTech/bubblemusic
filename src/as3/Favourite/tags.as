@@ -60,13 +60,13 @@
 			this.addChild(txt);
 		}
 		for(var i:int = 0;i<result.length;i++){
-			tagList[i] = result[i].playlist_name;
-			tagIDList[i] = result[i].playlist_id;
+			tagList[i] = result[i].tag_name;
+			tagIDList[i] = result[i].tag_id;
 			var lBtn:linkBtn = new linkBtn();
 			lBtn.text = tagList[i];
 			lBtn.index = i;
 			lBtn.addEventListener(MouseEvent.CLICK,getUserClassMusic);
-			var len:int = getStrActualLen(tagList[i]) * 7;
+			var len:int = getStrActualLen(tagList[i]) * 8;
 			lBtn.width = len;
 			sum = sum + len;
 			if(sum>380){
@@ -112,13 +112,13 @@
 			this.addChild(txt);
 		}
 		for(var i:int = 0;i<result.length;i++){
-			singerList[i] = result[i].player_name;
-			singerIDList[i] = result[i].player_id;
+			singerList[i] = result[i].artists_name;
+			singerIDList[i] = result[i].artists_id;
 			var lBtn:linkBtn = new linkBtn();
-			lBtn.text = tagList[i];
+			lBtn.text = singerList[i];
 			lBtn.index = i;
 			lBtn.addEventListener(MouseEvent.CLICK,getUserSingerMusic);
-			var len:int = getStrActualLen(singerList[i]) * 7;
+			var len:int = getStrActualLen(singerList[i]) * 8;
 			lBtn.width = len;
 			sum = sum + len;
 			if(sum>380){
