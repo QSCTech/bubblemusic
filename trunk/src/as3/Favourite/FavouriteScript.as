@@ -7,7 +7,8 @@
     
     import mx.controls.Alert;
     import mx.managers.PopUpManager;  
-   
+
+	public var target:int;
     public var callBack:Function;
     public var userIndex:int;
     public var musicIndex:int;
@@ -20,6 +21,7 @@
 	private var Vboxes:Array = new Array();  //保存当前歌曲tags数组
 	private var tagNum:int = 0;
 	public var stored:Function;
+	public var done:Function;
 	
 	/**
 	* 关闭面板
@@ -38,16 +40,16 @@
 	* 判断歌曲是否被收藏过返回函数
 	*/
 	public function onCheckFavResult(result:Array):void{
-		if(result[0]!=""){
+		if(result){
 			isStored.text = "您已收藏过该歌曲,可以修改或添加保存的tags~";
-			for(var count:int = 1; count < result.length; count++){
+			for(var count:int = 0; count < result.length; count++){
 				var vbox:ClassVBox = new ClassVBox();
-				vbox.text = result[count];
+				vbox.text = result[count].tag_name;
 				tags.addChild(vbox);
 				vbox.addEventListener(MouseEvent.ROLL_OVER,showBtn);
 				vbox.addEventListener(MouseEvent.ROLL_OUT,hideBtn);
 				vbox.littleClassDelete.addEventListener(MouseEvent.CLICK,deleteClass);
-				Vboxes[tagNum] = result[count];
+				Vboxes[tagNum] = result[count].tag_name;
 				tagNum++;
 				vbox.index = tagNum;
 			}
@@ -112,8 +114,9 @@
 	public function deleteClass(event:MouseEvent):void{
 		tags.removeChild(event.currentTarget.parent);
 		var i:int = event.currentTarget.parent.index - 1;
-		for(i; i<tagNum;i++)
+		for(i; i<tagNum-1;i++)
 			Vboxes[i] = Vboxes[i+1];
+		Vboxes.splice(i,1);
 		tagNum--;
  	}
  	
@@ -135,10 +138,12 @@
 	*/
 	public function addFavouriteHandle():void{
 		var tags:String = "";
-		for(var i:int = 0;i<Vboxes.length-1;i++){
-			tags += Vboxes[i] + ",";
+		if(Vboxes[0]!=""){
+			for(var i:int = 0;i<Vboxes.length-1;i++){
+				tags += Vboxes[i] + ",";
+			}
+			tags = tags + Vboxes[i];
 		}
-		tags = tags + Vboxes[i];
 		rpc.addUserFav(onAddFavResult,musicIndex,userIndex,tags);
 	}
 	/**
@@ -148,6 +153,7 @@
 		if (result){
 			stored("收藏成功^^");
    	    	this.close();
+   	    	done(target,Vboxes);
 		}
 		else Alert.show("对不起><正在泡音乐的人太多了,请重试^^");
 	}

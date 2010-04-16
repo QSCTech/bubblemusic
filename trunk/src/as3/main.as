@@ -2,8 +2,8 @@
  * 主控制类,也是最顶层的类方法,负责统筹调用所有底层类方法
  * 
  */
-	import Component.delFav;
 	import Component.Favourite;
+	import Component.delFav;
 	import Component.listDIY;
 	import Component.login;
 	import Component.mood;
@@ -54,7 +54,7 @@
 	public var tagID:int = 0;
 	public var singerID:int = 0;
 	[Bindable]
-	public var Version:String = "Bubble Music 1.2 (2010.4.14.r87) April Fool's Edition.Powered by QSCtech";
+	public var Version:String = "Bubble Music 1.2 (2010.4.16.r93) April Fool's Edition.Powered by QSCtech";
 	
 	/**
 	 *初始化播放列表 
@@ -648,6 +648,16 @@
 		searchList.s8.search.text = "";
 		searchList.s9.search.text = "";
 		searchList.s10.search.text = "";
+		searchList.s1.tag.text = "";
+		searchList.s2.tag.text = "";
+		searchList.s3.tag.text = "";
+		searchList.s4.tag.text = "";
+		searchList.s5.tag.text = "";
+		searchList.s6.tag.text = "";
+		searchList.s7.tag.text = "";
+		searchList.s8.tag.text = "";
+		searchList.s9.tag.text = "";
+		searchList.s10.tag.text = "";
 		searchList.nextBtn.enabled = false;
 		searchList.preBtn.enabled = false;
 		this.syncSearchList(searchResult);
@@ -751,16 +761,16 @@
 			searchList.s8.search.width = 320;
 			searchList.s9.search.width = 320;
 			searchList.s10.search.width = 320;
-			searchList.s1.tag.text = list[0].tag;
-			searchList.s2.tag.text = list[1].tag;
-			searchList.s3.tag.text = list[2].tag;
-			searchList.s4.tag.text = list[3].tag;
-			searchList.s5.tag.text = list[4].tag;
-			searchList.s6.tag.text = list[5].tag;
-			searchList.s7.tag.text = list[6].tag;
-			searchList.s8.tag.text = list[7].tag;
-			searchList.s9.tag.text = list[8].tag;
-			searchList.s10.tag.text = list[9].tag;
+			searchList.s1.tag.text = list[0].tag_name;
+			searchList.s2.tag.text = list[1].tag_name;
+			searchList.s3.tag.text = list[2].tag_name;
+			searchList.s4.tag.text = list[3].tag_name;
+			searchList.s5.tag.text = list[4].tag_name;
+			searchList.s6.tag.text = list[5].tag_name;
+			searchList.s7.tag.text = list[6].tag_name;
+			searchList.s8.tag.text = list[7].tag_name;
+			searchList.s9.tag.text = list[8].tag_name;
+			searchList.s10.tag.text = list[9].tag_name;
 		}
 	}
 
@@ -895,7 +905,7 @@
 		if(event.currentTarget.search.text != "" ){
 			event.currentTarget.search.styleName = "searchTextOn";  //字颜色
 			event.currentTarget.littleSearchAdd.visible = true;
-			if(isSearch == 3){
+			if(isSearch == 3 || isSearch == 4){
 				event.currentTarget.littleSearchUpdate.visible = true;
 				event.currentTarget.littleSearchDelete.visible = true;
 			}
@@ -1281,6 +1291,7 @@
 	        FavouriteWin.checkFavMusic(playList[i].id,userId);
 	        FavouriteWin.getFavouriteClass(FavouriteWin.userIndex);
 	        FavouriteWin.stored = tipsShow;
+	        
 	     }
 		else{
 			Alert.show("嗨，注册登录后就可以收藏歌曲啦~");
@@ -1301,6 +1312,7 @@
 		    FavouriteWin.checkFavMusic(playList[0].id,userId);
 		    FavouriteWin.getFavouriteClass(FavouriteWin.userIndex);		
 		    FavouriteWin.stored = tipsShow;
+		    
 		}
 		else{
 			Alert.show("嗨，注册登录后就可以收藏歌曲啦~");
@@ -1352,6 +1364,7 @@
 		if(userName != ""){
 			var FavouriteWin:Favourite = new Favourite();
 	        FavouriteWin.musicIndex = searchResult[i].id;
+	        FavouriteWin.target = i;
 	        FavouriteWin.userIndex = userId;
 	        FavouriteWin.musicName = searchResult[i].title;
 	        FavouriteWin.checkFavMusic(searchResult[i].id,userId);
@@ -1359,6 +1372,7 @@
 	        FavouriteWin.stored = tipsShow;
 		    PopUpManager.addPopUp(FavouriteWin,this,true);
 	        PopUpManager.centerPopUp(FavouriteWin);
+	        FavouriteWin.done = updateFavInfo;
 		}
 	}
 	
@@ -1370,10 +1384,31 @@
 		if(userName != ""){
 			var delFavWin:delFav = new delFav();
 			delFavWin.musicIndex = searchResult[i].id;
+			delFavWin.target = i;
 	        delFavWin.userIndex = userId;
 	        delFavWin.musicName = searchResult[i].title;
 	        delFavWin.callback = tipsShow; 
 			PopUpManager.addPopUp(delFavWin,this,true);
 	        PopUpManager.centerPopUp(delFavWin); 
+	        delFavWin.done = deleteFavInfo;
+		}
+	}
+	
+	private function updateFavInfo(target:int,tags:Array):void{
+		if(isSearch == 3 || isSearch == 4){
+			searchResult[target].tag_name = "";
+			if(tags[0]!=""){
+				for(var i:int = 0;i<tags.length - 1;i++){
+					searchResult[target].tag_name = searchResult[target].tag_name + tags[i] + ",";
+				}
+				searchResult[target].tag_name = searchResult[target].tag_name + tags[i];
+			}
+			this.onGetSearchList(searchResult);
+		}
+	}
+	private function deleteFavInfo(target:int):void{
+		if(isSearch == 3 || isSearch == 4){
+			searchResult.splice(target,1);
+			this.onGetSearchList(searchResult);
 		}
 	}
