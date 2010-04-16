@@ -997,9 +997,14 @@
 	 * 下载音乐
 	 */
 	private function downMusic(event:MouseEvent):void{
-		var URL:URLRequest = new URLRequest("download.php?mp="+playList[0].url+"&mn="+playList[0].title+"&aln="+playList[0].album+"&arn="+playList[0].author);
-		flash.net.navigateToURL(URL,"_blank");
-		Alert.show("由于涉及版权问题，请在下载后24小时内删除歌曲，谢谢合作^^");
+		if(userName != ""){
+			var URL:URLRequest = new URLRequest("download.php?mp="+playList[0].url+"&mn="+playList[0].title+"&aln="+playList[0].album+"&arn="+playList[0].author);
+			flash.net.navigateToURL(URL,"_blank");
+			Alert.show("请在下载后24小时内删除歌曲，谢谢合作^^");
+	     }
+		else{
+			Alert.show("嗨，注册登录后就可以收藏歌曲啦~");
+		}
 	}
 	
 	/**
@@ -1078,13 +1083,13 @@
 	/**
 	 * 弹出窗口的处理
 	 */
-	public function close():void{         
+	private function close():void{         
 		PopUpManager.removePopUp(this);     
 	}          
-	public function dropIt(event:MouseEvent):void{       
+	private function dropIt(event:MouseEvent):void{       
 		event.currentTarget.stopDrag();     
 	}           
-	public function dragIt(event:MouseEvent):void{       
+	private function dragIt(event:MouseEvent):void{       
 		event.currentTarget.startDrag();     
 	}
 		
@@ -1100,7 +1105,7 @@
 	    specialWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
 	    specialWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
 	}
-	public function onGetSpecialList(result:Array,specialName:String):void{
+	private function onGetSpecialList(result:Array,specialName:String):void{
 		onGetMusicList(result);
 		musicControl.setNextMusic(this.nextMusic);
 		var specialTips:String = "专题\""+ specialName + "\"加载成功";
@@ -1132,7 +1137,7 @@
 	/**
 	 * 注册成功后的回调函数
 	 */
-	public function registerDone(result:Object):void{
+	private function registerDone(result:Object):void{
 		top.welcomeText.text = result.user_name + "，Let's Bubble~" ;
 		top.credit.text = "泡泡数：" + String(result.user_credit);
 		top.currentState = "logined";
@@ -1143,7 +1148,7 @@
 	/**
 	 * 登录成功后的回调函数
 	 */
-	public function callBack(result:Object):void{
+	private function callBack(result:Object):void{
 		top.welcomeText.text = result.user_name + "，Let's Bubble~" ;
 		top.credit.text = "泡泡数：" + String(result.user_credit);
 		top.currentState = "logined";
@@ -1239,7 +1244,7 @@
 	/**
 	 * 单曲循环播放、顺序播放切换
 	 */
-	public function setLoop(event:Event):void{
+	private function setLoop(event:Event):void{
 		if(isLoop == 0){
 			isLoop = 1;
 			now.loopPlay.label = "顺序播放";
@@ -1342,7 +1347,7 @@
 	/**
 	* 修改收藏的歌曲tags
 	*/
-	public function aditFav(event:MouseEvent):void{
+	private function aditFav(event:MouseEvent):void{
 		var i:int = event.currentTarget.owner.index - 1;
 		if(userName != ""){
 			var FavouriteWin:Favourite = new Favourite();
@@ -1360,7 +1365,7 @@
 	/**
 	* 删除收藏的歌曲
 	*/
-	public function deleteFav(event:MouseEvent):void{
+	private function deleteFav(event:MouseEvent):void{
 		var i:int = event.currentTarget.owner.index - 1;
 		if(userName != ""){
 			var delFavWin:delFav = new delFav();
