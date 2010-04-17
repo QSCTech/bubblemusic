@@ -47,7 +47,7 @@
 	public var lrcnum:int;
 	public var isSilent:int = 0;
 	public var userName:String = "";
-	public var userId:Number = 0;
+	public var userId:int = 0;
 	public var isLoop:int = 0;
 	public var isFinished:int = 1;
 	public var isSearch:int;//isSearch=1显示搜索结果,isSearch=2显示听过的歌曲,isSearch=3显示收藏的歌曲
@@ -805,6 +805,12 @@
 		else if(isSearch ==2){
 			rpc.getUserListened(onGetSearchList,userId,page);
 		}
+		else if(isSearch ==3){
+			rpc.getUserClassMusic(onGetSearchList,userId,page,tagID);
+		}
+		else if(isSearch ==4){
+			rpc.getUserSingerMusic(onGetSearchList,userId,page,0,singerID);
+		}
 		searchList.page.text = String(page);
 		
 	}
@@ -1405,10 +1411,12 @@
 			}
 			this.onGetSearchList(searchResult);
 		}
+		//tipsShow("修改成功~");
 	}
 	private function deleteFavInfo(target:int):void{
 		if(isSearch == 3 || isSearch == 4){
 			searchResult.splice(target,1);
 			this.onGetSearchList(searchResult);
 		}
+		//tipsShow("删除成功~");
 	}

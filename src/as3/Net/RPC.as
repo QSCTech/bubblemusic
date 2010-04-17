@@ -115,7 +115,6 @@ package as3.Net
 		
 		public function addUserFav(result:Function,musicIndex:int,userIndex:int,tags:String):void{
 			conn.connect(URL);
-			Alert.show
 			conn.call("Music.addUserFav",new Responder(result,onFault),musicIndex,userIndex,tags);
 			conn.close();
 		}
