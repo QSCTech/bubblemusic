@@ -99,6 +99,12 @@
 				Vboxes[tagNum] = txtClassName.text;
 				tagNum++;
 				vbox.index = tagNum;
+			/*	for(var i:int = 0; i<classList.length; i++){
+					if(vbox.text==classList[i])
+						break;
+				}
+				if(i == classList.length)
+					classList[i] = vbox.text;*/
 				txtClassName.selectedIndex = -1;
 			}	
 		}
