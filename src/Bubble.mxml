@@ -61,16 +61,16 @@
 			<mx:SetEventHandler target="{searchList.s9.littleSearchAdd}" handlerFunction="addOneMusicBtn" name="click"/>
 			<mx:SetEventHandler target="{searchList.s10.littleSearchAdd}" handlerFunction="addOneMusicBtn" name="click"/>	
 			
-			<mx:SetEventHandler target="{searchList.s1.littleSearchUpdate}" handlerFunction="aditFav" name="click"/>
-			<mx:SetEventHandler target="{searchList.s2.littleSearchUpdate}" handlerFunction="aditFav" name="click"/>
-			<mx:SetEventHandler target="{searchList.s3.littleSearchUpdate}" handlerFunction="aditFav" name="click"/>
-			<mx:SetEventHandler target="{searchList.s4.littleSearchUpdate}" handlerFunction="aditFav" name="click"/>
-			<mx:SetEventHandler target="{searchList.s5.littleSearchUpdate}" handlerFunction="aditFav" name="click"/>
-			<mx:SetEventHandler target="{searchList.s6.littleSearchUpdate}" handlerFunction="aditFav" name="click"/>
-			<mx:SetEventHandler target="{searchList.s7.littleSearchUpdate}" handlerFunction="aditFav" name="click"/>
-			<mx:SetEventHandler target="{searchList.s8.littleSearchUpdate}" handlerFunction="aditFav" name="click"/>
-			<mx:SetEventHandler target="{searchList.s9.littleSearchUpdate}" handlerFunction="aditFav" name="click"/>
-			<mx:SetEventHandler target="{searchList.s10.littleSearchUpdate}" handlerFunction="aditFav" name="click"/>
+			<mx:SetEventHandler target="{searchList.s1.littleSearchUpdate}" handlerFunction="editFav" name="click"/>
+			<mx:SetEventHandler target="{searchList.s2.littleSearchUpdate}" handlerFunction="editFav" name="click"/>
+			<mx:SetEventHandler target="{searchList.s3.littleSearchUpdate}" handlerFunction="editFav" name="click"/>
+			<mx:SetEventHandler target="{searchList.s4.littleSearchUpdate}" handlerFunction="editFav" name="click"/>
+			<mx:SetEventHandler target="{searchList.s5.littleSearchUpdate}" handlerFunction="editFav" name="click"/>
+			<mx:SetEventHandler target="{searchList.s6.littleSearchUpdate}" handlerFunction="editFav" name="click"/>
+			<mx:SetEventHandler target="{searchList.s7.littleSearchUpdate}" handlerFunction="editFav" name="click"/>
+			<mx:SetEventHandler target="{searchList.s8.littleSearchUpdate}" handlerFunction="editFav" name="click"/>
+			<mx:SetEventHandler target="{searchList.s9.littleSearchUpdate}" handlerFunction="editFav" name="click"/>
+			<mx:SetEventHandler target="{searchList.s10.littleSearchUpdate}" handlerFunction="editFav" name="click"/>
 			
 			<mx:SetEventHandler target="{searchList.s1.littleSearchDelete}" handlerFunction="deleteFav" name="click"/>
 			<mx:SetEventHandler target="{searchList.s2.littleSearchDelete}" handlerFunction="deleteFav" name="click"/>

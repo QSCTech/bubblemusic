@@ -345,16 +345,27 @@ VRule
 	fontWeight: bold;
 	fontSize:12;
 }
+.nowNewLBtn
+{
+	textRollOverColor:#5d5d5d;
+	textSelectedColor:#5d5d5d;
+	themeColor:#ededed;
+	color:#E00025;
+	paddingLeft:3;
+	paddingRight:3;
+	fontWeight: bold;
+	fontSize:12;
+}
 ProgressBar
 {
-	barColor: #1E1E1E;
+	barColor: #EDEDED;
 	verticalGap: 0;
 	trackHeight: 8;
 	borderColor: #000000;
 	rollOverEffect: Glow;
 	labelWidth: 0;
 	themeColor: #000000;
-	trackColors: #ff0000;
+	trackColors: #000000,#000000;
 }
 .nowSongLBtn
 {
@@ -366,6 +377,7 @@ ProgressBar
 	fontWeight: bold;
 	fontSize:12 ;
 }
+
 .nowText
 {
 	color:#e00025;
@@ -440,7 +452,7 @@ HSlider
 {
 	textRollOverColor: #FFFFFF;
 	textSelectedColor: #FFFFFF;
-	color: #474747;
+	color: #E00025;
 	paddingLeft: 3;
 	paddingRight: 3;
 	rollOverColor: #E00025;
@@ -609,4 +621,27 @@ LinkButton
 	cornerRadius:10;
 }
 
+.popupProgressBar
+{
+	barColor: #E00025;
+	verticalGap: 0;
+	trackHeight: 8;
+	borderColor:#ededed;
+	rollOverEffect: Glow;
+	labelWidth: 0;
+	themeColor: #E00025;
+	trackColors: #ededed,#ededed;
+}
 
+.colorCanvas
+{
+	borderStyle:solid;
+	cornerRadius:10;
+	borderColor:#E00025;
+	backgroundColor:#EDEDED;
+	backgroundAlpha:1.0; 
+}
+.colorHRule
+{
+	 strokeColor:#E00025;
+}

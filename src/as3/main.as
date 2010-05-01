@@ -7,6 +7,7 @@
 	import Component.listDIY;
 	import Component.login;
 	import Component.mood;
+	import Component.musicStyle;
 	import Component.myTags;
 	import Component.register;
 	import Component.rssStar;
@@ -37,6 +38,7 @@
 	public static var musicControl:playControl = new playControl();
 	//播放列表的数据存储
 	public var playList:Array = new Array();
+	public var currentList:int = 0;
 	//远程数据调用
 	public var searchResult:Array = new Array();
 	//远程数据调用
@@ -66,7 +68,7 @@
 		rpc.autoLogin(onLogin,uid);
 		//以下列表仅用于测试
 		var arg:String = flash.external.ExternalInterface.call("getIndex");
-		rpc.getMusicList(onGetMusicList,arg);
+		rpc.getMusicList(onGetMusicList,arg,userId);
 		
 		musicControl.setNextMusic( this.nextMusic);
 		now.next.addEventListener(MouseEvent.CLICK,nextMusic);
@@ -126,7 +128,8 @@
 	    now.moodMusic.addEventListener(MouseEvent.CLICK,moodMusic);
 	    now.shareMusic.addEventListener(MouseEvent.CLICK,shareMusic);
 	    now.specialList.addEventListener(MouseEvent.CLICK,specialList);
-	    now.hideLyric.addEventListener(MouseEvent.CLICK,lyricShow);
+	    now.mStyle.addEventListener(MouseEvent.CLICK,mStyle);
+	    
 	    now.diyList.addEventListener(MouseEvent.CLICK,diyShow);
 	    now.rssPlayer.addEventListener(MouseEvent.CLICK,rssShow);
 	    now.storeMusic.addEventListener(MouseEvent.CLICK,collectMusic);
@@ -209,6 +212,8 @@
 	    top.getUserListened = getUserListened;
 	    top.getUserFavourite = getUserFavourite;
 	    rpc.getNotes(tipsShow);
+	    
+	    musicList.addEventListener(MouseEvent.MOUSE_WHEEL,playListScroll);
 	}
 
 	/**
@@ -223,42 +228,49 @@
 		now.nowAuthor.toolTip = "搜索歌手\"" + list[0].author + "\"";
         now.nowAlbum.toolTip = "搜索专辑\"" + list[0].album + "\"";
         
-        resetPlaylistX();     
-		if(list[0]){
-			musicList.l1.text = list[0].title + " - " + list[0].author;
+        if(currentList>0)
+        	currentList -= 1;
+        	
+        syncPlayListInfo(playList);
+	}
+	
+	private function syncPlayListInfo(list:Array):void{
+		resetPlaylistX();     
+		if(playList[currentList]){
+			musicList.l1.text = playList[currentList].title + " - " + playList[currentList].author;
 		} else { musicList.l1.text = ""; }
-		if(list[1]){
-			musicList.l2.text = list[1].title + " - " + list[1].author;
+		if(playList[currentList+1]){
+			musicList.l2.text = playList[currentList+1].title + " - " + playList[currentList+1].author;
 		} else { musicList.l2.text = ""; }
-		if(list[2]){
-			musicList.l3.text = list[2].title + " - " + list[2].author;
+		if(playList[currentList+2]){
+			musicList.l3.text = playList[currentList+2].title + " - " + playList[currentList+2].author;
 		} else { musicList.l3.text = ""; }
-		if(list[3]){
-			musicList.l4.text = list[3].title + " - " + list[3].author;
+		if(playList[currentList+3]){
+			musicList.l4.text = playList[currentList+3].title + " - " + playList[currentList+3].author;
 		} else { musicList.l4.text = ""; }
-		if(list[4]){
-			musicList.l5.text = list[4].title + " - " + list[4].author;
+		if(playList[currentList+4]){
+			musicList.l5.text = playList[currentList+4].title + " - " + playList[currentList+4].author;
 		} else { musicList.l5.text = ""; }
-		if(list[5]){
-			musicList.l6.text = list[5].title + " - " + list[5].author;
+		if(playList[currentList+5]){
+			musicList.l6.text = playList[currentList+5].title + " - " + playList[currentList+5].author;
 		} else { musicList.l6.text = ""; }
-		if(list[6]){
-			musicList.l7.text = list[6].title + " - " + list[6].author;
+		if(playList[currentList+6]){
+			musicList.l7.text = playList[currentList+6].title + " - " + playList[currentList+6].author;
 		} else { musicList.l7.text = ""; }
-		if(list[7]){
-			musicList.l8.text = list[7].title + " - " + list[7].author;
+		if(playList[currentList+7]){
+			musicList.l8.text = playList[currentList+7].title + " - " + playList[currentList+7].author;
 		} else { musicList.l8.text = ""; }
-		if(list[8]){
-			musicList.l9.text = list[8].title + " - " + list[8].author;
+		if(playList[currentList+8]){
+			musicList.l9.text = playList[currentList+8].title + " - " + playList[currentList+8].author;
 		} else { musicList.l9.text = ""; }
-		if(list[9]){
-			musicList.l10.text = list[9].title + " - " + list[9].author;
+		if(playList[currentList+9]){
+			musicList.l10.text = playList[currentList+9].title + " - " + playList[currentList+9].author;
 		} else { musicList.l10.text = ""; }
-		if(list[10]){
-			musicList.l11.text = list[10].title + " - " + list[10].author;
+		if(playList[currentList+10]){
+			musicList.l11.text = playList[currentList+10].title + " - " + playList[currentList+10].author;
 		} else { musicList.l11.text = ""; }
-		if(list[11]){
-			musicList.l12.text = list[11].title + " - " + list[11].author;
+		if(playList[currentList+11]){
+			musicList.l12.text = playList[currentList+11].title + " - " + playList[currentList+11].author;
 		} else { musicList.l12.text = ""; }
 	}
 	
@@ -267,13 +279,11 @@
 	 */
 	public function nextMusic(event:Event):void{
 		removeEventListener(Event.ENTER_FRAME,onEnterFrame);
-		rpc.getNextMusic(this.getNextMusic,1);
 		musicControl.pausePlay();
-	
 		lrcnum = 0;
 		LRC.splice(0,LRC.length);
 		
-		if(musicControl.pos>0.9 && userId!=0)
+		if(musicControl.pos>0.9)
 		{
 			rpc.addUserListen(addCredit,userId,playList[0].id);
 		}
@@ -282,14 +292,19 @@
 			
 		if(isLoop == 0){
 			playList.shift();
+			rpc.getNextMusic(this.getNextMusic,1,userId);
 		}
-			
+		if(isLoop == 2){
+			playList.push(playList[0]);
+			playList.shift();
+		}
+		
 		lrcLoader.load(new URLRequest(playList[0].lrc));
 		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
 		musicControl.newPlay(playList[0].url);
 		resetPlaylistX();
 		this.syncPlayList(playList);
-		this.listEffect(1);
+		this.listEffect(1);	
 		isFinished = 1;
 	}
 	
@@ -508,7 +523,7 @@
 		lrcnum = 0;
 		LRC.splice(0,LRC.length);
 		musicControl.newPlay(playList[0].url);
-		rpc.getNextMusic(this.getNextMusic,i-1);
+		rpc.getNextMusic(this.getNextMusic,i-1,userId);
 		lrcLoader.load(new URLRequest(playList[0].lrc));
 		lrcLoader.addEventListener(Event.COMPLETE,lrcLoadCompleteHandler);
 		resetPlaylistX(); 
@@ -598,7 +613,7 @@
 	 * 重置播放列表
 	 */
 	public function resetList(event:Event):void{
-		rpc.getMusicList(onGetMusicList,"0");
+		rpc.getMusicList(onGetMusicList,"0",userId);
 		musicControl.setNextMusic(this.nextMusic);
 	}
 	
@@ -638,7 +653,7 @@
 	public function onGetSearchList(result:Array):void{
 		this.searchResult = result;
 		
-		searchList.s1.search.text = "正在搜索，请稍后...";
+		searchList.s1.search.text = "";
 		searchList.s2.search.text = "";
 		searchList.s3.search.text = "";
 		searchList.s4.search.text = "";
@@ -944,7 +959,7 @@
 			
 		}
 		else{
-			rpc.getNextMusic(this.getNextMusic,1);
+			rpc.getNextMusic(this.getNextMusic,1,userId);
 			playList.splice(i-1,1);
 			this.syncPlayList(playList);
 			this.listEffect(i);
@@ -1263,12 +1278,17 @@
 	private function setLoop(event:Event):void{
 		if(isLoop == 0){
 			isLoop = 1;
-			now.loopPlay.label = "顺序播放";
+			now.loopPlay.label = "单曲循环";
 			tipsShow("切换为单曲循环模式");
 		}
+		else if(isLoop == 1){
+			isLoop = 2;
+			now.loopPlay.label = "列表循环";
+			tipsShow("切换为列表循环模式");
+		}	
 		else{
 			isLoop = 0;
-			now.loopPlay.label = "单曲循环";
+			now.loopPlay.label = "顺序播放";
 			tipsShow("切换为顺序播放模式");
 		}	
 	}
@@ -1365,7 +1385,7 @@
 	/**
 	* 修改收藏的歌曲tags
 	*/
-	private function aditFav(event:MouseEvent):void{
+	private function editFav(event:MouseEvent):void{
 		var i:int = event.currentTarget.owner.index - 1;
 		if(userName != ""){
 			var FavouriteWin:Favourite = new Favourite();
@@ -1419,4 +1439,35 @@
 			this.onGetSearchList(searchResult);
 		}
 		//tipsShow("删除成功~");
+	}
+	
+	
+	private function playListScroll(event:MouseEvent):void{
+		var i:int = -event.delta/3;
+		var len:int = playList.length - 12;
+		currentList += i; 
+		
+		if(currentList>len)
+			currentList = len;
+		if(currentList<0)
+			currentList = 0;
+			
+		resetPlaylistX();     
+		syncPlayListInfo(playList);
+	}
+	
+	private function mStyle(event:MouseEvent):void{
+		if(userName!=""){
+			var styleWin:musicStyle = new musicStyle();
+			styleWin.init();
+			styleWin.userId = userId;
+			styleWin.done = tipsShow;
+			PopUpManager.addPopUp(styleWin,this,false);
+		    PopUpManager.centerPopUp(styleWin);
+		    styleWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
+		    styleWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
+		}
+		else{
+			Alert.show("嗨，注册登录后就可以调配您的混搭曲风啦~");
+		}
 	}

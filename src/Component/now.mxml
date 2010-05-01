@@ -12,22 +12,21 @@
 			borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" />
 	</mx:HBox>	
 	<mx:Canvas right="16" top="10" width="778">
-		<mx:HBox left="0" top="0">
+		<mx:HBox left="0" top="0" horizontalGap="2">
 			<mx:LinkButton id="resetList" label="重置列表" styleName="nowLBtn"
 				borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" />
-			<mx:LinkButton id="loopPlay" y="10" label="单曲循环" styleName="nowLBtn"
+			<mx:LinkButton id="loopPlay" y="10" label="顺序播放" styleName="nowLBtn"
 				borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]"/>
 			<mx:LinkButton id="specialList" y="10" label="专题" styleName="nowLBtn"
 				borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" />
+			<mx:LinkButton id="mStyle" y="10" label="风格电台" styleName="nowNewLBtn"
+				borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" />
 			<mx:LinkButton id="diyList" y="10" label="DIY播放列表" styleName="nowLBtn"
 				borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" visible="false"/>
-			<mx:LinkButton id="hideLyric" y="10" label="隐藏歌词" styleName="nowLBtn"
-				borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" visible="false"/>
 		</mx:HBox>
-		<mx:HBox right="0" verticalAlign="" top="0">
-
-			<mx:LinkButton id="rssPlayer" y="10" label="关注“周杰伦”" styleName="nowLBtn" visible="false"/>
-			<mx:LinkButton id="storeMusic" y="10" label="收藏" styleName="nowLBtn" visible="true"/>
+		<mx:HBox right="0" verticalAlign="" top="0" horizontalGap="2">
+			<mx:LinkButton id="rssPlayer" y="10" label="关注" styleName="nowLBtn" visible="false"/>
+			<mx:LinkButton id="storeMusic" y="10" label="收藏" styleName="nowLBtn"/>
 			<mx:LinkButton id="shareMusic" y="10" label="分享" styleName="nowLBtn"/>
 			<mx:LinkButton id="moodMusic" y="10" label="泡心情" styleName="nowLBtn"/>
 			<mx:LinkButton id="downMusic" y="10" label="下载" styleName="nowLBtn"/>

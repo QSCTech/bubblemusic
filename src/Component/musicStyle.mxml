@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:component="Component.*" width="220" styleName="colorCanvas" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+	
+	<mx:Script source="../as3/musicStyle/musicStyle.as" />
+	<mx:HBox top="5" horizontalCenter="0" verticalAlign="middle" width="210" horizontalAlign="center" horizontalScrollPolicy="off" verticalScrollPolicy="off" horizontalGap="2">
+		<mx:HRule width="10" styleName="colorHRule"/>
+		<mx:Text text="风格电台 - 调配您的混搭曲风" styleName="redText" fontWeight="bold" selectable="false"/>
+		<mx:LinkButton id="tagClose" label="X" styleName="closeLBtn" click="close()" toolTip="关闭"
+			borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]"  y="-2" color="#E00025"/>
+	</mx:HBox>
+	
+</mx:Canvas>
