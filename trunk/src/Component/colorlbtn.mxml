@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" verticalScrollPolicy="off" height="20" horizontalScrollPolicy="off">
+	<mx:Script>
+		<![CDATA[
+			[Bindable]
+			public var text:String = "";
+			//index变量,用来储存在列表中的位置,用来实现双击播放功能
+			public var index:int = 0;
+
+		]]>
+	</mx:Script>
+	<mx:LinkButton id="linkB" label="{text}" styleName="specialLBtn"/>
+</mx:Canvas>

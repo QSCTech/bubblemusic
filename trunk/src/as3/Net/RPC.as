@@ -4,8 +4,6 @@ package as3.Net
 	import flash.net.ObjectEncoding;
 	import flash.net.Responder;
 	
-	import mx.controls.Alert;
-	
 	public class RPC
 	{
 		private var conn:NetConnection;
@@ -22,9 +20,9 @@ package as3.Net
 		} 
 		
 		
-		public function getMusicList(result:Function, arg:String):void{
+		public function getMusicList(result:Function, arg:String,userId:int):void{
 			conn.connect(URL);
-			conn.call("Music.getList",new Responder(result,onFault),arg);
+			conn.call("Music.getList",new Responder(result,onFault),arg,userId);
 			conn.close();
 		}
 		
@@ -34,9 +32,9 @@ package as3.Net
 			conn.call("Music.search",new Responder(result,onFault),a,b,c);
 			conn.close();
 		}
-		public function getNextMusic(result:Function,num:int):void{
+		public function getNextMusic(result:Function,num:int,userId:int):void{
 			conn.connect(URL);
-			conn.call("Music.getNextMusic", new Responder(result,onFault),num);
+			conn.call("Music.getNextMusic", new Responder(result,onFault),num,userId);
 			conn.close();
 		}
 		
@@ -127,13 +125,13 @@ package as3.Net
 		
 		public function getUserClassMusic(result:Function,userIndex:int,page:int,classIndex:int):void{
 		    conn.connect(URL);
-			conn.call("Music.getUserFav",new Responder(result,onFault),page,classIndex);
+			conn.call("Music.getUserFav",new Responder(result,onFault),userIndex,page,classIndex);
 			conn.close();
 		}
 		
 		public function getUserSingerMusic(result:Function,userIndex:int,page:int,classIndex:int,authorID:int):void{
 		    conn.connect(URL);
-			conn.call("Music.getUserFav",new Responder(result,onFault),page,classIndex,authorID);
+			conn.call("Music.getUserFav",new Responder(result,onFault),userIndex,page,classIndex,authorID);
 			conn.close();
 		}
 		
@@ -175,6 +173,18 @@ package as3.Net
 		public function getCredit(result:Function,userid:int):void{
 			conn.connect(URL);
 			conn.call("Music.getUserInfo",new Responder(result,onFault),userid);
+			conn.close();
+		}
+		
+		public function getStyle(result:Function,userid:int):void{
+			conn.connect(URL);
+			conn.call("Music.getStyle",new Responder(result,onFault),userid);
+			conn.close();
+		}
+		
+		public function updateUserStyle(result:Function,userid:int,styleText:String):void{
+			conn.connect(URL);
+			conn.call("Music.updateUserStyle",new Responder(result,onFault),userid,styleText);
 			conn.close();
 		}
 	}

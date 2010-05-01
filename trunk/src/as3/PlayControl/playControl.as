@@ -100,11 +100,10 @@ package as3.PlayControl
 			 progressPos = channel.position/ (music.length / music.bytesLoaded * music.bytesTotal);
 		}
 		
-		public function fadeSound(value:Number):void{   
+		public function fadeSound(value:Number):void{  
+			var i:Number = value/15;
 			if(isPlay){
 				var transform:SoundTransform = channel.soundTransform; 
-				temp = channel.soundTransform.volume; 
-				var i:Number = temp/4;
 				transform.volume -= i;
 				channel.soundTransform = transform;
 			}
@@ -115,7 +114,7 @@ package as3.PlayControl
 				this.pursuePlay();
 				transform.volume = 0;
 			}
-			var i:Number = value/20;
+			var i:Number = value/15;
 			transform.volume += i;
 			channel.soundTransform = transform;
 		}

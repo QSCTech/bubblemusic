@@ -13,8 +13,7 @@
 			<mx:LinkButton label="我的关注的歌手" fontSize="12" styleName="littleLBtn"/>
 		</mx:HBox>
 		<mx:HRule width="100%"/>
-		<mx:VBox id="allBox" width="100%" horizontalAlign="center" horizontalScrollPolicy="off" verticalScrollPolicy="off">
-			<mx:Spacer height="6"/>
+		<mx:VBox id="allBox" width="100%" horizontalAlign="center" horizontalScrollPolicy="off" verticalScrollPolicy="off" verticalGap="2">
 			<mx:Text text="{text}"/>
 			<mx:Text text="{text2}"/>
 			<mx:HBox>
