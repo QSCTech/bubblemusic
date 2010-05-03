@@ -53,6 +53,7 @@
 	public var isLoop:int = 0;
 	public var isFinished:int = 1;
 	public var isSearch:int;//isSearch=1显示搜索结果,isSearch=2显示听过的歌曲,isSearch=3显示收藏的歌曲
+	public var isStyle:int = 0;//风格电台是否弹出
 	public var tagID:int = 0;
 	public var singerID:int = 0;
 	[Bindable]
@@ -1457,17 +1458,24 @@
 	}
 	
 	private function mStyle(event:MouseEvent):void{
-		if(userName!=""){
+		if(isStyle == 1){}
+		else if(userName!=""){
 			var styleWin:musicStyle = new musicStyle();
 			styleWin.init();
 			styleWin.userId = userId;
-			styleWin.done = tipsShow;
+			styleWin.done = styleBack;
 			PopUpManager.addPopUp(styleWin,this,false);
 		    PopUpManager.centerPopUp(styleWin);
 		    styleWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
 		    styleWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
+		    isStyle = 1;
 		}
 		else{
 			Alert.show("嗨，注册登录后就可以调配您的混搭曲风啦~");
 		}
+	}
+	
+	private function styleBack():void{
+		tipsShow("调配成功");
+		isStyle = 0;	
 	}

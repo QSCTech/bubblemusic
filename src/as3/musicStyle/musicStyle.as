@@ -49,7 +49,7 @@
 	
 	public function onReturn(result:Boolean):void{
 		if(result){
-			done("风格调配成功~");
+			done();
 			PopUpManager.removePopUp(this);
 		}
 		else
