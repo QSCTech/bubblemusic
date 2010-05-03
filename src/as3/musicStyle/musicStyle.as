@@ -26,7 +26,6 @@
 	* 关闭面板
 	*/
     public function close():void{
-    	
     	for(var i:int = 0;i<stylePerList.length;i++){
     		if(stylePerList[i]!=0)
     			break;
@@ -43,7 +42,6 @@
     	for(i = 1;i<stylePerList.length;i++){
     		styleText += "," + String(styleIdList[i]) + ":" + String(stylePerList[i]);
     	}
-    	
     	rpc.updateUserStyle(onReturn, userId, styleText);
 	}
 	
@@ -118,7 +116,6 @@
 		
 		event.currentTarget.percent.setProgress(pos,1);
 		stylePerList[i] = pos;
-		
 	}
 	public function getStyleMusic(event:MouseEvent):void{
 		
