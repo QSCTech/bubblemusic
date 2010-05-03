@@ -69,7 +69,8 @@
 		rpc.autoLogin(onLogin,uid);
 		//以下列表仅用于测试
 		var arg:String = flash.external.ExternalInterface.call("getIndex");
-		rpc.getMusicList(onGetMusicList,arg,userId);
+		userId = int(uid);
+		rpc.getMusicList(onGetMusicList,arg, userId);
 		
 		musicControl.setNextMusic( this.nextMusic);
 		now.next.addEventListener(MouseEvent.CLICK,nextMusic);
@@ -1461,8 +1462,8 @@
 		if(isStyle == 1){}
 		else if(userName!=""){
 			var styleWin:musicStyle = new musicStyle();
-			styleWin.init();
 			styleWin.userId = userId;
+			styleWin.init();
 			styleWin.done = styleBack;
 			PopUpManager.addPopUp(styleWin,this,false);
 		    PopUpManager.centerPopUp(styleWin);

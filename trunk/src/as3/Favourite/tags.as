@@ -154,7 +154,6 @@
 		var i:int = event.currentTarget.index;
 		tagID(tagIDList[i]);
 	}
-
 	/**
 	* 获取用户某singer的歌曲
 	* singerID函数回调到main中
