@@ -976,7 +976,7 @@
 		now.nowAuthor.label = author;
 		now.nowAlbum.label = album;
 		flash.external.ExternalInterface.call("setTitle", music, author, album);
-		var num:int = playList.length > 12 ? 12 : playList.length;
+		var num:int = playList.length;
 		var list:String = "";
 		for(var i:int=0; i<num; i++){
 			if(i == 0)
