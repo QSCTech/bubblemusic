@@ -101,8 +101,6 @@
 		this.addChild(spa);
 	}
 	
-	
-	
 	public function resetPer(event:MouseEvent):void{
 		var i:int = event.currentTarget.index;
 		var pos:Number = event.currentTarget.percent.contentMouseX/event.currentTarget.percent.width;
