@@ -58,7 +58,7 @@
 	public var tagID:int = 0;
 	public var singerID:int = 0;
 	[Bindable]
-	public var Version:String = "Bubble Music 1.3 (2010.5.8.r95) April Fool's Edition.Powered by QSCtech";
+	public var Version:String = "Bubble Music 1.3 (2010.5.8.r100) April Fool's Edition.Powered by QSCtech";
 	
 	/**
 	 *初始化播放列表 
@@ -545,7 +545,7 @@
 	 */
 	public function pauseAndPlay(event:Event):void{
 		var timer:Timer;
-		timer = new Timer(100,20);
+		timer = new Timer(30,20);
 		if(musicControl.isPlay){
 			timer.addEventListener(TimerEvent.TIMER,fadeVolume); 
 			timer.addEventListener(TimerEvent.TIMER_COMPLETE,musicControl.fadePause);
@@ -1468,8 +1468,10 @@
 			styleWin.userId = userId;
 			styleWin.init();
 			styleWin.done = styleBack;
+			styleWin.x = 100;
+			styleWin.y = 100;
 			PopUpManager.addPopUp(styleWin,this,false);
-		    PopUpManager.centerPopUp(styleWin);
+		    
 		    styleWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
 		    styleWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
 		    isStyle = 1;
