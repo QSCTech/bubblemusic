@@ -95,7 +95,7 @@
 	<bubble:now id="now" horizontalCenter="0"/>
 	<mx:Spacer height="10"/>
 	<mx:HBox id="middle" horizontalCenter="0" height="100%" verticalAlign="middle" >
-		<bubble:musicList id="musicList" verticalCenter="0"/>
+		<bubble:musicList id="musicList" verticalCenter="0" toolTip="点击列表，试试滚轮吧~"/>
 		<bubble:lyrics id="lyric" verticalCenter="0"/>
 	</mx:HBox>	
 	<mx:Canvas horizontalCenter="0" width="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off" height="30">

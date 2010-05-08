@@ -10,10 +10,10 @@ package as3.Net
 	{
 		private var conn:NetConnection;
 
-		private var URL:String = "http://www.qsc.zju.edu.cn/apps/bubble/amfphp/gateway.php";
+		//private var URL:String = "http://www.qsc.zju.edu.cn/apps/bubble/amfphp/gateway.php";
 
 		//private var URL:String = "http://10.76.8.200/bubble/amfphp/gateway.php";
-		//private var URL:String = "http://localhost/amfphp/gateway.php";
+		private var URL:String = "http://localhost/amfphp/gateway.php";
 
 		public function RPC()
 		{
@@ -71,9 +71,9 @@ package as3.Net
 			conn.close();
 		}
 
-		public function getSpecial(result:Function, page:int):void{
+		public function getSpecial(result:Function):void{
 			conn.connect(URL);
-			conn.call("Music.getSubject",new Responder(result,onFault),page);
+			conn.call("Music.getSubject",new Responder(result,onFault));
 			conn.close();
 		}
 		public function getSpecialMusic(result:Function, id:int):void{
