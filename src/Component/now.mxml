@@ -40,6 +40,6 @@
 		labelWidth="0" minimum="0" maximum="1" direction="right" mode="manual" bottom="-12"/>
 		
 	<mx:Label id="time" text="0:00" styleName="nowTimeText" right="16" bottom="0"/>
-	<mx:HSlider id="volume" minimum="0" maximum="1" value="0.6" liveDragging="true" showDataTip="false" left="704.4" bottom="21"/>
+	<mx:HSlider id="volume" minimum="0" maximum="1" value="0.7" liveDragging="true" showDataTip="false" left="704.4" bottom="21"/>
 	<mx:Button id="setSilent" styleName="unsilentBtn"  scaleX="0.9" scaleY="0.9" right="3.4099884" bottom="14"/>
 </mx:Canvas>
