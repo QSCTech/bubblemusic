@@ -39,6 +39,7 @@
 	//播放列表的数据存储
 	public var playList:Array = new Array();
 	public var currentList:int = 0;
+	public var isDelete:int = 0;
 	//远程数据调用
 	public var searchResult:Array = new Array();
 	//远程数据调用
@@ -57,7 +58,7 @@
 	public var tagID:int = 0;
 	public var singerID:int = 0;
 	[Bindable]
-	public var Version:String = "Bubble Music 1.2 (2010.4.16.r93) April Fool's Edition.Powered by QSCtech";
+	public var Version:String = "Bubble Music 1.3 (2010.5.8.r95) April Fool's Edition.Powered by QSCtech";
 	
 	/**
 	 *初始化播放列表 
@@ -230,8 +231,10 @@
 		now.nowAuthor.toolTip = "搜索歌手\"" + list[0].author + "\"";
         now.nowAlbum.toolTip = "搜索专辑\"" + list[0].album + "\"";
         
-        if(currentList>0)
+        if(currentList>0 && isDelete == 0){
         	currentList -= 1;
+        }
+        isDelete = 0;	
         	
         syncPlayListInfo(playList);
 	}
@@ -510,8 +513,9 @@
 	 * 
 	 */	
 	public function doubleClickListItem(event:MouseEvent):void{
-		var i:int = event.currentTarget.index;
+		var i:int = event.currentTarget.index + currentList;
 		
+		currentList = 0;
 		if(userId!=0)
 			rpc.addUserDelete(blank,userId,playList[0].id);
 		
@@ -951,18 +955,17 @@
 	private function musicDelete(event:MouseEvent):void{
 		var i:int = event.currentTarget.owner.index;
 		
-		rpc.addUserDelete(blank,userId,playList[i-1].id);
-		
+		rpc.addUserDelete(blank,userId,playList[i-1 + currentList].id);
+		isDelete = 1;
 		if(i == 1){
 			if(isLoop == 1){
 				playList.shift();
 			}
 			nextMusic(event);
-			
 		}
 		else{
 			rpc.getNextMusic(this.getNextMusic,1,userId);
-			playList.splice(i-1,1);
+			playList.splice(i-1 + currentList,1);
 			this.syncPlayList(playList);
 			this.listEffect(i);
 		}
@@ -1102,7 +1105,7 @@
 	 * 用于播放列表里的歌
 	 */
 	private function musicShare(event:MouseEvent):void{
-		var i:int = event.currentTarget.owner.index - 1;
+		var i:int = event.currentTarget.owner.index - 1 + currentList;
 		var shareWin:share = new share();
 		shareWin.text = "分享\"" + playList[i].title + "\"给好友吧~";
 		shareWin.address = "http://www.qsc.zju.edu.cn/bubble/#" + playList[i].id;
@@ -1308,7 +1311,7 @@
 	 * 用于播放列表中的歌曲
 	 */
 	private function musicCollect(event:MouseEvent):void{
-		var i:int = event.currentTarget.owner.index - 1;
+		var i:int = event.currentTarget.owner.index - 1 + currentList;
 		if(userName != ""){
 			var FavouriteWin:Favourite = new Favourite();
 	        FavouriteWin.musicIndex = playList[i].id;
