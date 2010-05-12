@@ -10,10 +10,10 @@ package as3.Net
 	{
 		private var conn:NetConnection;
 
-		//private var URL:String = "http://www.qsc.zju.edu.cn/apps/bubble/amfphp/gateway.php";
+		private var URL:String = "http://www.qsc.zju.edu.cn/apps/bubble/amfphp/gateway.php";
 
 		//private var URL:String = "http://10.76.8.200/bubble/amfphp/gateway.php";
-		private var URL:String = "http://localhost/amfphp/gateway.php";
+		//private var URL:String = "http://localhost/amfphp/gateway.php";
 
 		public function RPC()
 		{
@@ -57,12 +57,12 @@ package as3.Net
 		}
 		public function autoLogin(result:Function, uid:String):void{
 			conn.connect(URL);
-			conn.call("Music.autoLogin", new Responder(result, onFault), uid);
+			conn.call("User.autoLogin", new Responder(result, onFault), uid);
 			conn.close();
 		}
 		public function loginCheck(result:Function, username:String, userpw:String):void{
 			conn.connect(URL);
-			conn.call("Music.login",new Responder(result,onFault),username,userpw);
+			conn.call("User.login",new Responder(result,onFault),username,userpw);
 			conn.close();
 		}
 		public function registerCheck(result:Function, username:String, userpw:String, userem:String):void{
