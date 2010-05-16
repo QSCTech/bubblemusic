@@ -1520,7 +1520,7 @@
 	
 	private function syncMessageList(list:Array):void{
 		var page:int = int(messageBox.page.text);	
-		if(list.length == 0){
+		if(!list){
 			messageBox.currentState = "noneMsg";
 		}
 		else{
@@ -1566,7 +1566,7 @@
 					messageBox.msg3.user_name = list[2].user_name;
 					messageBox.msg3.msg_date = list[2].msg_date;
 					messageBox.msg3.msg_body = list[2].msg_body; 
-				}else{messageBox.msg2.visible = false;}	
+				}else{messageBox.msg3.visible = false;}	
 			}
 			else{
 				
@@ -1611,11 +1611,11 @@
 					messageBox.msg3.user_name = list[2].user_name;
 					messageBox.msg3.msg_date = list[2].msg_date;
 					messageBox.msg3.msg_body = list[2].msg_body; 
-				}else{messageBox.msg2.visible = false;}	
+				}else{messageBox.msg3.visible = false;}	
 				if(list[3]){
 					messageBox.msg4.visible = true;
 					if(list[3].msg_check == 0){
-						messageBox.msg2.currentState = "newMsg";
+						messageBox.msg4.currentState = "newMsg";
 					}else{messageBox.msg4.currentState = "init";}
 					messageBox.msg4.deleteBtn.selected = false;
 					messageBox.msg4.msg_head = list[3].msg_head;
@@ -1626,7 +1626,7 @@
 				if(list[4]){
 					messageBox.msg5.visible = true;
 					if(list[4].msg_check == 0){
-						messageBox.msg2.currentState = "newMsg";
+						messageBox.msg5.currentState = "newMsg";
 					}else{messageBox.msg5.currentState = "init";}
 					messageBox.msg5.deleteBtn.selected = false;
 					messageBox.msg5.msg_head = list[4].msg_head;
@@ -1637,7 +1637,7 @@
 				if(list[5]){
 					messageBox.msg6.visible = true;
 					if(list[5].msg_check == 0){
-						messageBox.msg2.currentState = "newMsg";
+						messageBox.msg6.currentState = "newMsg";
 					}else{messageBox.msg6.currentState = "init";}
 					messageBox.msg6.deleteBtn.selected = false;
 					messageBox.msg6.msg_head = list[5].msg_head;
@@ -1648,7 +1648,7 @@
 				if(list[6]){
 					messageBox.msg7.visible = true;
 					if(list[6].msg_check == 0){
-						messageBox.msg2.currentState = "newMsg";
+						messageBox.msg7.currentState = "newMsg";
 					}else{messageBox.msg7.currentState = "init";}
 					messageBox.msg7.deleteBtn.selected = false;
 					messageBox.msg7.msg_head = list[6].msg_head;
