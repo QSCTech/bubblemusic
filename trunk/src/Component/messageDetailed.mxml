@@ -23,8 +23,8 @@
 			
 		</mx:State>
 		<mx:State name="init">
-			<mx:SetProperty target="{backMsgBtn}" name="visible" value="true"/>
-			<mx:SetProperty target="{deleteMsg}" name="visible" value="true"/>
+			<mx:SetProperty target="{backMsgBtn}" name="visible" value="false"/>
+			<mx:SetProperty target="{deleteMsg}" name="visible" value="false"/>
 		</mx:State>
 	</mx:states>
 

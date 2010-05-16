@@ -60,7 +60,7 @@ package as3.Net
 		}
 		public function loginCheck(result:Function, username:String, userpw:String):void{
 			conn.connect(URL);
-			conn.call("User.login",new Responder(result,onFault),username,userpw);
+			conn.call("Music.login",new Responder(result,onFault),username,userpw);
 			conn.close();
 		}
 		public function registerCheck(result:Function, username:String, userpw:String, userem:String):void{
@@ -199,7 +199,7 @@ package as3.Net
 			conn.call("User.checkMsg",new Responder(result,onFault),msgid,userid,page);
 			conn.close();
 		}
-		public function delMsg(result:Function,userid:int,msgid:int,page:int):void{
+		public function delMsg(result:Function,userid:int,msgid:String,page:int):void{
 			conn.connect(URL);
 			conn.call("User.delMsg",new Responder(result,onFault),userid,msgid,page);
 			conn.close();

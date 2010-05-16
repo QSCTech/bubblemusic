@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="760" height="21">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="760" height="21" currentState="init">
 	<mx:states>
 		<mx:State name="newMsg">
 			<mx:SetProperty target="{msghead}" name="styleName" value="colorBoldText"/>
@@ -7,6 +7,7 @@
 			<mx:SetProperty target="{msgdate}" name="styleName" value="colorText"/>
 			<mx:SetProperty target="{msgbody}" name="styleName" value="colorText"/>
 		</mx:State>
+		<mx:State name="init"/>
 	</mx:states>
 	<mx:Script>
 	 	<![CDATA[		    
@@ -22,7 +23,7 @@
 			 public var msg_body:String = "";
 		]]>
 	</mx:Script>
-	<mx:HBox left="5" verticalCenter="0" verticalAlign="middle" width="602">
+	<mx:HBox left="5" verticalCenter="0" verticalAlign="middle" width="602" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 		<mx:CheckBox id="deleteBtn"/>
 		<mx:Text id="username" text="{user_name}" styleName="deepGreyText"/>
 		<mx:Text id="msghead" text="{msg_head}" fontWeight="bold" styleName="blackBoldText"/>
