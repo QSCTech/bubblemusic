@@ -59,7 +59,7 @@
 	public var tagID:int = 0;
 	public var singerID:int = 0;
 	[Bindable]
-	public var Version:String = "Bubble Music 1.4 (2010.5.19.r102) April Fool's Edition.Powered by QSCtech";
+	public var Version:String = "Bubble Music 1.4 (2010.5.19.r103) April Fool's Edition.Powered by QSCtech";
 	
 	/**
 	 *初始化播放列表 
@@ -336,6 +336,7 @@
 			userId = result.user_id;
 			top.currentState = "logined";
 			flash.external.ExternalInterface.call("setSid", result.sid);
+			rpc.getMsgUncheckNum(onGetMsgUncheckNum,userId);
 		} 
 	 }
 	/**
@@ -1548,7 +1549,7 @@
 					messageBox.msg2.visible = true;
 					if(list[1].msg_check == 0){
 						messageBox.msg2.currentState = "newMsg";
-					}else{messageBox.msg2.currentState = "";}
+					}else{messageBox.msg2.currentState = "init";}
 					messageBox.msg2.deleteBtn.selected = false;
 					messageBox.msg2.msg_head = list[1].msg_head;
 					messageBox.msg2.user_name = list[1].user_name;
@@ -1559,7 +1560,7 @@
 					messageBox.msg3.visible = true;
 					if(list[2].msg_check == 0){
 						messageBox.msg3.currentState = "newMsg";
-					}else{messageBox.msg3.currentState = "";}
+					}else{messageBox.msg3.currentState = "init";}
 					messageBox.msg3.deleteBtn.selected = false;
 					messageBox.msg3.msg_head = list[2].msg_head;
 					messageBox.msg3.user_name = list[2].user_name;
@@ -1593,7 +1594,7 @@
 					messageBox.msg2.visible = true;
 					if(list[1].msg_check == 0){
 						messageBox.msg2.currentState = "newMsg";
-					}else{messageBox.msg2.currentState = "";}
+					}else{messageBox.msg2.currentState = "init";}
 					messageBox.msg2.deleteBtn.selected = false;
 					messageBox.msg2.msg_head = list[1].msg_head;
 					messageBox.msg2.user_name = list[1].user_name;
@@ -1604,7 +1605,7 @@
 					messageBox.msg3.visible = true;
 					if(list[2].msg_check == 0){
 						messageBox.msg3.currentState = "newMsg";
-					}else{messageBox.msg3.currentState = "";}
+					}else{messageBox.msg3.currentState = "init";}
 					messageBox.msg3.deleteBtn.selected = false;
 					messageBox.msg3.msg_head = list[2].msg_head;
 					messageBox.msg3.user_name = list[2].user_name;
@@ -1615,7 +1616,7 @@
 					messageBox.msg4.visible = true;
 					if(list[3].msg_check == 0){
 						messageBox.msg2.currentState = "newMsg";
-					}else{messageBox.msg4.currentState = "";}
+					}else{messageBox.msg4.currentState = "init";}
 					messageBox.msg4.deleteBtn.selected = false;
 					messageBox.msg4.msg_head = list[3].msg_head;
 					messageBox.msg4.user_name = list[3].user_name;
@@ -1626,7 +1627,7 @@
 					messageBox.msg5.visible = true;
 					if(list[4].msg_check == 0){
 						messageBox.msg2.currentState = "newMsg";
-					}else{messageBox.msg5.currentState = "";}
+					}else{messageBox.msg5.currentState = "init";}
 					messageBox.msg5.deleteBtn.selected = false;
 					messageBox.msg5.msg_head = list[4].msg_head;
 					messageBox.msg5.user_name = list[4].user_name;
@@ -1637,7 +1638,7 @@
 					messageBox.msg6.visible = true;
 					if(list[5].msg_check == 0){
 						messageBox.msg2.currentState = "newMsg";
-					}else{messageBox.msg6.currentState = "";}
+					}else{messageBox.msg6.currentState = "init";}
 					messageBox.msg6.deleteBtn.selected = false;
 					messageBox.msg6.msg_head = list[5].msg_head;
 					messageBox.msg6.user_name = list[5].user_name;
@@ -1648,7 +1649,7 @@
 					messageBox.msg7.visible = true;
 					if(list[6].msg_check == 0){
 						messageBox.msg2.currentState = "newMsg";
-					}else{messageBox.msg7.currentState = "";}
+					}else{messageBox.msg7.currentState = "init";}
 					messageBox.msg7.deleteBtn.selected = false;
 					messageBox.msg7.msg_head = list[6].msg_head;
 					messageBox.msg7.user_name = list[6].user_name;
@@ -1659,7 +1660,7 @@
 					messageBox.msg8.visible = true;
 					if(list[7].msg_check == 0){
 						messageBox.msg2.currentState = "newMsg";
-					}else{messageBox.msg8.currentState = "";}
+					}else{messageBox.msg8.currentState = "init";}
 					messageBox.msg8.deleteBtn.selected = false;
 					messageBox.msg8.msg_head = list[7].msg_head;
 					messageBox.msg8.user_name = list[7].user_name;
@@ -1748,7 +1749,7 @@
     			messageResult[10] += "||" + messageResult[2].msg_id;
     	}
     	if(messageResult[10]!=""){
-    		rpc.delMsg(onMessageResult, userId, messageResult[10],int(messageBox.page.text)-1);
+    		rpc.delMsg(onMessageResult, userId, messageResult[10],(int(messageBox.page.text)-1));
     		tipsShow("删除成功");
     	}
     	else{

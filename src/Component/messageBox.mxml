@@ -96,4 +96,32 @@
 	</mx:Canvas>
 	<mx:Button id="nextBigBtn" verticalCenter="0" right="6" styleName="nextBigBtn"/>
 	
+	<mx:transitions>
+		<mx:Transition fromState="*" toState="init">
+			<mx:Parallel target="{canvas1}">
+				<mx:WipeDown duration="1000"/>
+				<mx:Dissolve alphaFrom="0.0" alphaTo="1.0" duration="1000"/>
+			</mx:Parallel>
+		</mx:Transition>
+		<mx:Transition fromState="*" toState="noneMsg">
+			<mx:Parallel target="{canvas1}">
+				<mx:WipeDown duration="1000"/>
+				<mx:Dissolve alphaFrom="0.0" alphaTo="1.0" duration="1000"/>
+			</mx:Parallel>
+		</mx:Transition>
+		<mx:Transition fromState="*" toState="noneNew">
+			<mx:Parallel target="{canvas1}">
+				<mx:WipeDown duration="1000"/>
+				<mx:Dissolve alphaFrom="0.0" alphaTo="1.0" duration="1000"/>
+			</mx:Parallel>
+		</mx:Transition>
+		<mx:Transition fromState="*" toState="detailed">
+			<mx:Parallel target="{canvas1}">
+				<mx:WipeDown duration="1000"/>
+				<mx:Dissolve alphaFrom="0.0" alphaTo="1.0" duration="1000"/>
+			</mx:Parallel>
+		</mx:Transition>
+	</mx:transitions>
+	
+	
 </mx:Canvas>
