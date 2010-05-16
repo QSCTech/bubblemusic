@@ -42,6 +42,7 @@
 	public var isDelete:int = 0;
 	//远程数据调用
 	public var searchResult:Array = new Array();
+	public var messageResult:Array = new Array();
 	//远程数据调用
 	public var rpc:RPC = new RPC();
 	
@@ -58,7 +59,7 @@
 	public var tagID:int = 0;
 	public var singerID:int = 0;
 	[Bindable]
-	public var Version:String = "Bubble Music 1.3 (2010.5.8.r100) April Fool's Edition.Powered by QSCtech";
+	public var Version:String = "Bubble Music 1.4 (2010.5.19.r102) April Fool's Edition.Powered by QSCtech";
 	
 	/**
 	 *初始化播放列表 
@@ -214,8 +215,8 @@
 	    top.callback = resetUser;
 	    top.getUserListened = getUserListened;
 	    top.getUserFavourite = getUserFavourite;
+	    top.getUserMessage = getUserMessage;
 	    rpc.getNotes(tipsShow);
-	    
 	    musicList.addEventListener(MouseEvent.MOUSE_WHEEL,playListScroll);
 	}
 
@@ -1191,8 +1192,18 @@
 		userName = result.user_name;
 		userId = result.user_id;
 		tipsShow("登录成功~");
+		rpc.getMsgUncheckNum(onGetMsgUncheckNum,userId);
 	}
-	
+	private function onGetMsgUncheckNum(result:int):void{
+		if(result>0){
+			top.messageBtn.label = "new站内信";
+			top.messageBtn.styleName = "topNewLBtn";
+		}
+		else{
+			top.messageBtn.label = "站内信";
+			top.messageBtn.styleName = "topLBtn";
+		}
+	}
 	/**
 	 * 这两个函数如果直接用前面的不行><
 	 * 用于登录和注册窗口的切换
@@ -1484,4 +1495,298 @@
 	private function styleBack():void{
 		tipsShow("调配成功");
 		isStyle = 0;	
+	}
+	
+	private function getUserMessage():void{
+		currentState = "message";
+		messageBox.page.text = "1";
+		rpc.getUserMsg(onMessageResult,userId,1);
+	}
+	private function backUserMessage(event:MouseEvent):void{
+		currentState = "message";
+		messageBox.page.text = "1";
+		rpc.getUserMsg(onMessageResult,userId,1);
+	}
+	private function onMessageResult(result:Array):void{
+		rpc.getMsgUncheckNum(onGetMsgUncheckNum,userId);
+		messageResult.splice(0,messageResult.length);
+		this.messageResult = result;
+		
+		messageBox.nextBigBtn.enabled = false;
+		messageBox.preBigBtn.enabled = false;
+		this.syncMessageList(messageResult);
+	}
+	
+	private function syncMessageList(list:Array):void{
+		var page:int = int(messageBox.page.text);	
+		if(list.length == 0){
+			messageBox.currentState = "noneMsg";
+		}
+		else{
+			
+			if(page>1)
+	        	messageBox.preBigBtn.enabled = true;
+	        else 
+	        	messageBox.preBigBtn.enabled = false;	
+			
+			if(list[0].msg_check == 0){
+				
+				if(list[3])
+		        	messageBox.nextBigBtn.enabled = true;
+		        else 
+		        	messageBox.nextBigBtn.enabled = false;
+		        	
+				messageBox.currentState = "init";
+				messageBox.msg1.currentState = "newMsg";
+				messageBox.msg1.read.selected = false;
+				messageBox.msg1.deleteBtn.selected = false;
+				messageBox.msg1.msg_head = list[0].msg_head;
+				messageBox.msg1.user_name = list[0].user_name;
+				messageBox.msg1.msg_date = list[0].msg_date;
+				messageBox.msg1.msg_body = list[0].msg_body; 
+				if(list[1]){
+					messageBox.msg2.visible = true;
+					if(list[1].msg_check == 0){
+						messageBox.msg2.currentState = "newMsg";
+					}else{messageBox.msg2.currentState = "";}
+					messageBox.msg2.deleteBtn.selected = false;
+					messageBox.msg2.msg_head = list[1].msg_head;
+					messageBox.msg2.user_name = list[1].user_name;
+					messageBox.msg2.msg_date = list[1].msg_date;
+					messageBox.msg2.msg_body = list[1].msg_body; 
+				}else{messageBox.msg2.visible = false;}
+				if(list[2]){
+					messageBox.msg3.visible = true;
+					if(list[2].msg_check == 0){
+						messageBox.msg3.currentState = "newMsg";
+					}else{messageBox.msg3.currentState = "";}
+					messageBox.msg3.deleteBtn.selected = false;
+					messageBox.msg3.msg_head = list[2].msg_head;
+					messageBox.msg3.user_name = list[2].user_name;
+					messageBox.msg3.msg_date = list[2].msg_date;
+					messageBox.msg3.msg_body = list[2].msg_body; 
+				}else{messageBox.msg2.visible = false;}	
+			}
+			else{
+				
+				if(list[8])
+		        	messageBox.nextBigBtn.enabled = true;
+		        else 
+		        	messageBox.nextBigBtn.enabled = false;
+				
+				messageBox.currentState = "noneNew";
+				messageBox.msg11.addEventListener(MouseEvent.DOUBLE_CLICK,msgDetail);
+				messageBox.msg4.addEventListener(MouseEvent.DOUBLE_CLICK,msgDetail);
+				messageBox.msg5.addEventListener(MouseEvent.DOUBLE_CLICK,msgDetail);
+				messageBox.msg6.addEventListener(MouseEvent.DOUBLE_CLICK,msgDetail);
+				messageBox.msg7.addEventListener(MouseEvent.DOUBLE_CLICK,msgDetail);
+				messageBox.msg8.addEventListener(MouseEvent.DOUBLE_CLICK,msgDetail);
+				if(list[0]){
+					messageBox.msg11.visible = true;
+					messageBox.msg11.deleteBtn.selected = false;
+					messageBox.msg11.msg_head = list[0].msg_head;
+					messageBox.msg11.user_name = list[0].user_name;
+					messageBox.msg11.msg_date = list[0].msg_date;
+					messageBox.msg11.msg_body = list[0].msg_body; 
+				}
+				if(list[1]){
+					messageBox.msg2.visible = true;
+					if(list[1].msg_check == 0){
+						messageBox.msg2.currentState = "newMsg";
+					}else{messageBox.msg2.currentState = "";}
+					messageBox.msg2.deleteBtn.selected = false;
+					messageBox.msg2.msg_head = list[1].msg_head;
+					messageBox.msg2.user_name = list[1].user_name;
+					messageBox.msg2.msg_date = list[1].msg_date;
+					messageBox.msg2.msg_body = list[1].msg_body; 
+				}else{messageBox.msg2.visible = false;}
+				if(list[2]){
+					messageBox.msg3.visible = true;
+					if(list[2].msg_check == 0){
+						messageBox.msg3.currentState = "newMsg";
+					}else{messageBox.msg3.currentState = "";}
+					messageBox.msg3.deleteBtn.selected = false;
+					messageBox.msg3.msg_head = list[2].msg_head;
+					messageBox.msg3.user_name = list[2].user_name;
+					messageBox.msg3.msg_date = list[2].msg_date;
+					messageBox.msg3.msg_body = list[2].msg_body; 
+				}else{messageBox.msg2.visible = false;}	
+				if(list[3]){
+					messageBox.msg4.visible = true;
+					if(list[3].msg_check == 0){
+						messageBox.msg2.currentState = "newMsg";
+					}else{messageBox.msg4.currentState = "";}
+					messageBox.msg4.deleteBtn.selected = false;
+					messageBox.msg4.msg_head = list[3].msg_head;
+					messageBox.msg4.user_name = list[3].user_name;
+					messageBox.msg4.msg_date = list[3].msg_date;
+					messageBox.msg4.msg_body = list[3].msg_body; 
+				}else{messageBox.msg4.visible = false;}
+				if(list[4]){
+					messageBox.msg5.visible = true;
+					if(list[4].msg_check == 0){
+						messageBox.msg2.currentState = "newMsg";
+					}else{messageBox.msg5.currentState = "";}
+					messageBox.msg5.deleteBtn.selected = false;
+					messageBox.msg5.msg_head = list[4].msg_head;
+					messageBox.msg5.user_name = list[4].user_name;
+					messageBox.msg5.msg_date = list[4].msg_date;
+					messageBox.msg5.msg_body = list[4].msg_body; 
+				}else{messageBox.msg5.visible = false;}
+				if(list[5]){
+					messageBox.msg6.visible = true;
+					if(list[5].msg_check == 0){
+						messageBox.msg2.currentState = "newMsg";
+					}else{messageBox.msg6.currentState = "";}
+					messageBox.msg6.deleteBtn.selected = false;
+					messageBox.msg6.msg_head = list[5].msg_head;
+					messageBox.msg6.user_name = list[5].user_name;
+					messageBox.msg6.msg_date = list[5].msg_date;
+					messageBox.msg6.msg_body = list[5].msg_body; 
+				}else{messageBox.msg6.visible = false;}
+				if(list[6]){
+					messageBox.msg7.visible = true;
+					if(list[6].msg_check == 0){
+						messageBox.msg2.currentState = "newMsg";
+					}else{messageBox.msg7.currentState = "";}
+					messageBox.msg7.deleteBtn.selected = false;
+					messageBox.msg7.msg_head = list[6].msg_head;
+					messageBox.msg7.user_name = list[6].user_name;
+					messageBox.msg7.msg_date = list[6].msg_date;
+					messageBox.msg7.msg_body = list[6].msg_body; 
+				}else{messageBox.msg7.visible = false;}
+				if(list[7]){
+					messageBox.msg8.visible = true;
+					if(list[7].msg_check == 0){
+						messageBox.msg2.currentState = "newMsg";
+					}else{messageBox.msg8.currentState = "";}
+					messageBox.msg8.deleteBtn.selected = false;
+					messageBox.msg8.msg_head = list[7].msg_head;
+					messageBox.msg8.user_name = list[7].user_name;
+					messageBox.msg8.msg_date = list[7].msg_date;
+					messageBox.msg8.msg_body = list[7].msg_body; 
+				}else{messageBox.msg8.visible = false;}
+				
+			}
+		}
+    }
+    private function setMsgReaded(event:Event):void{
+    	var i:int = event.currentTarget.owner.index - 1;
+    	rpc.checkMsg(onMessageResult, messageResult[i].msg_id, userId,int(messageBox.page.text));
+    }
+    
+    private function msgDetail(event:MouseEvent):void{
+    	var i:int = event.currentTarget.index - 1;
+    	messageBox.currentState = "detailed";
+    	messageBox.msg1.msg_head = messageResult[i].msg_head;
+		messageBox.msg1.user_name = messageResult[i].user_name;
+		messageBox.msg1.msg_date = messageResult[i].msg_date;
+		messageBox.msg1.msg_body = messageResult[i].msg_body; 
+		if(messageResult[i].msg_check == 0)
+			rpc.checkMsg(blank, messageResult[i].msg_id, userId,0);
+		messageBox.page.text = String(i+1);
+		
+		if(messageResult[i+1])
+        	messageBox.nextBigBtn.enabled = true;
+        else 
+        	messageBox.nextBigBtn.enabled = false;
+        	
+        if(i>0)
+        	messageBox.preBigBtn.enabled = true;
+        else 
+        	messageBox.preBigBtn.enabled = false;
+    }
+    private function msgDetailCallback(result:Array):void{
+    	var i:int = int(messageBox.page.text);
+    	messageBox.currentState = "detailed";
+    	messageBox.msg1.msg_head = result[1].msg_head;
+		messageBox.msg1.user_name = result[1].user_name;
+		messageBox.msg1.msg_date = result[1].msg_date;
+		messageBox.msg1.msg_body = result[1].msg_body; 
+		if(messageResult[i].msg_check == 0)
+			rpc.checkMsg(blank, result[1].msg_id, userId,0);
+		
+		if(result[2])
+        	messageBox.nextBigBtn.enabled = true;
+        else 
+        	messageBox.nextBigBtn.enabled = false;
+        	
+        if(result[0])
+        	messageBox.preBigBtn.enabled = true;
+        else 
+        	messageBox.preBigBtn.enabled = false;
+        
+        	
+		
+    }
+    private function deleteMsg(event:MouseEvent):void{
+    	messageResult[10] = "";
+    	if(messageBox.currentState == "noneNew"){
+    		if(messageBox.msg11.deleteBtn.selected == true)
+    			messageResult[10] = messageResult[0].msg_id; 
+    		if(messageBox.msg2.deleteBtn.selected == true)
+    			messageResult[10] += "||" + messageResult[1].msg_id; 
+    		if(messageBox.msg3.deleteBtn.selected == true)
+    			messageResult[10] += "||" + messageResult[2].msg_id;
+    		if(messageBox.msg4.deleteBtn.selected == true)
+    			messageResult[10] += "||" + messageResult[3].msg_id; 
+    		if(messageBox.msg5.deleteBtn.selected == true)
+    			messageResult[10] += "||" + messageResult[4].msg_id;
+    		if(messageBox.msg6.deleteBtn.selected == true)
+    			messageResult[10] += "||" + messageResult[5].msg_id; 
+    		if(messageBox.msg7.deleteBtn.selected == true)
+    			messageResult[10] += "||" + messageResult[6].msg_id;
+    		if(messageBox.msg8.deleteBtn.selected == true)
+    			messageResult[10] += "||" + messageResult[7].msg_id; 
+    	}
+    	else if(messageBox.currentState == "init"){
+    		if(messageBox.msg1.deleteBtn.selected == true)
+    			messageResult[10] = messageResult[0].msg_id; 
+    		if(messageBox.msg2.deleteBtn.selected == true)
+    			messageResult[10] += "||" + messageResult[1].msg_id; 
+    		if(messageBox.msg3.deleteBtn.selected == true)
+    			messageResult[10] += "||" + messageResult[2].msg_id;
+    	}
+    	if(messageResult[10]!=""){
+    		rpc.delMsg(onMessageResult, userId, messageResult[10],int(messageBox.page.text)-1);
+    		tipsShow("删除成功");
+    	}
+    	else{
+    		Alert.show("请选择需要删除的信息>< ");
+    	}
+    }
+    private function deleteSingleMsg(event:MouseEvent):void{
+    	var page:int = int(messageBox.page.text) - 1;
+    	rpc.delMsg(blank, userId, messageResult[page].msg_id, 0);
+    	tipsShow("删除成功");
+    	if(messageBox.nextBigBtn.enabled == true)
+    		nextMsgPage(event);
+    	else if(messageBox.preBigBtn.enabled == true)
+    		preMsgPage(event);
+    	else
+    		getUserMessage();
+    }
+    private function deleteAllMsg(event:MouseEvent):void{
+    	rpc.delMsgAll(onMessageResult, userId);
+    	tipsShow("删除成功");
+    }
+    private function nextMsgPage(event:Event):void{
+		var page:int = int(messageBox.page.text) + 1;
+		if(messageBox.currentState == "detailed"){
+			rpc.getMsgBody(msgDetailCallback,userId,page);
+		}
+		else{
+			rpc.getUserMsg(onMessageResult,userId,int(messageBox.page.text));
+		}
+		messageBox.page.text = String(page);
+	}
+	private function preMsgPage(event:Event):void{
+		var page:int = int(messageBox.page.text) - 1;
+		if(messageBox.currentState == "detailed"){
+			rpc.getMsgBody(msgDetailCallback,userId,page);		
+		}
+		else{
+			rpc.getUserMsg(onMessageResult,userId,int(messageBox.page.text));
+		}
+		messageBox.page.text = String(page);
 	}

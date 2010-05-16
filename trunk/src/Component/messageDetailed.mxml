@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="760" currentState="init">
+	<mx:states>
+		<mx:State name="newMsg">
+			<mx:SetProperty target="{msghead}" name="styleName" value="colorBoldText"/>
+			<mx:SetProperty target="{username}" name="styleName" value="colorText"/>
+			<mx:SetProperty target="{msgdate}" name="styleName" value="colorText"/>
+			<mx:SetProperty target="{from}" name="styleName" value="colorText"/>
+			<mx:SetProperty target="{msgbody}" name="styleName" value="msgRedTextArea"/>
+			<mx:SetProperty target="{backMsgBtn}" name="visible" value="false"/>
+			<mx:SetProperty target="{deleteMsg}" name="visible" value="false"/>
+		</mx:State>
+		<mx:State name="detailed">
+			<mx:SetProperty target="{msgbody}" name="height" value="160"/>
+			<mx:RemoveChild target="{read}"/>
+			<mx:SetProperty target="{backMsgBtn}" name="visible" value="true"/>
+			<mx:SetProperty target="{deleteMsg}" name="visible" value="true"/>
+			<mx:RemoveChild target="{deleteBtn}"/>
+			<mx:SetStyle target="{touxiang}" name="left" value="10"/>
+			<mx:SetProperty target="{hbox1}" name="x" value="65"/>
+			<mx:SetProperty target="{hbox2}" name="x" value="65"/>
+			<mx:SetProperty target="{msgbody}" name="x" value="10"/>
+			
+		</mx:State>
+		<mx:State name="init">
+			<mx:SetProperty target="{backMsgBtn}" name="visible" value="true"/>
+			<mx:SetProperty target="{deleteMsg}" name="visible" value="true"/>
+		</mx:State>
+	</mx:states>
+
+	<mx:Script>
+	 	<![CDATA[		    
+			 [Bindable]
+			 public var index:int = 0;
+			 [Bindable]
+			 public var msg_head:String = "";
+			 [Bindable]
+			 public var user_name:String = "";
+			 [Bindable]
+			 public var msg_date:String = "";
+			 [Bindable]
+			 public var msg_body:String = "";
+			 
+		]]>
+	</mx:Script>
+	<mx:CheckBox id="deleteBtn" top="30" left="5" selected="false"/>
+	<mx:Image id="touxiang" left="20" top="8" source="Style/J71 (1).jpg" width="50" height="50"/>
+	<mx:HBox x="75" y="17" verticalAlign="middle" id="hbox1">
+		<mx:Text id="msghead" text="{msg_head}" styleName="blackBoldText"/>
+	</mx:HBox>
+	<mx:HBox x="75" y="35" verticalAlign="middle" id="hbox2">
+		<mx:Text id="from" text="From:"/>
+		<mx:Text id="username" text="{user_name}" styleName="deepGreyText"/>
+		<mx:Text id="msgdate" text="[{msg_date}]" fontSize="10" styleName="lightGreyText"/>
+	</mx:HBox>
+	<mx:Button styleName="redLine" left="65" top="56" right="7.950012"/>
+	<mx:TextArea id="msgbody" text="{msg_body}" y="60" x="20" width="740" styleName="msgTextArea" editable="false" height="97"/>
+	<mx:RadioButton id="read" label="标记为已读" right="10" top="34"/>
+	<mx:LinkButton id="backMsgBtn" label="返回收件箱" right="10" top="10" visible="false"/>
+	<mx:LinkButton id="deleteMsg" label="删除信息" right="80" top="10" visible="false"/>
+</mx:Canvas>

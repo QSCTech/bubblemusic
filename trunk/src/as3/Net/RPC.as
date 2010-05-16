@@ -4,16 +4,14 @@ package as3.Net
 	import flash.net.ObjectEncoding;
 	import flash.net.Responder;
 	
-	import mx.controls.Alert;
-	
 	public class RPC
 	{
 		private var conn:NetConnection;
 
-		private var URL:String = "http://www.qsc.zju.edu.cn/apps/bubble/amfphp/gateway.php";
+		//private var URL:String = "http://www.qsc.zju.edu.cn/apps/bubble/amfphp/gateway.php";
 
 		//private var URL:String = "http://10.76.8.200/bubble/amfphp/gateway.php";
-		//private var URL:String = "http://localhost/amfphp/gateway.php";
+		private var URL:String = "http://localhost/amfphp/gateway.php";
 
 		public function RPC()
 		{
@@ -187,6 +185,38 @@ package as3.Net
 		public function updateUserStyle(result:Function,userid:int,styleText:String):void{
 			conn.connect(URL);
 			conn.call("Music.updateUserStyle",new Responder(result,onFault),userid,styleText);
+			conn.close();
+		}
+		
+		
+		public function getUserMsg(result:Function,userid:int,page:int):void{
+			conn.connect(URL);
+			conn.call("User.getUserMsg",new Responder(result,onFault),userid,page);
+			conn.close();
+		}
+		public function checkMsg(result:Function,msgid:int,userid:int,page:int):void{
+			conn.connect(URL);
+			conn.call("User.checkMsg",new Responder(result,onFault),msgid,userid,page);
+			conn.close();
+		}
+		public function delMsg(result:Function,userid:int,msgid:int,page:int):void{
+			conn.connect(URL);
+			conn.call("User.delMsg",new Responder(result,onFault),userid,msgid,page);
+			conn.close();
+		}
+		public function delMsgAll(result:Function,userid:int):void{
+			conn.connect(URL);
+			conn.call("User.delMsgAll",new Responder(result,onFault),userid);
+			conn.close();
+		}
+		public function getMsgBody(result:Function,userid:int,num:int):void{
+			conn.connect(URL);
+			conn.call("User.getMsgBody",new Responder(result,onFault),userid,num);
+			conn.close();
+		}
+		public function getMsgUncheckNum(result:Function,userid:int):void{
+			conn.connect(URL);
+			conn.call("User.getMsgUncheckNum",new Responder(result,onFault),userid);
 			conn.close();
 		}
 	}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="760" height="21">
+	<mx:states>
+		<mx:State name="newMsg">
+			<mx:SetProperty target="{msghead}" name="styleName" value="colorBoldText"/>
+			<mx:SetProperty target="{username}" name="styleName" value="colorText"/>
+			<mx:SetProperty target="{msgdate}" name="styleName" value="colorText"/>
+			<mx:SetProperty target="{msgbody}" name="styleName" value="colorText"/>
+		</mx:State>
+	</mx:states>
+	<mx:Script>
+	 	<![CDATA[		    
+			 [Bindable]
+			 public var index:int = 0;
+			 [Bindable]
+			 public var msg_head:String = "";
+			 [Bindable]
+			 public var user_name:String = "";
+			 [Bindable]
+			 public var msg_date:String = "";
+			 [Bindable]
+			 public var msg_body:String = "";
+		]]>
+	</mx:Script>
+	<mx:HBox left="5" verticalCenter="0" verticalAlign="middle" width="602">
+		<mx:CheckBox id="deleteBtn"/>
+		<mx:Text id="username" text="{user_name}" styleName="deepGreyText"/>
+		<mx:Text id="msghead" text="{msg_head}" fontWeight="bold" styleName="blackBoldText"/>
+		<mx:Text id="msgbody" text="{msg_body}" styleName="lightGreyText" width="377" height="20" toolTipHide="true" selectable="false"/>
+	</mx:HBox>
+	<mx:Text id="msgdate" text="{msg_date}" verticalCenter="0" right="5" styleName="lightGreyText"/>
+</mx:Canvas>

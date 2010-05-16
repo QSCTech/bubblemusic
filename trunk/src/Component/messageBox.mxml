@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="850" height="260" xmlns:component="Component.*" horizontalScrollPolicy="off" verticalScrollPolicy="off" currentState="init">
+	<mx:states>
+		<mx:State name="noneNew">
+			<mx:RemoveChild target="{msg1}"/>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<component:messageSummary id="msg11" top="30" horizontalCenter="0" index="1" doubleClickEnabled="true"/>
+			</mx:AddChild>
+			<mx:SetProperty target="{hrule1}" name="y" value="53"/>
+			<mx:SetProperty target="{hrule2}" name="y" value="78"/>
+			<mx:SetProperty target="{msg2}" name="y" value="55"/>
+			<mx:SetProperty target="{msg3}" name="y" value="80"/>
+			<mx:SetProperty target="{page}" name="visible" value="true"/>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<mx:HRule y="103" horizontalCenter="0" width="760" styleName="messageHrule"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<component:messageSummary id="msg4" x="10" y="105" index="4" doubleClickEnabled="true"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<mx:HRule y="128" horizontalCenter="0" width="760" styleName="messageHrule"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<component:messageSummary id="msg5" x="10" y="130" index="5" doubleClickEnabled="true"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<mx:HRule y="153" horizontalCenter="0" width="760" styleName="messageHrule"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<component:messageSummary id="msg6" x="10" y="155" index="6" doubleClickEnabled="true"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<mx:HRule y="178" horizontalCenter="0" width="760" styleName="messageHrule"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<component:messageSummary id="msg7" x="10" y="180" index="7" doubleClickEnabled="true"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<mx:HRule y="203" horizontalCenter="0" width="760" styleName="messageHrule"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<component:messageSummary id="msg8" x="10" y="205" index="8" doubleClickEnabled="true"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<mx:HRule y="228" horizontalCenter="0" width="760" styleName="messageHrule"/>
+			</mx:AddChild>
+
+		</mx:State>
+		<mx:State name="noneMsg">
+			<mx:RemoveChild target="{msg1}"/>
+			<mx:RemoveChild target="{msg2}"/>
+			<mx:RemoveChild target="{msg3}"/>
+			<mx:RemoveChild target="{hrule1}"/>
+			<mx:RemoveChild target="{hrule2}"/>
+			<mx:RemoveChild target="{hbox1}"/>
+			<mx:SetProperty target="{page}" name="visible" value="true"/>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<mx:Text x="10" y="34" text="暂时没有您的信息^^"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="detailed">
+			<mx:RemoveChild target="{msg2}"/>
+			<mx:RemoveChild target="{hrule1}"/>
+			<mx:RemoveChild target="{msg3}"/>
+			<mx:RemoveChild target="{hrule2}"/>
+			<mx:SetProperty target="{msg1}" name="currentState" value="detailed"/>
+			<mx:SetProperty target="{msg1}" name="doubleClickEnabled" value="false"/>
+			<mx:SetProperty target="{page}" name="visible" value="false"/>
+			<mx:RemoveChild target="{hbox1}"/>
+		</mx:State>
+		<mx:State name="init">
+			<mx:SetProperty target="{page}" name="visible" value="true"/>
+			<mx:SetProperty target="{msg1}" name="doubleClickEnabled" value="true"/>
+			<mx:SetProperty target="{msg1}" name="currentState" value="init"/>
+		</mx:State>
+	</mx:states>
+
+	<mx:Button id="preBigBtn" verticalCenter="0" left="6" styleName="preBigBtn"/>
+	<mx:Canvas width="782" height="260" styleName="greyCanvas" horizontalCenter="0" horizontalScrollPolicy="off" verticalScrollPolicy="off" id="canvas1">
+		<mx:Canvas left="5" top="5" width="770" height="21" styleName="greyTitleBack">
+			<mx:Text x="5" y="0" text="站内信" styleName="blackBoldText" selectable="false"/>
+			<mx:Text x="50" y="0" text="暂未开放用户之间互传站内信功能" styleName="deepGreyText" selectable="false"/>
+			<mx:LinkButton id="backLyric" label="返回" right="2" height="18" styleName="backLyricLBtn" verticalCenter="0"/>
+		</mx:Canvas>
+		
+		<mx:HBox x="10" bottom="5" id="hbox1">
+			<mx:LinkButton id="deleteBtn" label="删除"/>
+			<mx:LinkButton id="deleteAll" label="清空站内信"/>
+		</mx:HBox>
+		<component:messageDetailed id="msg1" horizontalCenter="0" top="25" index="1" doubleClickEnabled="true"/>
+		<mx:HRule y="185" width="760" horizontalCenter="0" styleName="messageHrule" id="hrule1"/>
+		<component:messageSummary id="msg2" y="187" horizontalCenter="0" index="2" doubleClickEnabled="true"/>
+		<mx:HRule y="208" width="760" horizontalCenter="0" styleName="messageHrule" id="hrule2"/>
+		<component:messageSummary id="msg3" y="210" horizontalCenter="0" index="3" doubleClickEnabled="true"/>
+		<mx:Text id="page" text="1" right="30" bottom="5"/>
+	</mx:Canvas>
+	<mx:Button id="nextBigBtn" verticalCenter="0" right="6" styleName="nextBigBtn"/>
+	
+</mx:Canvas>
