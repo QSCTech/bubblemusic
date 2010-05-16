@@ -86,6 +86,30 @@
 		
 		<mx:State name="lyricState">
 		</mx:State>	
+		<mx:State name="message">
+			<mx:RemoveChild target="{musicList}"/>
+			<mx:RemoveChild target="{lyric}"/>
+			<mx:AddChild relativeTo="{middle}" position="lastChild">
+				<bubble:messageBox id="messageBox" verticalCenter="0"/>
+			</mx:AddChild>
+			<mx:SetEventHandler target="{messageBox.backLyric}" handlerFunction="lyricShow" name="click"/>
+			<mx:SetEventHandler target="{messageBox.msg1.read}" handlerFunction="setMsgReaded" name="change"/>
+			<mx:SetEventHandler target="{messageBox.deleteAll}" handlerFunction="deleteAllMsg" name="click"/>
+			<mx:SetEventHandler target="{messageBox.deleteBtn}" handlerFunction="deleteMsg" name="click"/>
+			<mx:SetEventHandler target="{messageBox.msg1}" handlerFunction="msgDetail" name="doubleClick"/>
+			<mx:SetEventHandler target="{messageBox.msg2}" handlerFunction="msgDetail" name="doubleClick"/>
+			<mx:SetEventHandler target="{messageBox.msg3}" handlerFunction="msgDetail" name="doubleClick"/>
+			<mx:SetEventHandler target="{messageBox.nextBigBtn}" handlerFunction="nextMsgPage" name="click"/>
+			<mx:SetEventHandler target="{messageBox.preBigBtn}" handlerFunction="preMsgPage" name="click"/>
+			<mx:SetEventHandler target="{messageBox.msg1.backMsgBtn}" handlerFunction="backUserMessage" name="click"/>
+			<mx:SetEventHandler target="{messageBox.msg1.deleteMsg}" handlerFunction="deleteSingleMsg" name="click"/>
+			<mx:SetEventHandler target="{messageBox.msg11}" handlerFunction="msgDetail" name="doubleClick"/>
+			<mx:SetEventHandler target="{messageBox.msg4}" handlerFunction="msgDetail" name="doubleClick"/>
+			<mx:SetEventHandler target="{messageBox.msg5}" handlerFunction="msgDetail" name="doubleClick"/>
+			<mx:SetEventHandler target="{messageBox.msg6}" handlerFunction="msgDetail" name="doubleClick"/>
+			<mx:SetEventHandler target="{messageBox.msg7}" handlerFunction="msgDetail" name="doubleClick"/>
+			<mx:SetEventHandler target="{messageBox.msg8}" handlerFunction="msgDetail" name="doubleClick"/>
+		</mx:State>
 		
 	
 		
@@ -94,7 +118,7 @@
 	<bubble:top id="top" />
 	<bubble:now id="now" horizontalCenter="0"/>
 	<mx:Spacer height="10"/>
-	<mx:HBox id="middle" horizontalCenter="0" height="100%" verticalAlign="middle" >
+	<mx:HBox id="middle" horizontalCenter="0" height="100%" verticalAlign="middle" styleName="background">
 		<bubble:musicList id="musicList" verticalCenter="0" toolTip="点击列表，试试滚轮吧~"/>
 		<bubble:lyrics id="lyric" verticalCenter="0"/>
 	</mx:HBox>	
@@ -124,14 +148,32 @@
 	</mx:Parallel>
 	
 	<mx:transitions>
-		<mx:Transition id="searchTrans" fromState="*" toState="searchRes">
+		<mx:Transition id="searchTrans" fromState="lyricState" toState="searchRes">
 			<mx:Parallel target="{searchList}">
 				<mx:WipeDown duration="1000"/>
 				<mx:Dissolve alphaFrom="0.0" alphaTo="1.0" duration="1000"/>
 			</mx:Parallel>
 		</mx:Transition>
-		<mx:Transition id="lyricTrans" fromState="searchRes" toState="*">
+		<mx:Transition id="searchTrans2" fromState="message" toState="searchRes">
+			<mx:Parallel target="{middle}">
+				<mx:WipeDown duration="1000"/>
+				<mx:Dissolve alphaFrom="0.0" alphaTo="1.0" duration="1000"/>
+			</mx:Parallel>
+		</mx:Transition>
+		<mx:Transition id="lyricTrans" fromState="searchRes" toState="lyricState">
 			<mx:Parallel target="{lyric}">
+				<mx:WipeDown duration="1000"/>
+				<mx:Dissolve alphaFrom="0.0" alphaTo="1.0" duration="1000"/>
+			</mx:Parallel>
+		</mx:Transition>
+		<mx:Transition id="lyricTrans2" fromState="message" toState="lyricState">
+			<mx:Parallel target="{middle}">
+				<mx:WipeDown duration="1000"/>
+				<mx:Dissolve alphaFrom="0.0" alphaTo="1.0" duration="1000"/>
+			</mx:Parallel>
+		</mx:Transition>
+		<mx:Transition id="messageTrans" fromState="*" toState="message">
+			<mx:Parallel target="{messageBox}">
 				<mx:WipeDown duration="1000"/>
 				<mx:Dissolve alphaFrom="0.0" alphaTo="1.0" duration="1000"/>
 			</mx:Parallel>

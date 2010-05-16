@@ -64,6 +64,19 @@ Alert
 	fontWeight: bold;
 	fontSize:12;
 }
+.topNewLBtn
+{
+	textRollOverColor: #FFFFFF;
+	textSelectedColor: #FFFFFF;
+	color: #E00025;
+	paddingLeft: 3;
+	paddingRight: 3;
+	rollOverColor: #E00025;
+	selectionColor: #E00025;
+	themeColor:#E00025;
+	fontWeight: bold;
+	fontSize:12;
+}
 .topCanvas
 {
 	backgroundColor:#000000;
@@ -206,6 +219,7 @@ TextInput
 }
 .musicListCanvas
 {
+	backgroundColor:#EDEDED;
 	 cornerRadius:15; 
 	 borderStyle:solid; 
 	 borderColor:#000000; 
@@ -644,4 +658,83 @@ LinkButton
 .colorHRule
 {
 	 strokeColor:#E00025;
+}
+
+.redLine 
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="redLine");
+	downSkin:Embed(source="bubble.swf" ,symbol="redLine");
+	overSkin:Embed(source="bubble.swf" ,symbol="redLine");
+}
+.greyLine 
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="greyLine");
+	downSkin:Embed(source="bubble.swf" ,symbol="greyLine");
+	overSkin:Embed(source="bubble.swf" ,symbol="greyLine");
+}
+.nextBigBtn
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="nextBigBtn");
+	downSkin:Embed(source="bubble.swf" ,symbol="nextBigBtn");
+	overSkin:Embed(source="bubble.swf" ,symbol="nextBigBtn_over");
+	disabledSkin:Embed(source="bubble.swf" ,symbol="nextBigBtn_dis");
+}
+.preBigBtn
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="preBigBtn");
+	downSkin:Embed(source="bubble.swf" ,symbol="preBigBtn");
+	overSkin:Embed(source="bubble.swf" ,symbol="preBigBtn_over");
+	disabledSkin:Embed(source="bubble.swf" ,symbol="preBigBtn_dis");
+}
+
+.greyCanvas
+{
+	borderStyle:solid;
+	cornerRadius:10;
+	borderColor:#979797;
+	backgroundColor:#f3f3f3;
+	backgroundAlpha:1.0; 
+}
+.messageHrule{
+	strokeColor:#d6d6d6; 
+}
+.blackBoldText{
+	color:#000000; 
+	fontSize:12; 
+	fontWeight:bold;
+}
+.deepGreyText{
+	color:#474747;
+	fontSize:12;
+}
+.lightGreyText{
+	color:#999999;
+	fontSize:12;
+}
+.greyTitleBack{
+	backgroundColor:#C6C6C6;
+	cornerRadius:5;
+	borderStyle:solid;
+	borderColor:#C6C6C6;
+}
+.msgTextArea{
+	color:#474747;
+	borderStyle:none;
+}
+.background{
+	backgroundColor:#EDEDED;
+	
+}
+.colorBoldText{
+	color:#E00025; 
+	fontSize:12; 
+	fontWeight:bold;
+}
+.colorText{
+	color:#E00025; 
+	fontSize:12; 
+}
+.msgRedTextArea{
+	color:#E00025;
+	borderStyle:none;
 }

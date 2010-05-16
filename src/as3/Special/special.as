@@ -73,7 +73,7 @@
 			lBtn.text = result[i].name;
 			lBtn.index = i;
 			lBtn.toolTip = result[i].description;
-			lBtn.addEventListener(MouseEvent.CLICK,callSpecial);
+			lBtn.addEventListener(MouseEvent.CLICK,getSpecialMusicList);
 			var len:int = getStrActualLen(result[i].name) * 8;
 			lBtn.width = len;
 			sum = sum + len;
