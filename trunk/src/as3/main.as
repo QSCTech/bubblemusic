@@ -60,7 +60,7 @@
 	public var tagID:int = 0;
 	public var singerID:int = 0;
 	[Bindable]
-	public var Version:String = "Bubble Music 1.4 (2010.5.19.r103) April Fool's Edition.Powered by QSCtech";
+	public var Version:String = "Bubble Music 1.4 (2010.5.19.r107) April Fool's Edition.Powered by QSCtech";
 	
 	/**
 	 *初始化播放列表 
@@ -337,7 +337,7 @@
 			userId = result.user_id;
 			top.currentState = "logined";
 			flash.external.ExternalInterface.call("setSid", result.sid);
-			rpc.getMsgUncheckNum(onGetMsgUncheckNum,userId);
+			rpc.getUserMsgUnCheck(onGetUserMsgUnCheck,userId);
 		} 
 	 }
 	/**
@@ -1194,9 +1194,9 @@
 		userName = result.user_name;
 		userId = result.user_id;
 		tipsShow("登录成功~");
-		rpc.getMsgUncheckNum(onGetMsgUncheckNum,userId);
+		rpc.getUserMsgUnCheck(onGetUserMsgUnCheck,userId);
 	}
-	private function onGetMsgUncheckNum(result:int):void{
+	private function onGetUserMsgUnCheck(result:int):void{
 		if(result>0){
 			top.messageBtn.label = "new站内信";
 			top.messageBtn.styleName = "topNewLBtn";
@@ -1510,7 +1510,7 @@
 		rpc.getUserMsg(onMessageResult,userId,1);
 	}
 	private function onMessageResult(result:Array):void{
-		rpc.getMsgUncheckNum(onGetMsgUncheckNum,userId);
+		rpc.getUserMsgUnCheck(onGetUserMsgUnCheck,userId);
 		messageResult.splice(0,messageResult.length);
 		this.messageResult = result;
 		
@@ -1679,7 +1679,7 @@
     
     private function msgDetail(event:MouseEvent):void{
 		var i:int = event.currentTarget.index - 1;
-    	rpc.getMsgBody(msgDetailCallback,messageResult[i].msg_id);	
+    	rpc.getMsgBody(msgDetailCallback,messageResult[i].msg_id,userId);	
     }
     private function msgDetailCallback(result:Array):void{
     	messagePreNext.splice(0,messagePreNext.length);
@@ -1764,7 +1764,7 @@
     private function nextMsgPage(event:Event):void{
 		var page:int = int(messageBox.page.text) + 1;
 		if(messageBox.currentState == "detailed"){
-			rpc.getMsgBody(msgDetailCallback,messagePreNext[2].msg_id);
+			rpc.getMsgBody(msgDetailCallback,messagePreNext[2].msg_id,userId);
 		}
 		else{
 			rpc.getUserMsg(onMessageResult,userId,int(messageBox.page.text));
@@ -1774,7 +1774,7 @@
 	private function preMsgPage(event:Event):void{
 		var page:int = int(messageBox.page.text) - 1;
 		if(messageBox.currentState == "detailed"){
-			rpc.getMsgBody(msgDetailCallback,messagePreNext[0].msg_id);		
+			rpc.getMsgBody(msgDetailCallback,messagePreNext[0].msg_id,userId);		
 		}
 		else{
 			rpc.getUserMsg(onMessageResult,userId,int(messageBox.page.text));

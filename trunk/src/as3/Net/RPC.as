@@ -208,14 +208,14 @@ package as3.Net
 			conn.call("User.delMsgAll",new Responder(result,onFault),userid);
 			conn.close();
 		}
-		public function getMsgBody(result:Function,msgid:int):void{
+		public function getMsgBody(result:Function,msgid:int,userid:int):void{
 			conn.connect(URL);
-			conn.call("User.getMsgBody",new Responder(result,onFault),msgid);
+			conn.call("User.getMsgBody",new Responder(result,onFault),msgid,userid);
 			conn.close();
 		}
-		public function getMsgUncheckNum(result:Function,userid:int):void{
+		public function getUserMsgUnCheck(result:Function,userid:int):void{
 			conn.connect(URL);
-			conn.call("User.getMsgUncheckNum",new Responder(result,onFault),userid);
+			conn.call("User.getUserMsgUnCheck",new Responder(result,onFault),userid);
 			conn.close();
 		}
 	}
