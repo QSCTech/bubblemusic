@@ -43,6 +43,7 @@
 	//远程数据调用
 	public var searchResult:Array = new Array();
 	public var messageResult:Array = new Array();
+	public var messagePreNext:Array = new Array();
 	//远程数据调用
 	public var rpc:RPC = new RPC();
 	
@@ -1520,7 +1521,7 @@
 	
 	private function syncMessageList(list:Array):void{
 		var page:int = int(messageBox.page.text);	
-		if(!list){
+		if(list.length==0){
 			messageBox.currentState = "noneMsg";
 		}
 		else{
@@ -1677,34 +1678,18 @@
     }
     
     private function msgDetail(event:MouseEvent):void{
-    	var i:int = event.currentTarget.index - 1;
-    	messageBox.currentState = "detailed";
-    	messageBox.msg1.msg_head = messageResult[i].msg_head;
-		messageBox.msg1.user_name = messageResult[i].user_name;
-		messageBox.msg1.msg_date = messageResult[i].msg_date;
-		messageBox.msg1.msg_body = messageResult[i].msg_body; 
-		if(messageResult[i].msg_check == 0)
-			rpc.checkMsg(blank, messageResult[i].msg_id, userId,0);
-		messageBox.page.text = String(i+1);
-		
-		if(messageResult[i+1])
-        	messageBox.nextBigBtn.enabled = true;
-        else 
-        	messageBox.nextBigBtn.enabled = false;
-        	
-        if(i>0)
-        	messageBox.preBigBtn.enabled = true;
-        else 
-        	messageBox.preBigBtn.enabled = false;
+		var i:int = event.currentTarget.owner.index - 1;
+    	rpc.getMsgBody(msgDetailCallback,messageResult[i].msg_id);	
     }
     private function msgDetailCallback(result:Array):void{
-    	var i:int = int(messageBox.page.text);
+    	messagePreNext.splice(0,messagePreNext.length);
+		this.messagePreNext = result;
     	messageBox.currentState = "detailed";
     	messageBox.msg1.msg_head = result[1].msg_head;
 		messageBox.msg1.user_name = result[1].user_name;
 		messageBox.msg1.msg_date = result[1].msg_date;
 		messageBox.msg1.msg_body = result[1].msg_body; 
-		if(messageResult[i].msg_check == 0)
+		if(messageResult[1].msg_check == 0)
 			rpc.checkMsg(blank, result[1].msg_id, userId,0);
 		
 		if(result[2])
@@ -1716,9 +1701,7 @@
         	messageBox.preBigBtn.enabled = true;
         else 
         	messageBox.preBigBtn.enabled = false;
-        
-        	
-		
+
     }
     private function deleteMsg(event:MouseEvent):void{
     	messageResult[10] = "";
@@ -1749,7 +1732,7 @@
     			messageResult[10] += "||" + messageResult[2].msg_id;
     	}
     	if(messageResult[10]!=""){
-    		rpc.delMsg(onMessageResult, userId, messageResult[10],(int(messageBox.page.text)-1));
+    		rpc.delMsg(onMessageResult, messageResult[10], userId,(int(messageBox.page.text)-1));
     		tipsShow("删除成功");
     	}
     	else{
@@ -1758,7 +1741,7 @@
     }
     private function deleteSingleMsg(event:MouseEvent):void{
     	var page:int = int(messageBox.page.text) - 1;
-    	rpc.delMsg(blank, userId, messageResult[page].msg_id, 0);
+    	rpc.delMsg(blank, messageResult[page].msg_id, userId,0);
     	tipsShow("删除成功");
     	if(messageBox.nextBigBtn.enabled == true)
     		nextMsgPage(event);
@@ -1768,13 +1751,20 @@
     		getUserMessage();
     }
     private function deleteAllMsg(event:MouseEvent):void{
-    	rpc.delMsgAll(onMessageResult, userId);
-    	tipsShow("删除成功");
+    	rpc.delMsgAll(onDeleteAllMsg, userId);
+    }
+    private function onDeleteAllMsg(result:Boolean):void{
+    	if(result){
+    		tipsShow("删除成功");
+    		messageBox.currentState = "noneMsg";
+    	}
+    	else
+    		Alert.show("请重试");
     }
     private function nextMsgPage(event:Event):void{
 		var page:int = int(messageBox.page.text) + 1;
 		if(messageBox.currentState == "detailed"){
-			rpc.getMsgBody(msgDetailCallback,userId,page);
+			rpc.getMsgBody(msgDetailCallback,messagePreNext[2].msg_id);
 		}
 		else{
 			rpc.getUserMsg(onMessageResult,userId,int(messageBox.page.text));
@@ -1784,7 +1774,7 @@
 	private function preMsgPage(event:Event):void{
 		var page:int = int(messageBox.page.text) - 1;
 		if(messageBox.currentState == "detailed"){
-			rpc.getMsgBody(msgDetailCallback,userId,page);		
+			rpc.getMsgBody(msgDetailCallback,messagePreNext[0].msg_id);		
 		}
 		else{
 			rpc.getUserMsg(onMessageResult,userId,int(messageBox.page.text));
