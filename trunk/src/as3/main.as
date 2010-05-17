@@ -1678,7 +1678,7 @@
     }
     
     private function msgDetail(event:MouseEvent):void{
-		var i:int = event.currentTarget.owner.index - 1;
+		var i:int = event.currentTarget.index - 1;
     	rpc.getMsgBody(msgDetailCallback,messageResult[i].msg_id);	
     }
     private function msgDetailCallback(result:Array):void{
@@ -1732,7 +1732,7 @@
     			messageResult[10] += "||" + messageResult[2].msg_id;
     	}
     	if(messageResult[10]!=""){
-    		rpc.delMsg(onMessageResult, messageResult[10], userId,(int(messageBox.page.text)-1));
+    		rpc.delMsg(onMessageResult, messageResult[10], userId, 1);
     		tipsShow("删除成功");
     	}
     	else{
