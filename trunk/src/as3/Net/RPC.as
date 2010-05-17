@@ -10,7 +10,6 @@ package as3.Net
 
 		//private var URL:String = "http://www.qsc.zju.edu.cn/apps/bubble/amfphp/gateway.php";
 
-		//private var URL:String = "http://10.76.8.200/bubble/amfphp/gateway.php";
 		private var URL:String = "http://localhost/amfphp/gateway.php";
 
 		public function RPC()
@@ -199,9 +198,9 @@ package as3.Net
 			conn.call("User.checkMsg",new Responder(result,onFault),msgid,userid,page);
 			conn.close();
 		}
-		public function delMsg(result:Function,userid:int,msgid:String,page:int):void{
+		public function delMsg(result:Function,msgid:String,userid:int,page:int):void{
 			conn.connect(URL);
-			conn.call("User.delMsg",new Responder(result,onFault),userid,msgid,page);
+			conn.call("User.delMsg",new Responder(result,onFault),msgid,userid,page);
 			conn.close();
 		}
 		public function delMsgAll(result:Function,userid:int):void{
@@ -209,9 +208,9 @@ package as3.Net
 			conn.call("User.delMsgAll",new Responder(result,onFault),userid);
 			conn.close();
 		}
-		public function getMsgBody(result:Function,userid:int,num:int):void{
+		public function getMsgBody(result:Function,msgid:int):void{
 			conn.connect(URL);
-			conn.call("User.getMsgBody",new Responder(result,onFault),userid,num);
+			conn.call("User.getMsgBody",new Responder(result,onFault),msgid);
 			conn.close();
 		}
 		public function getMsgUncheckNum(result:Function,userid:int):void{
