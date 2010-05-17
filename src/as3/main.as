@@ -1767,7 +1767,7 @@
 			rpc.getMsgBody(msgDetailCallback,messagePreNext[2].msg_id,userId);
 		}
 		else{
-			rpc.getUserMsg(onMessageResult,userId,int(messageBox.page.text));
+			rpc.getUserMsg(onMessageResult,userId,page);
 		}
 		messageBox.page.text = String(page);
 	}
@@ -1777,7 +1777,7 @@
 			rpc.getMsgBody(msgDetailCallback,messagePreNext[0].msg_id,userId);		
 		}
 		else{
-			rpc.getUserMsg(onMessageResult,userId,int(messageBox.page.text));
+			rpc.getUserMsg(onMessageResult,userId,page);
 		}
 		messageBox.page.text = String(page);
 	}
