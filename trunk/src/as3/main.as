@@ -57,6 +57,7 @@
 	public var isFinished:int = 1;
 	public var isSearch:int;//isSearch=1显示搜索结果,isSearch=2显示听过的歌曲,isSearch=3显示收藏的歌曲
 	public var isStyle:int = 0;//风格电台是否弹出
+	public var msgState:int = 0; //1收件箱、 2 发件箱 
 	public var tagID:int = 0;
 	public var singerID:int = 0;
 	[Bindable]
@@ -1499,24 +1500,33 @@
 		isStyle = 0;	
 	}
 	
+	private function getUserSendedMsg(event:MouseEvent):void{
+		currentState = "message";
+		messageBox.page.text = "1";
+		msgState = 2;
+		rpc.getUserSendedMsg(onMessageResult,userId,1);
+	}
+	
 	private function getUserMessage():void{
 		currentState = "message";
 		messageBox.page.text = "1";
+		msgState = 1;
 		rpc.getUserMsg(onMessageResult,userId,1);
 	}
 	private function backUserMessage(event:MouseEvent):void{
 		currentState = "message";
 		messageBox.page.text = "1";
+		msgState = 1;
 		rpc.getUserMsg(onMessageResult,userId,1);
 	}
 	private function onMessageResult(result:Array):void{
-		rpc.getUserMsgUnCheck(onGetUserMsgUnCheck,userId);
 		messageResult.splice(0,messageResult.length);
 		this.messageResult = result;
 		
 		messageBox.nextBigBtn.enabled = false;
 		messageBox.preBigBtn.enabled = false;
 		this.syncMessageList(messageResult);
+		rpc.getUserMsgUnCheck(onGetUserMsgUnCheck,userId);
 	}
 	
 	private function syncMessageList(list:Array):void{
@@ -1546,6 +1556,7 @@
 				messageBox.msg1.user_name = list[0].user_name;
 				messageBox.msg1.msg_date = list[0].msg_date;
 				messageBox.msg1.msg_body = list[0].msg_body; 
+				messageBox.msg1.to_user_name = list[0].user_name;
 				if(list[1]){
 					messageBox.msg2.visible = true;
 					if(list[1].msg_check == 0){
@@ -1577,12 +1588,7 @@
 		        	messageBox.nextBigBtn.enabled = false;
 				
 				messageBox.currentState = "noneNew";
-				messageBox.msg11.addEventListener(MouseEvent.DOUBLE_CLICK,msgDetail);
-				messageBox.msg4.addEventListener(MouseEvent.DOUBLE_CLICK,msgDetail);
-				messageBox.msg5.addEventListener(MouseEvent.DOUBLE_CLICK,msgDetail);
-				messageBox.msg6.addEventListener(MouseEvent.DOUBLE_CLICK,msgDetail);
-				messageBox.msg7.addEventListener(MouseEvent.DOUBLE_CLICK,msgDetail);
-				messageBox.msg8.addEventListener(MouseEvent.DOUBLE_CLICK,msgDetail);
+				
 				if(list[0]){
 					messageBox.msg11.visible = true;
 					messageBox.msg11.deleteBtn.selected = false;
@@ -1669,6 +1675,12 @@
 					messageBox.msg8.msg_body = list[7].msg_body; 
 				}else{messageBox.msg8.visible = false;}
 				
+				messageBox.msg11.addEventListener(MouseEvent.DOUBLE_CLICK,msgDetail);
+				messageBox.msg4.addEventListener(MouseEvent.DOUBLE_CLICK,msgDetail);
+				messageBox.msg5.addEventListener(MouseEvent.DOUBLE_CLICK,msgDetail);
+				messageBox.msg6.addEventListener(MouseEvent.DOUBLE_CLICK,msgDetail);
+				messageBox.msg7.addEventListener(MouseEvent.DOUBLE_CLICK,msgDetail);
+				messageBox.msg8.addEventListener(MouseEvent.DOUBLE_CLICK,msgDetail);
 			}
 		}
     }
@@ -1685,12 +1697,17 @@
     	messagePreNext.splice(0,messagePreNext.length);
 		this.messagePreNext = result;
     	messageBox.currentState = "detailed";
+    	
     	messageBox.msg1.msg_head = result[1].msg_head;
 		messageBox.msg1.user_name = result[1].user_name;
 		messageBox.msg1.msg_date = result[1].msg_date;
 		messageBox.msg1.msg_body = result[1].msg_body; 
+		
+		messageBox.msg1.to_user_name = result[1].user_name;
 		if(messageResult[1].msg_check == 0)
 			rpc.checkMsg(blank, result[1].msg_id, userId,0);
+		
+		
 		
 		if(result[2])
         	messageBox.nextBigBtn.enabled = true;
@@ -1740,8 +1757,7 @@
     	}
     }
     private function deleteSingleMsg(event:MouseEvent):void{
-    	var page:int = int(messageBox.page.text) - 1;
-    	rpc.delMsg(blank, messageResult[page].msg_id, userId,0);
+    	rpc.delMsg(blank, messagePreNext[1].msg_id, userId,0);
     	tipsShow("删除成功");
     	if(messageBox.nextBigBtn.enabled == true)
     		nextMsgPage(event);
@@ -1765,19 +1781,78 @@
 		var page:int = int(messageBox.page.text) + 1;
 		if(messageBox.currentState == "detailed"){
 			rpc.getMsgBody(msgDetailCallback,messagePreNext[2].msg_id,userId);
+			messageBox.detailNext.play();
+		}
+		else if(msgState == 1){
+			rpc.getUserMsg(onMessageResult,userId,page);
+			messageBox.receiveNext.play();
 		}
 		else{
-			rpc.getUserMsg(onMessageResult,userId,page);
+			rpc.getUserSendedMsg(onMessageResult,userId,page);
+			messageBox.summaryNext.play();
 		}
 		messageBox.page.text = String(page);
 	}
 	private function preMsgPage(event:Event):void{
 		var page:int = int(messageBox.page.text) - 1;
 		if(messageBox.currentState == "detailed"){
-			rpc.getMsgBody(msgDetailCallback,messagePreNext[0].msg_id,userId);		
+			rpc.getMsgBody(msgDetailCallback,messagePreNext[0].msg_id,userId);	
+			messageBox.detailPre.play();	
+		}
+		else if(msgState == 1){
+			rpc.getUserMsg(onMessageResult,userId,page);
+			messageBox.receivePre.play();
 		}
 		else{
-			rpc.getUserMsg(onMessageResult,userId,page);
+			rpc.getUserSendedMsg(onMessageResult,userId,page);
+			messageBox.summaryPre.play();
 		}
 		messageBox.page.text = String(page);
+	}
+	/**
+	 * 向播放列表中删除歌曲，列表动画添加
+	 */
+	private function msgListEffect(from:int):void{
+		var effect:Parallel = new Parallel();
+		for (var i:int=from-1; i<12; i++){
+			effect.addChild(musicList.listEffectArray[i]);
+		}
+		effect.play();
+	}
+	private function writeNewMsg(event:MouseEvent):void{
+		messageBox.currentState = "writeMsg";
+		messageBox.msg1.to_username.text = "bubble";
+		messageBox.msg1.to_username.editable = false;
+		messageBox.msg1.msg_body = "";
+		messageBox.msg1.to_msghead.text = "";
+		messageBox.msg1.sendMsg.addEventListener(MouseEvent.CLICK,sendNewMsg);
+	}
+	private function replyNewMsg(event:MouseEvent):void{
+		if(messageBox.currentState == "detailed")
+			messageBox.msg1.reply_userid = messagePreNext[1].user_id;
+		else
+			messageBox.msg1.reply_userid = messageResult[0].user_id;
+		messageBox.currentState = "writeMsg";
+		messageBox.msg1.to_username.text = messageBox.msg1.to_user_name;
+		messageBox.msg1.to_username.editable = false;
+		messageBox.msg1.msg_body = "";
+		messageBox.msg1.to_msghead.text = "";
+		messageBox.msg1.sendMsg.addEventListener(MouseEvent.CLICK,sendNewMsg);
+	}
+	private function sendNewMsg(event:MouseEvent):void{
+		if( messageBox.msg1.to_username.text != "" && messageBox.msg1.to_msghead.text != "" && messageBox.msg1.msgbody.text != "")
+			rpc.sendMsg(onSendMsg, userId, messageBox.msg1.to_username.text, messageBox.msg1.to_msghead.text, messageBox.msg1.msgbody.text);
+		else
+			Alert.show("请输入完整信息^^");
+	}
+	private function onSendMsg(result:Boolean):void{
+		if(!result){
+			Alert.show("发送失败，请重试^^");
+		}
+		else{
+			tipsShow("发送成功");
+			currentState = "message";
+			messageBox.page.text = "1";
+			rpc.getUserSendedMsg(onMessageResult,userId,1);
+		}
 	}

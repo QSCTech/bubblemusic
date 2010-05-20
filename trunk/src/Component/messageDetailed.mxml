@@ -9,6 +9,7 @@
 			<mx:SetProperty target="{msgbody}" name="styleName" value="msgRedTextArea"/>
 			<mx:SetProperty target="{backMsgBtn}" name="visible" value="false"/>
 			<mx:SetProperty target="{deleteMsg}" name="visible" value="false"/>
+			<mx:SetProperty target="{msgbody}" name="editable" value="false"/>
 		</mx:State>
 		<mx:State name="detailed">
 			<mx:SetProperty target="{msgbody}" name="height" value="160"/>
@@ -20,11 +21,43 @@
 			<mx:SetProperty target="{hbox1}" name="x" value="65"/>
 			<mx:SetProperty target="{hbox2}" name="x" value="65"/>
 			<mx:SetProperty target="{msgbody}" name="x" value="10"/>
-			
+			<mx:SetStyle target="{replyMsg}" name="right" value="140"/>
+			<mx:SetProperty target="{msgbody}" name="editable" value="false"/>
 		</mx:State>
 		<mx:State name="init">
 			<mx:SetProperty target="{backMsgBtn}" name="visible" value="false"/>
 			<mx:SetProperty target="{deleteMsg}" name="visible" value="false"/>
+		</mx:State>
+		<mx:State name="writeMsg">
+			<mx:SetProperty target="{msgbody}" name="height" value="160"/>
+			<mx:SetProperty target="{msgbody}" name="x" value="10"/>
+			<mx:RemoveChild target="{read}"/>
+			<mx:SetProperty target="{backMsgBtn}" name="visible" value="true"/>
+			<mx:RemoveChild target="{deleteBtn}"/>
+			<mx:SetStyle target="{touxiang}" name="left" value="10"/>
+			<mx:SetProperty target="{hbox1}" name="x" value="65"/>
+			<mx:SetProperty target="{hbox1}" name="y" value="8"/>
+			<mx:SetProperty target="{hbox2}" name="x" value="65"/>
+			<mx:SetProperty target="{hbox2}" name="y" value="32"/>
+			<mx:SetProperty target="{from}" name="text" value="To:"/>
+			<mx:RemoveChild target="{msgdate}"/>
+			<mx:RemoveChild target="{msghead}"/>
+			
+			<mx:SetProperty target="{msgbody}" name="editable" value="true"/>
+			<mx:RemoveChild target="{replyMsg}"/>
+			<mx:RemoveChild target="{deleteMsg}"/>
+			<mx:RemoveChild target="{username}"/>
+			<mx:AddChild position="lastChild">
+				<mx:LinkButton id="sendMsg" label="立即发送" right="80" top="10"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{hbox1}" position="lastChild">
+				<mx:TextInput id="to_msghead" width="307" height="23" backgroundColor="#FFFFFF" borderColor="#474747" color="#474747" fontWeight="bold"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{hbox2}" position="lastChild">
+				<mx:TextInput height="23" id="to_username" backgroundColor="#FFFFFF" borderColor="#474747" color="#474747"/>
+			</mx:AddChild>
+			
+			
 		</mx:State>
 	</mx:states>
 
@@ -41,6 +74,8 @@
 			 [Bindable]
 			 public var msg_body:String = "";
 			 
+			 public var to_user_name:String = "";
+			 public var reply_userid:int = 0;
 		]]>
 	</mx:Script>
 	<mx:CheckBox id="deleteBtn" top="30" left="5" selected="false"/>
@@ -58,4 +93,5 @@
 	<mx:RadioButton id="read" label="标记为已读" right="10" top="34"/>
 	<mx:LinkButton id="backMsgBtn" label="返回收件箱" right="10" top="10" visible="false"/>
 	<mx:LinkButton id="deleteMsg" label="删除信息" right="80" top="10" visible="false"/>
+	<mx:LinkButton label="回复" right="10" top="10" id="replyMsg"/>
 </mx:Canvas>

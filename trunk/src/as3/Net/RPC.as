@@ -193,6 +193,11 @@ package as3.Net
 			conn.call("User.getUserMsg",new Responder(result,onFault),userid,page);
 			conn.close();
 		}
+		public function getUserSendedMsg(result:Function,userid:int,page:int):void{
+			conn.connect(URL);
+			conn.call("User.getUserSendedMsg",new Responder(result,onFault),userid,page);
+			conn.close();
+		}
 		public function checkMsg(result:Function,msgid:int,userid:int,page:int):void{
 			conn.connect(URL);
 			conn.call("User.checkMsg",new Responder(result,onFault),msgid,userid,page);
@@ -216,6 +221,11 @@ package as3.Net
 		public function getUserMsgUnCheck(result:Function,userid:int):void{
 			conn.connect(URL);
 			conn.call("User.getUserMsgUnCheck",new Responder(result,onFault),userid);
+			conn.close();
+		}
+		public function sendMsg(result:Function,userid:int,to_username:String, msghead:String, msgbody:String):void{
+			conn.connect(URL);
+			conn.call("User.sendMsg",new Responder(result,onFault), userid, to_username, msghead, msgbody);
 			conn.close();
 		}
 	}
