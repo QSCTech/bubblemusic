@@ -72,6 +72,17 @@
 			<mx:SetProperty target="{page}" name="visible" value="true"/>
 			<mx:SetProperty target="{msg1}" name="doubleClickEnabled" value="true"/>
 			<mx:SetProperty target="{msg1}" name="currentState" value="init"/>
+			
+		</mx:State>
+		<mx:State name="writeMsg">
+			<mx:RemoveChild target="{msg2}"/>
+			<mx:RemoveChild target="{hrule1}"/>
+			<mx:RemoveChild target="{msg3}"/>
+			<mx:RemoveChild target="{hrule2}"/>
+			<mx:SetProperty target="{msg1}" name="currentState" value="writeMsg"/>
+			<mx:SetProperty target="{msg1}" name="doubleClickEnabled" value="false"/>
+			<mx:SetProperty target="{page}" name="visible" value="false"/>
+			<mx:RemoveChild target="{hbox1}"/>
 		</mx:State>
 	</mx:states>
 
@@ -79,8 +90,11 @@
 	<mx:Canvas width="782" height="260" styleName="greyCanvas" horizontalCenter="0" horizontalScrollPolicy="off" verticalScrollPolicy="off" id="canvas1">
 		<mx:Canvas left="5" top="5" width="770" height="21" styleName="greyTitleBack">
 			<mx:Text x="5" y="0" text="站内信" styleName="blackBoldText" selectable="false"/>
-			<mx:Text x="50" y="0" text="暂未开放用户之间互传站内信功能" styleName="deepGreyText" selectable="false"/>
-			<mx:LinkButton id="backLyric" label="返回" right="2" height="18" styleName="backLyricLBtn" verticalCenter="0"/>
+			<mx:Text x="50" y="0" text="暂未开放用户之间互传站内信功能" styleName="deepGreyText" selectable="false" id="text1"/>
+			<mx:LinkButton id="backLyric" label="返回" right="2" height="18" styleName="backLyricLBtn" verticalCenter="0" fontSize="12"/>
+			<mx:LinkButton id="sendedMsgBox" label="发件箱" right="33" height="18" styleName="backLyricLBtn" verticalCenter="0" fontSize="12"/>
+			<mx:LinkButton id="receivedMsgBox" label="收件箱" right="80" height="18" styleName="backLyricLBtn" verticalCenter="0" fontSize="12"/>
+			<mx:LinkButton id="createMsg" label="写邮件" right="125" height="18" styleName="backLyricLBtn" verticalCenter="0" fontSize="12"/>
 		</mx:Canvas>
 		
 		<mx:HBox x="10" bottom="5" id="hbox1">
@@ -121,7 +135,49 @@
 				<mx:Dissolve alphaFrom="0.0" alphaTo="1.0" duration="1000"/>
 			</mx:Parallel>
 		</mx:Transition>
+		<mx:Transition fromState="*" toState="writeMsg">
+			<mx:Parallel target="{canvas1}">
+				<mx:WipeDown duration="1000"/>
+				<mx:Dissolve alphaFrom="0.0" alphaTo="1.0" duration="1000"/>
+			</mx:Parallel>
+		</mx:Transition>
 	</mx:transitions>
 	
+	<mx:Parallel id="summaryNext">
+		<mx:Move target="{msg11}" xFrom="760" xTo="0" duration="500"/>
+		<mx:Move target="{msg2}" xFrom="760" xTo="0" duration="500"/>
+		<mx:Move target="{msg3}" xFrom="760" xTo="0" duration="500"/>
+		<mx:Move target="{msg4}" xFrom="760" xTo="0" duration="500"/>
+		<mx:Move target="{msg5}" xFrom="760" xTo="0" duration="500"/>
+		<mx:Move target="{msg6}" xFrom="760" xTo="0" duration="500"/>
+		<mx:Move target="{msg7}" xFrom="760" xTo="0" duration="500"/>
+		<mx:Move target="{msg8}" xFrom="760" xTo="0" duration="500"/>
+	</mx:Parallel>
+	<mx:Parallel id="summaryPre">
+		<mx:Move target="{msg11}" xFrom="-760" xTo="0" duration="500"/>
+		<mx:Move target="{msg2}" xFrom="-760" xTo="0" duration="500"/>
+		<mx:Move target="{msg3}" xFrom="-760" xTo="0" duration="500"/>
+		<mx:Move target="{msg4}" xFrom="-760" xTo="0" duration="500"/>
+		<mx:Move target="{msg5}" xFrom="-760" xTo="0" duration="500"/>
+		<mx:Move target="{msg6}" xFrom="-760" xTo="0" duration="500"/>
+		<mx:Move target="{msg7}" xFrom="-760" xTo="0" duration="500"/>
+		<mx:Move target="{msg8}" xFrom="-760" xTo="0" duration="500"/>
+	</mx:Parallel>
+	<mx:Parallel id="detailNext">
+		<mx:Move target="{msg1}" xFrom="760" xTo="0" duration="500"/>
+	</mx:Parallel>
+	<mx:Parallel id="detailPre">
+		<mx:Move target="{msg1}" xFrom="-760" xTo="0" duration="500"/>
+	</mx:Parallel>
+	<mx:Parallel id="receiveNext">
+		<mx:Move target="{msg1}" xFrom="760" xTo="0" duration="500"/>
+		<mx:Move target="{msg2}" xFrom="760" xTo="0" duration="500"/>
+		<mx:Move target="{msg3}" xFrom="760" xTo="0" duration="500"/>
+	</mx:Parallel>
+	<mx:Parallel id="receivePre">
+		<mx:Move target="{msg1}" xFrom="-760" xTo="0" duration="500"/>
+		<mx:Move target="{msg2}" xFrom="-760" xTo="0" duration="500"/>
+		<mx:Move target="{msg3}" xFrom="-760" xTo="0" duration="500"/>
+	</mx:Parallel>
 	
 </mx:Canvas>

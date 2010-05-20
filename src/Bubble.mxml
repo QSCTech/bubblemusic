@@ -103,12 +103,10 @@
 			<mx:SetEventHandler target="{messageBox.preBigBtn}" handlerFunction="preMsgPage" name="click"/>
 			<mx:SetEventHandler target="{messageBox.msg1.backMsgBtn}" handlerFunction="backUserMessage" name="click"/>
 			<mx:SetEventHandler target="{messageBox.msg1.deleteMsg}" handlerFunction="deleteSingleMsg" name="click"/>
-			<mx:SetEventHandler target="{messageBox.msg11}" handlerFunction="msgDetail" name="doubleClick"/>
-			<mx:SetEventHandler target="{messageBox.msg4}" handlerFunction="msgDetail" name="doubleClick"/>
-			<mx:SetEventHandler target="{messageBox.msg5}" handlerFunction="msgDetail" name="doubleClick"/>
-			<mx:SetEventHandler target="{messageBox.msg6}" handlerFunction="msgDetail" name="doubleClick"/>
-			<mx:SetEventHandler target="{messageBox.msg7}" handlerFunction="msgDetail" name="doubleClick"/>
-			<mx:SetEventHandler target="{messageBox.msg8}" handlerFunction="msgDetail" name="doubleClick"/>
+			<mx:SetEventHandler target="{messageBox.msg1.replyMsg}" handlerFunction="replyNewMsg" name="click"/>
+			<mx:SetEventHandler target="{messageBox.receivedMsgBox}" handlerFunction="backUserMessage" name="click"/>
+			<mx:SetEventHandler target="{messageBox.sendedMsgBox}" handlerFunction="getUserSendedMsg" name="click"/>
+			<mx:SetEventHandler target="{messageBox.createMsg}" handlerFunction="writeNewMsg" name="click"/>
 		</mx:State>
 		
 	
