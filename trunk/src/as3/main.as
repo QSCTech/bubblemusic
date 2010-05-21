@@ -4,7 +4,6 @@
  */
 	import Component.Favourite;
 	import Component.delFav;
-	import Component.listDIY;
 	import Component.login;
 	import Component.mood;
 	import Component.musicStyle;
@@ -136,7 +135,7 @@
 	    now.specialList.addEventListener(MouseEvent.CLICK,specialList);
 	    now.mStyle.addEventListener(MouseEvent.CLICK,mStyle);
 	    
-	    now.diyList.addEventListener(MouseEvent.CLICK,diyShow);
+	    
 	    now.rssPlayer.addEventListener(MouseEvent.CLICK,rssShow);
 	    now.storeMusic.addEventListener(MouseEvent.CLICK,collectMusic);
 	    now.loopPlay.addEventListener(MouseEvent.CLICK,setLoop);
@@ -1234,19 +1233,7 @@
 		tipShow.play();
 	}
 	
-	/**
-	 * DIY播放列表
-	 */
-	 private function diyShow(event:MouseEvent):void{
-		var diyWin:listDIY = new listDIY();
-		PopUpManager.addPopUp(diyWin,this,false);
-	    PopUpManager.centerPopUp(diyWin);
-	    diyWin.init(userName);
-	    diyWin.logNew = loginNew;
-	    diyWin.regNew = registerNew;
-	    diyWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
-	    diyWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
-	}	
+	
 	/**
 	 * 关注歌手
 	 */
