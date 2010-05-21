@@ -109,8 +109,16 @@
 			<mx:SetEventHandler target="{messageBox.createMsg}" handlerFunction="writeNewMsg" name="click"/>
 		</mx:State>
 		
-	
-		
+		<mx:State name="newList">
+			<mx:RemoveChild target="{musicList}"/>
+			<mx:RemoveChild target="{lyric}"/>
+			<mx:AddChild relativeTo="{middle}" position="lastChild">
+				<bubble:musicList id="newListBox" />
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{middle}" position="lastChild">
+				<bubble:searchBox id="newListSearch" verticalCenter="0"/>
+			</mx:AddChild>
+		</mx:State>
 	</mx:states>
 	
 	<bubble:top id="top" />
