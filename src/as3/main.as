@@ -1460,7 +1460,9 @@
 		//tipsShow("删除成功~");
 	}
 	
-	
+	/**
+	 * 播放列表鼠标中键滚动
+	 */
 	private function playListScroll(event:MouseEvent):void{
 		var i:int = -event.delta/3;
 		var len:int = playList.length - 12;
@@ -1475,6 +1477,9 @@
 		syncPlayListInfo(playList);
 	}
 	
+	/**
+	 * 风格均衡器
+	 */
 	private function mStyle(event:MouseEvent):void{
 		if(isStyle == 1){}
 		else if(userName!=""){
@@ -1495,11 +1500,17 @@
 		}
 	}
 	
+	/**
+	 * 风格设定成功回调
+	 */
 	private function styleBack():void{
 		tipsShow("调配成功");
 		isStyle = 0;	
 	}
 	
+	/**
+	 * 发件箱
+	 */
 	private function getUserSendedMsg(event:MouseEvent):void{
 		currentState = "message";
 		messageBox.page.text = "1";
@@ -1507,18 +1518,27 @@
 		rpc.getUserSendedMsg(onMessageResult,userId,1);
 	}
 	
+	/**
+	 * 收件箱
+	 */
 	private function getUserMessage():void{
 		currentState = "message";
 		messageBox.page.text = "1";
 		msgState = 1;
 		rpc.getUserMsg(onMessageResult,userId,1);
 	}
+	/**
+	 * 回到收件箱
+	 */
 	private function backUserMessage(event:MouseEvent):void{
 		currentState = "message";
 		messageBox.page.text = "1";
 		msgState = 1;
 		rpc.getUserMsg(onMessageResult,userId,1);
 	}
+	/**
+	 * 获取信息回调函数
+	 */
 	private function onMessageResult(result:Array):void{
 		messageResult.splice(0,messageResult.length);
 		this.messageResult = result;
@@ -1528,7 +1548,9 @@
 		this.syncMessageList(messageResult);
 		rpc.getUserMsgUnCheck(onGetUserMsgUnCheck,userId);
 	}
-	
+	/**
+	 * 布局信息
+	 */
 	private function syncMessageList(list:Array):void{
 		var page:int = int(messageBox.page.text);	
 		if(list.length==0){
@@ -1684,15 +1706,25 @@
 			}
 		}
     }
+    
+    /**
+	 * 信息设为已读
+	 */
     private function setMsgReaded(event:Event):void{
     	var i:int = event.currentTarget.owner.index - 1;
     	rpc.checkMsg(onMessageResult, messageResult[i].msg_id, userId,int(messageBox.page.text));
     }
     
+    /**
+	 * 信息detail浏览
+	 */
     private function msgDetail(event:MouseEvent):void{
 		var i:int = event.currentTarget.index - 1;
     	rpc.getMsgBody(msgDetailCallback,messageResult[i].msg_id,userId);	
     }
+    /**
+	 * 信息detail浏览回调函数
+	 */
     private function msgDetailCallback(result:Array):void{
     	messagePreNext.splice(0,messagePreNext.length);
 		this.messagePreNext = result;
@@ -1706,9 +1738,7 @@
 		messageBox.msg1.to_user_name = result[1].user_name;
 		if(messageResult[1].msg_check == 0)
 			rpc.checkMsg(blank, result[1].msg_id, userId,0);
-		
-		
-		
+
 		if(result[2])
         	messageBox.nextBigBtn.enabled = true;
         else 
@@ -1720,6 +1750,10 @@
         	messageBox.preBigBtn.enabled = false;
 
     }
+    
+    /**
+	 * 删除信息
+	 */
     private function deleteMsg(event:MouseEvent):void{
     	messageResult[10] = "";
     	if(messageBox.currentState == "noneNew"){
@@ -1756,6 +1790,10 @@
     		Alert.show("请选择需要删除的信息>< ");
     	}
     }
+    
+    /**
+	 * detailed状态下 删除单个信息
+	 */
     private function deleteSingleMsg(event:MouseEvent):void{
     	rpc.delMsg(blank, messagePreNext[1].msg_id, userId,0);
     	tipsShow("删除成功");
@@ -1766,9 +1804,17 @@
     	else
     		getUserMessage();
     }
+    
+    /**
+	 * 删除所有信息
+	 */
     private function deleteAllMsg(event:MouseEvent):void{
     	rpc.delMsgAll(onDeleteAllMsg, userId);
     }
+    
+    /**
+	 * 删除所有信息回调函数
+	 */
     private function onDeleteAllMsg(result:Boolean):void{
     	if(result){
     		tipsShow("删除成功");
@@ -1777,6 +1823,10 @@
     	else
     		Alert.show("请重试");
     }
+    
+    /**
+	 * 后一页信息
+	 */
     private function nextMsgPage(event:Event):void{
 		var page:int = int(messageBox.page.text) + 1;
 		if(messageBox.currentState == "detailed"){
@@ -1793,6 +1843,10 @@
 		}
 		messageBox.page.text = String(page);
 	}
+	
+	/**
+	 * 前一页信息
+	 */
 	private function preMsgPage(event:Event):void{
 		var page:int = int(messageBox.page.text) - 1;
 		if(messageBox.currentState == "detailed"){
@@ -1809,6 +1863,7 @@
 		}
 		messageBox.page.text = String(page);
 	}
+	
 	/**
 	 * 向播放列表中删除歌曲，列表动画添加
 	 */
@@ -1819,6 +1874,10 @@
 		}
 		effect.play();
 	}
+	
+	/**
+	 * 写新信息
+	 */
 	private function writeNewMsg(event:MouseEvent):void{
 		messageBox.currentState = "writeMsg";
 		messageBox.msg1.to_username.text = "bubble";
@@ -1827,6 +1886,10 @@
 		messageBox.msg1.to_msghead.text = "";
 		messageBox.msg1.sendMsg.addEventListener(MouseEvent.CLICK,sendNewMsg);
 	}
+	
+	/**
+	 * 回复信息
+	 */
 	private function replyNewMsg(event:MouseEvent):void{
 		if(messageBox.currentState == "detailed")
 			messageBox.msg1.reply_userid = messagePreNext[1].user_id;
@@ -1839,12 +1902,19 @@
 		messageBox.msg1.to_msghead.text = "";
 		messageBox.msg1.sendMsg.addEventListener(MouseEvent.CLICK,sendNewMsg);
 	}
+	
+	/**
+	 * 发送信息
+	 */
 	private function sendNewMsg(event:MouseEvent):void{
 		if( messageBox.msg1.to_username.text != "" && messageBox.msg1.to_msghead.text != "" && messageBox.msg1.msgbody.text != "")
 			rpc.sendMsg(onSendMsg, userId, messageBox.msg1.to_username.text, messageBox.msg1.to_msghead.text, messageBox.msg1.msgbody.text);
 		else
 			Alert.show("请输入完整信息^^");
 	}
+	/**
+	 * 发送信息回调函数
+	 */
 	private function onSendMsg(result:Boolean):void{
 		if(!result){
 			Alert.show("发送失败，请重试^^");

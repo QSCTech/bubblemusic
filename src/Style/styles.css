@@ -738,3 +738,17 @@ LinkButton
 	color:#E00025;
 	borderStyle:none;
 }
+.listupBtn
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="listup");
+	downSkin:Embed(source="bubble.swf" ,symbol="listup_down");
+	overSkin:Embed(source="bubble.swf" ,symbol="listup");
+	rollOverEffect: Glow;
+}
+.listdownBtn
+{
+	upSkin:Embed(source="bubble.swf" ,symbol="listdown");
+	downSkin:Embed(source="bubble.swf" ,symbol="listdown_down");
+	overSkin:Embed(source="bubble.swf" ,symbol="listdown");
+	rollOverEffect: Glow;
+}
