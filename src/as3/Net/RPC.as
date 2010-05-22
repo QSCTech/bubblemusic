@@ -208,11 +208,22 @@ package as3.Net
 			conn.call("User.delMsg",new Responder(result,onFault),msgid,userid,page);
 			conn.close();
 		}
+		public function delSendedMsg(result:Function,msgid:String,userid:int,page:int):void{
+			conn.connect(URL);
+			conn.call("User.delSendedMsg",new Responder(result,onFault),msgid,userid,page);
+			conn.close();
+		}
 		public function delMsgAll(result:Function,userid:int):void{
 			conn.connect(URL);
 			conn.call("User.delMsgAll",new Responder(result,onFault),userid);
 			conn.close();
 		}
+		public function delSendedMsgAll(result:Function,userid:int):void{
+			conn.connect(URL);
+			conn.call("User.delSendedMsgAll",new Responder(result,onFault),userid);
+			conn.close();
+		}
+		
 		public function getMsgBody(result:Function,msgid:int,userid:int):void{
 			conn.connect(URL);
 			conn.call("User.getMsgBody",new Responder(result,onFault),msgid,userid);
