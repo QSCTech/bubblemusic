@@ -1550,7 +1550,7 @@
 	        else 
 	        	messageBox.preBigBtn.enabled = false;	
 			
-			if(list[0].msg_check == 0){
+			if(list[0].msg_check == 0 && msgState == 1){
 				
 				if(list[3])
 		        	messageBox.nextBigBtn.enabled = true;
@@ -1723,6 +1723,16 @@
 		messageBox.msg1.msg_body = result[1].msg_body; 
 		
 		messageBox.msg1.to_user_name = result[1].user_name;
+		
+		if(msgState == 1){
+			messageBox.msg1.from.text = "From:";
+			messageBox.msg1.replyMsg.visible = true;
+		}
+		else{
+			messageBox.msg1.from.text = "To:";
+			messageBox.msg1.replyMsg.visible = false;
+		}
+			
 		if(messageResult[1].msg_check == 0)
 			rpc.checkMsg(blank, result[1].msg_id, userId,0);
 
@@ -1770,7 +1780,10 @@
     			messageResult[10] += "||" + messageResult[2].msg_id;
     	}
     	if(messageResult[10]!=""){
-    		rpc.delMsg(onMessageResult, messageResult[10], userId, 1);
+    		if(msgState == 1)
+    			rpc.delMsg(onMessageResult, messageResult[10], userId, 1);
+    		else
+    			rpc.delSendedMsg(onMessageResult, messageResult[10], userId, 1);
     		tipsShow("删除成功");
     	}
     	else{
@@ -1782,7 +1795,10 @@
 	 * detailed状态下 删除单个信息
 	 */
     private function deleteSingleMsg(event:MouseEvent):void{
-    	rpc.delMsg(blank, messagePreNext[1].msg_id, userId,0);
+    	if(msgState == 1)
+			rpc.delMsg(onMessageResult, messageResult[10], userId, 1);
+		else
+			rpc.delSendedMsg(onMessageResult, messageResult[10], userId, 1);
     	tipsShow("删除成功");
     	if(messageBox.nextBigBtn.enabled == true)
     		nextMsgPage(event);
@@ -1796,7 +1812,10 @@
 	 * 删除所有信息
 	 */
     private function deleteAllMsg(event:MouseEvent):void{
-    	rpc.delMsgAll(onDeleteAllMsg, userId);
+    	if(msgState == 1)
+    		rpc.delMsgAll(onDeleteAllMsg, userId);
+    	else
+    		rpc.delSendedMsgAll(onDeleteAllMsg, userId);
     }
     
     /**

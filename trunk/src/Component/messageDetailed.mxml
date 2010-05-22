@@ -10,6 +10,7 @@
 			<mx:SetProperty target="{backMsgBtn}" name="visible" value="false"/>
 			<mx:SetProperty target="{deleteMsg}" name="visible" value="false"/>
 			<mx:SetProperty target="{msgbody}" name="editable" value="false"/>
+			<mx:SetProperty target="{from}" name="text" value="From:"/>
 		</mx:State>
 		<mx:State name="detailed">
 			<mx:SetProperty target="{msgbody}" name="height" value="160"/>
@@ -23,10 +24,12 @@
 			<mx:SetProperty target="{msgbody}" name="x" value="10"/>
 			<mx:SetStyle target="{replyMsg}" name="right" value="140"/>
 			<mx:SetProperty target="{msgbody}" name="editable" value="false"/>
+			<mx:SetProperty target="{from}" name="text" value="From:"/>
 		</mx:State>
 		<mx:State name="init">
 			<mx:SetProperty target="{backMsgBtn}" name="visible" value="false"/>
 			<mx:SetProperty target="{deleteMsg}" name="visible" value="false"/>
+			<mx:SetProperty target="{from}" name="text" value="From:"/>
 		</mx:State>
 		<mx:State name="writeMsg">
 			<mx:SetProperty target="{msgbody}" name="height" value="160"/>
@@ -42,7 +45,7 @@
 			<mx:SetProperty target="{from}" name="text" value="To:"/>
 			<mx:RemoveChild target="{msgdate}"/>
 			<mx:RemoveChild target="{msghead}"/>
-			
+			<mx:SetProperty target="{from}" name="text" value="To"/>
 			<mx:SetProperty target="{msgbody}" name="editable" value="true"/>
 			<mx:RemoveChild target="{replyMsg}"/>
 			<mx:RemoveChild target="{deleteMsg}"/>
