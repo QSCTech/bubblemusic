@@ -1602,6 +1602,9 @@
 				
 				if(list[0]){
 					messageBox.msg11.visible = true;
+					if(list[0].msg_check == 0){
+						messageBox.msg11.currentState = "newMsg";
+					}else{messageBox.msg11.currentState = "init";}
 					messageBox.msg11.deleteBtn.selected = false;
 					messageBox.msg11.msg_head = list[0].msg_head;
 					messageBox.msg11.user_name = list[0].user_name;
