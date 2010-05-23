@@ -1733,7 +1733,7 @@
 			messageBox.msg1.replyMsg.visible = false;
 		}
 			
-		if(messageResult[1].msg_check == 0)
+		if(messageResult[1].msg_check == 0 && msgState == 1)
 			rpc.checkMsg(blank, result[1].msg_id, userId,0);
 
 		if(result[2])
@@ -1836,7 +1836,10 @@
     private function nextMsgPage(event:Event):void{
 		var page:int = int(messageBox.page.text) + 1;
 		if(messageBox.currentState == "detailed"){
-			rpc.getMsgBody(msgDetailCallback,messagePreNext[2].msg_id,userId);
+			if(msgState == 1)
+				rpc.getMsgBody(msgDetailCallback,messagePreNext[2].msg_id,userId);
+			else
+				rpc.getSendedMsgBody(msgDetailCallback,messagePreNext[2].msg_id,userId);
 			messageBox.detailNext.play();
 		}
 		else if(msgState == 1){
@@ -1856,7 +1859,10 @@
 	private function preMsgPage(event:Event):void{
 		var page:int = int(messageBox.page.text) - 1;
 		if(messageBox.currentState == "detailed"){
-			rpc.getMsgBody(msgDetailCallback,messagePreNext[0].msg_id,userId);	
+			if(msgState == 1)
+				rpc.getMsgBody(msgDetailCallback,messagePreNext[2].msg_id,userId);
+			else
+				rpc.getSendedMsgBody(msgDetailCallback,messagePreNext[2].msg_id,userId);	
 			messageBox.detailPre.play();	
 		}
 		else if(msgState == 1){
@@ -1868,17 +1874,6 @@
 			messageBox.summaryPre.play();
 		}
 		messageBox.page.text = String(page);
-	}
-	
-	/**
-	 * 向播放列表中删除歌曲，列表动画添加
-	 */
-	private function msgListEffect(from:int):void{
-		var effect:Parallel = new Parallel();
-		for (var i:int=from-1; i<12; i++){
-			effect.addChild(musicList.listEffectArray[i]);
-		}
-		effect.play();
 	}
 	
 	/**

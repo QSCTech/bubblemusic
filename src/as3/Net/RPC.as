@@ -229,6 +229,11 @@ package as3.Net
 			conn.call("User.getMsgBody",new Responder(result,onFault),msgid,userid);
 			conn.close();
 		}
+		public function getSendedMsgBody(result:Function,msgid:int,userid:int):void{
+			conn.connect(URL);
+			conn.call("User.getSendedMsgBody",new Responder(result,onFault),msgid,userid);
+			conn.close();
+		}
 		public function getUserMsgUnCheck(result:Function,userid:int):void{
 			conn.connect(URL);
 			conn.call("User.getUserMsgUnCheck",new Responder(result,onFault),userid);
