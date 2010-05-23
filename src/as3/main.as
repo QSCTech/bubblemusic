@@ -60,7 +60,7 @@
 	public var tagID:int = 0;
 	public var singerID:int = 0;
 	[Bindable]
-	public var Version:String = "Bubble Music 1.4 (2010.5.19.r107) April Fool's Edition.Powered by QSCtech";
+	public var Version:String = "Bubble Music 1.4 (2010.5.23.r114) April Fool's Edition.Powered by QSCtech";
 	
 	/**
 	 *初始化播放列表 
@@ -1520,8 +1520,10 @@
 	private function backUserMessage(event:MouseEvent):void{
 		currentState = "message";
 		messageBox.page.text = "1";
-		msgState = 1;
-		rpc.getUserMsg(onMessageResult,userId,1);
+		if(msgState == 1)
+			rpc.getUserMsg(onMessageResult,userId,1);
+		else
+			rpc.getUserSendedMsg(onMessageResult,userId,1);
 	}
 	/**
 	 * 获取信息回调函数
@@ -1726,10 +1728,12 @@
 		
 		if(msgState == 1){
 			messageBox.msg1.from.text = "From:";
+			messageBox.msg1.backMsgBtn.label = "返回收件箱";
 			messageBox.msg1.replyMsg.visible = true;
 		}
 		else{
 			messageBox.msg1.from.text = "To:";
+			messageBox.msg1.backMsgBtn.label = "返回发件箱";
 			messageBox.msg1.replyMsg.visible = false;
 		}
 			
