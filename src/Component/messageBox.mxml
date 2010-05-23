@@ -67,11 +67,15 @@
 			<mx:SetProperty target="{msg1}" name="doubleClickEnabled" value="false"/>
 			<mx:SetProperty target="{page}" name="visible" value="false"/>
 			<mx:RemoveChild target="{hbox1}"/>
+			<mx:SetStyle target="{msg1}" name="horizontalCenter"/>
+			<mx:SetProperty target="{msg1}" name="x" value="10"/>
 		</mx:State>
 		<mx:State name="init">
 			<mx:SetProperty target="{page}" name="visible" value="true"/>
 			<mx:SetProperty target="{msg1}" name="doubleClickEnabled" value="true"/>
 			<mx:SetProperty target="{msg1}" name="currentState" value="init"/>
+			<mx:SetStyle target="{msg1}" name="horizontalCenter"/>
+			<mx:SetProperty target="{msg1}" name="x" value="10"/>
 			
 		</mx:State>
 		<mx:State name="writeMsg">
@@ -144,40 +148,40 @@
 	</mx:transitions>
 	
 	<mx:Parallel id="summaryNext">
-		<mx:Move target="{msg11}" xFrom="760" xTo="0" duration="500"/>
-		<mx:Move target="{msg2}" xFrom="760" xTo="0" duration="500"/>
-		<mx:Move target="{msg3}" xFrom="760" xTo="0" duration="500"/>
-		<mx:Move target="{msg4}" xFrom="760" xTo="0" duration="500"/>
-		<mx:Move target="{msg5}" xFrom="760" xTo="0" duration="500"/>
-		<mx:Move target="{msg6}" xFrom="760" xTo="0" duration="500"/>
-		<mx:Move target="{msg7}" xFrom="760" xTo="0" duration="500"/>
-		<mx:Move target="{msg8}" xFrom="760" xTo="0" duration="500"/>
+		<mx:Move target="{msg11}" xFrom="760" xTo="10" duration="500"/>
+		<mx:Move target="{msg2}" xFrom="760" xTo="10" duration="500"/>
+		<mx:Move target="{msg3}" xFrom="760" xTo="10" duration="500"/>
+		<mx:Move target="{msg4}" xFrom="760" xTo="10" duration="500"/>
+		<mx:Move target="{msg5}" xFrom="760" xTo="10" duration="500"/>
+		<mx:Move target="{msg6}" xFrom="760" xTo="10" duration="500"/>
+		<mx:Move target="{msg7}" xFrom="760" xTo="10" duration="500"/>
+		<mx:Move target="{msg8}" xFrom="760" xTo="10" duration="500"/>
 	</mx:Parallel>
 	<mx:Parallel id="summaryPre">
-		<mx:Move target="{msg11}" xFrom="-760" xTo="0" duration="500"/>
-		<mx:Move target="{msg2}" xFrom="-760" xTo="0" duration="500"/>
-		<mx:Move target="{msg3}" xFrom="-760" xTo="0" duration="500"/>
-		<mx:Move target="{msg4}" xFrom="-760" xTo="0" duration="500"/>
-		<mx:Move target="{msg5}" xFrom="-760" xTo="0" duration="500"/>
-		<mx:Move target="{msg6}" xFrom="-760" xTo="0" duration="500"/>
-		<mx:Move target="{msg7}" xFrom="-760" xTo="0" duration="500"/>
-		<mx:Move target="{msg8}" xFrom="-760" xTo="0" duration="500"/>
+		<mx:Move target="{msg11}" xFrom="-760" xTo="10" duration="500"/>
+		<mx:Move target="{msg2}" xFrom="-760" xTo="10" duration="500"/>
+		<mx:Move target="{msg3}" xFrom="-760" xTo="10" duration="500"/>
+		<mx:Move target="{msg4}" xFrom="-760" xTo="10" duration="500"/>
+		<mx:Move target="{msg5}" xFrom="-760" xTo="10" duration="500"/>
+		<mx:Move target="{msg6}" xFrom="-760" xTo="10" duration="500"/>
+		<mx:Move target="{msg7}" xFrom="-760" xTo="10" duration="500"/>
+		<mx:Move target="{msg8}" xFrom="-760" xTo="10" duration="500"/>
 	</mx:Parallel>
 	<mx:Parallel id="detailNext">
-		<mx:Move target="{msg1}" xFrom="760" xTo="0" duration="500"/>
+		<mx:Move target="{msg1}" xFrom="760" xTo="10" duration="500"/>
 	</mx:Parallel>
 	<mx:Parallel id="detailPre">
-		<mx:Move target="{msg1}" xFrom="-760" xTo="0" duration="500"/>
+		<mx:Move target="{msg1}" xFrom="-760" xTo="10" duration="500"/>
 	</mx:Parallel>
 	<mx:Parallel id="receiveNext">
-		<mx:Move target="{msg1}" xFrom="760" xTo="0" duration="500"/>
-		<mx:Move target="{msg2}" xFrom="760" xTo="0" duration="500"/>
-		<mx:Move target="{msg3}" xFrom="760" xTo="0" duration="500"/>
+		<mx:Move target="{msg1}" xFrom="760" xTo="10" duration="500"/>
+		<mx:Move target="{msg2}" xFrom="760" xTo="10" duration="500"/>
+		<mx:Move target="{msg3}" xFrom="760" xTo="10" duration="500"/>
 	</mx:Parallel>
 	<mx:Parallel id="receivePre">
-		<mx:Move target="{msg1}" xFrom="-760" xTo="0" duration="500"/>
-		<mx:Move target="{msg2}" xFrom="-760" xTo="0" duration="500"/>
-		<mx:Move target="{msg3}" xFrom="-760" xTo="0" duration="500"/>
+		<mx:Move target="{msg1}" xFrom="-760" xTo="10" duration="500"/>
+		<mx:Move target="{msg2}" xFrom="-760" xTo="10" duration="500"/>
+		<mx:Move target="{msg3}" xFrom="-760" xTo="10" duration="500"/>
 	</mx:Parallel>
 	
 </mx:Canvas>
