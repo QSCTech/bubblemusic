@@ -1514,6 +1514,12 @@
 		msgState = 1;
 		rpc.getUserMsg(onMessageResult,userId,1);
 	}
+	private function getUserReceivedMessage(event:MouseEvent):void{
+		currentState = "message";
+		messageBox.page.text = "1";
+		msgState = 1;
+		rpc.getUserMsg(onMessageResult,userId,1);
+	}
 	/**
 	 * 回到收件箱
 	 */

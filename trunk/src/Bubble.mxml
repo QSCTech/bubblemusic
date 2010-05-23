@@ -104,7 +104,7 @@
 			<mx:SetEventHandler target="{messageBox.msg1.backMsgBtn}" handlerFunction="backUserMessage" name="click"/>
 			<mx:SetEventHandler target="{messageBox.msg1.deleteMsg}" handlerFunction="deleteSingleMsg" name="click"/>
 			<mx:SetEventHandler target="{messageBox.msg1.replyMsg}" handlerFunction="replyNewMsg" name="click"/>
-			<mx:SetEventHandler target="{messageBox.receivedMsgBox}" handlerFunction="backUserMessage" name="click"/>
+			<mx:SetEventHandler target="{messageBox.receivedMsgBox}" handlerFunction="getUserReceivedMessage" name="click"/>
 			<mx:SetEventHandler target="{messageBox.sendedMsgBox}" handlerFunction="getUserSendedMsg" name="click"/>
 			<mx:SetEventHandler target="{messageBox.createMsg}" handlerFunction="writeNewMsg" name="click"/>
 		</mx:State>
