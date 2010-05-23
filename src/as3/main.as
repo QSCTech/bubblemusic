@@ -337,7 +337,7 @@
 			userId = result.user_id;
 			top.currentState = "logined";
 			flash.external.ExternalInterface.call("setSid", result.sid);
-			rpc.getUserMsgUnCheck(onGetUserMsgUnCheck,userId);
+			rpc.getMsgUncheckNum(onGetMsgUncheckNum,userId);
 		} 
 	 }
 	/**
@@ -1194,9 +1194,9 @@
 		userName = result.user_name;
 		userId = result.user_id;
 		tipsShow("登录成功~");
-		rpc.getUserMsgUnCheck(onGetUserMsgUnCheck,userId);
+		rpc.getMsgUncheckNum(onGetMsgUncheckNum,userId);
 	}
-	private function onGetUserMsgUnCheck(result:int):void{
+	private function onGetMsgUncheckNum(result:int):void{
 		if(result>0){
 			top.messageBtn.label = "new站内信";
 			top.messageBtn.styleName = "topNewLBtn";
@@ -1535,7 +1535,7 @@
 		messageBox.nextBigBtn.enabled = false;
 		messageBox.preBigBtn.enabled = false;
 		this.syncMessageList(messageResult);
-		rpc.getUserMsgUnCheck(onGetUserMsgUnCheck,userId);
+		rpc.getMsgUncheckNum(onGetMsgUncheckNum,userId);
 	}
 	/**
 	 * 布局信息
