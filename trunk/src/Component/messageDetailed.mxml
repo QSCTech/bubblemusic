@@ -82,7 +82,7 @@
 		]]>
 	</mx:Script>
 	<mx:CheckBox id="deleteBtn" top="30" left="5" selected="false"/>
-	<mx:Image id="touxiang" left="20" top="8" source="Style/J71 (1).jpg" width="50" height="50"/>
+	<mx:Image id="touxiang" left="20" top="8" source="images/J71 (1).jpg" width="50" height="50"/>
 	<mx:HBox x="75" y="17" verticalAlign="middle" id="hbox1">
 		<mx:Text id="msghead" text="{msg_head}" styleName="blackBoldText"/>
 	</mx:HBox>
