@@ -1520,8 +1520,12 @@
 	private function backUserMessage(event:MouseEvent):void{
 		currentState = "message";
 		messageBox.page.text = "1";
-		msgState = 1;
-		rpc.getUserMsg(onMessageResult,userId,1);
+		if(msgState == 1){
+			rpc.getUserMsg(onMessageResult,userId,1);
+		}
+		else
+			rpc.getUserSendedMsg(onMessageResult,userId,1);
+		
 	}
 	/**
 	 * 获取信息回调函数
