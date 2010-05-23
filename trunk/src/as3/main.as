@@ -1520,10 +1520,8 @@
 	private function backUserMessage(event:MouseEvent):void{
 		currentState = "message";
 		messageBox.page.text = "1";
-		if(msgState == 1)
-			rpc.getUserMsg(onMessageResult,userId,1);
-		else
-			rpc.getUserSendedMsg(onMessageResult,userId,1);
+		msgState = 1;
+		rpc.getUserMsg(onMessageResult,userId,1);
 	}
 	/**
 	 * 获取信息回调函数
@@ -1851,7 +1849,6 @@
 		}
 		else if(msgState == 1){
 			rpc.getUserMsg(onMessageResult,userId,page);
-			messageBox.receiveNext.play();
 		}
 		else{
 			rpc.getUserSendedMsg(onMessageResult,userId,page);
@@ -1874,7 +1871,6 @@
 		}
 		else if(msgState == 1){
 			rpc.getUserMsg(onMessageResult,userId,page);
-			messageBox.receivePre.play();
 		}
 		else{
 			rpc.getUserSendedMsg(onMessageResult,userId,page);
@@ -1892,6 +1888,8 @@
 		messageBox.msg1.to_username.editable = false;
 		messageBox.msg1.msg_body = "";
 		messageBox.msg1.to_msghead.text = "";
+		messageBox.msg1.backMsgBtn.label = "返回发件箱";
+		msgState = 2;
 		messageBox.msg1.sendMsg.addEventListener(MouseEvent.CLICK,sendNewMsg);
 	}
 	
@@ -1908,6 +1906,8 @@
 		messageBox.msg1.to_username.editable = false;
 		messageBox.msg1.msg_body = "";
 		messageBox.msg1.to_msghead.text = "";
+		messageBox.msg1.backMsgBtn.label = "返回发件箱";
+		msgState = 2;
 		messageBox.msg1.sendMsg.addEventListener(MouseEvent.CLICK,sendNewMsg);
 	}
 	
