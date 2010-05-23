@@ -1813,10 +1813,11 @@
 	 * detailed状态下 删除单个信息
 	 */
     private function deleteSingleMsg(event:MouseEvent):void{
+    	var i:int = event.currentTarget.index - 1;
     	if(msgState == 1)
-			rpc.delMsg(onMessageResult, messageResult[10], userId, 1);
+			rpc.delMsg(onMessageResult, messageResult[i].msg_id, userId, 1);
 		else
-			rpc.delSendedMsg(onMessageResult, messageResult[10], userId, 1);
+			rpc.delSendedMsg(onMessageResult, messageResult[i].msg_id, userId, 1);
     	tipsShow("删除成功");
     	if(messageBox.nextBigBtn.enabled == true)
     		nextMsgPage(event);
@@ -1842,7 +1843,11 @@
     private function onDeleteAllMsg(result:Boolean):void{
     	if(result){
     		tipsShow("删除成功");
-    		messageBox.currentState = "noneMsg";
+    		if(msgState == 1){
+				rpc.getUserMsg(onMessageResult,userId,1);
+			}
+			else
+				rpc.getUserSendedMsg(onMessageResult,userId,1);
     	}
     	else
     		Alert.show("请重试");
