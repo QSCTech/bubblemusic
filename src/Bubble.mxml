@@ -118,6 +118,76 @@
 			<mx:AddChild relativeTo="{middle}" position="lastChild">
 				<bubble:searchBox id="newListSearch" verticalCenter="0"/>
 			</mx:AddChild>
+			<mx:SetEventHandler target="{newListSearch.s1}" handlerFunction="addSearchTextBtn" name="rollOver" />
+			<mx:SetEventHandler target="{newListSearch.s1}" handlerFunction="removeSearchTextBtn" name="rollOut" />
+			<mx:SetEventHandler target="{newListSearch.s2}" handlerFunction="addSearchTextBtn" name="rollOver" />
+			<mx:SetEventHandler target="{newListSearch.s2}" handlerFunction="removeSearchTextBtn" name="rollOut" />
+			<mx:SetEventHandler target="{newListSearch.s3}" handlerFunction="addSearchTextBtn" name="rollOver" />
+			<mx:SetEventHandler target="{newListSearch.s3}" handlerFunction="removeSearchTextBtn" name="rollOut" />
+			<mx:SetEventHandler target="{newListSearch.s4}" handlerFunction="addSearchTextBtn" name="rollOver" />
+			<mx:SetEventHandler target="{newListSearch.s4}" handlerFunction="removeSearchTextBtn" name="rollOut" />
+			<mx:SetEventHandler target="{newListSearch.s5}" handlerFunction="addSearchTextBtn" name="rollOver" />
+			<mx:SetEventHandler target="{newListSearch.s5}" handlerFunction="removeSearchTextBtn" name="rollOut" />
+			<mx:SetEventHandler target="{newListSearch.s6}" handlerFunction="addSearchTextBtn" name="rollOver" />
+			<mx:SetEventHandler target="{newListSearch.s6}" handlerFunction="removeSearchTextBtn" name="rollOut" />
+			<mx:SetEventHandler target="{newListSearch.s7}" handlerFunction="addSearchTextBtn" name="rollOver" />
+			<mx:SetEventHandler target="{newListSearch.s7}" handlerFunction="removeSearchTextBtn" name="rollOut" />
+			<mx:SetEventHandler target="{newListSearch.s8}" handlerFunction="addSearchTextBtn" name="rollOver" />
+			<mx:SetEventHandler target="{newListSearch.s8}" handlerFunction="removeSearchTextBtn" name="rollOut" />
+			<mx:SetEventHandler target="{newListSearch.s9}" handlerFunction="addSearchTextBtn" name="rollOver" />
+			<mx:SetEventHandler target="{newListSearch.s9}" handlerFunction="removeSearchTextBtn" name="rollOut" />
+			<mx:SetEventHandler target="{newListSearch.s10}" handlerFunction="addSearchTextBtn" name="rollOver" />
+			<mx:SetEventHandler target="{newListSearch.s10}" handlerFunction="removeSearchTextBtn" name="rollOut" />
+			
+			<mx:SetEventHandler target="{newListSearch.nextBtn}" handlerFunction="nextSearchPage" name="click" />
+			<mx:SetEventHandler target="{newListSearch.preBtn}" handlerFunction="preSearchPage" name="click" />
+			
+			<mx:SetEventHandler target="{newListSearch.s1}" handlerFunction="addToList" name="doubleClick"/>
+			<mx:SetEventHandler target="{newListSearch.s2}" handlerFunction="addToList" name="doubleClick"/>
+			<mx:SetEventHandler target="{newListSearch.s3}" handlerFunction="addToList" name="doubleClick"/>
+			<mx:SetEventHandler target="{newListSearch.s4}" handlerFunction="addToList" name="doubleClick"/>
+			<mx:SetEventHandler target="{newListSearch.s5}" handlerFunction="addToList" name="doubleClick"/>
+			<mx:SetEventHandler target="{newListSearch.s6}" handlerFunction="addToList" name="doubleClick"/>
+			<mx:SetEventHandler target="{newListSearch.s7}" handlerFunction="addToList" name="doubleClick"/>
+			<mx:SetEventHandler target="{newListSearch.s8}" handlerFunction="addToList" name="doubleClick"/>
+			<mx:SetEventHandler target="{newListSearch.s9}" handlerFunction="addToList" name="doubleClick"/>
+			<mx:SetEventHandler target="{newListSearch.s10}" handlerFunction="addToList" name="doubleClick"/>
+			
+			<mx:SetEventHandler target="{newListSearch.addAll}" handlerFunction="addAllMusic" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.backLyric}" handlerFunction="lyricShow" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.showTags}" handlerFunction="tagShow" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s1.littleSearchAdd}" handlerFunction="addToListBtn" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s2.littleSearchAdd}" handlerFunction="addToListBtn" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s3.littleSearchAdd}" handlerFunction="addToListBtn" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s4.littleSearchAdd}" handlerFunction="addToListBtn" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s5.littleSearchAdd}" handlerFunction="addToListBtn" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s6.littleSearchAdd}" handlerFunction="addToListBtn" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s7.littleSearchAdd}" handlerFunction="addToListBtn" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s8.littleSearchAdd}" handlerFunction="addToListBtn" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s9.littleSearchAdd}" handlerFunction="addToListBtn" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s10.littleSearchAdd}" handlerFunction="addToListBtn" name="click"/>	
+			
+			<mx:SetEventHandler target="{newListSearch.s1.littleSearchUpdate}" handlerFunction="editFav" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s2.littleSearchUpdate}" handlerFunction="editFav" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s3.littleSearchUpdate}" handlerFunction="editFav" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s4.littleSearchUpdate}" handlerFunction="editFav" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s5.littleSearchUpdate}" handlerFunction="editFav" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s6.littleSearchUpdate}" handlerFunction="editFav" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s7.littleSearchUpdate}" handlerFunction="editFav" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s8.littleSearchUpdate}" handlerFunction="editFav" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s9.littleSearchUpdate}" handlerFunction="editFav" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s10.littleSearchUpdate}" handlerFunction="editFav" name="click"/>
+			
+			<mx:SetEventHandler target="{newListSearch.s1.littleSearchDelete}" handlerFunction="deleteFav" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s2.littleSearchDelete}" handlerFunction="deleteFav" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s3.littleSearchDelete}" handlerFunction="deleteFav" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s4.littleSearchDelete}" handlerFunction="deleteFav" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s5.littleSearchDelete}" handlerFunction="deleteFav" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s6.littleSearchDelete}" handlerFunction="deleteFav" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s7.littleSearchDelete}" handlerFunction="deleteFav" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s8.littleSearchDelete}" handlerFunction="deleteFav" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s9.littleSearchDelete}" handlerFunction="deleteFav" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.s10.littleSearchDelete}" handlerFunction="deleteFav" name="click"/>
 		</mx:State>
 	</mx:states>
 	
@@ -137,6 +207,7 @@
 			</mx:Canvas>
 		</mx:Canvas>
 		<mx:HRule width="100%" bottom="0" styleName="bottomHRule"/>
+		
 	</mx:Canvas>
 			
 	<mx:Parallel id="tipShow" effectEnd="tipStay.play()">
@@ -180,6 +251,19 @@
 		</mx:Transition>
 		<mx:Transition id="messageTrans" fromState="*" toState="message">
 			<mx:Parallel target="{messageBox}">
+				<mx:WipeDown duration="1000"/>
+				<mx:Dissolve alphaFrom="0.0" alphaTo="1.0" duration="1000"/>
+			</mx:Parallel>
+		</mx:Transition>
+		<mx:Transition id="NewlistSearchTrans" fromState="lyricState" toState="newList">
+			
+			<mx:Parallel target="{newListSearch}">
+				<mx:WipeDown duration="1000"/>
+				<mx:Dissolve alphaFrom="0.0" alphaTo="1.0" duration="1000"/>
+			</mx:Parallel>
+		</mx:Transition>
+		<mx:Transition id="NewlistTrans" fromState="lyricState" toState="newList">
+			 <mx:Parallel target="{newListBox}">
 				<mx:WipeDown duration="1000"/>
 				<mx:Dissolve alphaFrom="0.0" alphaTo="1.0" duration="1000"/>
 			</mx:Parallel>
