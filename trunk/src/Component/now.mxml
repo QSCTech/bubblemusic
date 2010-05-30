@@ -22,7 +22,7 @@
 			<mx:LinkButton id="mStyle" y="10" label="风格均衡器" styleName="nowNewLBtn"
 				borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]"/>
 			<mx:LinkButton id="diyList" y="10" label="DIY播放列表" styleName="nowLBtn"
-				borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]" visible="false"/>
+				borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]"/>
 		</mx:HBox>
 		<mx:HBox right="0" verticalAlign="" top="0" horizontalGap="1">
 			<mx:LinkButton id="rssPlayer" y="10" label="关注" styleName="nowLBtn" visible="false"/>

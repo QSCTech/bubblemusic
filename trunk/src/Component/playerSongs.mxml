@@ -15,6 +15,8 @@
 	</mx:Canvas>
 	<mx:Button id="littleMusicShare" right="37" toolTip="分享" styleName="shareBtn" width="14" height="14" visible="false" y="9"/>
 	<mx:Button id="littleMusicCollect" right="20" toolTip="收藏" styleName="storeBtn" width="14" height="14" visible="false" y="9"/>
+	<mx:Button id="musicUp" right="37" toolTip="上移" styleName="listupBtn" width="14" height="14" visible="false" y="9"/>
+	<mx:Button id="musicDown" right="20" toolTip="下移" styleName="listdownBtn" width="14" height="14" visible="false" y="9"/>
 	<mx:Button id="littleMusicDelete" right="3" toolTip="删除" styleName="deleteBtn" width="14" height="14" visible="false" y="9"/>
 	<mx:Move id="moveLeft" target="{labelText}"/> 
 	

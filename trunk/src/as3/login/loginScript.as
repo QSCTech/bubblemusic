@@ -18,7 +18,7 @@
 		if(txtUsername.text == "" || txtPassword.text == ""){                         
 			Alert.show("请输入完整数据！");                 
 		}                 
-		else{                         
+		else{                           
 			rpc.loginCheck(onResult,txtUsername.text,txtPassword.text);                                         
 		}         
 	}

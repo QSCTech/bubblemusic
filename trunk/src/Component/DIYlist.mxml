@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="75" styleName="mainCanvas" xmlns:Component="Component.*" verticalScrollPolicy="off" horizontalScrollPolicy="off" currentState="normal">
+    <mx:Script source="../as3/DIYlist/DIYlist.as"/>
+    <mx:Script>
+		<![CDATA[
+			[Bindable]
+			public var musicCount:int = 0; //用于存储目前编辑中的列表的歌曲数
+		]]>
+	</mx:Script>
+	<mx:states>
+    	<mx:State name="normal">
+		</mx:State>
+		<mx:State name="deleting">
+		    <mx:RemoveChild target="{editList}"/>
+			<mx:RemoveChild target="{addList}"/>
+			<mx:RemoveChild target="{delList}"/>
+		    <mx:SetProperty target="{hrule}" name="width" value="228"/>
+			<mx:SetProperty  target="{textLabel}" name="text" value="请选择要删除的列表"/>
+			<mx:AddChild position="lastChild">
+				<mx:Button id="cancelDel" label="返回播放列表" click="back()" styleName="normalBtn" bottom="10" x="240"/>
+			</mx:AddChild>
+			
+		</mx:State>
+		<mx:State name="editing">
+			<mx:AddChild creationPolicy="all" position="lastChild">
+				<mx:Text text="新建列表" styleName="lightText" y="10" x="172.5" width="92" id="editLabel"/>
+			</mx:AddChild>
+			<mx:AddChild creationPolicy="all" position="lastChild">
+				<mx:TextArea id="listIntro"  x="71" y="65" width="306" height="110" styleName="popupInput"/>
+			</mx:AddChild>
+			<mx:AddChild creationPolicy="all" position="lastChild">
+				<mx:TextInput width="100" height="24"  id="listName" styleName="popupInput"  x="71" y="33"/>
+			</mx:AddChild>
+			<mx:AddChild creationPolicy="all" position="lastChild">
+				<mx:Text text="列表名称:" styleName="lightText" y="36" x="10"/>
+			</mx:AddChild>
+			<mx:AddChild creationPolicy="all" position="lastChild">
+				<mx:Text text="简介:" styleName="lightText" y="68" x="34"/>
+			</mx:AddChild>
+			<mx:AddChild creationPolicy="all" position="lastChild">
+				<mx:Text text="当前列表中的歌曲数:{musicCount}" styleName="lightText" y="193" x="10"/>
+			</mx:AddChild>
+			<mx:AddChild creationPolicy="all" position="lastChild">
+				<mx:Button id="complete" label="完成列表" click="completeDIYlist()" styleName="normalBtn" x="111" bottom="10"/>
+			</mx:AddChild>
+			<mx:AddChild creationPolicy="all" position="lastChild">
+				<mx:Button id="cancel" label="取消" click="back()" styleName="normalBtn" bottom="10" x="240"/>
+			</mx:AddChild>
+			<mx:RemoveChild target="{listArea}" />
+			<mx:RemoveChild target="{area}" />
+			<mx:RemoveChild target="{addList}"/>
+			<mx:RemoveChild target="{delList}"/>
+			<mx:RemoveChild target="{editList}"/>
+		    <mx:SetProperty name="height" value="255"/>
+		</mx:State>
+	</mx:states>
+	<mx:LinkButton id="tagClose" label="X" styleName="closeLBtn" click="close()" x="375" toolTip="关闭"
+		borderColor="#FFFFFF" alpha="0.0" fillAlphas="[0.0, 0.0, 0.0, 0.0]"  y="-2"/>
+
+	<mx:HBox id="listArea" top="10" horizontalCenter="0" verticalAlign="middle" width="390" horizontalAlign="center">
+		<mx:HRule width="10" styleName="lightHRule"/>
+		<mx:Text text="播放列表" styleName="lightText" x="-65" y="11" id="textLabel"/>
+		<mx:HRule id="hrule" width="302" styleName="lightHRule"/>
+	</mx:HBox>
+	<mx:Canvas id="area" creationPolicy="all" >
+	</mx:Canvas>
+	
+	<mx:Button id="addList" label="新建播放列表" click="addDIYlist()" styleName="normalBtn" x="52" bottom="10"/>
+	<mx:Button id="editList" label="编辑列表" click="editDIYlist()" styleName="normalBtn" x="178" bottom="10"/>
+    <mx:Button id="delList" label="删除列表" click="delDIYlist()" styleName="normalBtn" bottom="10" x="280"/>	
+</mx:Canvas>

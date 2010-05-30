@@ -7,10 +7,11 @@ package as3.Net
 	public class RPC
 	{
 		private var conn:NetConnection;
-
+        
 		//private var URL:String = "http://www.qsc.zju.edu.cn/apps/bubble/amfphp/gateway.php";
 
-		private var URL:String = "http://localhost/amfphp/gateway.php";
+		//private var URL:String = "http://localhost/amfphp/gateway.php";
+		private var URL:String = "http://localhost/Bubble/amfphp/gateway.php";
 
 		public function RPC()
 		{
@@ -59,7 +60,7 @@ package as3.Net
 		}
 		public function loginCheck(result:Function, username:String, userpw:String):void{
 			conn.connect(URL);
-			conn.call("Music.login",new Responder(result,onFault),username,userpw);
+			conn.call("User.login",new Responder(result,onFault),username,userpw);
 			conn.close();
 		}
 		public function registerCheck(result:Function, username:String, userpw:String, userem:String):void{
@@ -229,14 +230,9 @@ package as3.Net
 			conn.call("User.getMsgBody",new Responder(result,onFault),msgid,userid);
 			conn.close();
 		}
-		public function getSendedMsgBody(result:Function,msgid:int,userid:int):void{
+		public function getUserMsgUnCheck(result:Function,userid:int):void{
 			conn.connect(URL);
-			conn.call("User.getSendedMsgBody",new Responder(result,onFault),msgid,userid);
-			conn.close();
-		}
-		public function getMsgUncheckNum(result:Function,userid:int):void{
-			conn.connect(URL);
-			conn.call("User.getMsgUncheckNum",new Responder(result,onFault),userid);
+			conn.call("User.getUserMsgUnCheck",new Responder(result,onFault),userid);
 			conn.close();
 		}
 		public function sendMsg(result:Function,userid:int,to_username:String, msghead:String, msgbody:String):void{
@@ -244,5 +240,36 @@ package as3.Net
 			conn.call("User.sendMsg",new Responder(result,onFault), userid, to_username, msghead, msgbody);
 			conn.close();
 		}
+		public function getDIYlist(result:Function,userID:int):void{
+			conn.connect(URL);
+			conn.call("Music.getPlaylist",new Responder(result,onFault),userID);
+			conn.close();
+		}
+		public function getDIYlistMusic(result:Function,listID:int):void{
+			conn.connect(URL);
+			conn.call("Music.getPlaylistMusic",new Responder(result,onFault),listID);
+			conn.close();
+		}
+		public function addDIYlist(result:Function,userID:int,listName:String):void{
+			conn.connect(URL);
+			conn.call("Music.addPlaylist",new Responder(result,onFault),userID,listName);
+			conn.close();
+		}
+		public function delDIYlist(result:Function,listID:int):void{
+			conn.connect(URL);
+			conn.call("Music.delPlaylist",new Responder(result,onFault),listID);
+			conn.close();
+		}
+		public function updateDIYlist(result:Function,listID:int,list:String):void{
+			conn.connect(URL);
+			conn.call("Music.updatePlaylistMusic",new Responder(result,onFault),listID,list);
+            conn.close();
+		}
+		public function updateListName(result:Function,listID:int,listName:String):void{
+			conn.connect(URL);
+			conn.call("Music.updatePlaylistName",new Responder(result,onFault),listID,listName);
+			conn.close();
+		}
 	}
+		
 }
