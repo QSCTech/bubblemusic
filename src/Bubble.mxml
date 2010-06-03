@@ -153,7 +153,7 @@
 			<mx:SetEventHandler target="{newListSearch.s9}" handlerFunction="addToList" name="doubleClick"/>
 			<mx:SetEventHandler target="{newListSearch.s10}" handlerFunction="addToList" name="doubleClick"/>
 			
-			<mx:SetEventHandler target="{newListSearch.addAll}" handlerFunction="addAllMusic" name="click"/>
+			<mx:SetEventHandler target="{newListSearch.addAll}" handlerFunction="addAllMusic2DIY" name="click"/>
 			<mx:SetEventHandler target="{newListSearch.backLyric}" handlerFunction="lyricShow" name="click"/>
 			<mx:SetEventHandler target="{newListSearch.showTags}" handlerFunction="tagShow" name="click"/>
 			<mx:SetEventHandler target="{newListSearch.s1.littleSearchAdd}" handlerFunction="addToListBtn" name="click"/>
