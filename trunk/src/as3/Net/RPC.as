@@ -250,9 +250,9 @@ package as3.Net
 			conn.call("Music.getPlaylistMusic",new Responder(result,onFault),listID);
 			conn.close();
 		}
-		public function addDIYlist(result:Function,userID:int,listName:String):void{
+		public function addDIYlist(result:Function,userID:int,listName:String,listIntro:String):void{
 			conn.connect(URL);
-			conn.call("Music.addPlaylist",new Responder(result,onFault),userID,listName);
+			conn.call("Music.addPlaylist",new Responder(result,onFault),userID,listName,listIntro);
 			conn.close();
 		}
 		public function delDIYlist(result:Function,listID:int):void{
@@ -268,6 +268,11 @@ package as3.Net
 		public function updateListName(result:Function,listID:int,listName:String):void{
 			conn.connect(URL);
 			conn.call("Music.updatePlaylistName",new Responder(result,onFault),listID,listName);
+			conn.close();
+		}
+		public function updateListdes(result:Function,listID:int,listDes:String):void{
+			conn.connect(URL);
+			conn.call("Music.updatePlaylistDescription",new Responder(result,onFault),listID,listDes);
 			conn.close();
 		}
 	}

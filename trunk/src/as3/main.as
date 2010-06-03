@@ -23,7 +23,6 @@
 	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
-	import mx.events.CloseEvent;
 	import flash.external.ExternalInterface;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
@@ -33,6 +32,7 @@
 	
 	import mx.controls.Alert;
 	import mx.effects.Parallel;
+	import mx.events.CloseEvent;
 	import mx.events.SliderEvent;
 	import mx.managers.PopUpManager;        
                    
@@ -1987,6 +1987,7 @@
 	   		PopUpManager.addPopUp(DIYlistWin,this,false);
 	    	PopUpManager.centerPopUp(DIYlistWin);
 	    	DIYlistWin.isOn = true ;
+	    	DIYlistWin.shareDIYlist = listShare
 	   	}
 	}
 	/**
@@ -2132,10 +2133,17 @@
 	* 完成DIY
 	*/
 	private function completeDIY(isAdding:Boolean):void{
-		DIYListID = DIYList[0].id.toString();
-		for(var i:int = 1; i<DIYList.length;i++) DIYListID += ";" + DIYList[i].id.toString();
-		if (isAdding) rpc.addDIYlist(onGetAddDIYlist,userId,DIYlistWin.listName.text);
-		else rpc.updateListName(onGetUpdateDIY,DIYlistWin.listIndex,DIYlistWin.listName.text);
+		if(DIYList.length == 0) Alert.show("嗨，列表至少要有一首歌曲吧？");
+		else {
+			if(DIYlistWin.listName.text == "") Alert.show("嗨，给你的列表起个好听的名字吧~");
+		else {
+			DIYListID = DIYList[0].id.toString();
+			for(var i:int = 1; i<DIYList.length;i++) DIYListID += ";" + DIYList[i].id.toString();
+			if (isAdding) rpc.addDIYlist(onGetAddDIYlist,userId,DIYlistWin.listName.text,DIYlistWin.listIntro.text);
+			else rpc.updateListdes(onGetUpdateListName,DIYlistWin.listIndex,DIYlistWin.listIntro.text);
+		}
+		
+		}
 	}
 	/**
 	* 取消DIY，返回原状态
@@ -2289,7 +2297,11 @@
 	 */
 	private function onGetDIY2Play(result:Array):void{
 		var i:int = 0;
-		Alert.show("清空原有播放列表？","",Alert.YES|Alert.NO|Alert.CANCEL,this,chooseRes);
+		Alert.buttonWidth = 120;
+		Alert.yesLabel = "好的么";
+        Alert.noLabel = "不要";
+        Alert.cancelLabel = "嘛，还是算了";
+		Alert.show("嗨，要清空原有播放列表吗？","",Alert.YES|Alert.NO|Alert.CANCEL,this,chooseRes);
 		function chooseRes(event:CloseEvent):void{
 			if(event.detail == Alert.YES){
 				playList.splice(1);
@@ -2325,6 +2337,10 @@
 		}
 		else Alert.show("服务器忙，请重试");
 	}
+	private function onGetUpdateListName(result:Boolean):void{
+		if(result) rpc.updateListName(onGetUpdateDIY,DIYlistWin.listIndex,DIYlistWin.listName.text);
+		else Alert.show("服务器忙，请重试");
+	}
 	private function onGetUpdateDIY(result:Boolean):void{
 		if(result) rpc.updateDIYlist(onGetUpdateDIYMusic,DIYlistWin.listIndex,DIYListID);
 		else Alert.show("服务器忙，请重试");
@@ -2335,4 +2351,35 @@
 			DIYlistWin.back();
 		}
 		else Alert.show("服务器忙，请重试");
+	}
+	
+	/**
+	 * 分享列表
+	 */
+	private function listShare(event:MouseEvent):void{
+		var i:int = event.currentTarget.owner.index;
+		DIYlistWin.shareName = DIYlistWin.tagList[i];
+		rpc.getDIYlistMusic(onGetShareDIY,DIYlistWin.tagIDList[i]);		
+	}
+	private function onGetShareDIY(result:Array):void{
+		var shareWin:share = new share();
+		shareWin.address = "http://www.qsc.zju.edu.cn/bubble/#" + result[0].id;
+		shareWin.text = "分享列表\"" + DIYlistWin.shareName+ "\"给好友吧~";
+		for( var i:int = 1 ; i < result.length ; i++)
+			shareWin.address += "||" + result[i].id;
+		shareWin.copied = tipsShow;
+	    PopUpManager.addPopUp(shareWin,this,false);
+	    PopUpManager.centerPopUp(shareWin);
+	    shareWin.addEventListener(MouseEvent.MOUSE_DOWN,dragIt);
+	    shareWin.addEventListener(MouseEvent.MOUSE_UP,dropIt);
+	}
+	private function addAllMusic2DIY(event:MouseEvent):void{
+		var i:int = 0;
+		while(searchResult[i] && i<10){
+			DIYList.push(searchResult[i]);
+			i++;
+		}
+		resetDIYlistX();  
+		this.syncDIYList(DIYList);
+		this.listAddedEffect(1);
 	}

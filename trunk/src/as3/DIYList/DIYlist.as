@@ -14,9 +14,10 @@
     private var rpc:RPC = new RPC();
 	public var userIndex:int;
 	public var listIndex:int = -1; //用于存储目前编辑中的列表ID
+	public var shareName:String;
 	
-	private var tagList:Array = new Array();
-	private var tagIDList:Array = new Array();
+	public var tagList:Array = new Array();
+	public var tagIDList:Array = new Array();
 	private var ListDes:Array = new Array();
 	
 	private var newY:int = 0;
@@ -27,6 +28,7 @@
 	public var cancelDIY:Function;
 	public var isAdding:Boolean = false;
 	public var isOn:Boolean = false;
+	public var shareDIYlist:Function;
 	
 	/**
 	* 获取tags初始化
@@ -58,13 +60,12 @@
 		for(var i:int = 0;i<result.length;i++){
 			tagList[i] = result[i].playlist_name;
 			tagIDList[i] = result[i].playlist_id;
-			ListDes[i] = "";
+			ListDes[i] = result[i].playlist_description;
 			var lBtn:linkBtn = new linkBtn();
 			lBtn.text = tagList[i];
 			lBtn.index = i;
-			lBtn.toolTip = "暂无简介";
-			lBtn.addEventListener(MouseEvent.CLICK,getUserClassMusic);
-			var len:int = getStrActualLen(tagList[i]) * 8+8;
+			lBtn.toolTip = result[i].playlist_description;
+			var len:int = getStrActualLen(tagList[i]) * 8 + 26;
 			lBtn.width = len;
 			sum = sum + len;
 			if(sum>380){
@@ -82,13 +83,16 @@
 				this.area.addChild(lBtn);
 				x = sum;
 			}
+			lBtn.littleListShare.visible = true;
+			lBtn.linkB.addEventListener(MouseEvent.CLICK,getUserClassMusic);
+			lBtn.littleListShare.addEventListener(MouseEvent.CLICK,shareDIYlist);
 		}
 		newY = y + 20;
 		this.height = newY + 40;
 	}
 	
 	public function getUserClassMusic(event:Event):void{
-		var i:int = event.currentTarget.index;
+		var i:int = event.currentTarget.owner.index;
 		listIndex = tagIDList[i];
 		clickFunc(listIndex);
 	    if(clickFunc == editListID) DIYListedit(i);
@@ -120,7 +124,7 @@
 	 * 取消编辑返回原状态
 	 */
 	public function back():void{
-	  	//cancelDIY();
+	  	cancelDIY();
 	  	this.currentState = "";
 	  	this.area.removeAllChildren();
 	  	this.init();
@@ -158,6 +162,7 @@
 		this.currentState = "editing";
 		this.editLabel.text = "编辑列表";
 		this.listName.text = tagList[listID];
+		this.listIntro.text = ListDes[listID];
 	}
 	/**
 	 * 点击删除
