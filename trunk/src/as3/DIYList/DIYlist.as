@@ -114,7 +114,6 @@
 	 */
 	public function addDIYlist():void{
 	  	this.currentState = 'editing';
-	  	this.editLabel.text = "新建列表";
 	  	listIndex = -1;
 	  	this.listName.text = "";
 	  	isAdding = true;
@@ -160,7 +159,6 @@
 	 */
 	public function DIYListedit(listID:int):void{
 		this.currentState = "editing";
-		this.editLabel.text = "编辑列表";
 		this.listName.text = tagList[listID];
 		this.listIntro.text = ListDes[listID];
 	}

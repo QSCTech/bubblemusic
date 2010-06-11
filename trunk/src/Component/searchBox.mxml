@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="500" height="260" xmlns:Component="Component.*" styleName="searchCanvas">
 
-	
+	<mx:Button id="preBtn" verticalCenter="0" left="20" styleName="preBigBtn"/>
 	<mx:Canvas width="402" height="250" verticalScrollPolicy="off" horizontalScrollPolicy="off" horizontalCenter="0" verticalCenter="0">
 		<mx:Label id="searchTitle" x="0" y="2" styleName="searchTopText"/>
 		<mx:HRule x="0" y="21" width="400" height="1" styleName="searchTopHRule" />
@@ -31,34 +31,35 @@
 		</mx:Canvas>
 	
 		<mx:Button id="addAll" label="全部加入" left="8" bottom="2" styleName="addAllBtn" toolTip="当前页所有歌曲" fontSize="10" fontWeight="normal"/>
-		<mx:Button id="nextBtn" x="378" y="232" styleName="nextPageBtn" enabled="false" width="8" height="12"/>
+		
 		<mx:Label id="page" x="361" y="229" styleName="pageText" text="0"/>
-		<mx:Button id="preBtn" x="348" y="232" styleName="prePageBtn" enabled="false" width="8" height="12"/>
+		
 	</mx:Canvas>		
+	<mx:Button id="nextBtn" verticalCenter="0" right="20" styleName="nextBigBtn"/>
 	
 	<mx:Parallel id="listDown">
-		<mx:Move target="{s1}" yFrom="202" yTo="2" duration="500"/>
-		<mx:Move target="{s2}" yFrom="202" yTo="22" duration="500"/>
-		<mx:Move target="{s3}" yFrom="202" yTo="42" duration="500"/>
-		<mx:Move target="{s4}" yFrom="202" yTo="62" duration="500"/>
-		<mx:Move target="{s5}" yFrom="202" yTo="82" duration="500"/>
-		<mx:Move target="{s6}" yFrom="202" yTo="102" duration="500"/>
-		<mx:Move target="{s7}" yFrom="202" yTo="122" duration="500"/>
-		<mx:Move target="{s8}" yFrom="202" yTo="142" duration="500"/>
-		<mx:Move target="{s9}" yFrom="202" yTo="162" duration="500"/>
-		<mx:Move target="{s10}" yFrom="202" yTo="182" duration="500"/>
+		<mx:Move target="{s1}" xFrom="-400" xTo="0" duration="500"/>
+		<mx:Move target="{s2}" xFrom="-400" xTo="0" duration="500"/>
+		<mx:Move target="{s3}" xFrom="-400" xTo="0" duration="500"/>
+		<mx:Move target="{s4}" xFrom="-400" xTo="0" duration="500"/>
+		<mx:Move target="{s5}" xFrom="-400" xTo="0" duration="500"/>
+		<mx:Move target="{s6}" xFrom="-400" xTo="0" duration="500"/>
+		<mx:Move target="{s7}" xFrom="-400" xTo="0" duration="500"/>
+		<mx:Move target="{s8}" xFrom="-400" xTo="0" duration="500"/>
+		<mx:Move target="{s9}" xFrom="-400" xTo="0" duration="500"/>
+		<mx:Move target="{s10}" xFrom="-400" xTo="0" duration="500"/>
 	</mx:Parallel>
 	<mx:Parallel id="listUp">
-		<mx:Move target="{s1}" yFrom="-18" yTo="2" duration="500"/>
-		<mx:Move target="{s2}" yFrom="-18" yTo="22" duration="500"/>
-		<mx:Move target="{s3}" yFrom="-18" yTo="42" duration="500"/>
-		<mx:Move target="{s4}" yFrom="-18" yTo="62" duration="500"/>
-		<mx:Move target="{s5}" yFrom="-18" yTo="82" duration="500"/>
-		<mx:Move target="{s6}" yFrom="-18" yTo="102" duration="500"/>
-		<mx:Move target="{s7}" yFrom="-18" yTo="122" duration="500"/>
-		<mx:Move target="{s8}" yFrom="-18" yTo="142" duration="500"/>
-		<mx:Move target="{s9}" yFrom="-18" yTo="162" duration="500"/>
-		<mx:Move target="{s10}" yFrom="-18" yTo="182" duration="500"/>
+		<mx:Move target="{s1}" xFrom="400" xTo="0" duration="500"/>
+		<mx:Move target="{s2}" xFrom="400" xTo="0" duration="500"/>
+		<mx:Move target="{s3}" xFrom="400" xTo="0" duration="500"/>
+		<mx:Move target="{s4}" xFrom="400" xTo="0" duration="500"/>
+		<mx:Move target="{s5}" xFrom="400" xTo="0" duration="500"/>
+		<mx:Move target="{s6}" xFrom="400" xTo="0" duration="500"/>
+		<mx:Move target="{s7}" xFrom="400" xTo="0" duration="500"/>
+		<mx:Move target="{s8}" xFrom="400" xTo="0" duration="500"/>
+		<mx:Move target="{s9}" xFrom="400" xTo="0" duration="500"/>
+		<mx:Move target="{s10}" xFrom="400" xTo="0" duration="500"/>
 	</mx:Parallel>
 	
 </mx:Canvas>

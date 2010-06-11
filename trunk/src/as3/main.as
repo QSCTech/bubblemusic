@@ -830,7 +830,7 @@
 			rpc.getUserSingerMusic(onGetSearchList,userId,page,0,singerID);
 		}
 		searchList.page.text = String(page);
-		
+		searchList.listUp.play();
 	}
 	/**
 	 * 获取前一页搜索或者听过歌曲结果
@@ -850,7 +850,7 @@
 			rpc.getUserSingerMusic(onGetSearchList,userId,page,0,singerID);
 		}
 		searchList.page.text = String(page);
-		
+		searchList.listDown.play();
 	}
 	
 	/**
@@ -1974,7 +1974,7 @@
 	 * 显示DIY列表
 	 */
 	private function ShowDIYlist(event:Event):void{
-		if(DIYlistWin.isOn == false ){
+		if(DIYlistWin.isOn == false && userName!=""){
 			DIYlistWin.userIndex = userId;
 			DIYlistWin.editListID = showListMusic;
 	    	DIYlistWin.listPlay = playDIYlist
@@ -1989,6 +1989,8 @@
 	    	DIYlistWin.isOn = true ;
 	    	DIYlistWin.shareDIYlist = listShare
 	   	}
+	   	else
+	   		Alert.show("嗨，注册登录后就能DIY列表啦~");
 	}
 	/**
 	* 将列表显示在List中
