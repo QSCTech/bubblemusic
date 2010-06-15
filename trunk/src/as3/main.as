@@ -68,7 +68,7 @@
 	public var DIYlistWin:DIYlist = new DIYlist();
 	[Bindable]
 
-	public var Version:String = "Bubble Music 1.4 (2010.5.23.r119) April Fool's Edition.Powered by QSCtech";
+	public var Version:String = "Bubble Music 1.4 (2010.6.15.r125) April Fool's Edition.Powered by QSCtech";
 	
 	
 	/**
