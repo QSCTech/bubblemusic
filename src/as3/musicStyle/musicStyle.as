@@ -92,7 +92,7 @@
 		tip.text = "Bubble将按此比例为您推荐歌曲^^"
 		tip.x = 10;
 		tip.y = y;
-		tip.styleName = "redText"
+		tip.styleName = "textGrey"
 		this.addChild(tip);
 		
 		var spa:Spacer = new Spacer();
