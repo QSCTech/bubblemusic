@@ -8,7 +8,7 @@ package as3.Net
 	{
 		private var conn:NetConnection;
         
-		private var URL:String = "http://www.qsc.zju.edu.cn/apps/bubble/_amfphp/gateway.php";
+		private var URL:String = "http://www.qsc.zju.edu.cn/apps/bubble/amfphp/gateway.php";
 
 		//private var URL:String = "http://localhost/amfphp/gateway.php";
 		//private var URL:String = "http://localhost/Bubble/amfphp/gateway.php";
@@ -111,9 +111,9 @@ package as3.Net
 			conn.close();
 		}
 		
-		public function addUserFav(result:Function,musicIndex:int,userIndex:int):void{
+		public function addUserFav(result:Function,musicIndex:int,userIndex:int,tags:String):void{
 			conn.connect(URL);
-			conn.call("Music.addUserFav",new Responder(result,onFault),musicIndex,userIndex);
+			conn.call("Music.addUserFav",new Responder(result,onFault),musicIndex,userIndex,tags);
 			conn.close();
 		}
 		
