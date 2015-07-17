@@ -4,8 +4,8 @@
 
 ## 截图
 
-![bubble1](bubble1.jpg)
+![bubble1](screenshots/bubble1.jpg)
 
-![bubble2](bubble2.jpg)
+![bubble2](screenshots/bubble2.jpg)
 
-![bubble3](bubble3.jpg)
+![bubble3](screenshots/bubble3.jpg)
